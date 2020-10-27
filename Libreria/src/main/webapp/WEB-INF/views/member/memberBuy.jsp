@@ -83,7 +83,7 @@
 					location.href="chargeMoney.me";
 				});
 				$('#side_nav').find('li').eq(6).click(function(){
-					location.href="leave.me";
+					location.href="leaveForm.me";
 				});
 			});
 		</script>
