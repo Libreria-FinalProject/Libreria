@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 	<nav class="" id="nav_container">
 			<div id="nav_body">
-				<a class="" href="#" id="a_brand">LIBRERIA</a>
+				<a class="" href="/libreria" id="a_brand">LIBRERIA</a>
 				<div id="div_search">
 					<img alt="검색" src="${pageContext.request.contextPath}/resources/images/icon_search.png">
 					<input type="text" id="input_search" placeholder="검색어를 입력하세요">
@@ -21,7 +23,7 @@
 				</c:if>
 				<c:if test="${!empty sessionScope.loginUser }">
 					<div id="div_head_btns">
-						<button class="btn_head">마이페이지</button>
+						<button class="btn_head" onclick="location.href='mypage.me'">마이페이지</button>
 						<button class="btn_head" onclick="location.href='logout.me'">로그아웃</button>
 					</div>
 				</c:if>

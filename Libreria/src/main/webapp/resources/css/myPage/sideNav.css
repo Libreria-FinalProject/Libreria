@@ -17,7 +17,9 @@
     margin: 15px 0;
 }
 
-
+.side_nav_list_li:hover{
+	cursor: pointer;
+}
 
 #side_nav_list_title{
 	font-weight: bold;

@@ -7,7 +7,6 @@
 	<title>Libreria</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/common.css"/>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 <c:import url="common/header.jsp"></c:import>
