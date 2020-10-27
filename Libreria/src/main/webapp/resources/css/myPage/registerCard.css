@@ -1,0 +1,119 @@
+@charset "UTF-8";
+section{
+	margin-top:70px;
+	margin-bottom:70px;
+}
+#memberInfo_container{
+	    margin-left: 250px;
+	        color: #333;
+}
+
+#container_title{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#card_table{
+		margin-top:30px;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+#card_table input[type=text],
+#card_table  input[type=password],
+#card_table  input[type=number]{
+	height: 25px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	padding: 6px 12px;
+}
+
+#select_card{
+	width: 130px;
+	height: 39px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	padding: 6px 12px;
+}
+
+#input_cardNum{
+	width: 250px !important;
+}
+
+#input_cardPwd{
+	width: 110px !important;
+}
+
+.input_expDate{
+	width: 80px !important;
+}
+
+#card_table  td{
+	width: 350px;
+	border: 1px solid #cccccc;
+	padding: 10px 20px;
+}
+
+.td_first{
+	background: #eaeaea;
+	width:240px !important;
+	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#regist_btn{
+	border-radius: 5px;
+    background-color: rgb(94, 107, 159);
+     font-size: 16px;
+     color: #ffffff;
+     font-weight: bold;
+     width: 100px; height: 38px;
+     border: none;
+     margin:30px 0px 30px 40%;
+}
+
+/* /////// */
+#admin_bookinsert_table{
+		margin-top:30px;
+	width: 600px;
+	height: 510px;
+	border-collapse: collapse;
+}
+
+#admin_bookinsert_table td,
+#admin_bookinsert_table th{
+	border: 1px solid #cccccc;
+}
+
+#admin_bookinsert_table td{
+	text-align: center;
+}
+
+#admin_bookinsert_table tr:first-child td:nth-child(2) {
+	padding-left: 30px;
+	text-align: left;
+}
+
+#admin_bookinsert_table input[type=text],
+#admin_bookinsert_table select{
+	width:300px;
+	height: 30px;
+	border: 1px solid #ccc;
+    border-radius: 4px;	
+    padding: 3px 6px;
+}
+
+#admin_bookinsert_table textarea{
+	width: 300px;
+	height: 60px;
+	border: 1px solid #ccc;
+    border-radius: 4px;	
+    padding: 3px 6px;
+    resize: none;
+}
+
+#admin_bookinsert_table tr:nth-child(7) td:nth-child(2) {
+	text-align:left;
+	padding-left: 30px;
+}
