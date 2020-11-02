@@ -40,5 +40,15 @@
 				</ul>
 			</div>
 	</nav>
+	<script>
+	 	$('#menu_li').click(function(){
+			console.log("찍음");
+		}); 
+	
+	
+	
+	</script>
+	
+	
 	</body>
 </html>
