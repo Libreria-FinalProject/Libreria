@@ -1,10 +1,11 @@
 @charset "UTF-8";
 section{
-	margin-top:70px;
+	margin-top:70px !important;
 }
 #memberInfo_container{
 	    margin-left: 250px;
-	        color: #333;
+	    color: #333;
+	       
 }
 
 #container_title{
@@ -19,13 +20,22 @@ section{
 
 #memberInfo_table  input[type=text],
 #memberInfo_table  input[type=password],
-#memberInfo_table  input[type=tel]{
+#memberInfo_table  input[type=tel],
+#memberInfo_table  input[type=date]{
 	width:270px;
 	height: 25px;
 	border: 1px solid #cccccc;
 	border-radius: 4px;
 	padding: 6px 12px;
 }
+
+#memberInfo_table #mem_email:focus{
+	outline: none;
+}
+#memberInfo_table #mem_email:hover{
+	cursor: default;
+}
+
 
 #td_address  input:first-child{
 	width: 150px !important;

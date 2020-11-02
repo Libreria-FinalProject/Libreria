@@ -1,7 +1,7 @@
 @charset "UTF-8";
 section{
-	margin-top:70px;
-	margin-bottom:70px;
+	margin-top:70px !important;
+	margin-bottom:70px !important;
 }
 #memberInfo_container{
 	    margin-left: 250px;

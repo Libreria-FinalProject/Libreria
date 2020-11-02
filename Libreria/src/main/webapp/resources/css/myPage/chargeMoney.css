@@ -1,6 +1,6 @@
 @charset "UTF-8";
 section{
-	margin-top:70px;
+	margin-top:70px !important;
 }
 #memberInfo_container{
 	    margin-left: 250px;
@@ -56,6 +56,10 @@ section{
     padding-top: 20px;
 }
 
+#charge_btn{
+	cursor:pointer;
+}
+
 #div_pharseMethod2{
 	width:570px;
 	height: 75px;
@@ -65,10 +69,21 @@ section{
 	line-height: 5em;
 }
 
-#div_pharseMethod2 span{
-	margin: 0 50px;
+#div_pharseMethod2 div{
+    margin: 0px 40px 0px 20px;
+    display: inline;
+    cursor: pointer;
 }
+
 #div_pharseMethod3{
 	padding-left:70px;
 }
+#div_pharseMethod3 div{
+	display: inline;
+}
 
+#div_pharseMethod3 div:hover,
+#div_pharseMethod3 input:hover
+{
+	cursor: pointer;
+}

@@ -51,6 +51,7 @@
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
+
  <section id="login" class="account-container account-login">
        <p class="login-header" align="center">JOIN</p>
      <form action="login.me" method="post">
@@ -79,7 +80,8 @@
              <button class="signup-button">회원가입</button>
           </a>
       </form>
-   </section>
+ </section>
+   
 <c:import url="../common/footer.jsp"></c:import>
 </body>
 </html>

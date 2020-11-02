@@ -6,7 +6,6 @@
 <head>
 	<title>Libreria</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/common.css"/>
 </head>
 <body>
 <c:import url="common/header.jsp"></c:import>
@@ -14,6 +13,5 @@
 	<article><img src=" ${pageContext.request.contextPath}/resources/images/main1.png" style="width: 950px;"/></article>
 </section>
 <c:import url="common/footer.jsp"></c:import>
-
 </body>
 </html>

@@ -21,6 +21,12 @@ public class Member {
 	public Member() {
 		super();
 	}
+	
+	public Member(String mem_email, String mem_pw) {
+		super();
+		this.mem_email = mem_email;
+		this.mem_pw = mem_pw;
+	}
 	public Member(int mem_no, String mem_email, String mem_pw, String mem_name, String mem_gender, Date mem_birth,
 			String mem_tel, String mem_address, Date mem_regdate, String mem_status, String mem_grade,
 			String mem_interest, Date mem_logindate, int mem_money, String mem_delete) {

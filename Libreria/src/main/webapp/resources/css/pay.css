@@ -68,6 +68,10 @@
 .pay_check_div input {
 	margin: 50px 10px 20px 20px;
 }
+.pay_check_div div{
+	display: inline;
+	cursor: pointer;
+}
 
 .pay_check_div button{
 	 background-color: rgb(94, 107, 159);
@@ -77,6 +81,7 @@
 	    width:570px;
 	    height: 45px;
 	    font-size: 19px;
+	    cursor: pointer;
 }
 
 /* /////////////////////////////////////////////////// */
@@ -156,4 +161,6 @@
 	line-height: normal !important;	
 }
 
-
+#pay_div2, #pay_div3{
+	display: none;
+}

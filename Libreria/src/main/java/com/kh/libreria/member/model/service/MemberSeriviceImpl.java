@@ -22,5 +22,29 @@ public class MemberSeriviceImpl implements MemberService{
 	public Member loginMember(Member m) {
 		return mDAO.loginMember(sqlSession, m);
 	}
+
+
+	@Override
+	public int checkPwd(Member m) {
+		return mDAO.checkPwd(sqlSession, m);
+	}
+
+
+	@Override
+	public int leaveMember(int no_leave) {
+		return mDAO.leaveMember(sqlSession, no_leave);
+	}
+
+
+	@Override
+	public int updateLoginDate(Member m) {
+		return mDAO.updateLoginDate(sqlSession, m);
+	}
+
+
+	@Override
+	public int updateMember(Member m) {
+		return mDAO.updateMember(sqlSession, m);
+	}
 	
 }

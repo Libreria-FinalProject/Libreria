@@ -5,7 +5,6 @@
 <html>
 <head>
 <title>Libreria</title>
-<link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/common.css"/>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/myPage/registerCard.css"/>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/myPage/sideNav.css"/>
 </head>

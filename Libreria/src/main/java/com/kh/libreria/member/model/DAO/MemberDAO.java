@@ -12,4 +12,20 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 
+	public int checkPwd(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.checkPwd", m);
+	}
+
+	public int leaveMember(SqlSessionTemplate sqlSession, int no_leave) {
+		return sqlSession.update("memberMapper.leaveMember", no_leave);
+	}
+
+	public int updateLoginDate(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateLoginDate", m);
+	}
+
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateMember",m);
+	}
+
 }
