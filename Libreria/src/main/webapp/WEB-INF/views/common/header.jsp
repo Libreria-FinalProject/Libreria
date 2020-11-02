@@ -42,7 +42,7 @@
 	</nav>
 	<script>
 	 	$('#menu_li').click(function(){
-			console.log("찍음");
+			location.href = "bookCateList.bo";
 		}); 
 	
 	

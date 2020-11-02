@@ -18,6 +18,7 @@ public class BookController {
 	@RequestMapping("bookCateList.bo")
 	public String bookCate() {
 		
+		System.out.println("북 카테고리로 넘어갈 것 ");
 		
 		
 		
