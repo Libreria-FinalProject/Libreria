@@ -8,79 +8,109 @@
 	<title>Libreria</title>
 	<meta charset="UTF-8">
 	<style type="text/css">
-	 #table{
-         border: 1px solid black;
-         border-collapse: collapse;
-      }
-	      
-	   .login-header{
-	         font-size:50px;
-	         
-	   }
-	      
-	  .account-login .remember-wrapper {
-		    margin-top: -1px;
-		    padding: 13px 8px 13px 16px;
-		    overflow: hidden;
-		    border: 1px solid #d6deeb;
-		    border-radius: 0 0 4px 4px;
-		    background: #f7fbff;
-		    z-index: 1;
-		}
-		.account-label{
-		   width:400px;
-		}
-		.account-container {
-		    width: 400px;
-		    margin: 0 auto;
-		    padding: 60px 0 70px;
-		}
-		.invisible {
-		    position: absolute;
-		    width: 1px;
-		    height: 1px;
-		    margin: -1px;
-		    padding: 0;
-		    overflow: hidden;
-		    border: 0;
-		    clip: rect(0,0,0,0);
-		}
+	@import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+  
+  
+#table{
+   		border: 1px solid black;
+   		border-collapse: collapse;
+   	}
+   	
+   .login-header{
+   		font-size:50px;
+   }
 
+.account-label{
+	width:400px;
+}
+.account-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 60px 0 70px;
+    margin-top:100px;
+    margin-bottom:120px;
+}
+
+.login-submit{
+	width: 404px; 
+	height : 50px; 
+	margin-top : 10px; 
+	background-color: rgba(94, 107, 159, 0.65); 
+	border:none;
+	color:white;
+	font-weight: 700;
+    font-size: larger;
+    border-radius:3px;
 	
-	</style>
+	}
+.signup-button{
+	width: 404px; 
+	height : 50px; 
+	margin-top : 10px; 
+	background-color: #c1c8e5; 
+	border: 0;
+	color:white;
+	font-weight: 700;
+    font-size: larger;
+	border-radius:3px;
+	}
+
+.login_id_pw{
+	width: 100%; 
+	height:40px; 
+	border: 2px solid #d6deeb;
+	}
+#login_id{
+	border-bottom: none;
+	border-radius:3px 3px 0px 0px;
+}
+#login_pw{
+	border-radius:0px 0px 3px 3px;
+}
+.account-checkbox{
+	width:33%
+}
+.idsearch-link{
+	float:right;
+}
+.input-group{
+	margin-top:40px;
+	margin-bottom:20px;
+}
+.link{
+	font-family: "Arial Black";
+	text-align:center;
+</style>
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
-
- <section id="login" class="account-container account-login">
-       <p class="login-header" align="center">JOIN</p>
+   <section id="login" class="account-container">
+   	 <p class="login-header" align="center">LOGIN</p>
      <form action="login.me" method="post">
-          <div class="input-group">
-             <label class="account-label">
-                <!-- <span class="invisibla">아이디 입력</span>-->
-                <input type="text" name="mem_email" id="login_id" title="아이디 입력" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class=""> 
-             </label>
-             <label class="account-label">
-                <!--  <span class="invisibla">비밀번호 입력</span>-->
-                <input type="password" name="mem_pw" id="login_pw" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class=""> 
-             </label>
-             <div class="remember-wrapper">
-                <label class="account-checkbox">
-                   <input type="checkbox" name="auto_login">
-                   <span class="link">로그인 상태 유지</span>
-                </label>
-                <div class="external-links">
-                   <a href="" class="link">아이디 찾기</a>
-                   <a href="" class="link">비밀번호 재설정</a>
-                </div>
-             </div>
-          </div>
-          <button class="login-submit" type="submit">로그인</button>
-          <a href="" class="signup-link">
-             <button class="signup-button">회원가입</button>
-          </a>
-      </form>
- </section>
+     	  <div class="input-group">
+     	  	<label class="account-label">
+     	  		<input type="text" name="mem_email" id="login_id" title="아이디 입력" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="login_id_pw"> 
+     	  	</label>
+     	  	<label class="account-label">
+     	  		<input type="password" name="mem_pw" id="login_pw" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="login_id_pw"> 
+     	  	</label>
+     	  	<div class="remember-wrapper" >
+     	  		<label class="account-checkbox">
+     	  			<input type="checkbox" name="auto_login">
+     	  			<span class="link">로그인 상태 유지</span>
+     	  		</label>
+     	  		<div class="idsearch-link">
+     	  			<a href="" class="link">아이디 찾기</a>
+     	  			<a href="" class="link">비밀번호 재설정</a>
+     	  		</div>
+     	  	</div>
+     	  </div>
+     	  <button class="login-submit" type="submit">Login</button>
+     	  <a href="" class="signup-link">
+     	  	<button class="signup-button">Join</button>
+     	  </a>
+   	</form>
+   </section>
    
 <c:import url="../common/footer.jsp"></c:import>
 </body>
