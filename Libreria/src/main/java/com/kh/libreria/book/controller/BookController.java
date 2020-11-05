@@ -22,7 +22,7 @@ public class BookController {
 		
 		
 		
-		return "";
+		return "bookDetailPage";
 	}
 	
 	
