@@ -79,7 +79,9 @@
 			<div id="div_pharseMethod">
 				<span >결제수단</span>
 				<div id="div_pharseMethod2">
-					<input type="radio" name="radio_method" class="radio_method" checked value="card"><div> 신용카드</div><input type="radio" name="radio_method"  class="radio_method" value="deposit"><div> 무통장입금</div>
+					<div><input type="radio" name="radio_method" class="radio_method" checked value="card1"> 등록된 카드로 결제</div>
+					<div><input type="radio" name="radio_method" class="radio_method"  value="card2"> 다른 신용카드로 결제</div>
+					<div><input type="radio" name="radio_method"  class="radio_method" value="deposit"> 무통장입금</div>
 					<input type="hidden" id="radio_method_hidden" value="card">
 				</div>
 				<div id="div_pharseMethod3">
@@ -115,15 +117,14 @@
 					location.href="leaveForm.me";
 				});
 			});
+			
+			$("#div_pharseMethod2").find("input").click(function(){
+				$("#radio_method_hidden").val($(this).val());
+			});
+			
 			$('#div_pharseMethod2').find("div").click(function(){
-					if($('#div_pharseMethod2').find('input').eq(0).prop("checked")){
-						$('#div_pharseMethod2').find('input').eq(1).prop("checked",true);
-						$("#radio_method_hidden").val("deposit");
-					}else{
-						$('#div_pharseMethod2').find('input').eq(0).prop("checked",true);
-						$("#radio_method_hidden").val("card");
-					}
-					
+				$(this).find('input').prop("checked",true);
+				$("#radio_method_hidden").val($(this).find('input').val());
 			});		
 			
 			$('#div_pharseMethod3').find("div").click(function(){
@@ -146,11 +147,12 @@
 						}
 					})
 				}else{
-					console.log($('.radio_method').val());
-					if($('#radio_method_hidden').val() == "card"){
-						var popup= window.open("popupPayForCard","신용카드 결제","width=566px,height=591px,scrollbars=no,top=100,left=400");
+					if($('#radio_method_hidden').val() == "card2"){
+						var popup= window.open("popupPayForCard.me","신용카드 결제","width=566px,height=591px,scrollbars=no,top=100,left=400");
+					}else if($('#radio_method_hidden').val()=='deposit'){
+						var popup= window.open("popupPayForDeposit.me","무통장 입금","width=566px,height=591px,scrollbars=no,top=100,left=400");
 					}else{
-						
+						var popup= window.open("popupPayForReistCard.me?mem_no="+${loginUser.mem_no},"등록된 신용카드 결제","width=566px,height=591px,scrollbars=no,top=100,left=400");
 					}
 				}
 			})

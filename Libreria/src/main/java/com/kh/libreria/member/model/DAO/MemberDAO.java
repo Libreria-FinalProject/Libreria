@@ -1,9 +1,16 @@
 package com.kh.libreria.member.model.DAO;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.libreria.common.PageInfo;
+import com.kh.libreria.member.model.vo.Card;
 import com.kh.libreria.member.model.vo.Member;
+import com.kh.libreria.member.model.vo.Money;
 
 @Repository("mDAO")
 public class MemberDAO {
@@ -27,5 +34,40 @@ public class MemberDAO {
 	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updateMember",m);
 	}
+	 
+	public int getMoneyListCount(SqlSessionTemplate sqlSession, int mem_no) {
+		return sqlSession.selectOne("memberMapper.getMoneyListCount", mem_no);
+	}
+
+	public ArrayList<Money> confirmMoney(SqlSessionTemplate sqlSession, int mem_no, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("memberMapper.confirmMoney", mem_no, rowBounds);
+	}
+
+	public Card getRegistedCard(SqlSessionTemplate sqlSession, int mem_no) {
+		return sqlSession.selectOne("memberMapper.getRegistedCard", mem_no);
+	}
+
+	public int changeCard(SqlSessionTemplate sqlSession, int mem_no) {
+		return sqlSession.update("memberMapper.changeCard",mem_no);
+	}
+
+	public int newCard(SqlSessionTemplate sqlSession, Card card) {
+		return sqlSession.insert("memberMapper.insertNewCard", card);
+	}
+
+	public int buyMoney(SqlSessionTemplate sqlSession, HashMap<String, String> charge_info) {
+		return sqlSession.insert("memberMapper.buyMoney", charge_info);
+	}
+
+	public int matchCardInfo(SqlSessionTemplate sqlSession, Card card) {
+		return sqlSession.selectOne("memberMapper.matchCardInfo", card);
+	}
+
+	public int updateMemberMoney(SqlSessionTemplate sqlSession,HashMap<String, String> charge_info) {
+		return sqlSession.update("memberMapper.updateMemberMoney", charge_info);
+	}
+
 
 }

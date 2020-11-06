@@ -35,7 +35,7 @@
 					<span class="warning_icon"></span>탈퇴가 완료된 계정은 다시 복구할 수 없습니다.
 				</div> 
 				<div id="leave_subdiv2">
-					<input type="checkbox" id="ck_leave"> <span>위 내용을 이해했으며, 모두 동의합니다.</span><br>
+					<input type="checkbox" id="ck_leave"> <div>위 내용을 이해했으며, 모두 동의합니다.</div><br>
 					<button type="submit" onclick="return leave()">회원 탈퇴</button>
 				</div>
 				<input type="hidden" id="no_leave" name="no_leave" value="${loginUser.mem_no }"> 
@@ -64,10 +64,18 @@
 				$('#side_nav').find('li').eq(6).click(function(){
 					location.href="leaveForm.me";
 				});
+			
 				
-				
-				
+				$('#leave_subdiv2').find('div').click(function(){
+					if($('#leave_subdiv2').find('input').prop("checked")){
+						$('#leave_subdiv2').find('input').prop("checked",false);
+					}else{
+						$('#leave_subdiv2').find('input').prop("checked",true);
+					}
+				});
 			});
+			
+			
 			
 			function leave(){
 				var pwd_leave = $.trim($("#pwd_leave").val());
@@ -86,34 +94,43 @@
 					return;		
 				}
 				
-				$.ajax({
-					url: "leave.me",
-					type: "post",
-					data: {"no_leave":no_leave, "pwd_leave":pwd_leave},
-					dataType: "json",
-					success: function(data){
-						console.log(data);
-						if(data.type=="complete"){
-							swal("회원탈퇴",data.message,"success")
-							.then((ok)=>{
-								if(ok){
-										location.href="/libreria";
-								}
-							});
-						}else{
-							swal("회원탈퇴",data.message,"warning")
-							.then((ok)=>{
-								if(ok){
-									$("#pwd_leave").val("");
-									$("#ck_leave").prop("checked",false);
-								}
-							});
-						}					
-					},
-					error: function(){
-						alert("ajax 실패");
+				swal({
+				title:"",
+				text: "정말로 탈퇴하시겠습니까?",
+				icon: "warning",
+				buttons: ["취소","확인"]})
+				.then((ok)=>{
+					if(ok){
+						$.ajax({
+							url: "leave.me",
+							type: "post",
+							data: {"no_leave":no_leave, "pwd_leave":pwd_leave},
+							dataType: "json",
+							success: function(data){
+								console.log(data);
+								if(data.type=="complete"){
+									swal("회원탈퇴",data.message,"success")
+									.then((ok)=>{
+										if(ok){
+												location.href="/libreria";
+										}
+									});
+								}else{
+									swal("회원탈퇴",data.message,"warning")
+									.then((ok)=>{
+										if(ok){
+											$("#pwd_leave").val("");
+											$("#ck_leave").prop("checked",false);
+										}
+									});
+								}					
+							},
+							error: function(){
+								alert("ajax 실패");
+							}
+						});			
 					}
-				});			
+				});
 			}
 			
 			function numberWithCommas(x) {

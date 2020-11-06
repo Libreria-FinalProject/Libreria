@@ -6,10 +6,12 @@
 	padding: 0px;
 	font-family: 'Nanum Gothic';
 }
+
 section{
 	margin: 10px auto;
 	width:1000px;
 }
+
 #nav_container{
 	background-color: rgb(94, 107, 159);
 	border: none;

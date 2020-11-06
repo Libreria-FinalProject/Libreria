@@ -67,6 +67,11 @@ section{
 	 margin-top:20px;
 }
 
+#leave_subdiv2 div{
+	cursor : pointer;
+	display: inline;
+}
+
 .warning_icon{
 	background-image: url(../../images/warning-symbol.png);
     background-repeat: no-repeat;

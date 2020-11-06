@@ -16,7 +16,7 @@
 	<update id="leaveMember">
 		update member
 		set mem_delete='Y'
-		where mem_no=#{no_lave} and mem_delete='N'
+		where mem_no=#{no_leave} and mem_delete='N'
 	</update>
 	
 	<update id="updateLoginDate">
@@ -30,6 +30,55 @@
 		set mem_pw=#{mem_pw} , mem_name=#{mem_name}
 		, mem_birth=#{mem_birth} , mem_tel=#{mem_tel}
 		, mem_address=#{mem_address} , mem_interest=#{mem_interest}
+		where mem_no=#{mem_no}
+	</update>
+	
+	<select id="getMoneyListCount" resultType="_int" >
+		select count(*) 
+		from history_money
+		where mem_no=#{mem_no}
+	</select>
+	
+	<select id="confirmMoney" resultType="Money">
+		select * 
+		from history_money
+		where mem_no=#{mem_no}
+		order by charge_date desc
+	</select>
+	
+	<select id="getRegistedCard" resultType="Card">
+		select * 
+		from regist_card
+		where card_status = 'Y'
+		and mem_no=#{mem_no}
+	</select>
+	
+	<update id="changeCard">
+		update regist_card
+		set card_status='N'
+		where mem_no=#{mem_no} 
+		and card_status='Y'
+	</update>
+	
+	<insert id="insertNewCard">
+		insert into regist_card
+		values(seq_rc_no.nextval, #{card_no},#{card_company},#{card_expire},#{card_pwd},default,#{mem_no})
+	</insert>
+	
+	<select id="matchCardInfo" resultType="_int">
+		select count(*)
+		from regist_card
+		where mem_no=#{mem_no} and card_pwd=#{card_pwd} and card_status='Y'
+	</select>
+	
+	<insert id="buyMoney">
+		insert into history_money
+		values(seq_hm_no.nextval, #{charge_money}, sysdate, #{charge_way}, #{mem_no} )
+	</insert>
+	
+	<update id="updateMemberMoney">
+		update member
+		set mem_money=mem_money+#{charge_money}
 		where mem_no=#{mem_no}
 	</update>
 </mapper>

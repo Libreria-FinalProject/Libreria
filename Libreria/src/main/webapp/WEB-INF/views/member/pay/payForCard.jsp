@@ -24,16 +24,16 @@
 	 		<span></span>
 	 	</div>
 	 	<div class="pay_card_div">
-	 		<input type="radio" checked name="card_select_radio" class="card_select_radio" value="삼성"><span>삼성</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="신한"><span>신한</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="우리"><span>우리</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="수협"><span>수협</span>
-	 		<input type="radio" name="card_select_radio"class="card_select_radio" value="시티"><span>시티</span><br>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="농협"><span>농협</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="국민"><span>국민</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="롯데"><span>롯데</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="현대"><span>현대</span>
-	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="비씨"><span>비씨</span>
+	 		<input type="radio" checked name="card_select_radio" class="card_select_radio" value="삼성"><div>삼성</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="신한"><div>신한</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="우리"><div>우리</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="수협"><div>수협</div>
+	 		<input type="radio" name="card_select_radio"class="card_select_radio" value="시티"><div>시티</div><br>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="농협"><div>농협</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="국민"><div>국민</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="롯데"><div>롯데</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="현대"><div>현대</div>
+	 		<input type="radio" name="card_select_radio" class="card_select_radio" value="비씨"><div>비씨</div>
 	 	</div>
 	 	<div class="pay_check_div">
 	 		<input type="checkbox" id="ck_pay"><div id="check_div">상기 구매내용을 확인하였습니다.</div>
@@ -48,7 +48,10 @@
  		<span>신용카드</span>
  	</div>
  	<div class="pay_body">
-	 	<form method="post">
+	 	<form method="post" id="cardForm">
+	 		<input type="hidden" name="mem_no" value="${loginUser.mem_no }">
+	 		<input type="hidden" name="charge_money" id="charge_money">
+	 		<input type="hidden" name="charge_way" value="CD">
 		 	<div class="pay_cardinfo_div">
 		 		<table>
 		 			<tr>
@@ -68,12 +71,12 @@
 		 				<td>유효기간</td>
 		 				<td>
 		 					<input type="text" placeholder="월" maxlength="2" id="card_date1">/<input type="text" placeholder="년" maxlength="4" id="card_date2">
-		 					<input type="hidden" name="card_expire_date" id="card_expire_date">
+		 					<input type="hidden" name="card_expire" id="card_expire_date">
 		 				</td>
 		 			</tr>
 		 			<tr id="card_pwd_tr">	
 		 				<td>카드 비밀번호</td>
-		 				<td><input type="password" maxlength="4" name="card_pwd"></td>
+		 				<td><input type="password" maxlength="4" name="card_pwd" id="card_pwd"></td>
 		 			</tr>
 
 		 		</table>
@@ -105,27 +108,52 @@
 <script type="text/javascript">
 	$(function(){
 		var charge_money = $(opener.document).find("#select_charge_moeny").val();
+		$('#charge_money').val(charge_money);
 		$('.pay_info_div').find('span').eq(1).text("상품명 : 머니충전 +"+numberWithCommas(charge_money));
 		$('.pay_info_div').find('span').eq(3).text("상품 금액: "+numberWithCommas(charge_money)+"원");
 		initCardCompany();
+	});
+	
+	$(".pay_card_div").find("div").click(function(){
+		var select_cardCompany = $(this).text();
+		var select_cardCompanyInput = $('.pay_card_div').find('input');
+		for(var i = 0 ; i<select_cardCompanyInput.length ; i++){
+			if(select_cardCompany == select_cardCompanyInput[i].value){
+				select_cardCompanyInput[i].checked = true;
+				initCardCompany();
+				break;
+			}
+		}
+		
 	});
 	
 	$('.card_select_radio').click(function(){
 		initCardCompany();
 	});
 	
-	$(".input_card_num").keyup(function(){
+	$(".input_card_num").keyup(function(){  // 카드번호 정규표현식  
 		var input_card_num =$(this).val();
 		input_card_num = input_card_num.replace(/[^0-9]/g,'');
 		$(this).val(input_card_num);
 	});
 	
-	$('#card_date1').keyup(function(){
+	$('#card_date1').keyup(function(){ // 카드 유효기간 월 정규표현식  [01-12]
 		var card_date1 =$(this).val();
-		card_date1 = card_date1.replace(/0[1-9]|1[0-2]/g,'');
+		card_date1 = card_date1.replace(/[^0-9]/g,'');
 		$(this).val(card_date1);
 	});
+	 
+	$('#card_date2').keyup(function(){  // 카드 유효기간 년 정규표현식  [20xx]
+		var card_date2 =$(this).val();
+		card_date2 = card_date2.replace(/[^0-9]/g,'');
+		$(this).val(card_date2);
+	})
 	
+	$("#card_pwd").keyup(function(){  // 카드 비밀번호 정규표현식 
+		var card_pwd =$(this).val();
+		card_pwd = card_pwd.replace(/[^0-9]/g,'');
+		$(this).val(card_pwd);
+	});
 
 	$("#check_div").click(function(){
 		if($('#ck_pay').prop("checked")==false){
@@ -135,29 +163,28 @@
 		}
 		
 	});
-	$("#pay_div1").find("button").click(function(){
-		if($('#ck_pay').prop("checked")==true){
+	$("#pay_div1").find("button").click(function(){ //1단계 -> 2단계 
+		if($('#ck_pay').prop("checked")==true){   // 체크박스 클릭시 2단계로 넘어감
 			$("#pay_div1").css("display","none");
 			$("#pay_div2").css("display","block");			
-		}else{
+		}else{   
 			swal("","구매내용 확인에 체크해주세요","info");
 			$('#ck_pay').focus();
 		}
 	});
-	$("#pay_div2").find("button").click(function(){
+	$("#pay_div2").find("button").click(function(){  // 2단계 -> 3단계
 		var validate_check = validate();
-		console.log(validate_check);
 		if(validate_check){
 			$("#pay_div2").css("display","none");
 			$("#pay_div3").css("display","block");
 		}
 	});
 	
-	$('#closeBtn').click(function(){
+	$('#closeBtn').click(function(){  //  닫기버튼 클릭시
 		window.close();
 	});
 
-	function initCardCompany(){
+	function initCardCompany(){   // 카드회사 선택시 마다 pay2번째 단계 카드회사 초기화 함수
 		$('.card_select_radio').each(function(index, item){
 			if(item.checked==true){
 				$('#input_card_company').val(item.value);
@@ -217,7 +244,7 @@
 			card_date=$('#card_date2').val()+"/";
 		}
 		
-		if($('#card_date1').val()<10 ){
+		if($('#card_date1').val()<10 && $('#card_date1').val().length < 2){  // 
 			card_date=card_date+"0"+$("#card_date1").val()+"/01";
 		}else{
 			card_date=card_date+$("#card_date1").val()+"/01";
@@ -225,6 +252,12 @@
 		console.log(card_date);
 		$('#card_expire_date').val(card_date);
 		
+		
+		if($('#card_pwd').val().length < 4 ) {
+			swal("","카드비밀번호 4자리를 입력해주세요.","info");
+			return false;
+		}
+		return true;
 	}
 </script>
 </body>
