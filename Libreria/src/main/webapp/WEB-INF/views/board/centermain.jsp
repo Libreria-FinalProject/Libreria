@@ -146,7 +146,7 @@
    <section>
     <br><br>
     <div class="notice">
-        <h3 class="notice_title"><a href="board.jsp">공지사항</a></h3>
+        <h3 class="notice_title"><a href="boardlist.jsp">공지사항</a></h3>
         <ul class="notice_list">
             <li class="notice_list_item">
                 <a href="#" class="notice_list_font">[공지사항]중고도서 구매 및 판매 방법 안내에 관한 공지사항 입니다.</a>
@@ -166,7 +166,7 @@
     <br><br><br><br>
 
     <div class="notice">
-        <h3 class="notice_title"><a href="#">FAQ</a></h3>
+        <h3 class="notice_title"><a href="FAQlist.jsp">FAQ</a></h3>
         <ul class="notice_list">
             <li class="notice_list_item">
                 <a href="#" class="notice_list_font">[FAQ] 도서 환불 / 취소 방법에 관한 FAQ</a>
@@ -186,7 +186,7 @@
     <br><br><br><br>
 
     <div class="notice">
-        <h3 class="notice_title"><a href="#">문의사항</a></h3>
+        <h3 class="notice_title"><a href="noticelist.jsp">문의사항</a></h3>
         <ul class="notice_list">
             <li class="notice_list_item">
                 <a href="#" class="notice_list_font">[문의사항]중고도서 구매 후 환불 방법은 없나요?</a>

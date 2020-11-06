@@ -215,19 +215,47 @@
             <hr>
          </div>  
          <ul class="write_button" align="right">
-         <button class="board_write">공지 작성</button>
+         <button class="board_write" onclick="location.href='boardwrite.jsp'">공지 작성</button>
          <!--작성버튼은 관리자만 보이도록 로그인 되었을 경우의 관리자와 회원으로 구분, 관리자로 구분된 사용자만 보이도록 hidden 걸기-->
          </ul>
-         
-         <div class="pagenation">
-	<ul class="pagination justify-content-center">
-		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-		<li class="page-item"><a class="page-link" href="#1">1</a></li>
-		<li class="page-item"><a class="page-link" href="#2">2</a></li>
-		<li class="page-item"><a class="page-link" href="#3">3</a></li>
-		<li class="page-item"><a class="page-link" href="#">Next</a></li>
-	</ul>
-        </div>
+         <table>
+          <tr align="center" height="20" id="buttonTab">
+			 <td colspan="6">
+		
+				<c:if test="${ pi.currentPage <= 1 }">
+					[이전] &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="boardlist.do">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<a href="${ before }">[이전]</a> &nbsp;
+				</c:if>
+			
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<font color="red" size="4"><b>[${ p }]</b></font>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="boardlist.do">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<a href="${ pagination }">${ p }</a> &nbsp;
+					</c:if>
+				</c:forEach>
+				<c:if test="${ pi.currentPage >= pi.maxPage }">
+					[다음]
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="boardlist.do">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<a href="${ after }">[다음]</a>
+				</c:if>
+			</td>
+		</tr>
+	</table>
    <br><br>
    </section>
    <footer id="footer_container">
