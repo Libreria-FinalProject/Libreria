@@ -1,0 +1,208 @@
+@charset "UTF-8";
+#nav_cate{
+   	position : relative;
+   	top: 20px;
+   	left:25px;
+   	display: inline-block;
+    vertical-align: top;
+    padding-bottom: 320px;
+    width: 235px;
+    box-sizing: border-box;
+    padding-right: 33px;
+   
+   }
+#book_cate_ul{
+   	list-style:none;
+ 
+   	margin: 0 auto;
+ 	
+ 	margin: 15px;
+ 	font-size: 14px;
+ 
+   }
+   .main_book_cate{
+  	 font-weight: bold;
+   
+   
+   }
+   #sub_book_cate{
+   display:block;
+   	list-style:none;
+    font-size: 13px;
+    color:#636c73;
+    font-weight: normal;
+    padding: 3px 10px;
+    letter-spacing : -1px;
+    
+    
+   }
+   #sub_book_cate li{
+       margin-bottom: 10px;
+    margin-top: 5px;
+   
+   
+   }
+   
+   
+   #book_cate_ul > li{
+   	margin : 10px;
+   	padding-left:5px;
+   }
+   
+   
+   .main_book_cate li:hover {
+   	color: #1f8ce6;
+    font-weight: bold;
+   }
+   
+   #book_cate_ul li:hover {
+       background: #1f8ce6;
+    color: #fff;}
+    #content_div{
+    	display: inline-block;
+    }
+   	#contentHead{
+   		position:relative;
+   		top:3px;
+   		font-weight:bold;
+   	 	font-size:17px;
+   	 	margin-top:20px;
+   	 	
+   	 	margin-bottom: 10px;
+    }
+    #content_sub_cate>ul{
+    	list-style: none;
+    	margin-bottom:10px;
+    
+    }
+    #content_sub_cate>ul>li{
+    	display: inline;
+    	letter-spacing: -1px;
+    	color:gray;
+    	margin-right:10px;
+   		font-weight:bold;
+   	 	font-size:17px;
+    }
+    #menu_bar{
+    	width: 600px;
+    	height:3px;
+    	background:#d3d3d3;
+    	border-radius: 10px;
+    	
+    }
+    .bot_mar{
+    	margin-bottom:10px;
+    }
+    #sub_menu_sel{
+    	font-weight:bold;
+   	 	font-size:17px;
+   	 	display: inline-block;
+    }
+    .sub_menu_hr{
+    	display: inline-block;
+    	width:550px;
+    	
+    	height:2px;
+    	background: #d3d3d3;
+    	position: relative;
+    	bottom:5px;
+    }
+   	.sub_menu_btn{
+   		border: none;
+   		color:white;
+   		background:black;
+   		width: 100px;
+   		height: 30px;
+   		border-radius:2px;
+   		letter-spacing:-1px;
+   		font-weight:bold;
+   	
+   	}
+   	
+   	.book_img{
+   		background:gray;
+   		display:inline-block;
+   		width:120px;
+   		height:180px;
+   		
+   		
+   	}
+   	
+   	.booK_name_cl{
+   		 font-size: 13px;
+   		 line-height: 1.4em;
+   		 font-weight: 700;
+   		 color: #333;
+   	     white-space: normal;
+  		 max-height: 40px;
+   		 overflow: hidden;
+   		word-break: break-all;
+   		
+   	
+   	}
+   	.book_writer_cl{
+   	    font-size: 12px;
+   		 color: #666;
+    	font-weight: 400;
+  		  line-height: 1.2em;
+    	word-break: break-all
+   	
+   	
+   	}
+   	.book_thumnail{
+   		    display: block;
+    	left: 0;
+  	  top: 0;
+  	  width: 100%;
+  	  height: 100%;
+   
+   	
+   	}
+   	.book_cover_cl{
+   		padding-left: 3px;
+   		padding-right: 3px;
+   	
+   	}
+   	
+   
+   	#content_sub_cate_sel{
+   		display: inline-block;
+   		width: 20px;
+   		height: 5px;
+   		background: rgb(94, 107, 159);
+   		position: relative;
+   		bottom:15px;
+   		border-radius:5px;
+   		/*
+   			옆 조정 left로 jquery 줄듯 
+   			
+   		*/
+   		
+   	}
+   	.book_wrapper{
+    width: 19%;
+    height: 280px;
+    display: inline-block;
+    margin-top: 10px;
+   	
+   	}
+   	.book_salary{
+   		width: 700px;
+   		height:100%;
+   		display: block;
+   		margin-bottom: 10px;
+   	}
+   	.book_score_cl{
+   		font-size: 12px;
+   		 color: #666;
+   	}
+   	.book_price_cl{
+	   	font-size: 12px;
+	    color: #666;
+   	}
+   	.book_info_cl{
+   		margin-top:5px;
+   		position: relative;
+   		left:2px;
+   		margin-bottom:10px;
+   	}

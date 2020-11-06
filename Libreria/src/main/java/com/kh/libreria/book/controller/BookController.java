@@ -22,8 +22,14 @@ public class BookController {
 		
 		
 		
-		return "bookDetailPage";
+		return "bookCategoryPage";
 	}
 	
+	@RequestMapping("bookDetail.bo")
+	public String bookDetail() {
+		
+		
+		return "bookDetailPage";
+	}
 	
 }
