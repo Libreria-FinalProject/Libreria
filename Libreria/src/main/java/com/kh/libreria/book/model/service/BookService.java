@@ -1,5 +1,12 @@
 package com.kh.libreria.book.model.service;
 
-public class BookService {
+import com.kh.libreria.book.model.vo.BookFrameCategory;
+
+public interface BookService {
+
+	BookFrameCategory getBookCate();
+	
+	
+	
 
 }

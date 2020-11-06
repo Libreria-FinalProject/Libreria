@@ -6,21 +6,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kh.libreria.book.model.service.BookService;
+import com.kh.libreria.book.model.vo.BookFrameCategory;
 
 @SessionAttributes("loginUser")
 @Controller
 public class BookController {
 	
-	/*
-	 * @Autowired private BookService bService;
-	 */
+	
+	
+	
+	 @Autowired private BookService bService;
+	 
+	 
+	 
 	
 	@RequestMapping("bookCateList.bo")
 	public String bookCate() {
-		
-		System.out.println("북 카테고리로 넘어갈 것 ");
-		
-		
+		BookFrameCategory bfc = bService.getBookCate();
 		
 		return "bookCategoryPage";
 	}

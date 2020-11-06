@@ -7,9 +7,13 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.libreria.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.libreria.book.model.vo.Book" alias="Book"/>
+		<typeAlias type="com.kh.libreria.book.model.vo.BookFrameCategory" alias="BFC"/>
+		<typeAlias type="com.kh.libreria.book.model.vo.BookSubCategory" alias="BSC"/>
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="mapper/book-mapper.xml"/>
 		<mapper resource="mapper/member-mapper.xml" />
 	</mappers>
 
