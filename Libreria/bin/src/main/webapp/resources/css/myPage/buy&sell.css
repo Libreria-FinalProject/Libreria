@@ -1,0 +1,152 @@
+@charset "UTF-8";
+section{
+	margin-top:70px !important;
+	margin-bottom:60px !important;
+}
+#memberInfo_container{
+	    margin-left: 250px;
+	        color: #333;
+}
+#container_title{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#buy_sell_table{
+	margin-top:30px;
+	border-top: 1px solid #cccccc;
+	border-collapse: collapse;
+	font-size: 16px;
+}
+#buy_sell_table th{
+		height: 35px;
+		background: #eaeaea;
+	
+}
+#buy_sell_table tr{
+	border-bottom: 1px solid #cccccc;
+	text-align: center;
+}
+
+#buy_sell_table td:first-child{
+	text-align: left;
+	width: 415px;
+}
+
+#buy_sell_table td{
+	height: 40px;
+}
+
+#buy_sell_table td:nth-child(2){
+	width:150px;
+}
+
+#buy_sell_table td:nth-child(3){
+	width:150px;
+}
+
+#buy_sell_table input[type=checkbox]{
+	margin-right: 15px;
+}
+
+
+#buy_sell_table img{
+	width:65px;
+	height:100px;
+	vertical-align: middle;
+	margin: 15px 40px;
+}
+
+#paging_div{
+	margin-top: 30px;
+	text-align: center;
+}
+
+#paging_div button{
+	background: #eaeaea;
+	border: none;
+	border-radius: 4px;
+	width:40px; height: 40px;
+	font-size: 16px;
+	color: #333;
+}
+
+.paging_selected_btn{
+    background-color: rgb(94, 107, 159) !important;
+    color: #ffffff !important;
+}
+.sell_table{
+	font-size: 14px !important;
+}
+.sell_table td:first-child{
+	padding-left:20px;
+}
+
+.confirmMoney_table{
+	font-size: 14px !important;
+}
+
+.confirmMoney_table td:first-child {
+	text-align: center !important;
+}
+
+/* admin*/
+
+
+.admin_buy_table td:first-child{
+	width: 370px;
+	height: 40px;
+	text-align: center;
+}
+
+.admin_buy_table td:nth-child(4){
+	width: 130px;
+}
+
+.admin_buy_table button{
+	background-color: rgb(94, 107, 159);
+	border: none;
+	border-radius: 4px;
+	width:60px; height: 25px;
+	font-size: 12px;
+	color: #ffffff;
+}
+
+#admin_popup{
+	line-height: 2.3em;
+    padding: 15px;
+    width: 320px;
+    height: 315px;
+    background-color: rgb(250, 250, 250);
+    position: absolute;
+    top: 40%;
+    left: 700px;
+  }
+
+#admin_popup span{
+	font-weight: bold;
+	color: #333333;	
+}
+
+#admin_popup_buttondiv{
+	text-align: center;
+}
+
+#admin_popup button{
+	width: 100px;
+	height: 40px;
+	border: none;
+	font-size: 16px;
+	font-weight: bold;
+    color: rgb(64, 64, 64);
+    text-align: center;
+ 	border-radius: 4px;
+    background-color: rgb(224, 224, 224);
+    margin: 30px 10px 10px 10px;
+}
+
+#admin_popup button:nth-child(2 ) {
+	 background-color: rgb(94, 107, 159) !important;
+	 color: #ffffff !important;
+}
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<select id="loginMember" resultType="Member">
+		select *
+		from member
+		where mem_email = #{mem_email}  and mem_pw = #{mem_pw} and mem_delete='N'
+	</select>
+	
+	<select id="checkPwd" resultType="_int">
+		select count(*) 
+		from member 
+		where mem_no=#{mem_no} and mem_pw=#{mem_pw}
+	</select>
+	
+	<update id="leaveMember">
+		update member
+		set mem_delete='Y'
+		where mem_no=#{no_lave} and mem_delete='N'
+	</update>
+	
+	<update id="updateLoginDate">
+		update member 
+		set mem_logindate=sysdate
+		where mem_no=#{mem_no}
+	</update>
+	
+	<update id="updateMember">
+		update member 
+		set mem_pw=#{mem_pw} , mem_name=#{mem_name}
+		, mem_birth=#{mem_birth} , mem_tel=#{mem_tel}
+		, mem_address=#{mem_address} , mem_interest=#{mem_interest}
+		where mem_no=#{mem_no}
+	</update>
+</mapper>

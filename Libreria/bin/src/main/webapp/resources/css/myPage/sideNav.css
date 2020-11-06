@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+#side_nav{
+	    float: left;
+	    position: absolute;
+		width: 280px;
+		height: 300px;
+}
+#side_nav ul{
+	list-style: none;
+}
+
+.side_nav_list_li{
+    font-size: 17px;
+    font-weight: bold;
+    color: #333333;
+    margin: 15px 0;
+}
+
+.side_nav_list_li:hover{
+	cursor: pointer;
+}
+
+#side_nav_list_title{
+	font-weight: bold;
+    font-size: 24px;
+    margin-bottom:  25px;
+}
+
+#sub_ul_wallet {
+	margin: 5px 0 0 30px;
+	font-size: 14px;
+}
+#sub_ul_wallet li{
+	margin-top: 7px;
+	color: #7f7f7f;
+}
+
+.selected_li{
+	color: #333333;
+}
+
+
+.icon_person{
+	background-image: url("../../images/icon_person.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-left:30px;
+}
+
+.icon_dollar1{
+	background-image: url("../../images/icon_dollar1.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-left:30px;
+}
+
+.icon_dollar2{
+	background-image: url("../../images/icon_dollar2.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-left:30px;
+}
+
+.icon_card{
+	background-image: url("../../images/icon_card.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-left:30px;
+}
+
+.icon_wallet{
+	background-image: url("../../images/icon_wallet.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-left:30px;
+}
+
+
+.icon_logout{
+	background-image: url("../../images/icon_logout.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	padding-left:30px;
+}

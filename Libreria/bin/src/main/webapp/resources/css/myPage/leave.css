@@ -1,0 +1,77 @@
+@charset "UTF-8";
+section{
+	margin-top:70px !important;
+	margin-bottom:60px !important;
+}
+#memberInfo_container{
+	    margin-left: 250px;
+	        color: #333;
+}
+#container_title{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#leave_div{
+	font-size: 15px;
+	color:#333333;
+	margin: 10px 0 10px 20px;
+    font-weight: bold;
+	
+}
+
+#leave_div span{
+	line-height: 3em;
+}
+
+#leave_div input[type=password]{
+	margin: 10px 0;
+	height: 25px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	padding: 6px 12px;
+}
+
+.font_violet{
+	color: #5E6B9F;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.font_red{
+	color: red;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+#leave_subdiv{
+	margin: 10px 0;
+	color: rgb(140, 116, 21);
+	font-size: 14px;
+    background-color: rgba(241, 219, 130, 0.22);
+    font-weight: bold;
+}
+
+#leave_subdiv2{
+	text-align: center;
+	 margin-top:20px;
+}
+#leave_subdiv2 button{
+	border-radius: 5px;
+    background-color: rgb(94, 107, 159);
+     font-size: 16px;
+     color: #ffffff;
+     font-weight: bold;
+     width: 100px; height: 38px;
+     border: none;
+	 margin-top:20px;
+}
+
+.warning_icon{
+	background-image: url(../../images/warning-symbol.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 25px;
+    margin-left: 10px;
+}
+
