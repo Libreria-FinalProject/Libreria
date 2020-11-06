@@ -35,32 +35,25 @@
 					<th>결제수단</th>
 					<th>충전일자</th>
 				</tr>
-				<tr>
-					<td width="415x" height="40px">+50,000</td>
-					<td width="150px">신용카드</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="415x" height="40px">+50,000</td>
-					<td width="150px">신용카드</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="415x" height="40px">+50,000</td>
-					<td width="150px">신용카드</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="415x" height="40px">+50,000</td>
-					<td width="150px">신용카드</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="415x" height="40px">+50,000</td>
-					<td width="150px">신용카드</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				
+				<c:if test="${ empty moneyList  }">
+					<tr>
+						<td colspan="3">내역이 없습니다.</td>
+					</tr>				
+				</c:if>
+				<c:if test="${!empty moneyList }">
+				<c:forEach var="m" items="${moneyList}">
+					<tr>
+						<td width="415x" height="40px">+ ${m.charge_money}</td>
+						<c:if test="${m.charge_way=='CD'}">
+							<td width="150px">신용카드</td>						
+						</c:if>
+						<c:if test="${m.charge_way == 'DP' }">
+							<td width="150px">무통장입금</td>
+						</c:if>
+						<td width="150px">${m.charge_date }</td>
+					</tr>
+				</c:forEach>
+				</c:if>
 			</table>
 			<div id="paging_div">
 				<button type="button">&lt;</button>

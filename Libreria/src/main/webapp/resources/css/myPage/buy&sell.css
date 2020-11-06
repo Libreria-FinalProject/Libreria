@@ -1,7 +1,7 @@
 @charset "UTF-8";
 section{
 	margin-top:70px !important;
-	margin-bottom:60px !important;
+	margin-bottom:120px !important;
 }
 #memberInfo_container{
 	    margin-left: 250px;
@@ -69,6 +69,7 @@ section{
 	width:40px; height: 40px;
 	font-size: 16px;
 	color: #333;
+	cursor: pointer;
 }
 
 .paging_selected_btn{

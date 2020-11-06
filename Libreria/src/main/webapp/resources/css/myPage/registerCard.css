@@ -36,8 +36,9 @@ section{
 	padding: 6px 12px;
 }
 
-#input_cardNum{
-	width: 250px !important;
+.input_cardNum{
+	width: 50px !important;
+	text-align: center;
 }
 
 #input_cardPwd{
@@ -62,7 +63,7 @@ section{
 	font-weight: bold;
 }
 
-#regist_btn{
+#regist_btn, #change_btn{
 	border-radius: 5px;
     background-color: rgb(94, 107, 159);
      font-size: 16px;
@@ -71,6 +72,7 @@ section{
      width: 100px; height: 38px;
      border: none;
      margin:30px 0px 30px 40%;
+     cursor: pointer;
 }
 
 /* /////// */

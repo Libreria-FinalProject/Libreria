@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	
+	<!-- 선언적 AOP 시작 -->
+<!-- 	<aop:config>
+		<aop:aspect id="loggerAspect" ref="loggerAspect">
+			<aop:pointcut expression="execution(* com.kh.spring.board..*(..))" id="pcForAll"/>  board아래의 모든 패키지, 모든 메소드 
+			<aop:around method="loggerAdvice" pointcut-ref="pcForAll"/>
+		</aop:aspect>
+	</aop:config> -->
+	<!-- 선언적 AOP 끝 -->
+	
+	<!-- 프로그래밍적 AOP 시작  -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 프로그래밍적 AOP 끝 -->
+</beans>

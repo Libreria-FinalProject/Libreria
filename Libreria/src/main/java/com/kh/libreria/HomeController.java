@@ -27,8 +27,5 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("popupPayForCard")
-	public String popupPayForCard() {
-		return "common/payForCard";
-	}
+
 }

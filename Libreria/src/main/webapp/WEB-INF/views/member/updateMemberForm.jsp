@@ -172,19 +172,19 @@
 				var tmp="";
 				inputTel = inputTel.replace(/[^0-9]/g,'');
 		
-				if(inputTel.length<4){ 
+				if(inputTel.length<4){  //01012341234
 					tmp+=inputTel;
-				}else if(inputTel.length<7){ 
-					tmp+=inputTel.substr(0,3);
-					tmp+='-'; 
-					tmp+=inputTel.substr(3);
-				}else if(inputTel.length<11){
-					tmp += inputTel.substr(0, 3);  
+				}else if(inputTel.length<7){ //
+					tmp+=inputTel.substr(0,3); // 010
+					tmp+='-';    
+					tmp+=inputTel.substr(3);  // 010-123
+				}else if(inputTel.length<11){ //010-1234-1 ...
+					tmp += inputTel.substr(0, 3);   // 010
 					tmp += '-';
-					tmp += inputTel.substr(3, 3); 
+					tmp += inputTel.substr(3, 3); //010-123
 					tmp += '-';
-					tmp += inputTel.substr(6);
-				}else{
+					tmp += inputTel.substr(6); //010-123-412
+				}else{  
 					tmp += inputTel.substr(0, 3);  
 					tmp += '-';
 					tmp += inputTel.substr(3, 4);
