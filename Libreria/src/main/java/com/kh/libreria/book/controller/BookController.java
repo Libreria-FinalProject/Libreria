@@ -1,7 +1,10 @@
 package com.kh.libreria.book.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -21,8 +24,19 @@ public class BookController {
 	 
 	
 	@RequestMapping("bookCateList.bo")
-	public String bookCate() {
-		BookFrameCategory bfc = bService.getBookCate();
+	public String bookCate(Model model) {
+		ArrayList<BookFrameCategory> bfcList = bService.getBookCate();
+		
+		
+		 if(bfcList!=null) {
+				
+
+				
+			model.addAttribute("bfcList",bfcList );
+			return "bookCategoryPage";	
+			
+		}
+		
 		
 		return "bookCategoryPage";
 	}

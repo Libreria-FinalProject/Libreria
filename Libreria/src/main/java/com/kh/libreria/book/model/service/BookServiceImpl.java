@@ -1,5 +1,7 @@
 package com.kh.libreria.book.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,9 @@ public class BookServiceImpl  implements BookService  {
 	private BookDAO bDAO;
 
 	
-	 @Override public BookFrameCategory getBookCate() {
+	 @Override public ArrayList<BookFrameCategory> getBookCate() {
 	  
-		 BookFrameCategory bcf = bDAO.getBookCate(sqlSession); 
-	  return null;
+	  return bDAO.getBookCate(sqlSession); 
 	  
 	 }
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,21 +30,10 @@
 						
 					</ul>
 				</li>
-				<li class="main_book_cate"><a>문학</a></li>
-				<li class="main_book_cate"><a>에세이</a></li>
-				<li class="main_book_cate"><a>컴퓨터</a></li>
-				<li class="main_book_cate"><a>종교</a></li>
-				<li class="main_book_cate"><a>외국어</a></li>
-				<li class="main_book_cate"><a>만화</a></li>
-				<li class="main_book_cate"><a>유아</a></li>
-				<li class="main_book_cate"><a>자기계발</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
-				<li class="main_book_cate"><a>카테고리 종류</a></li>
+				
+				<c:forEach var="bfc" items="${bfcList}">
+					<li class="main_book_cate"><a>${bfc.bcf_ct}</a></li>
+				</c:forEach>
       		</ul>
       	</div>
       
@@ -295,7 +285,7 @@
       		
       	</div>
       	<br>
-    
+    		
       	<br>
       	</div>
       </article>
@@ -306,6 +296,8 @@
 <c:import url="../common/footer.jsp"></c:import>
 	<script>
 		$(function(){
+			console.log();
+				
 			$('.book_wrapper').click(function(){
 				location.href = "bookDetail.bo";
 			})

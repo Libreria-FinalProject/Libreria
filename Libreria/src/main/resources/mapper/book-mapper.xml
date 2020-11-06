@@ -4,7 +4,6 @@
 	<select id="selectFrameCate" resultType="BFC">
 		select *
 		from book_category_frame
-		where bcf_no = 1
 	</select>
 
 
