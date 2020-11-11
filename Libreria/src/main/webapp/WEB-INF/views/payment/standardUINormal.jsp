@@ -332,6 +332,42 @@
        padding-top:30px;
    }
 
+    #popUp{
+       width:300px;
+       height:200px;
+       background:gray;
+       position:absolute;
+       top:calc(50% - 100px);
+       left:calc(50% - 150px);
+       display:flex;
+       align-items:center;
+       justify-content:center;
+       flex-direction:column;
+    
+   }
+
+   #popUp>button{
+       margin-top:20px;
+       width:75px;
+       height:30px; 
+       background:rgb(94, 107, 159);
+       border:none;
+       color:white;
+   }
+
+   #DeleteBtnBox{
+       display:flex;
+       align-items:center;
+   }
+   #DeleteBtnBox>button{
+    margin-top:20px;
+       width:75px;
+       height:30px; 
+       background:rgb(94, 107, 159);
+       border:none;
+       color:white;
+   }
+
 </style>
 </head>
 <body>
@@ -366,47 +402,50 @@
             
             <div id="contentBox">
                     <br>
-                    <label class="allSelect"><input type="checkbox"> 전체선택 </label>
+                    <label class="allSelect"><input type="checkbox"  id="allSel" class="allSelClass" onclick="allCheck();"> 전체선택 </label>
                     
                 
 
                 <div id="productBox">
-                    <label><input type="checkbox"> </label>
+                    <label><input type="checkbox" name="SelectBook"onclick="whatAll();"> </label>
                     <img src="./진격의거인31.JPG">
                     <div id="titleBox">
                         <label>책 제목</label>
                          <label>책 저자</label>
-                         <div id="btnBox"><button id="btnInfo">상세보기</button><button id="btnDelete">삭제</button></div>
+                         <input type="hidden" value="bookNo" id="BookNo">
+                         <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button><button id="btnDelete" onclick="location.href='delete.pay'">삭제</button></div>
                         </div>
-                    <label id="alongPrice">10000원</label>
+                    <label id="alongPrice" class="money">10000</label>원
                 </div>
 
                 <div id="productBox">
-                        <label><input type="checkbox"> </label>
+                        <label><input type="checkbox" name="SelectBook"onclick="whatAll();"> </label>
                         <img src="./진격의거인31.JPG">
                         <div id="titleBox">
                             <label>책 제목</label>
                              <label>책 저자</label>
-                             <div id="btnBox"><button id="btnInfo">상세보기</button><button id="btnDelete">삭제</button></div>
+                             <input type="hidden" value="bookNo" id="BookNo">
+                             <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button><button id="btnDelete" onclick="location.href='delete.pay'">삭제</button></div>
                             </div>
-                        <label id="alongPrice">10000원</label>
+                        <label id="alongPrice" class="money">10000</label>원
                     </div>
 
                     <div id="productBox">
-                            <label><input type="checkbox"> </label>
+                            <label><input type="checkbox" name="SelectBook" onclick="whatAll();"> </label>
                             <img src="./진격의거인31.JPG">
                             <div id="titleBox">
                                 <label>책 제목</label>
                                  <label>책 저자</label>
-                                 <div id="btnBox"><button id="btnInfo">상세보기</button><button id="btnDelete">삭제</button></div>
+                                 <input type="hidden" value="bookNo" id="BookNo">
+                                 <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button><button id="btnDelete" onclick="location.href='delete.pay'">삭제</button></div>
                                 </div>
-                            <label id="alongPrice">10000원</label>
+                            <label id="alongPrice" class="money">10000</label>원
                         </div>
 
                 <br>
                 <div id="lastSelectBox">
-                <label class="allSelect2"><input type="checkbox"> 전체선택 </label>
-                <button id="selectPriceDelete">선택상품삭제</button>
+                <label class="allSelect2"><input type="checkbox" id="allSel" class="allSelClass" onclick="allCheck();"> 전체선택 </label>
+                <button id="selectPriceDelete" onclick="selectDelete()">선택상품삭제</button>
                 </div>
             </div>
 
@@ -415,10 +454,10 @@
         <div id="basket_Right">
             <div id="Right_top">
             <label class="selectBookBox">총 2권을 선택하셧습니다.</label>
-            <label class="priceBox"><label>총 상품가격 </label><label>price</label></label>
-            <label id="allPrice"><label>결제가격</label><label>price</label> </label>
+            <label class="priceBox" id="AllPrice"><label>총 상품가격 </label><label  class="money">price</label></label>
+            <label id="allPrice"><label>결제가격</label><label  class="money">price</label> </label>
             </div>
-            <div id="Right_bot">결제하기</div>
+            <div id="Right_bot" onclick="location.href='payment1.pay'">결제하기</div>
         </div>
 
             
@@ -427,6 +466,14 @@
       
    
    </section>
+
+   <div id="popUp">
+    <label>정말 삭제하시겟습니까?</label>
+    <div id="DeleteBtnBox">
+    <button>확인</button>&nbsp;<button>취소</button>
+    </div>
+    </div>
+
    <footer id="footer_container">
       <div>
          <span>서울시 강남구 역삼동 남도빌딩</span> | <span>대표 : 김대표</span> | <span>사업자등록번호 : 123-45-67890</span>
@@ -435,4 +482,85 @@
       </div>
    </footer>
 </body>
+
+<script>
+    var allSel = document.getElementById("allSel");
+    var myCheck = document.getElementsByName("SelectBook");
+    var allSelClass = document.getElementsByClassName("allSelClass");
+
+    var flag = "false";
+
+    
+
+    
+    function whatAll(){
+        if(flag = "true"){
+            allSel.checked = false;
+            flag = "false";
+        }
+        if(flag = "false"){
+            for(var i=0; i<myCheck.length; i++){
+                if(myCheck[i].checked == false){
+                    allSel.checked = false;
+                    allSelClass[0].checked = false;
+                    allSelClass[1].checked = false;
+                    flag = "false";
+                    break;
+                }else if(myCheck[i].checked == true){
+                    allSel.checked = true;
+                    allSelClass[0].checked = true;
+                    allSelClass[1].checked = true;
+                    flag = " true"; 
+                }
+            }
+        }
+    }
+
+    function allCheck(){
+        if(flag == 'false'){
+            for(var i =0; i<myCheck.length; i++){
+                myCheck[i].checked = true;
+                allSelClass[0].checked = true;
+                    allSelClass[1].checked = true;
+            }
+            flag = "true";
+        }else{
+            for(var i = 0; i<myCheck.length; i++){
+                myCheck[i].checked = false;
+                allSelClass[0].checked = false;
+                    allSelClass[1].checked = false;
+            }
+            flag = "false";
+        }
+    }
+    
+    var money = document.getElementsByClassName("money");
+    console.log(money);
+    console.log(money[0].innerHTML);
+    var mon1innerHTML
+    money.toLocaleString();
+
+	function selectDelete(){
+		
+		var checkItem = [];
+		
+		for(var i=0; i<myCheck.length; i++){
+			if(mycheck[i].checked == true){
+				checkItem.puch(mycheck[i]);
+			}
+		}
+		
+		location.href="<%= request.getContextPath()%>/selectDelete.pay?list="+ checkItem;
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</script>
 </html>

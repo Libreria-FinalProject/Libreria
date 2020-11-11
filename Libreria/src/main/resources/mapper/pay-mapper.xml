@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="payMapper">
+	
+	
+	<insert id="insertBasket">
+		insert into basket
+		values(SEQ_BASCKET_NO.nextval,#{bookNo},sysdate,dafault,'N',#{userNo});
+	</insert>
+
+	<update id="deleteBasket">
+		update basket
+		set B_DELETE = 'Y'
+		where BASKET_NO = #{basketNo}
+			and B_NO = #{bookNo}
+	</update>
+
+	<update id="selectDelete">
+		update basket
+		set B_DELETE = 'Y'
+		where BASKET_NO = #{basketNo}
+			and B_NO in
+		<foreach item="item" index="index" collection="BookArr"
+      		open="(" separator="," close=")">
+       		#{item.bookNo}
+  		</foreach>
+
+	</update>
+</mapper>
