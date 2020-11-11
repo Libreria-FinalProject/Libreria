@@ -10,6 +10,11 @@
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
+<script type="text/javascript">
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
 <section>
 		<nav id="side_nav">
 			<ul>
@@ -31,44 +36,60 @@
 					<th>판매확정일자</th>
 					<th>상태</th>
 				</tr>
-				<tr>
-					<td width="340px" height="50px">눈물을 마시는 새</td>
-					<td width="120px">2020/09/25</td>
-					<td width="120px">2020/09/27</td>
-					<td width="100px">+5000머니</td>
-				</tr>
-				<tr>
-					<td width="340px" height="40px">눈물을 마시는 새</td>
-					<td width="120px">2020/09/25</td>
-					<td width="120px">2020/09/27</td>
-					<td width="100px">+5000머니</td>
-				</tr>
-				<tr>
-					<td width="340px" height="40px">눈물을 마시는 새</td>
-					<td width="120px">2020/09/25</td>
-					<td width="120px">2020/09/27</td>
-					<td width="100px">+5000머니</td>
-				</tr>
-				<tr>
-					<td width="340px" height="40px">눈물을 마시는 새</td>
-					<td width="120px">2020/09/25</td>
-					<td width="120px">2020/09/27</td>
-					<td width="100px">+5000머니</td>
-				</tr>
-				<tr>
-					<td width="340px" height="40px">눈물을 마시는 새</td>
-					<td width="120px">2020/09/25</td>
-					<td width="120px">2020/09/27</td>
-					<td width="100px">+5000머니</td>
-				</tr>
+				<c:if test="${empty sellList }">
+					<td colspan="4" style="text-align: center;">조회 결과가 없습니다.</td>
+				</c:if>
+				<c:if test="${!empty sellList }">
+				<c:forEach var="s" items="${sellList }"  varStatus="status"> 
+					<tr>
+						<td width="340px" height="50px">${s.b_title }</td>
+						<td width="120px">${s.sell_date}</td>
+						<td width="120px">${s.sell_decide_date }</td>
+						<td width="100px"></td>
+					</tr>
+					<script>
+						var sell_decide_date = "${s.sell_decide_date}";
+						var sell_money ="${s.sell_money}";
+						if(sell_decide_date != ''){
+							$('tr').eq(${status.index}+1).find("td").eq(3).text("+ "+numberWithCommas(sell_money)+"머니");
+						}else{
+							$('tr').eq(${status.index}+1).find("td").eq(3).text("대기중");
+						}
+						
+					</script>
+				</c:forEach>
+				</c:if>
+
 			</table>
+		
 			<div id="paging_div">
-				<button type="button">&lt;</button>
-				<button type="button" class="paging_selected_btn">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">&gt;</button>
+			<c:if test="${pi.currentPage>1}">
+				<c:url var="before" value="memberSell.me">
+					<c:param name="page" value="${pi.currentPage-1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${before}'">&lt;</button>
+			</c:if>
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
+				<c:if test="${p eq pi.currentPage}">
+					<button type="button"  class="paging_selected_btn">${p }</button>
+				</c:if>
+				
+				<c:if test="${p ne pi.currentPage }">
+					<c:url var="pagination" value="memberSell.me">
+							<c:param name="page" value="${ p }"/>
+					</c:url>
+					<button type="button" onclick="location.href='${pagination}'">${p}</button>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pi.currentPage < pi.endPage }">
+			<c:url var="after" value="memberSell.me">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${after}'">&gt;</button>
+			</c:if>
 			</div>
+		
+		
 		</div>
 		<script type="text/javascript">
 			$(function(){

@@ -21,6 +21,13 @@ public class Book {
 	private String change_name;
 	private String bwp_name;
 	
+//////판매정보 조회 시 필요한 변수 추가 - 기현 20.11.11
+	private int sell_num;  // 판매번호
+	private Date sell_date; // 판매일자
+	private Date sell_decide_date; // 판매 확정일자
+	private int sell_money; //판매금액
+	
+	
 	public Book() {
 		
 	}
@@ -197,6 +204,42 @@ public class Book {
 	public void setBwp_name(String bwp_name) {
 		this.bwp_name = bwp_name;
 	}
+	
+	//////////////////////////////////////////
+	public int getSell_num() {
+		return sell_num;
+	}
+
+	public void setSell_num(int sell_num) {
+		this.sell_num = sell_num;
+	}
+
+	public Date getSell_date() {
+		return sell_date;
+	}
+
+	public void setSell_date(Date sell_date) {
+		this.sell_date = sell_date;
+	}
+
+	public Date getSell_decide_date() {
+		return sell_decide_date;
+	}
+
+	public void setSell_decide_date(Date sell_decide_date) {
+		this.sell_decide_date = sell_decide_date;
+	}
+
+	public int getSell_money() {
+		return sell_money;
+	}
+
+	public void setSell_money(int sell_money) {
+		this.sell_money = sell_money;
+	}
+
+
+	////////////////////////////////////////
 
 	@Override
 	public String toString() {
@@ -204,10 +247,9 @@ public class Book {
 				+ ", b_price=" + b_price + ", b_stock=" + b_stock + ", b_pub_date=" + b_pub_date + ", b_sales_rate="
 				+ b_sales_rate + ", b_cnt=" + b_cnt + ", b_gk=" + b_gk + ", bc_no=" + bc_no + ", img_no=" + img_no
 				+ ", bwp_no=" + bwp_no + ", b_delete=" + b_delete + ", file_path=" + file_path + ", change_name="
-				+ change_name + ", bwp_name=" + bwp_name + "]";
+				+ change_name + ", bwp_name=" + bwp_name + ", sell_num=" + sell_num + ", sell_date=" + sell_date
+				+ ", sell_decide_date=" + sell_decide_date + ", sell_money=" + sell_money + "]";
 	}
-
-	
 	
 
 	

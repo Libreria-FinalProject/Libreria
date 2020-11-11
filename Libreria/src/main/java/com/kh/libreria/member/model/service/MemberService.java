@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.member.model.DAO.MemberDAO;
 import com.kh.libreria.member.model.vo.Card;
@@ -15,9 +16,9 @@ public interface MemberService {
 
 	Member loginMember(Member m);
 
-	int insertMember(Member m);
-	
 	int checkPwd(Member m);
+	
+	int insertMember(Member m);
 
 	int leaveMember(int no_leave);
 
@@ -41,7 +42,8 @@ public interface MemberService {
 
 	int updateMemberMoney(HashMap<String, String> charge_info);
 
-	
-	
+	ArrayList<Book> getSellList(int mem_no, PageInfo pi);
+
+	int getSellListCount(int mem_no);
 	
 }

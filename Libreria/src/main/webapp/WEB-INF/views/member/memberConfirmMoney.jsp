@@ -9,6 +9,11 @@
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/myPage/sideNav.css"/>
 </head>
 <body>
+<script type="text/javascript">
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
 <c:import url="../common/header.jsp"></c:import>
 	<section>
 		<nav id="side_nav">
@@ -41,9 +46,9 @@
 					</tr>				
 				</c:if>
 				<c:if test="${!empty moneyList }">
-				<c:forEach var="m" items="${moneyList}">
-					<tr>
-						<td width="415x" height="40px">+ ${m.charge_money}</td>
+				<c:forEach var="m" items="${moneyList}" varStatus="status">
+					<tr class="moneyTr">
+						<td width="415x" height="40px"></td>
 						<c:if test="${m.charge_way=='CD'}">
 							<td width="150px">신용카드</td>						
 						</c:if>
@@ -52,15 +57,38 @@
 						</c:if>
 						<td width="150px">${m.charge_date }</td>
 					</tr>
+					<script>
+						var charge_money = "${m.charge_money}";
+						$('tr').eq(${status.index}+1).find('td').eq(0).text("+ "+numberWithCommas(charge_money));
+					</script>
 				</c:forEach>
 				</c:if>
 			</table>
 			<div id="paging_div">
-				<button type="button">&lt;</button>
-				<button type="button" class="paging_selected_btn">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">&gt;</button>
+			<c:if test="${pi.currentPage>1}">
+				<c:url var="before" value="confirmMoney.me">
+					<c:param name="page" value="${pi.currentPage-1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${before}'">&lt;</button>
+			</c:if>
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
+				<c:if test="${p eq pi.currentPage}">
+					<button type="button"  class="paging_selected_btn">${p }</button>
+				</c:if>
+				
+				<c:if test="${p ne pi.currentPage }">
+					<c:url var="pagination" value="confirmMoney.me">
+							<c:param name="page" value="${ p }"/>
+					</c:url>
+					<button type="button" onclick="location.href='${pagination}'">${p}</button>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pi.currentPage < pi.endPage }">
+			<c:url var="after" value="confirmMoney.me">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${after}'">&gt;</button>
+			</c:if>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -90,6 +118,7 @@
 					location.href="leaveForm.me";
 				});
 			});
+		
 		</script>
 	</section>
 <c:import url="../common/footer.jsp"></c:import>

@@ -175,8 +175,31 @@
 	$("#pay_div2").find("button").click(function(){  // 2단계 -> 3단계
 		var validate_check = validate();
 		if(validate_check){
-			$("#pay_div2").css("display","none");
-			$("#pay_div3").css("display","block");
+			
+			var form = $('#cardForm').serialize();
+			$.ajax({
+				url: "buyMoney2.me",
+				type: "post",
+				data: form,
+				success:function(data){
+					if(data==1){
+						swal("","결제에 성공했습니다.","success")
+						.then((ok)=>{
+							if(ok){								
+								$("#pay_div2").css("display","none");
+								$("#pay_div3").css("display","block")
+							}
+						});
+					}else{
+						swal("","결제에 실패하였습니다. 다시 시도해주세요.","warning");
+					}
+				},
+				error:function(){
+					alert("ajax 실패")
+				}
+			});
+			//$("#pay_div2").css("display","none");
+			//$("#pay_div3").css("display","block");
 		}
 	});
 	
@@ -220,11 +243,11 @@
 		console.log(card_no);
 		
 		/////////////유효기간 검증
-		var cur_date = new Date();
-		var cur_date2 = cur_date.getFullYear()+"/"+(cur_date.getMonth()+1)+"/"+cur_date.getDate();
+		var cur_date = new Date(/);
+		var cur_date2 = cur_date.getFullYear()+"-"+(cur_date.getMonth()+1)+"-"+cur_date.getDate();
 		console.log(cur_date2);
 		var card_date= "";
-		if($('#card_date1').val().length == 0){ //카드 유효기간 월을 쓰지않았을 때
+		if($('#card_date1').val().length == 0 || parseInt($('#card_date1').val())>12 ){ //카드 유효기간 월을 쓰지않았을 때
 			swal("","카드 유효기간 월을 입력해주세요.","info")
 			.then((ok)=>{
 				if(ok){
@@ -241,13 +264,13 @@
 			});
 			return false;
 		}else{
-			card_date=$('#card_date2').val()+"/";
+			card_date=$('#card_date2').val()+"-";
 		}
 		
 		if($('#card_date1').val()<10 && $('#card_date1').val().length < 2){  // 
-			card_date=card_date+"0"+$("#card_date1").val()+"/01";
+			card_date=card_date+"0"+$("#card_date1").val()+"-01";
 		}else{
-			card_date=card_date+$("#card_date1").val()+"/01";
+			card_date=card_date+$("#card_date1").val()+"-01";
 		}
 		console.log(card_date);
 		$('#card_expire_date').val(card_date);

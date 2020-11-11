@@ -5,11 +5,15 @@
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Nanum Gothic';
+	outline: none;
 }
 
 section{
 	margin: 10px auto;
 	width:1000px;
+}
+button{
+	cursor: pointer;
 }
 
 #nav_container{
@@ -126,4 +130,26 @@ section{
 
 .clear{
 	clear: both;
+}
+
+/* errorPage*/
+#errorDiv{
+	text-align: center;
+    margin: auto auto;
+    padding: 200px 0px;
+    line-height: 3em;
+    font-size: 23px;
+    font-weight: bold;
+}
+#errorDiv button{
+	vertical-align: inherit;
+ 	background-color: rgb(60, 68, 101);
+ 	color:white;
+ 	border: none;
+ 	border-radius: 5px;
+ 	font-weight: bold;
+ 	font-size: 14px;
+ 	width: 90px;
+ 	height: 35px;
+ 	
 }

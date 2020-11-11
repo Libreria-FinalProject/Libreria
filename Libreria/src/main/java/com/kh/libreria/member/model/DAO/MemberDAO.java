@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.member.model.vo.Card;
 import com.kh.libreria.member.model.vo.Member;
@@ -73,6 +74,15 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.updateMemberMoney", charge_info);
 	}
 
+	public ArrayList<Book> getSellList(SqlSessionTemplate sqlSession, int mem_no, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("memberMapper.getSellList", mem_no, rowBounds);
+	}
+
+	public int getSellListCount(SqlSessionTemplate sqlSession, int mem_no) {
+		return sqlSession.selectOne("memberMapper.getSellListCount", mem_no);
+	}
 
 
 

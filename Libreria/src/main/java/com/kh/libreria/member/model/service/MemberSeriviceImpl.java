@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.member.model.DAO.MemberDAO;
 import com.kh.libreria.member.model.vo.Card;
@@ -103,6 +104,18 @@ public class MemberSeriviceImpl implements MemberService{
 	@Override
 	public int updateMemberMoney(HashMap<String, String> charge_info) {
 		return mDAO.updateMemberMoney(sqlSession , charge_info);
+	}
+
+
+	@Override
+	public ArrayList<Book> getSellList(int mem_no, PageInfo pi) {
+		return mDAO.getSellList(sqlSession, mem_no, pi);
+	}
+
+
+	@Override
+	public int getSellListCount(int mem_no) {
+		return mDAO.getSellListCount(sqlSession, mem_no);
 	}
 
 

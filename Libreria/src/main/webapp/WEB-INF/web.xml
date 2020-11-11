@@ -32,20 +32,30 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>memberServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/member-context.xml
-						<!-- /WEB-INF/spring/appServlet/aspect-context.xml -->
-			</param-value>
+			<param-value>/WEB-INF/spring/appServlet/member-context.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>memberServlet</servlet-name>
 		<url-pattern>*.me</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>adminServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/admin-context.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>adminServlet</servlet-name>
+		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -56,12 +66,13 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/pay-context.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>payServlet</servlet-name>
 		<url-pattern>*.pay</url-pattern>
 	</servlet-mapping>
+	
+	
 	
 	<!-- Book Servlet 연결 -->
 	
@@ -72,7 +83,6 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/book-context.xml</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>bookServlet</servlet-name>

@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Libreria</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/common.css"/>
@@ -24,7 +26,13 @@
 				</c:if>
 				<c:if test="${!empty sessionScope.loginUser }">
 					<div id="div_head_btns">
-						<button class="btn_head" onclick="location.href='mypage.me'">마이페이지</button>
+						<c:if test="${ loginUser.mem_grade eq 'user'}">
+							<button class="btn_head" onclick="location.href='mypage.me'">마이페이지</button>
+						</c:if>
+						<c:if test="${ loginUser.mem_grade eq 'admin'}">
+							<button class="btn_head" onclick="location.href='adminpage.ad'">관리자페이지</button>
+						</c:if>
+						
 						<button class="btn_head" onclick="location.href='logout.me'">로그아웃</button>
 					</div>
 				</c:if>
