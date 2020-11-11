@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	<select id="loginMember" resultType="Member">
+	<select id="loginMember" resultMap="memberResultSet">
 		select *
 		from member
 		where mem_email = #{mem_email}  and mem_pw = #{mem_pw} and mem_delete='N'
 	</select>
-	
+	<resultMap type="Member" id="memberResultSet">
+      <id column="MEM_NO" property="mem_no"/>
+      <result column="MEM_EMAIL" property="mem_email"/>
+      <result column="MEM_PW" property="mem_pw"/>
+      <result column="MEM_NAME" property="mem_name"/>
+      <result column="MEM_GENDER" property="mem_gender"/>
+      <result column="MEM_BIRTH" property="mem_birth"/>
+      <result column="MEM_TEL" property="mem_tel"/>
+      <result column="MEM_ADDRESS" property="mem_address"/>
+      <result column="MEM_REGDATE" property="mem_regdate"/>
+      <result column="MEM_STATUS" property="mem_status"/>
+      <result column="MEM_GRADE" property="mem_grade"/>
+      <result column="MEM_INTEREST" property="mem_interest"/>
+      <result column="MEM_LOGINDATE" property="mem_logindate"/>
+      <result column="MEM_MONEY" property="mem_money"/>
+      <result column="MEM_DELETE" property="mem_delete"/>
+   </resultMap>
+   
+   <insert id="insertMember">
+         insert into member
+         values( #{mem_no}, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth}, default , #{MEM_ADDRESS}, default , default, default,#{MEM_INTEREST}, sysdate, default, default)
+   </insert>
 	<select id="checkPwd" resultType="_int">
 		select count(*) 
 		from member 

@@ -46,6 +46,28 @@
    		margin: 1px;
    		border-radius: 3px;
    }
+   .postcodify_postcode5{
+      	width:294px;
+   		height:50px;
+   		border: 2px solid #d6deeb;
+   		margin: 1px;
+   		border-radius: 3px;
+   }
+   .postcodify_address{
+      	width:400px;
+   		height:50px;
+   		border: 2px solid #d6deeb;
+   		margin: 1px;
+   		border-radius: 3px;
+   }
+   .postcodify_extra_info{
+      	width:400px;
+   		height:50px;
+   		border: 2px solid #d6deeb;
+   		margin: 1px;
+   		border-radius: 3px;
+   }
+   
    input[type=radio] {
     display:none; 
     margin:10px;
@@ -75,8 +97,8 @@ input[type=radio]:checked + label {
 .gender-radio-label{
 	color:black;
 	}
-.join-form-post-s{
-	float: inherit;
+#postcodify_search_button{
+ 	float: inherit;
     position: relative;
     right: -6px;
     margin-left: -7px;
@@ -176,10 +198,6 @@ input[type=radio]:checked + label {
     font-size: larger;
     border-radius:3px;
  }
-.pwre_text3{
-	font-size:small;
-	color: red;
-}
 .test2{
 	position: relative;
     display: inline-block;
@@ -192,37 +210,60 @@ input[type=radio]:checked + label {
 	position: relative;
     top: -30px;
 }
+#idcheck{
+	position: relative;
+    top: -30px;
+}
+#idcheckok{
+	position: relative;
+    top: -30px;
+}
+.hidden_line_cl2{
+	 height: 30px;
+}
+
+span.guide{display:none; font-size:12px ; top: 12px; right: 10px;}
+span.ok{color: green;}
+span.error{color: red;}
+
 </style>
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
 <section id="join-form-main" class="account-container">
+	<form action="minsert.me" method="post" id="joinForm"></form>
 		<p class="join-form-top">JOIN</p>
      	 <ul class="join-form-ul">
      	 	<li>
      	 		<input type="text" name="join-form-id" id="join-form-id" title="회원ID" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<label class="pwre_text3">올바른 이메일 형식으로 입력해주세요.</label>
+     	 		<span class="guide error">올바른 이메일 형식으로 입력해주세요.</span>
+     	 	</li>
+     	 	<li class="hidden_line_cl" id="idcheck" style=height:1px;>
+     	 		<span class="guide error">이미 사용중인 아이디(이메일) 입니다.</span>
+     	 	</li>
+     	 	<li class="hidden_line_cl2" id="idcheckok" style=height:1px;>
+     	 		<span class="guide ok">사용 가능한 아이디(이메일) 입니다.</span>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="join-form-pw" id="join-form-pw" title="회원PW" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="password" name="join-form-pw" id="join-form-pw" title="회원PW" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
 
      	 	<li>
-     	 		<input type="text" name="join-form-pw-check" id="join-form-pw-check" title="회원PW 확인" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="password" name="join-form-pw-check" id="join-form-pw-check" title="회원PW 확인" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
      	  	<li class="hidden_line_cl">
-     	 		<label class="pwre_text3">8자 이상, 영문/숫자/특수문자 를 입력해주세요.</label>
+     	 		<span class="guide error">8자 이상, 영문/숫자/특수문자 를 입력해주세요.</span>
      	 	</li>
      	 	<li class="hidden_line_cl" id="pwcheck" style=height:1px;>
-     	 		<label class="pwre_text3">동일한 비밀번호를 입력하세요.</label>
+     	 		<span class="guide error">동일한 비밀번호를 입력하세요.</span>
      	 	</li>
      	 	<li>
      	 		<input type="text" name="join-form-name" id="join-form-name" title="회원NAME" placeholder="이름" autocapitalize="off" autocomplete="off"class="join-form-textarea" >
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<label class="pwre_text3">2글자 이상의 이름을 정확히 입력해주세요.</label>
+     	 		<span class="guide error">2글자 이상의 이름을 정확히 입력해주세요.</span>
      	 	</li>
      	 	<li>
      	 		<input type="text" name="join-form-birth" id="join-form-birth" title="회원생년" placeholder="출생년도" autocapitalize="off" autocomplete="off" class="join-form-textarea2">
@@ -232,57 +273,63 @@ input[type=radio]:checked + label {
      	 		<label class="gender-radio-label" for="gender-radio2"><p class="join-gender-p">여</p></label>
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<label class="pwre_text3">출생년도를 입력하세요.</label>
+     	 		<span class="guide error">출생년도를 입력하세요.</span>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="join-form-post" id="join-form-post" title="회원우편번호" placeholder="우편번호" autocapitalize="off" autocomplete="off" class="join-form-textarea3">
-     	 		<input type="button" class="join-form-post-s" value="검색"> 
+     	 		<input type="text" name="join-form-post" id="join-form-post" title="회원우편번호" placeholder="우편번호" autocapitalize="off" autocomplete="off" class="postcodify_postcode5" disabled >
+     	 		<button type="button" id="postcodify_search_button">검색</button> 
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="join-form-post1" id="join-form-post1" title="회원주소1" placeholder="배송지주소" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="text" name="join-form-post1" id="join-form-post1" title="회원주소1" placeholder="배송지주소" autocapitalize="off" autocomplete="off" class="postcodify_address" disabled >
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="join-form-post2" id="join-form-post2" title="회원주소2" placeholder="상세주소" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="text" name="join-form-post2" id="join-form-post2" title="회원주소2" placeholder="상세주소" autocapitalize="off" autocomplete="off" class="postcodify_extra_info">
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<label class="pwre_text3">주소를 확인해주세요.</label>
+     	 		<span class="guide error">주소를 확인해주세요.</span>
      	 	</li>
      	 </ul>
+     	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+		<script>
+					$(function(){
+						$("#postcodify_search_button").postcodifyPopUp();
+					});
+		</script>
      	 <div class="attention">
      	 	<p class="attention-top">관심사</p>
      	 	<br><br>
      	 	<ul>
      	 		<li class= "att-select">
      	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-novel" name="att-novel"> 소설
+     	 			<input type="checkbox" id="att-select-novel" name="att-novel" value="소설"> 소설
      	 			</div>
      	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-economy" name="att-economy"> 경영/경제
+     	 			<input type="checkbox" id="att-select-economy" name="att-economy" value="경영/경제"> 경영/경제
      	 			</div>
      	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-att-development" name="att-development"> 자기계발
-     	 			</div>
-     	 		</li>
-     	 		<li class= "att-select">
-     	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-essay" name="att-essay"> 에세이/시
-     	 			</div>
-     	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-trip" name="att-trip"> 여행
-     	 			</div>
-     	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-religion" name="att-religion"> 종교
+     	 			<input type="checkbox" id="att-select-att-development" name="att-development" value="자기계발"> 자기계발
      	 			</div>
      	 		</li>
      	 		<li class= "att-select">
      	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-foreign" name="att-foreign"> 외국어
+     	 			<input type="checkbox" id="att-select-essay" name="att-essay" value="에세이/시"> 에세이/시
      	 			</div>
      	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-science" name="att-science"> 과학
+     	 			<input type="checkbox" id="att-select-trip" name="att-trip" value="여행"> 여행
      	 			</div>
      	 			<div class="att-select-wrapper">
-     	 			<input type="checkbox" id="att-select-it" name="att-it"> 컴퓨터/IT
+     	 			<input type="checkbox" id="att-select-religion" name="att-religion" value="종교"> 종교
+     	 			</div>
+     	 		</li>
+     	 		<li class= "att-select">
+     	 			<div class="att-select-wrapper">
+     	 			<input type="checkbox" id="att-select-foreign" name="att-foreign" value="외국어"> 외국어
+     	 			</div>
+     	 			<div class="att-select-wrapper">
+     	 			<input type="checkbox" id="att-select-science" name="att-science" value="과학"> 과학
+     	 			</div>
+     	 			<div class="att-select-wrapper">
+     	 			<input type="checkbox" id="att-select-it" name="att-it" value="컴퓨터/IT"> 컴퓨터/IT
      	 			</div>
      	 		</li>
      	 	</ul>
@@ -290,29 +337,49 @@ input[type=radio]:checked + label {
      	 <div class="joinagree">
      	 	<ul>
      	 		<li id="jo_tr_ag1">
-     	 			<p class="join-li-cl"><input type="checkbox" id="join-terms-agree" name="join_terms_agree" class="join-li-cl-in" > 전체 약관 동의</p>
+     	 			<p class="join-li-cl"><input type="checkbox" id="join-terms-agree1" name="join_terms_agree" class="join-li-cl-in" > 전체 약관 동의</p>
      	 		</li>
      	 		<li id="jo_tr_ag2">
      	 			<p class="join-li-cl">
-     	 			<input type="checkbox" id="join-terms-agree2" name="join_terms_agree1" class="join-li-cl-in">  이용약관 동의(필수)
-     	 			<a href="" class="dirrhks">약관 보기></a>
+     	 			<input type="checkbox" id="join-terms-agree2" name="checkRow" class="join-li-cl-in">  이용약관 동의(필수)
+     	 			<a onclick="window.open('InsertAgreeOne','LIBRARIA','width=430,height=500,location=no,status=no,scrollbars=yes');" href="location.href='InsertMemberAgree1.me'" class="dirrhks">약관 보기></a>
      	 			</p>
      	 		</li>
      	 		<li id="jo_tr_ag3">
      	 			<p class="join-li-cl">
-     	 			<input type="checkbox" id="join-terms-agree3" name="join_terms_agree2" class="join-li-cl-in">  개인 정보 수집 및 이용(필수)
-     	 			<a href="" class="dirrhks">내용 확인></a>
+     	 			<input type="checkbox" id="join-terms-agree3" name="checkRow" class="join-li-cl-in">  개인 정보 수집 및 이용(필수)
+     	 			<a onclick="window.open('InsertAgreeTwo','LIBRARIA','width=430,height=500,location=no,status=no,scrollbars=yes');" href="location.href='InsertMemberAgree2.me'" class="dirrhks">내용 확인></a>
      	 			</p>
      	 		</li>
+     	 		 <script>         
+                             $(document).ready(function(){
+                             //최상단 체크박스 클릭
+                                 $("#join-terms-agree1").click(function(){
+                            //클릭되었으면
+                                   if($("#join-terms-agree1").prop("checked")){
+                           //input태그의 id이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+                                      $("input[name=checkRow]").prop("checked",true);
+                                      $("input[name=checkRow]").prop("checked",true);
+                           //클릭이 안되있으면
+                                   }else{
+                           //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+                                      $("input[name=checkRow]").prop("checked",false);
+                                      $("input[name=checkRow]").prop("checked",false);
+                                   }
+                                });
+                             });
+                          
+                  </script>
      	 		<li class="hidden_line_cl" style=border:none;>
-     	 			<label class="pwre_text3" >이용약관에 동의해주세요.</label>
+     	 			<span class="guide error" >이용약관에 동의해주세요.</span>
      	 		</li>
      	 	</ul>
      	 </div>
      	 <div class="join-com">
-     	 	<input type="button" id="join-can-bt" value="Cancle">
-     	 	<input type="button" id="join-com-bt" value="Submit">
+     	 	<button type="button" onclick="history.go(-1)" id="join-can-bt">Cancle</button>
+     	 	<button onclick="return validate();" id="join-com-bt">Submit</button>
      	 </div>
+     </form>
    </section>
 <c:import url="../common/footer.jsp"></c:import>
 </body>

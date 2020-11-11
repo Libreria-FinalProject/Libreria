@@ -18,7 +18,7 @@
 	
 				<c:if test="${ empty sessionScope.loginUser }">
 					<div id="div_head_btns">
-						<button class="btn_head">회원가입</button>
+						<button class="btn_head" onclick="location.href='InsertMemberForm.me'">회원가입</button>
 						<button class="btn_head" onclick="location.href='loginForm.me'">로그인</button>
 					</div>
 				</c:if>

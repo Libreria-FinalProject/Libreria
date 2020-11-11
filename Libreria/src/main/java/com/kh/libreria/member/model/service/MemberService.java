@@ -15,6 +15,8 @@ public interface MemberService {
 
 	Member loginMember(Member m);
 
+	int insertMember(Member m);
+	
 	int checkPwd(Member m);
 
 	int leaveMember(int no_leave);
@@ -38,6 +40,7 @@ public interface MemberService {
 	int matchCardInfo(Card card);
 
 	int updateMemberMoney(HashMap<String, String> charge_info);
+
 	
 	
 	

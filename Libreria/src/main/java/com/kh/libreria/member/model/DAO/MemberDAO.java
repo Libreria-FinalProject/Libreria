@@ -18,7 +18,11 @@ public class MemberDAO {
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
-
+	
+	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+	
 	public int checkPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.checkPwd", m);
 	}
@@ -68,6 +72,8 @@ public class MemberDAO {
 	public int updateMemberMoney(SqlSessionTemplate sqlSession,HashMap<String, String> charge_info) {
 		return sqlSession.update("memberMapper.updateMemberMoney", charge_info);
 	}
+
+
 
 
 }
