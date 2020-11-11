@@ -55,7 +55,7 @@
       			<div id="content_sub_cate_sel"></div>
       		</div>
       		
-      		
+      		<!-- 신간 div  -->
       		<div>
       			<div id="sub_menu_sel" class="bot_mar">
       				<p>신간</p>
@@ -67,118 +67,23 @@
       		
       		
       		<div class="book_salary">
-      		
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
+      			<c:forEach var="bList" items="${bList}">					
+					<div class="book_wrapper">
+					<div class="book_cover_cl"><img src="${bList.file_path}${bList.change_name}" class="book_thumnail"></div>
 					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
+						<h3 class="booK_name_cl">${bList.b_title}</h3>
+						<p class="book_writer_cl">${bList.bwp_name }</p>
 						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
+						<p class="book_price_cl">구매 : ${ bList.b_price } 원</p>
 					</div>
 				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				  		
+				</c:forEach>  		
       		</div>
       	
       		
       		
       		
-      		<!--  구분 -->
+      		<!-- 인기 div 구분 -->
       		
       		<div>
       			<div id="sub_menu_sel" class="bot_mar">
@@ -190,99 +95,20 @@
       		</div>
       		<div class="book_salary">
       		
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book</h3>
-					
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
-				<div class="book_wrapper">
-					<div class="book_cover_cl"><img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover1.jpg" class="book_thumnail"></div>
-					<div class="book_info_cl">
-						<h3 class="booK_name_cl">Book Title</h3>
-						<p class="book_writer_cl">저자</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
-						<p class="book_price_cl">구매 : 15000원</p>
-					</div>
-				</div>
       		
-      		
+      		<div class="book_salary">
+      			<c:forEach var="bPopList" items="${bPopList}">					
+					<div class="book_wrapper">
+					<div class="book_cover_cl"><img src="${bPopList.file_path}${bPopList.change_name}" class="book_thumnail"></div>
+					<div class="book_info_cl">
+						<h3 class="booK_name_cl">${bPopList.b_title}</h3>
+						<p class="book_writer_cl">${bPopList.bwp_name }</p>
+						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
+						<p class="book_price_cl">구매 : ${ bPopList.b_price } 원</p>
+					</div>
+				</div>
+				</c:forEach>  		
+      		</div>	
       	</div>
       	<br>
     		

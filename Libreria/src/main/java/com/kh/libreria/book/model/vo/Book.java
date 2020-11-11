@@ -17,14 +17,54 @@ public class Book {
 	private int img_no;
 	private int bwp_no;
 	private String b_delete;
-
+	private String file_path;
+	private String change_name;
+	private String bwp_name;
+	
 	public Book() {
 		
 	}
 
+	public Book(int b_no, String b_title, String b_content, String b_pub, int b_price, int b_stock, Date b_pub_date,
+			int b_sales_rate, int b_cnt, String b_gk, int bc_no, int img_no, int bwp_no, String b_delete,
+			String file_path, String change_name, String bwp_name) {
+		super();
+		this.b_no = b_no;
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.b_pub = b_pub;
+		this.b_price = b_price;
+		this.b_stock = b_stock;
+		this.b_pub_date = b_pub_date;
+		this.b_sales_rate = b_sales_rate;
+		this.b_cnt = b_cnt;
+		this.b_gk = b_gk;
+		this.bc_no = bc_no;
+		this.img_no = img_no;
+		this.bwp_no = bwp_no;
+		this.b_delete = b_delete;
+		this.file_path = file_path;
+		this.change_name = change_name;
+		this.bwp_name = bwp_name;
+	}
+	
+	//book_detail page전 
+	public Book(int b_no, String b_title, String file_path, String change_name, String bwp_name) {
+		super();
+		this.b_no = b_no;
+		this.b_title = b_title;
+		this.file_path = file_path;
+		this.change_name = change_name;
+		this.bwp_name = bwp_name;
+	}
+	
+	
+	
 	public int getB_no() {
 		return b_no;
 	}
+
+	
 
 	public void setB_no(int b_no) {
 		this.b_no = b_no;
@@ -134,23 +174,28 @@ public class Book {
 		this.b_delete = b_delete;
 	}
 
-	public Book(int b_no, String b_title, String b_content, String b_pub, int b_price, int b_stock, Date b_pub_date,
-			int b_sales_rate, int b_cnt, String b_gk, int bc_no, int img_no, int bwp_no, String b_delete) {
-		super();
-		this.b_no = b_no;
-		this.b_title = b_title;
-		this.b_content = b_content;
-		this.b_pub = b_pub;
-		this.b_price = b_price;
-		this.b_stock = b_stock;
-		this.b_pub_date = b_pub_date;
-		this.b_sales_rate = b_sales_rate;
-		this.b_cnt = b_cnt;
-		this.b_gk = b_gk;
-		this.bc_no = bc_no;
-		this.img_no = img_no;
-		this.bwp_no = bwp_no;
-		this.b_delete = b_delete;
+	public String getFile_path() {
+		return file_path;
+	}
+
+	public void setFile_path(String file_path) {
+		this.file_path = file_path;
+	}
+
+	public String getChange_name() {
+		return change_name;
+	}
+
+	public void setChange_name(String change_name) {
+		this.change_name = change_name;
+	}
+
+	public String getBwp_name() {
+		return bwp_name;
+	}
+
+	public void setBwp_name(String bwp_name) {
+		this.bwp_name = bwp_name;
 	}
 
 	@Override
@@ -158,9 +203,13 @@ public class Book {
 		return "Book [b_no=" + b_no + ", b_title=" + b_title + ", b_content=" + b_content + ", b_pub=" + b_pub
 				+ ", b_price=" + b_price + ", b_stock=" + b_stock + ", b_pub_date=" + b_pub_date + ", b_sales_rate="
 				+ b_sales_rate + ", b_cnt=" + b_cnt + ", b_gk=" + b_gk + ", bc_no=" + bc_no + ", img_no=" + img_no
-				+ ", bwp_no=" + bwp_no + ", b_delete=" + b_delete + "]";
+				+ ", bwp_no=" + bwp_no + ", b_delete=" + b_delete + ", file_path=" + file_path + ", change_name="
+				+ change_name + ", bwp_name=" + bwp_name + "]";
 	}
+
 	
+	
+
 	
 
 }
