@@ -30,9 +30,9 @@
 						
 					</ul>
 				</li>
-				
+				<!-- 카테고리 DB연결  -->
 				<c:forEach var="bfc" items="${bfcList}">
-					<li class="main_book_cate"><a>${bfc.bcf_ct}</a></li>
+					<li class="main_book_cate"><a class="bfc_class">${bfc.bcf_ct}</a><input type="hidden" value="${ bfc.bcf_no }"></li>
 				</c:forEach>
       		</ul>
       	</div>
