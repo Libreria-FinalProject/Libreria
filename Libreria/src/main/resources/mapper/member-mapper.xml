@@ -26,7 +26,7 @@
    
    <insert id="insertMember">
          insert into member
-         values( #{mem_no}, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth}, default , #{MEM_ADDRESS}, default , default, default,#{MEM_INTEREST}, sysdate, default, default)
+         values( #{mem_no}, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth}, default , #{mem_address}, default , default, default,#{mem_interest}, sysdate, default, default)
    </insert>
 	<select id="checkPwd" resultType="_int">
 		select count(*) 

@@ -45,26 +45,59 @@ public class MemberController {
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	 
 
+	@RequestMapping("enrollView.me")
+	public String enrollView() {
+		logger.debug("회원등록페이지");
+		return "InsertMemberForm";
+	}
+	
 	@RequestMapping("loginForm.me")
 	public String loginForm() {
 		return "login";
 	}
 
-	@RequestMapping("InsertMemberForm.me")
-	public String InsertMemberForm() {
-		return "InsertMemberForm";
-	}
-
-	@RequestMapping("InsertMemberAgreeOne.me")
+	@RequestMapping("InsertAgreeOne.me")
 	public String InsertMemberAgree1() {
 		return "InsertAgreeOne";
 	}
 
-	@RequestMapping("InsertMemberAgreeTwo.me")
+	@RequestMapping("InsertAgreeTwo.me")
 	public String InsertMemberAgree2() {
 		return "InsertAgreeTwo";
 	}
-
+	
+	
+	@RequestMapping("InsertMemberForm.me")
+	public String insertMember(@ModelAttribute Member m) {
+		System.out.println(m);
+		
+		return "redirect:/";
+	}
+	
+//	@RequestMapping("InsertMemberForm.me")
+//	public String insertMember(@ModelAttribute Member m, @RequestParam("post") String post,
+//														 @RequestParam("address1") String address1,
+//														 @RequestParam("address2") String address2) {
+//		m.setMem_address(post + "/" + address1 + "/" + address2);
+//		System.out.println(m);
+//		
+//		return "redirect:/";
+//	}
+		
+//		String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
+//		
+//		m.setMem_pw(encPwd);
+//		
+//		int result = mService.insertMember(m);
+//		
+//		if(result > 0) {
+//			return "redirect:/";
+//		} else {
+//			throw new MemberException("회원가입에 실패하였습니다.");
+//		}
+//	}
+	
+	
 //	로그인
 	@RequestMapping("login.me") 
 	public String loginMember(Member m, Model model)

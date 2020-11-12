@@ -21,6 +21,7 @@
   <hr>
 </header>
 <section>
+	<form action="InsertAgreeTwo.me" method="post"></form>
 	<br>
 	<h2>개인정보 수집 및 이용 동의 (필수)</h2>
 	<table border="1" class="term-table">
@@ -35,6 +36,7 @@
 			<td>탈퇴시 즉시 파기</td>
 		</tr>
 	</table>
+	</form>
 </section>
 <footer>
   <hr>

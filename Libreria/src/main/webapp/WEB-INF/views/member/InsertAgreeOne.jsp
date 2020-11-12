@@ -18,6 +18,7 @@
   <hr>
 </header>
 <section>
+	<form action="InsertAgreeOne.me" method="post"></form>
 	<br><br><br>
 	<h2>< 이용약관 ></h2>
 	<hr>
@@ -323,7 +324,7 @@ LIBRARIA 서비스에 1년 이상 접속하지 않았을 경우<br>
 회사와 이용자 간의 서비스 이용 계약, 회원 상호 간의 거래에는 대한민국 법령을 적용합니다.<br>
 <h3>제27조[법령 및 준용]</h3>
 본 약관에 명시하지 않은 사항은 전자거래기본법, 전자서명법, 방문판매법 및 기타 관련 법령(이하 ‘관계법규’)과 회사의 규정 및 상관례에 따릅니다.<br>
-
+</form>
 </section>
 <footer>
   <hr>
