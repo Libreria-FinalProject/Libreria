@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
+import com.kh.libreria.book.model.vo.BookSubCategory;
 
 public interface BookService {
 
@@ -12,6 +13,8 @@ public interface BookService {
 	ArrayList<Book> getBookList(int bc_no);
 
 	ArrayList<Book> getBookPopList(int bc_no);
+
+	ArrayList<BookSubCategory> getBookSubCateList(int bcf_no);
 	
 	
 	

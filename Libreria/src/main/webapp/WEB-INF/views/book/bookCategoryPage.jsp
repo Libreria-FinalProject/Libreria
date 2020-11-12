@@ -22,26 +22,34 @@
       <article>
       	<div id="nav_cate">
       		<ul id="book_cate_ul">
-				<li class="main_book_cate">소설
-					<ul id="sub_book_cate">
-						<li>소설전체</li>
-						<li>한국소설</li>
-						<li>미국소설소설</li>
-						
-					</ul>
-				</li>
-				
 				<!-- 카테고리 DB연결  -->
-				<c:forEach var="bfc" items="${bfcList}">
-					<li class="main_book_cate"><a class="bfc_class">${bfc.bcf_ct}<input id="bc_no" name='bc_no' type="hidden" value="${ bfc.bcf_no }"></a></li>
+				<c:forEach var="bcf" items="${bcfList}">
+					<li class="main_book_cate">
+						<a class="bfc_class">${bcf.bcf_ct}
+							<input id="bcf_no" name='bcf_no' type="hidden" value="${ bcf.bcf_no }">
+						</a>
+						
+						<ul id="sub_book_cate">
+						
+							<c:forEach var="bsc" items="${bscList }">
+								<c:if test="${ bcf.bcf_no eq bsc.bcf_no }">
+								<li><a>${ bsc.bc_ct }</a></li>
+								</c:if>
+							</c:forEach>
+						
+						</ul>
+						
+					</li>
 				</c:forEach>
       		</ul>
       	</div>
       	<script>
       		$(function(){
       			$('.main_book_cate').click(function(){
-      				var bc_no = $(this).find('#bc_no').val();
-      				location.href="bookCateList.bo?bc_no="+bc_no;
+      				var bcf_no = $(this).find('#bcf_no').val();
+      				
+      				console.log(bcf_no);
+      				location.href="bookCateList.bo?bcf_no="+bcf_no;
       			})
       			
       		})

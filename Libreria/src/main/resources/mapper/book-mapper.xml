@@ -5,22 +5,29 @@
 		select *
 		from book_category_frame
 	</select>
+	
 	<select id="getBookList" resultType="Book">
 		<![CDATA[
 		select * 
 		from bcp
-		where bc_no = #{bc_no} and rownum <= 10
+		where bcf_no = #{bcf_no} and rownum <= 10
 		order by b_pub_date desc
 		 ]]>
 	</select>
+	
 	<select id="getBookPopList" resultType="Book">
 		<![CDATA[
 		select * 
 		from bcp
-		where bc_no = #{bc_no} and rownum <= 10
+		where bcf_no = #{bcf_no} and rownum <= 10
 		order by b_cnt desc
 		 ]]>
 	</select>
-
+	<select id="getBookSubCateList" resultType="BSC">
+		select * 
+		from book_category
+		where bcf_no = #{bcf_no}
+	
+	</select>
 
 </mapper>
