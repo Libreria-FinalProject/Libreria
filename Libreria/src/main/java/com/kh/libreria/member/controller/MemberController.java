@@ -73,7 +73,7 @@ public class MemberController {
 	if(loginUser!=null) { int result = mService.updateLoginDate(loginUser);
 	  
 	if(result>0) { model.addAttribute("loginUser", loginUser); 
-		return "redirect:home.do";
+		return "redirect:/";
 		}else { 
 			model.addAttribute("message", "로그인에 실패했습니다."); 
 			  }
@@ -334,7 +334,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("buyMoney3.me")
-	public void butMoney3(HttpServletRequest request, HttpServletResponse response,
+	public void buyMoney3(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("mem_no") int mem_no, @RequestParam("charge_money") String charge_money, 
 			@RequestParam("charge_way") String charge_way ) throws IOException {
 		
@@ -352,6 +352,7 @@ public class MemberController {
 		
 	}
 	
+
 	//////////////////////////////////////////////////////
 	
 	@RequestMapping("popupPayForCard.me")

@@ -19,6 +19,7 @@
 			</ul>
 		</nav>
 		<div id="memberInfo_container">
+			<form method="post" id="memberForm">
 			<span id="container_title">회원 관리</span>
 			<table id="buy_sell_table" class="confirmMoney_table">
 				<tr>
@@ -34,7 +35,7 @@
 				<c:if test="${!empty memberList }">
 					<c:forEach var="m" items="${memberList }">
 						<tr>
-							<td><input type="checkbox" name="check_mem" class="check_mem">${m.mem_name}</td>
+							<td><input type="checkbox" name="check_mem" class="check_mem" value="${m.mem_no}">${m.mem_name}</td>
 							<td>${m.mem_email }</td>
 							<td>${m.mem_logindate }</td>
 						</tr>
@@ -70,8 +71,9 @@
 			</c:if>
 			</div>
 			<div id="rest_div">
-				<button type="button" id="rest_btn">휴면회원으로 전환</button>
+				<button type="button" id="rest_btn" onclick="changeResting();">휴면회원으로 전환</button>
 			</div>
+			</form>
 		</div>
 		<script type="text/javascript">
 			$(function(){
@@ -110,6 +112,36 @@
 					}
 				});
 			});
+			
+			function changeResting(){
+				/////////////체크된 박스 개수 체크
+				var check_count = 0;
+				$('input[name=check_mem]').each(function(index,item){			
+					if(item.checked){
+						check_count++;
+					}
+				});
+				
+				if(check_count == 0){
+					swal("","전환할 회원을 선택해주세요.","info");
+				}else{
+					var form = $('#memberForm').serialize();
+					var check_mem_arr = $('[name=check_mem]');
+					console.log(check_mem_arr);
+					$.ajax({
+						url: "changeResting.ad",
+						type:"POST",
+						data: form,
+						success: function(data){
+							alert(data);
+						},
+						error: function(){
+							alert('ajax 에러');
+						}
+					});
+				}
+				
+			}
 		</script>
 	</section>
 <c:import url="../common/footer.jsp"></c:import>

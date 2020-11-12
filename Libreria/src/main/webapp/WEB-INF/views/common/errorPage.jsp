@@ -11,7 +11,7 @@
 <section>
 <div id="errorDiv">
 	${message }<br>
-	<button onclick="location.href='loginForm.me'">로그인</button>
+	<button onclick="location.href='/libreria'">메인화면으로</button>
 </div>
 </section>
 <c:import url="footer.jsp"></c:import>

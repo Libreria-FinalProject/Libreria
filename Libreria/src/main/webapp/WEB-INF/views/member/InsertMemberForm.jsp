@@ -8,7 +8,6 @@
    <title>Libreria</title>
    <meta charset="UTF-8">
 <style type="text/css">
-	@import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
    .join-form-top{
    	font-size:30px;
    }

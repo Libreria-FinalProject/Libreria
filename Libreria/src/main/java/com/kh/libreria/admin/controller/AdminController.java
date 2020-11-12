@@ -1,6 +1,9 @@
 package com.kh.libreria.admin.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,4 +51,13 @@ public class AdminController {
 	public String adminInsertBook() {
 		return "adminInsertBook";
 	}
+	
+	@RequestMapping("changeResting.ad")
+	public void changeResting(@RequestParam("check_mem") String check_mem,
+			HttpServletResponse response) throws IOException{
+		System.out.println(check_mem);
+		
+		response.getWriter().print("1");
+	}
+	
 }
