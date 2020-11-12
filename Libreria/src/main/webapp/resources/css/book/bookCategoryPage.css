@@ -56,8 +56,10 @@
    }
    
    #book_cate_ul li:hover {
-       background: #1f8ce6;
-    color: #fff;}
+    background: #1f8ce6;
+    color: #fff;
+    cursor: pointer;
+    }
     #content_div{
     	display: inline-block;
     }

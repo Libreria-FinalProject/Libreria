@@ -30,12 +30,23 @@
 						
 					</ul>
 				</li>
+				
 				<!-- 카테고리 DB연결  -->
 				<c:forEach var="bfc" items="${bfcList}">
-					<li class="main_book_cate"><a class="bfc_class">${bfc.bcf_ct}</a><input type="hidden" value="${ bfc.bcf_no }"></li>
+					<li class="main_book_cate"><a class="bfc_class">${bfc.bcf_ct}<input id="bc_no" name='bc_no' type="hidden" value="${ bfc.bcf_no }"></a></li>
 				</c:forEach>
       		</ul>
       	</div>
+      	<script>
+      		$(function(){
+      			$('.main_book_cate').click(function(){
+      				var bc_no = $(this).find('#bc_no').val();
+      				location.href="bookCateList.bo?bc_no="+bc_no;
+      			})
+      			
+      		})
+      	
+      	</script>
       
       	<div id="content_div">
       		<div id='contentHead'>

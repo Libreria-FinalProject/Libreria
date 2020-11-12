@@ -9,7 +9,7 @@
 		<![CDATA[
 		select * 
 		from bcp
-		where bc_no = 1 and rownum <= 10
+		where bc_no = #{bc_no} and rownum <= 10
 		order by b_pub_date desc
 		 ]]>
 	</select>
@@ -17,7 +17,7 @@
 		<![CDATA[
 		select * 
 		from bcp
-		where bc_no = 1 and rownum <= 10
+		where bc_no = #{bc_no} and rownum <= 10
 		order by b_cnt desc
 		 ]]>
 	</select>

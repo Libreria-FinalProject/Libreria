@@ -25,10 +25,9 @@ public class BookController {
 	 
 	
 	@RequestMapping("bookCateList.bo")
-	public String bookCate(Model model) {
-		//테스트용 북 카테고리
-		int bc_no = 1;
+	public String bookCate(Model model,Book book) {
 		
+		int bc_no =book.getBc_no();
 		
 		ArrayList<BookFrameCategory> bfcList = bService.getBookCate();
 	
