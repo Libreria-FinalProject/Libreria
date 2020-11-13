@@ -89,6 +89,20 @@
 		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Board Servlet 연결 -->
+	
+	<servlet>
+		<servlet-name>bookServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/book-context.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>boardServlet</servlet-name>
+		<url-pattern>*.bn</url-pattern>
+	</servlet-mapping>	
 	
 	<!-- 필터 등록 -->
 	<filter>

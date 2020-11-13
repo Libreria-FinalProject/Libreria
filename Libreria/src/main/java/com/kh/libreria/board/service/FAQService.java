@@ -5,16 +5,12 @@ import java.util.ArrayList;
 import com.kh.libreria.board.vo.Board;
 import com.kh.libreria.common.PageInfo;
 
-public interface BoardService {
+public interface FAQService {
 
 	int getListCount();
 
 	ArrayList<Board> selectList(PageInfo pi);
 
-	int insertBoard(Board b);
-
 	Board selectBoard(int bo_no);
 
-	
-	
 }

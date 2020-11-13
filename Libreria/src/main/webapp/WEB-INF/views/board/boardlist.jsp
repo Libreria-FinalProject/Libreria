@@ -178,50 +178,50 @@
          <br><br>
          <div>
             <ul class="board_list">
-               <a href="#1" class="board_list_font">[공지사항] 10월 20일 홈페이지 점검 안내</a>
+               <a href="#1" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#2" class="board_list_font">[공지사항] 이용 방법 안내</a>
+               <a href="#2" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#3" class="board_list_font">[공지사항] 중고도서 구매 및 판매 방법 안내</a>
+               <a href="#3" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#4" class="board_list_font">[공지사항] 추석 연휴로 인한 배송 지연 안내</a>
+               <a href="#4" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#5" class="board_list_font">[공지사항] </a>
+               <a href="#5" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#6" class="board_list_font">[공지사항] </a>
+               <a href="#6" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#7" class="board_list_font">[공지사항] </a>
+               <a href="#7" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#8" class="board_list_font">[공지사항] </a>
+               <a href="#8" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
             <ul class="board_list">
-               <a href="#9" class="board_list_font">[공지사항] </a>
+               <a href="#9" class="board_list_font">[공지사항] %{b.bo_title}</a>
             </ul>
             <hr>
          </div>  
          <ul class="write_button" align="right">
-         <button class="board_write" onclick="location.href='boardwrite.jsp'">공지 작성</button>
+         <c:if test="${ !empty loginUser }"></c:if>
+         <button class="board_write" onclick="location.href='boardwriteview.bn';">공지 작성</button>
          <!--작성버튼은 관리자만 보이도록 로그인 되었을 경우의 관리자와 회원으로 구분, 관리자로 구분된 사용자만 보이도록 hidden 걸기-->
          </ul>
          <table>
           <tr align="center" height="20" id="buttonTab">
 			 <td colspan="6">
-		
 				<c:if test="${ pi.currentPage <= 1 }">
 					[이전] &nbsp;
 				</c:if>

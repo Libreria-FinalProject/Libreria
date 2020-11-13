@@ -7,58 +7,74 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.libreria.board.model.exception.BoardException;
-import com.kh.libreria.board.service.BoardService;
+import com.kh.libreria.board.model.exception.NoticeException;
+import com.kh.libreria.board.service.NoticeService;
 import com.kh.libreria.board.vo.Board;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.common.Pagination;
 
-@SessionAttributes("loginUser")
-@Controller
-public class BoardController {
+public class NoticeController {
 	
-	private BoardService bnService;
-	
-	@RequestMapping("boardlist.bn")
-	public ModelAndView boardList(@RequestParam(value="page", required=false, defaultValue = "1") Integer page, ModelAndView mv) {
-		
+	private NoticeService noService;
+
+	@RequestMapping("noticelist.bn")
+	public ModelAndView noticeList(@RequestParam(value="page", required=false, defaultValue = "1") Integer page, ModelAndView mv) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
 		
-		int listCount = bnService.getListCount();
+		int listCount = noService.getListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Board> list = bnService.selectList(pi);
+		ArrayList<Board> list = noService.selectList(pi);
 		
 		if(list != null) {
 			mv.addObject("list", list);
 			mv.addObject("pi", pi);
-			mv.setViewName("boardlist");
+			mv.setViewName("noticelist");
 		} else {
-			throw new BoardException("공지사항 목록 조회를 실패 하였습니다.");
+			throw new NoticeException("문의사항 목록 조회를 실패 하였습니다.");
 		}
 		
 		return mv;
 	}
 	
-	@RequestMapping("boardwriteview.bn")
-	public String boardWriteview() {
-		return "boardwrite";
+	@RequestMapping("noticeupdate.bn")
+	public String noticeUpdate() {
+		
+		return "noticeupdate";
+	}
+
+	@RequestMapping("noticeview.bn")
+	public String noticeView(@RequestParam("bo_no") int bo_no, @RequestParam("page") int page, ModelAndView mv) {
+		Board board = noService.selectBoard(bo_no);
+		
+		if(board != null ) {
+			mv.addObject("board", board)
+				.addObject("page", page)
+				.setViewName("boardview");
+		} else {
+			throw new BoardException("문의 사항 상세페이지 접속에 실패 하였습니다.");
+		}	
+		return "noticeview";
 	}
 	
-	@RequestMapping("boardinsert.bn")
-	public String boardInsert(@ModelAttribute Board b, @RequestParam("uploadFile") MultipartFile uploadFile, HttpServletRequest request) {
+	@RequestMapping("noticewrite.bn")
+	public String noticeWrite() {
+		return "noticewrite";
+	}
+	
+	@RequestMapping("noticeinsert.bn")
+	public String noticeInsert(@ModelAttribute Board b, @RequestParam("uploadFile") MultipartFile uploadFile, HttpServletRequest request) {
 		
 		if(uploadFile != null && !uploadFile.isEmpty()) {
 			String renameFileName = saveFile(uploadFile, request);
@@ -69,7 +85,7 @@ public class BoardController {
 			}
 		}
 		
-		int result = bnService.insertBoard(b);
+		int result = noService.insertBoard(b);
 		
 		if(result > 0) {
 			return "redirect:boardlist.bn";
@@ -82,7 +98,7 @@ public class BoardController {
 	
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\buploadFiles";
+		String savePath = root + "\nouploadFiles";
 		
 		File folder = new File(savePath);
 		if(!folder.exists()) {
@@ -104,31 +120,4 @@ public class BoardController {
 		
 		return renameFileName;
 	}
-	
-	@RequestMapping("boardview.bn")
-	public String boardView(@RequestParam("bo_no") int bo_no, @RequestParam("page") int page, ModelAndView mv) {
-		
-		Board board = bnService.selectBoard(bo_no);
-		
-		if(board != null ) {
-			mv.addObject("board", board)
-				.addObject("page", page)
-				.setViewName("boardview");
-		} else {
-			throw new BoardException("문의 사항 상세페이지 접속에 실패 하였습니다.");
-		}
-		
-		return null;
-	}	
-	
-	@RequestMapping("centermain.bn")
-	public String Centermain() {
-		
-		return "centermain";
-	}
-	
-	
-	
-	
 }
-

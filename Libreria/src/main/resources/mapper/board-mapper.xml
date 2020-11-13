@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from board
+		where bo_delete = 'N'
+	</select>
+	
+	<select id="selectList" resultMap="boardResultSet">
+		select *
+		from board
+		where bo_delete = 'N'
+		order by bo_no desc
+	</select>
+	
+	<resultMap type="Board" id="BoardResultSet">
+		<id column="BO_NO" property="bo_no"/>
+		<result column="BO_TITLE" property="bo_title"/>
+		<result column="BO_CONTENT" property="bo_content"/>
+		<result column="BO_DATE" property="bo_date"/>
+		<result column="BO_COUNT" property="bo_count"/>
+		<result column="BO_DELETE" property="bo_delete"/>
+		<result column="MEM_NO" property="mem_no"/>
+		<result column="CATE_NO" property="cate_no"/>
+	</resultMap>
+	
+	<insert id="insertBN">
+		insert into board
+		values(seq_bid.nextval,#{bo_no}, #{bo_title), #{bo_content}, #{bo_content}, #{bo_date}, default, default, #{mem_no}, #{cate_no})
+	</insert>
+	
+	<update id="addReadCount">
+		update board
+		set bo_count = bp_count + 1
+		where bo_no = #{bo_no}
+	</update>
+	
+	<select id="selectBoard" resultMap="boardResultSet">
+		select *
+		from board
+		where bo_no=#{bo_no} and bo_delete='N'
+	</select>
+	
+</mapper>

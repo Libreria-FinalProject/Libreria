@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.kh.libreria.board.vo.Board;
 import com.kh.libreria.common.PageInfo;
 
-public interface BoardService {
+public interface NoticeService {
 
 	int getListCount();
 
@@ -15,6 +15,4 @@ public interface BoardService {
 
 	Board selectBoard(int bo_no);
 
-	
-	
 }

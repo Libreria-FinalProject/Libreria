@@ -20,11 +20,18 @@
 		<typeAlias type="com.kh.libreria.image.model.vo.ImageCategory" alias="ImageCategory"/>
 		<!-- HY 끝  -->
 		
+		<!-- MJ 객체 -->
+		<typeAlias type="com.kh.Libreria.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.Libreria.board.model.vo.BoardCategory" alias="BCG"/>
+		<typeAlias type="com.kh.Libreria.board.model.vo.BoardIMG" alias="BIMG"/>
+		<!-- MJ 끝 -->
+		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/book-mapper.xml"/>
 		<mapper resource="mapper/member-mapper.xml" />
+		<mapper resource="mapper/board-mapper.xml"/>
 	</mappers>
 
 </configuration>

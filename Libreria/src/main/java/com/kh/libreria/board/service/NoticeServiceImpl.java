@@ -10,45 +10,42 @@ import com.kh.libreria.board.dao.BoardDAO;
 import com.kh.libreria.board.vo.Board;
 import com.kh.libreria.common.PageInfo;
 
-@Service("bnService")
-public class BoardServiceImpl implements BoardService{
+@Service("noService")
+public class NoticeServiceImpl implements NoticeService{
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Autowired
-	private BoardDAO bnDAO;
+	private BoardDAO noDAO;
 	
 	@Override
 	public int getListCount() {
-		
-		return bnDAO.getListCount(sqlSession);
-		
+		return noDAO.getListCount(sqlSession);
 	}
 
 	@Override
 	public ArrayList<Board> selectList(PageInfo pi) {
-		
-		return bnDAO.selectList(sqlSession, pi);
+		return noDAO.selectList(sqlSession, pi);
 	}
 
 	@Override
 	public int insertBoard(Board b) {
-		return bnDAO.insertboard(sqlSession, b);
+		return noDAO.insertboard(sqlSession, b);
 	}
 
 	@Override
 	public Board selectBoard(int bo_no) {
-
+		
 		Board b = null;
 		
-		int result = bnDAO.addReadCount(sqlSession, bo_no);
+		int result = noDAO.addReadCount(sqlSession, bo_no);
 		
 		if(result > 0) {
-			b  = bnDAO.selectBoard(sqlSession, bo_no);
+			b  = noDAO.selectBoard(sqlSession, bo_no);
 		}
 		
 		return b;
 	}
-
+	
 }
