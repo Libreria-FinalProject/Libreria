@@ -21,9 +21,9 @@
 		<!-- HY 끝  -->
 		
 		<!-- MJ 객체 -->
-		<typeAlias type="com.kh.Libreria.board.model.vo.Board" alias="Board"/>
-		<typeAlias type="com.kh.Libreria.board.model.vo.BoardCategory" alias="BCG"/>
-		<typeAlias type="com.kh.Libreria.board.model.vo.BoardIMG" alias="BIMG"/>
+		<typeAlias type="com.kh.libreria.board.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.libreria.board.vo.BoardCategory" alias="BCG"/>
+		<typeAlias type="com.kh.libreria.board.vo.BoardIMG" alias="BIMG"/>
 		<!-- MJ 끝 -->
 		
 	</typeAliases>

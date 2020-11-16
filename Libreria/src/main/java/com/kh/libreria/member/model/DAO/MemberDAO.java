@@ -84,6 +84,16 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.getSellListCount", mem_no);
 	}
 
+	public ArrayList<Book> getBuyList(SqlSessionTemplate sqlSession, int mem_no, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("memberMapper.getBuyList", mem_no, rowBounds);
+	}
+
+	public int getBuyListCount(SqlSessionTemplate sqlSession, int mem_no) {
+		return sqlSession.selectOne("memberMapper.getBuyListCount", mem_no);
+	}
+
 
 
 }

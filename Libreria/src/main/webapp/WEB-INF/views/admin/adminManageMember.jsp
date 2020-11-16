@@ -29,7 +29,7 @@
 				</tr>
 				<c:if test="${ empty memberList }">
 					<tr>
-						<td colspan="3">조회 결과가 대상 회원이 없습니다.</td>
+						<td colspan="3">조회 결과 대상 회원이 없습니다.</td>
 					</tr>
 				</c:if>
 				<c:if test="${!empty memberList }">
@@ -71,7 +71,9 @@
 			</c:if>
 			</div>
 			<div id="rest_div">
+			<c:if test="${!empty memberList }">
 				<button type="button" id="rest_btn" onclick="changeResting();">휴면회원으로 전환</button>
+			</c:if>
 			</div>
 			</form>
 		</div>
@@ -133,7 +135,21 @@
 						type:"POST",
 						data: form,
 						success: function(data){
-							alert(data);
+							if(data==1){
+								swal("","휴면 전환 처리 되었습니다.","info")
+								.then((ok)=>{
+									if(ok){								
+										location.href="adminpage.ad"
+									}
+								});
+							}else{
+								swal("","전환 중 에러 발생. 다시 시도해주세요.","info")
+								.then((ok)=>{
+									if(ok){
+										location.href="adminpage.ad";
+									}
+								});
+							}
 						},
 						error: function(){
 							alert('ajax 에러');

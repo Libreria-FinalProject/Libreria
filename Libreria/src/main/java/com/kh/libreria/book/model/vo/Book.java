@@ -26,6 +26,8 @@ public class Book {
 	private Date sell_date; // 판매일자
 	private Date sell_decide_date; // 판매 확정일자
 	private int sell_money; //판매금액
+
+
 	
 	
 	public Book() {

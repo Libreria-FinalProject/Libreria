@@ -13,7 +13,7 @@ import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.pay.model.vo.Basket;
 import com.kh.libreria.pay.service.PayService;
-import com.kh.spring.board.model.exception.BoardException;
+import com.kh.libreria.board.model.exception.BoardException;
 
 
 @Controller
@@ -24,7 +24,7 @@ public class PayController {
 	public String insertBasket(Member m, Book b) {
 		HashMap<String,Integer> map = new HashMap<String, Integer>();
 		map.put("userNo",m.getMem_no());
-		map.put("bookNo",b.getBook_no());
+		map.put("bookNo",b.getB_no());
 		
 		int insertBasket = pService.insertBasket(map);
 		
@@ -37,7 +37,7 @@ public class PayController {
 		
 		HashMap<String,Integer> map = new HashMap<String, Integer>();
 		map.put("basketNo",ba.getBasket_no());
-		map.put("bookNo",b.getBook_no());
+		map.put("bookNo",b.getB_no());
 		
 		int deleteBasket = pService.deleteBasket(map);
 		
@@ -60,7 +60,7 @@ public class PayController {
 		
 			HashMap<String,Integer> map = new HashMap<String, Integer>();
 			map.put("userNo",m.getMem_no());
-			map.put("bookNo",b.getBook_no());
+			map.put("bookNo",b.getB_no());
 			
 			int insertBasket = pService.insertBasket(map);
 			

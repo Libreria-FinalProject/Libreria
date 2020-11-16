@@ -45,5 +45,9 @@ public interface MemberService {
 	ArrayList<Book> getSellList(int mem_no, PageInfo pi);
 
 	int getSellListCount(int mem_no);
+
+	ArrayList<Book> getBuyList(int mem_no, PageInfo pi);
+
+	int getBuyListCount(int mem_no);
 	
 }

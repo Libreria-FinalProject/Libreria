@@ -22,4 +22,8 @@ public class AdminDAO {
 		return sqlSession.selectOne("memberMapper.getRestMemberListCount");
 	}
 
+	public int changeResting(SqlSessionTemplate sqlSession, String[] check_mem_arr) {
+		return sqlSession.update("memberMapper.changeRestingMember", check_mem_arr);
+	}
+
 }

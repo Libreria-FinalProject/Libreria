@@ -8,8 +8,8 @@
 	<title>Libreria</title>
 	<meta charset="UTF-8">
 	<style type="text/css">
-
-#table{
+	
+#table	{
    		border: 1px solid black;
    		border-collapse: collapse;
    	}
@@ -78,13 +78,25 @@
 .link{
 	font-family: "Arial Black";
 	text-align:center;
+}
+#kakaoBtn{
+	background-image: url("resources/images/kakao_login_large_wide.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 404px;
+	height: 50px;
+	margin-top: 10px;
+	border: none;
+	border-radius: 3px;
+}
 </style>
 </head>
 <body>
+<script src="https://developers.kakao.com/sdk/js/kakao.js" ></script>
 <c:import url="../common/header.jsp"></c:import>
    <section id="login" class="account-container">
    	 <p class="login-header" align="center">LOGIN</p>
-     <form action="login.me" method="post">
+     <form  method="post" id="loginForm">
      	  <div class="input-group">
      	  	<label class="account-label">
      	  		<input type="text" name="mem_email" id="login_id" title="아이디 입력" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="login_id_pw"> 
@@ -103,13 +115,91 @@
      	  		</div>
      	  	</div>
      	  </div>
-     	  <button class="login-submit" type="submit">Login</button>
+     	  <button class="login-submit" type="button" onclick="validate();">Login</button>
      	  <a href="" class="signup-link">
      	  	<button class="signup-button">Join</button>
      	  </a>
+     	  <div id="kakaoBtn" onclick="loginWithKakao();"></div>
    	</form>
    </section>
    
 <c:import url="../common/footer.jsp"></c:import>
+<script type="text/javascript">
+	$(function(){
+		Kakao.init('9825f8ee7c5749fcba65382d3b6f9521');
+	    console.log(Kakao);
+	})
+	function validate(){
+		var login_id =$('#login_id').val();
+		var login_pw =$('#login_pw').val();
+		
+		if($.trim(login_id).length==0){
+			
+			swal("","아이디를 입력해주세요.","info")
+			.then((ok)=>{
+				if(ok){
+					$('#login_id').focus();
+				}
+				return false;
+			});
+			
+		}else if($.trim(login_pw).length==0){
+			
+			swal("","비밀번호를 입력해주세요.","info")
+			.then((ok)=>{
+				if(ok){					
+					$('#login_pw').focus();
+				}
+				return false;
+			});
+			
+		}else{
+			
+			var form = $("#loginForm").serialize();
+			$.ajax({
+				url: "login.me",
+				data: form,
+				success: function(data){
+					if(data==1){
+						location.href="/libreria";	
+					}else{
+						swal("로그인 실패","아이디 및 비밀번호를 확인해주세요.","error")
+						.then((ok)=>{
+							if(ok){
+								$('#login_id').val("");
+								$('#login_pw').val("");
+								$('#login_id').foucs();
+							}
+						});
+					}
+				},
+				error: function(){
+					alert("ajax 에러");
+				}
+			});
+		}
+	}
+	
+	 function loginWithKakao() {
+	    Kakao.Auth.login({
+	      success: function(authObj) {
+	    	  console.log(authObj);
+	    	  Kakao.API.request({
+	    		    url: '/v2/user/me',
+	    		    success: function(res) {
+	    		        console.log(res);
+	    		
+	    		    },
+	    		    fail: function(error) {
+	    		        console.log(error);
+	    		    }
+	    		});
+	      },
+	      fail: function(err) {
+	        alert(err)
+	      }
+	    })
+	}
+</script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import com.kh.libreria.common.Pagination;
 
 public class NoticeController {
 	
+	@Autowired
 	private NoticeService noService;
 
 	@RequestMapping("noticelist.bn")
@@ -81,7 +83,7 @@ public class NoticeController {
 			
 			if(renameFileName != null) {
 				b.setOriginalFileName(uploadFile.getOriginalFilename());
-				b.setRenameFileName(renameFileName)
+				b.setRenameFileName(renameFileName);
 			}
 		}
 		

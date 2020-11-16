@@ -55,9 +55,19 @@ public class AdminController {
 	@RequestMapping("changeResting.ad")
 	public void changeResting(@RequestParam("check_mem") String check_mem,
 			HttpServletResponse response) throws IOException{
-		System.out.println(check_mem);
-		
-		response.getWriter().print("1");
+		String[] check_mem_arr = check_mem.split(",");
+		for(int i=0; i<check_mem_arr.length; i++) {
+			System.out.println(check_mem_arr[i]);
+
+		}
+		int result =adminService.changeResting(check_mem_arr);
+		if(result>0) {
+			
+			response.getWriter().print("1");
+		}else {
+			
+			response.getWriter().print("0");
+		}
 	}
 	
 }

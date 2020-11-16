@@ -100,18 +100,22 @@ public class MemberController {
 	
 //	로그인
 	@RequestMapping("login.me") 
-	public String loginMember(Member m, Model model)
-	{ Member loginUser = mService.loginMember(m);
-	  
-	if(loginUser!=null) { int result = mService.updateLoginDate(loginUser);
-	  
-	if(result>0) { model.addAttribute("loginUser", loginUser); 
-		return "redirect:/";
-		}else { 
-			model.addAttribute("message", "로그인에 실패했습니다."); 
-			  }
+	public void loginMember(Member m, Model model,
+			HttpServletResponse response) throws IOException{
+	
+		Member loginUser = mService.loginMember(m);
+		  
+		if(loginUser!=null) { 
+			int result = mService.updateLoginDate(loginUser);
+		  
+			if(result>0){ 
+				model.addAttribute("loginUser", loginUser); 
+				response.getWriter().print("1");
+			}else{
+				response.getWriter().print("2");
+				//model.addAttribute("message", "로그인에 실패했습니다.");
+			}
 		} 
-		return null;
 	}
 	
 //	로그인 암호화
@@ -162,8 +166,24 @@ public class MemberController {
 	}
 	
 	@RequestMapping("memberBuy.me")
-	public String memberBuy() {
-		return "memberBuy";
+	public ModelAndView memberBuy(HttpServletRequest request,ModelAndView mv,
+			@RequestParam(value="page", required=false) Integer page) {
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage=page;
+		}
+		
+		int mem_no= ((Member)request.getSession().getAttribute("loginUser")).getMem_no();
+		
+		int listCount = mService.getBuyListCount(mem_no);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Book> buyList = mService.getBuyList(mem_no, pi);
+		
+		mv.addObject("pi", pi);
+		mv.addObject("buyList", buyList);
+		mv.setViewName("memberBuy");
+		return mv;
 	}
 	
 	@RequestMapping("memberSell.me")

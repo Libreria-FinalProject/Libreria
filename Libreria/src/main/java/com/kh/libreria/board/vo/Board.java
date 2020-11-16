@@ -10,6 +10,25 @@ public class Board {
 	private String mem_no;
 	private String cate_no;
 	
+	private String originalFileName;
+	private String renameFileName;
+	
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
+
 	public Board() {}
 
 	public Board(int bo_no, String bo_title, String bo_content, String bo_date, String bo_count, String bo_delete,

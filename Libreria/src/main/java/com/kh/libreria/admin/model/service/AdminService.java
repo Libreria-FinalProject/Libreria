@@ -10,5 +10,8 @@ public interface AdminService {
 	int getRestMemberListCount();
 
 	ArrayList<Member> getRestMemberList(PageInfo pi);
+	
+
+	int changeResting(String[] check_mem_arr);
 
 }

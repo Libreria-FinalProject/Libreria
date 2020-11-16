@@ -107,7 +107,7 @@
 		<![CDATA[ 
 		select * 
 		from member
-		where mem_logindate < sysdate-365
+		where mem_logindate < sysdate-365 and mem_status='Y*'
 		]]> 
 	</select>
 	
@@ -130,5 +130,33 @@
 		select count(*)
 		from sell_data
 		where mem_no=#{mem_no}
+	</select>
+	
+	<update id="changeRestingMember">
+		update member
+		set mem_status = 'N'
+		where mem_no in
+		<foreach item="item" index="index" collection="array" 
+				open="(" separator="," close=")">
+			#{item}		
+		</foreach>
+	</update>
+	
+	<select id="getBuyList" resultType="Book">
+		select b_no, b_title, b_price, buy_date "sell_date", change_name, file_path
+		from buy_data b
+		join basket using(basket_no)
+		join book using(b_no)
+		join image using (img_no)
+		where b.mem_no=#{mem_no}
+	</select>
+	
+	<select id="getBuyListCount" resultType="_int">
+		select count(*)
+		from buy_data b
+		join basket using(basket_no)
+		join book using(b_no)
+		join image using (img_no)
+		where b.mem_no=#{mem_no}
 	</select>
 </mapper>

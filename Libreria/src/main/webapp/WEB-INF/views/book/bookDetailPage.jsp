@@ -9,7 +9,7 @@
 <style type="text/css">
   	
  
-   @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+/*    @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
   
   
    *{
@@ -113,7 +113,7 @@
    #footer_container > div >span {
       padding: 10px;
    }
-   
+    */
    
    /* book_detail */
    #book_detail_info{

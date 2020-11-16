@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.kh.libreria.board.vo.Board;
 import com.kh.libreria.common.PageInfo;
 
+@Repository("bnDAO")
 public class BoardDAO {
 
 	public int getListCount(SqlSessionTemplate sqlSession) {
@@ -19,7 +21,7 @@ public class BoardDAO {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("baordMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
 	}
 
 	public int insertboard(SqlSessionTemplate sqlSession, Board b) {

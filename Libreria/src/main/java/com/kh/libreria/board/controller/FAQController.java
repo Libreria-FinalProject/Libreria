@@ -2,6 +2,7 @@ package com.kh.libreria.board.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,8 @@ import com.kh.libreria.common.Pagination;
 
 public class FAQController {
 	
-	private FAQService FService;
+	@Autowired
+	private FAQService fService;
 
 	@RequestMapping("FAQlist.bn")
 	public ModelAndView FAQList(@RequestParam(value="page", required=false, defaultValue = "1") Integer page, ModelAndView mv) {
@@ -24,11 +26,11 @@ public class FAQController {
 			currentPage = page;
 		}
 		
-		int listCount = FService.getListCount();
+		int listCount = fService.getListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Board> list = FService.selectList(pi);
+		ArrayList<Board> list = fService.selectList(pi);
 		
 		if(list != null) {
 			mv.addObject("list", list);
@@ -44,7 +46,7 @@ public class FAQController {
 	@RequestMapping("FAQview.bn")
 	public String FAQView(@RequestParam("bo_no") int bo_no, @RequestParam("page") int page, ModelAndView mv) {
 		
-		Board board = FService.selectBoard(bo_no);
+		Board board = fService.selectBoard(bo_no);
 		
 		if(board != null ) {
 			mv.addObject("board", board)

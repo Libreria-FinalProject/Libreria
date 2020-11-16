@@ -118,6 +118,16 @@ public class MemberSeriviceImpl implements MemberService{
 		return mDAO.getSellListCount(sqlSession, mem_no);
 	}
 
+	@Override
+	public ArrayList<Book> getBuyList(int mem_no, PageInfo pi) {
+		return mDAO.getBuyList(sqlSession, mem_no, pi);
+	}
+
+	@Override
+	public int getBuyListCount(int mem_no) {
+		return mDAO.getBuyListCount(sqlSession, mem_no);
+	}
+
 
 	
 

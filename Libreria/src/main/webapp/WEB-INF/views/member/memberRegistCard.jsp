@@ -64,7 +64,7 @@
 				</form>
 			</c:if>	
 			<c:if test="${!empty registCard }">
-				<table id="card_table">
+				<table id="card_table" class="card_table_1">
 					<tr>
 						<td class="td_first">결제사</td>
 						<td>
@@ -88,7 +88,7 @@
 				var card_expire = '${registCard.card_expire}';
 				console.log(card_expire);
 				var card_expire_arr = card_expire.split('-');
-				$("#card_table").find('td').eq(5).text(card_expire_arr[1]+" / "+card_expire_arr[0]);
+				$(".card_table_1").find('td').eq(5).text(card_expire_arr[1]+" / "+card_expire_arr[0]);
 				
 				//////////////////////////////////////////////
 				

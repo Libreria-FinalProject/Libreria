@@ -19,12 +19,19 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	@Override
 	public ArrayList<Member> getRestMemberList(PageInfo pi) {
 		return adminDAO.getRestMemberList(sqlSession, pi);
 	}
-
+	
+	@Override
 	public int getRestMemberListCount() {
 		return adminDAO.getRestMemberListCount(sqlSession);
+	}
+
+	@Override
+	public int changeResting(String[] check_mem_arr) {
+		return adminDAO.changeResting(sqlSession, check_mem_arr);
 	}
 
 }

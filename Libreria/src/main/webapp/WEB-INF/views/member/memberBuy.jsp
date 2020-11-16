@@ -11,6 +11,11 @@
 <body>
 <c:import url="../common/header.jsp"></c:import>
 <section>
+<script type="text/javascript">
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
 		<nav id="side_nav">
 			<ul>
 				<li id="side_nav_list_title">마이 페이지</li>
@@ -30,39 +35,51 @@
 					<th>가격</th>
 					<th>구매일자</th>
 				</tr>
-				<tr>
-					<td width="400px" height="110px"><img src="../images/book_image.png">눈물을 마시는 새</td>
-					<td width="130px">10,200원</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="400px" height="110px"><img src="../images/book_image.png">눈물을 마시는 새</td>
-					<td width="130px">10,200원</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="400px" height="110px"><img src="../images/book_image.png">눈물을 마시는 새</td>
-					<td width="130px">10,200원</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="400px" height="110px"><img src="../images/book_image.png">눈물을 마시는 새</td>
-					<td width="130px">10,200원</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
-				<tr>
-					<td width="400px" height="110px"><img src="../images/book_image.png">눈물을 마시는 새</td>
-					<td width="130px">10,200원</td>
-					<td width="150px">2020/09/25</td>
-				</tr>
+				<c:if test="${ empty buyList }">
+					<td colspan="3" style="text-align: center;">조회 결과가 없습니다.</td>
+				</c:if>
+				<c:if test="${ !empty buyList }">
+					<c:forEach var="b" items="${buyList }" varStatus="status">
+					<tr>
+						<td width="400px" height="110px"><img src="${b.file_path }/${b.change_name}">${b.b_title }</td>
+						<td width="130px"></td>
+						<td width="150px">${b.sell_date }</td>
+					</tr>
+					<script>
+						var b_price = "${b.b_price}";
+						$('tr').eq(${status.index}+1).find("td").eq(1).text(numberWithCommas(b_price));
+					</script>
+					</c:forEach>
+				</c:if>
 			</table>
+			
 			<div id="paging_div">
-				<button type="button">&lt;</button>
-				<button type="button" class="paging_selected_btn">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">&gt;</button>
+			<c:if test="${pi.currentPage>1}">
+				<c:url var="before" value="memberBuy.me">
+					<c:param name="page" value="${pi.currentPage-1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${before}'">&lt;</button>
+			</c:if>
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
+				<c:if test="${p eq pi.currentPage}">
+					<button type="button"  class="paging_selected_btn">${p }</button>
+				</c:if>
+				
+				<c:if test="${p ne pi.currentPage }">
+					<c:url var="pagination" value="memberBuy.me">
+							<c:param name="page" value="${ p }"/>
+					</c:url>
+					<button type="button" onclick="location.href='${pagination}'">${p}</button>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pi.currentPage < pi.endPage }">
+			<c:url var="after" value="memberBuy.me">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${after}'">&gt;</button>
+			</c:if>
 			</div>
+			
 		</div>
 		<script type="text/javascript">
 			$(function(){

@@ -7,7 +7,7 @@
 		where bo_delete = 'N'
 	</select>
 	
-	<select id="selectList" resultMap="boardResultSet">
+	<select id="selectList" resultMap="BoardResultSet">
 		select *
 		from board
 		where bo_delete = 'N'
@@ -27,16 +27,16 @@
 	
 	<insert id="insertBN">
 		insert into board
-		values(seq_bid.nextval,#{bo_no}, #{bo_title), #{bo_content}, #{bo_content}, #{bo_date}, default, default, #{mem_no}, #{cate_no})
+		values(seq_bo_no.nextval, #{bo_title}, #{bo_content}, #{bo_date}, default, default, #{mem_no}, #{cate_no})
 	</insert>
 	
 	<update id="addReadCount">
 		update board
-		set bo_count = bp_count + 1
+		set bo_count = bo_count + 1
 		where bo_no = #{bo_no}
 	</update>
 	
-	<select id="selectBoard" resultMap="boardResultSet">
+	<select id="selectBoard" resultMap="BoardResultSet">
 		select *
 		from board
 		where bo_no=#{bo_no} and bo_delete='N'
