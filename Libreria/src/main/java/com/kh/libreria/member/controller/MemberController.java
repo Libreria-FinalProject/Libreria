@@ -71,7 +71,7 @@ public class MemberController {
 	public String insertMember(@ModelAttribute Member m) {
 		System.out.println(m);
 		
-		return "redirect:/";
+		return "InsertMemberForm";
 	}
 	
 //	@RequestMapping("InsertMemberForm.me")

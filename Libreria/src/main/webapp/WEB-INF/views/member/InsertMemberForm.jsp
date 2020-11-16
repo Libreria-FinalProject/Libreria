@@ -357,13 +357,23 @@ span.error{color: red;}
      	 	</ul>
      	 </div>
      	 <div class="join-com">
-     	 	<button type="button" onclick="history.go(-1)" id="join-can-bt">Cancle</button>
-     	 	<button type="button" onclick="return validate();" id="join-com-bt">Submit</button>
+     	 	<button type="submit" onclick="history.go(-1)" id="join-can-bt">Cancle</button>
+     	 	<button type="button" onclick="validate();" id="join-com-bt">Submit</button>
      	 </div>
   
      </form>
      <script>
- 	  //약관동의 체크박스//
+     
+  	function validate(){
+		if($('#join-form-id').val()==0){
+			alert('사용 가능한 아이디를 입력해주세요');
+			$('#join-form-id').focus();
+			return false;
+		}else{
+			$('#joinForm').submit();
+		}
+	}  
+//약관동의 체크박스//
      var checkAll = document.getElementById("checkAll");
 	 var checkRow = document.getElementsByName("checkRow");
 
@@ -394,8 +404,9 @@ span.error{color: red;}
 			checkAll.checked = true;
 		}
 	}
-     //약관동의 체크박스//
-     //관심사 체크박스 //
+//약관동의 체크박스//
+     
+//관심사 체크박스 //
      $(".ck_interest").click(function(){ // 체크박스 클릭 시 이벤트
 				countCheckBoxFn();
 				
@@ -413,8 +424,10 @@ span.error{color: red;}
 						ck_count+=1;
 					}
 				});
-	}
-	//관심사 체크박스 //
+			}
+//관심사 체크박스 //
+			
+
 	//로그인 유호성 검사//
 /* 	function validate(){
 		var re = /^[a-zA-Z0-9]{4,12}$/
