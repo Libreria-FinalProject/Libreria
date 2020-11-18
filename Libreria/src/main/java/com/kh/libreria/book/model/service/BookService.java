@@ -15,6 +15,10 @@ public interface BookService {
 	ArrayList<Book> getBookPopList(int bc_no);
 
 	ArrayList<BookSubCategory> getBookSubCateList(int bcf_no);
+
+	ArrayList<Book> getBookListsc(int bc_no);
+
+	ArrayList<Book> getBookPopListsc(int bc_no);
 	
 	
 	
