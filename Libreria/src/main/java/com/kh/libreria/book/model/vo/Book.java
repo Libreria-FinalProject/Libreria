@@ -3,6 +3,7 @@ package com.kh.libreria.book.model.vo;
 import java.sql.Date;
 
 public class Book {
+	//Book 객체 - 호영 
 	private int b_no;
 	private String b_title;
 	private String b_content;
@@ -26,9 +27,6 @@ public class Book {
 	private Date sell_date; // 판매일자
 	private Date sell_decide_date; // 판매 확정일자
 	private int sell_money; //판매금액
-
-
-	
 	
 	public Book() {
 		

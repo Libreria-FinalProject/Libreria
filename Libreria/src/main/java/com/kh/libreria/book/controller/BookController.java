@@ -35,7 +35,7 @@ public class BookController {
 		int bcf_no = bfc.getBcf_no();
 		int bc_no = bsc.getBc_no();
 		
-		
+		int recent_bc = bc_no;
 		//해당하는 영역의 서브카테고리 가져오기(공통처리)
 		ArrayList<BookSubCategory> bscList = bService.getBookSubCateList(bcf_no);
 		
@@ -62,6 +62,7 @@ public class BookController {
 			model.addAttribute("bscList",bscList);
 			model.addAttribute("bPopList",bPopList );
 			model.addAttribute("bcfList",bcfList );
+			model.addAttribute("recent_bc",recent_bc);
 			
 			
 			return "bookCategoryPage";	
@@ -72,9 +73,14 @@ public class BookController {
 		return "bookCategoryPage";
 	}
 	
+	
 	@RequestMapping("bookDetail.bo")
-	public String bookDetail() {
+	public String bookDetail(Book book,Model model) {
+		int b_no = book.getB_no();
 		
+		//책 정보 가져오기
+		Book b_detail = bService.getBookDetailInfo(b_no);
+	
 		
 		return "bookDetailPage";
 	}

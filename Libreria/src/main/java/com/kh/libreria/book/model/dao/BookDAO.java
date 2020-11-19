@@ -39,6 +39,13 @@ public class BookDAO {
 		return (ArrayList)sqlSession.selectList("bookMapper.getBookPopListsc",bc_no);
 	}
 
+	public Book getBookDetailInfo(SqlSessionTemplate sqlSession, int b_no) {
+		Book book = sqlSession.selectOne("bookMapper.getBookDetail",b_no);
+		System.out.println(book);
+//		return sqlSession.selectOne("bookMapper.getBookDetail",b_no);
+		return null;
+	}
+
 	
 
 }

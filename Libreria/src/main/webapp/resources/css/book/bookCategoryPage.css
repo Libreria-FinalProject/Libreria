@@ -37,30 +37,38 @@
     
    }
    #sub_book_cate li{
-       margin-bottom: 10px;
-    margin-top: 5px;
-   
+	    margin-bottom: 10px;
+	   	margin-top: 5px;
+   }
+   #sub_book_cate li:hover a{
+   		cursor: pointer;
+   		font-weight:bold;
+   		color:#1f8ce6;
    
    }
    
    
    #book_cate_ul > li{
-   	margin : 10px;
+   /* 	margin : 10px; */
    	padding-left:5px;
    }
    
    
-   .main_book_cate li:hover {
-   	color: #1f8ce6;
+   .bfc_class:hover {
+   	background: #1f8ce6;
+   	color: #fff;
     font-weight: bold;
+    cursor: pointer;
    }
    
-   #book_cate_ul li:hover {
-    background: #1f8ce6;
+  /*  #book_cate_ul li:hover {
+    
     border-radius:2px;
     color: #fff;
     cursor: pointer;
-    }
+    } */
+    
+ 
     #content_div{
     	display: inline-block;
     }
@@ -215,5 +223,15 @@
    	.bfc_class{
     	position: relative;
     	top: 2px;
+    	width:173px;
+    	height:25px;
+    	display:inline-block;
+    	line-height: 1.5em;
     	
+    	
+   	}
+   	.selected_sub_cate_cl{
+   		color: #1f8ce6;
+   		font-weight: bold;
+   	
    	}

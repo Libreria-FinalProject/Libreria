@@ -19,6 +19,9 @@ public interface BookService {
 	ArrayList<Book> getBookListsc(int bc_no);
 
 	ArrayList<Book> getBookPopListsc(int bc_no);
+
+	Book getBookDetailInfo(int b_no);
+
 	
 	
 	

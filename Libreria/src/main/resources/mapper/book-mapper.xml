@@ -46,4 +46,11 @@
 		order by b_pub_date desc
 		]]>
 	</select>
+	<select id="getBookDetail" resultType="Book">
+		select * 
+		from book
+		where b_no = #{b_no} and b_delete = 'N'	
+	</select>
+	
+	
 </mapper>

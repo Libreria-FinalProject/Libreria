@@ -55,4 +55,10 @@ public class BookServiceImpl  implements BookService  {
 		return bDAO.getBookPopListsc(sqlSession,bc_no);
 	} 
 	 
+	@Override
+	public Book getBookDetailInfo(int b_no) {
+		
+		return bDAO.getBookDetailInfo(sqlSession,b_no);
+	}
+	
 }
