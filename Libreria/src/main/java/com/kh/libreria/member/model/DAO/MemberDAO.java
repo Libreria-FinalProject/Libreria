@@ -104,9 +104,13 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.getBuyListCount", mem_no);
 	}
 
+	public int checkEmail(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("memberMapper.checkEmail", email);
+	}
 
-
-
+	public Member loginMemberWithKakao(SqlSessionTemplate sqlSession, String kakaoEmail) {
+		return sqlSession.selectOne("memberMapper.loginMemberWithKakao", kakaoEmail);
+	}
 
 
 

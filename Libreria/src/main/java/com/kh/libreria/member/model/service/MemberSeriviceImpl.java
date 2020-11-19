@@ -134,14 +134,21 @@ public class MemberSeriviceImpl implements MemberService{
 	public int getBuyListCount(int mem_no) {
 		return mDAO.getBuyListCount(sqlSession, mem_no);
 	}
-
+	
 	@Override
 	public int check_email(String mem_email) {
 		return mDAO.check_email(sqlSession, mem_email);
 	}
 
+	@Override
+	public int checkEmail(String email) {
+		return mDAO.checkEmail(sqlSession, email);
+	}
 
-
+	@Override
+	public Member loginMemberWtihKakao(String kakaoEmail) {
+		return mDAO.loginMemberWithKakao(sqlSession, kakaoEmail);
+	}
 
 
 	

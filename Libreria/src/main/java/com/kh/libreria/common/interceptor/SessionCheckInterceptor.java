@@ -15,7 +15,7 @@ public class SessionCheckInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		if(loginUser==null) {
-			request.setAttribute("message", "세션이 초기화되었습니다. \n다시 로그인해주세요.");
+			request.setAttribute("msg", "세션이 초기화되었습니다. \n다시 로그인해주세요.");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 			return false;
 		}

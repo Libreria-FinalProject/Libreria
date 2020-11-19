@@ -155,7 +155,7 @@
 						var popup= window.open("popupPayForReistCard.me?mem_no="+${loginUser.mem_no},"등록된 신용카드 결제","width=566px,height=591px,scrollbars=no,top=100,left=400");
 					}
 				}
-			})
+			});
 		</script>
 	</section>
 <c:import url="../common/footer.jsp"></c:import>

@@ -26,7 +26,7 @@
    
    <insert id="insertMember">
          insert into member
-         values(seq_mem_no.nextval, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth}, default , #{mem_address}, default , default, default,#{mem_interest}, sysdate, default, default)
+         values(SEQ_MEM_NO.NEXTVAL, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth},#{mem_tel} , #{mem_address}, default , default, default,#{mem_interest}, sysdate, default, default)
    </insert>
    
 	<select id="checkPwd" resultType="_int">
@@ -166,4 +166,17 @@
 		join image using (img_no)
 		where b.mem_no=#{mem_no}
 	</select>
+	
+	<select id="checkEmail" resultType="_int">
+		select count(*)
+		from member
+		where mem_email=#{email} 
+	</select>
+	
+	<select id="loginMemberWithKakao" resultType="Member">
+		select *
+		from member
+		where mem_email = #{mem_email} and mem_delete='N'
+	</select>
+	
 </mapper>

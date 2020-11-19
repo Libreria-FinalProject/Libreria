@@ -79,16 +79,24 @@
 	font-family: "Arial Black";
 	text-align:center;
 }
-#kakaoBtn{
-	background-image: url("resources/images/kakao_login_large_wide.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 404px;
-	height: 50px;
-	margin-top: 10px;
-	border: none;
-	border-radius: 3px;
+
+#kakaoBtn, #kakaoLogin{
+	background-image: url("resources/images/kakaoback.png");
+    width: 404px;
+    height: 50px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 2.5em;
+    font-size: 19px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+
+    float: left;
 }
+
 </style>
 </head>
 <body>
@@ -116,11 +124,17 @@
      	  	</div>
      	  </div>
      	  <button class="login-submit" type="button" onclick="validate();">Login</button>
-     	  <a class="signup-link">
-     	  	<button class="signup-button">Join</button>
-     	  </a>
-     	  <div id="kakaoBtn" onclick="loginWithKakao();"></div>
+
+     	  <button class="signup-button" type="button" onclick="location.href='enrollView.me'">Join</button>
+ 		  <div id="kakaoLogin" onclick="loginWithKakao();">로그인</div>
+     	  <div id="kakaoBtn" onclick="joinWithKakao();">카카오 계정으로 가입</div>
    	</form>
+   	<form id="kakaoForm" method="post" action="enrollViewKakao.me">
+   		<input type="hidden" id="kakaoEmail" name="kakaoEmail">
+   		<input type="hidden" id="kakaoName" name="kakaoName">
+   		<input type="hidden" id="kakaoGender" name="kakaoGender">
+   	</form>
+
    </section>
    
 <c:import url="../common/footer.jsp"></c:import>
@@ -128,7 +142,8 @@
 	$(function(){
 		Kakao.init('9825f8ee7c5749fcba65382d3b6f9521');
 	    console.log(Kakao);
-	})
+	});
+	
 	function validate(){
 		var login_id =$('#login_id').val();
 		var login_pw =$('#login_pw').val();
@@ -180,26 +195,63 @@
 		}
 	}
 	
-	 function loginWithKakao() {
+	 function joinWithKakao() {
 	    Kakao.Auth.login({
 	      success: function(authObj) {
-	    	  console.log(authObj);
 	    	  Kakao.API.request({
 	    		    url: '/v2/user/me',
 	    		    success: function(res) {
 	    		        console.log(res);
-	    		
+	    		        $('#kakaoEmail').val(res.kakao_account.email);
+	    		        $('#kakaoName').val(res.properties.nickname);
+	    		        $('#kakaoGender').val(res.kakao_account.gender);
+						$('#kakaoForm').submit();
 	    		    },
 	    		    fail: function(error) {
 	    		        console.log(error);
 	    		    }
 	    		});
 	      },
-	      fail: function(err) {
-	        alert(err)
+	      fail: function(error) {
+	       	console.log(err);
 	      }
 	    })
 	}
+	 
+	 function loginWithKakao() {
+		    Kakao.Auth.login({
+		      success: function(authObj) {
+		    	  Kakao.API.request({
+		    		    url: '/v2/user/me',
+		    		    success: function(res) {
+		    		        console.log(res);
+		    		        var kakaoEmail = res.kakao_account.email;
+		    		       	$.ajax({
+		    		       		url: "loginWithKakao.me",
+		    		       		type: 'POST',
+		    		       		data: {mem_email: kakaoEmail},
+		    		       		success: function(data){
+		    		       			if(data==1){
+		    		       				location.href='/libreria';
+		    		       			}else{
+		    		       				swal("","로그인에 실패하였습니다.\n카카오 계정을 확인해주세요.",'info');
+		    		       			}
+		    		       		},
+		    		       		error :function(){
+		    		       			alert("ajax 에러");
+		    		       		}
+		    		       	})
+		    		    },
+		    		    fail: function(error) {
+		    		        console.log(error);
+		    		    }
+		    		});
+		      },
+		      fail: function(error) {
+		       	console.log(err);
+		      }
+		    })
+		}	 
 </script>
 </body>
 </html>

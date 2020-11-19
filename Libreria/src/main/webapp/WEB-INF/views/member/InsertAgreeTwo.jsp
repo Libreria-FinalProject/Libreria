@@ -8,7 +8,7 @@
    <title>Libreria</title>
    <meta charset="UTF-8">
 <style type="text/css">
-	@import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+
    term-table{
    		align:center;
    }
@@ -17,10 +17,11 @@
 </head>
 <body>
 <header>
-  <h2 align ="center">LIBRARIA</h2>
+  <h2 align ="center">LIBRERIA</h2>
   <hr>
 </header>
 <section>
+	<form action="InsertAgreeTwo.me" method="post">
 	<br>
 	<h2>개인정보 수집 및 이용 동의 (필수)</h2>
 	<table border="1" class="term-table">
@@ -35,10 +36,11 @@
 			<td>탈퇴시 즉시 파기</td>
 		</tr>
 	</table>
+	</form>
 </section>
 <footer>
   <hr>
-  <h2 align ="center">LIBRARIA</h2>
+  <h2 align ="center">LIBRERIA</h2>
 </footer>
 </body>
 </html>

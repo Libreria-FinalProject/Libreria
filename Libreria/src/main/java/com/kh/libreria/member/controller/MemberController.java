@@ -94,11 +94,43 @@ public class MemberController {
 		return "InsertMemberComplete";
 	}
 	
-	@RequestMapping("InsertMemberForm.me")
-	public String insertMember(@ModelAttribute Member m) {
-		System.out.println(m);
+	@RequestMapping("enrollViewKakao.me")
+	public ModelAndView enrollViewKakao(ModelAndView mv,@RequestParam("kakaoEmail") String kakaoEmail,
+			@RequestParam("kakaoName") String kakaoName, @RequestParam("kakaoGender") String kakaoGender){
+	
+		mv.addObject("kakaoEmail", kakaoEmail);
+		mv.addObject("kakaoName", kakaoName);
+		mv.addObject("kakaoGender", kakaoGender);
+		mv.setViewName("InsertMemberFormWithKakao");
 		
-		return "InsertMemberForm";
+		return mv;
+	}
+	
+	@RequestMapping("enroll.me")
+	public ModelAndView insertMember(Member m, ModelAndView mv, @RequestParam("post") String post,
+			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
+		String mem_address = post+"/"+address1+"/"+address2;
+		m.setMem_address(mem_address);
+		System.out.println(m);
+		int result = mService.insertMember(m);
+		if(result>0) {
+			mv.addObject("insert_email", m.getMem_email());
+			mv.setViewName("memberInsertComplete");
+		}else {
+			throw new MemberException("회원가입에 실패하였습니다. \n다시 시도해주세요.");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("emailCheck.me")
+	public void emailCheck(HttpServletResponse response
+			,@RequestParam("email") String email) throws IOException {
+		int result = mService.checkEmail(email);
+		if(result>0) {
+			response.getWriter().print("1");
+		}else {
+			response.getWriter().print("2");			
+		}
 	}
 	
 //	@RequestMapping("InsertMemberForm.me")
@@ -152,6 +184,26 @@ public class MemberController {
 				//model.addAttribute("message", "로그인에 실패했습니다.");
 			}
 		} 
+	}
+	
+	@RequestMapping("loginWithKakao.me")
+	public void loginMemberWithKakao(@RequestParam("mem_email") String kakaoEmail,
+			HttpServletResponse response, Model model) throws IOException {
+		
+		Member loginUser = mService.loginMemberWtihKakao(kakaoEmail);
+		
+		if(loginUser!=null) { 
+			int result = mService.updateLoginDate(loginUser);
+		  
+			if(result>0){ 
+				model.addAttribute("loginUser", loginUser); 
+				response.getWriter().print("1");
+			}else{
+				response.getWriter().print("2");
+				//model.addAttribute("message", "로그인에 실패했습니다.");
+			}
+		} 
+		
 	}
 	
 //	로그인 암호화
@@ -380,7 +432,6 @@ public class MemberController {
 			if(result2 > 0 ) { // 머니 충전내역 입력 성공 시
 				int result3 = mService.updateMemberMoney(charge_info);
 				if(result3 > 0) {  // MEMBER 테이블 MONEY 컬럼 최신화
-					System.out.println("굿");
 					Member loginUser = mService.loginMember(m);
 					model.addAttribute("loginUser", loginUser);
 					response.getWriter().print("1"); // 성공 신호 보내기

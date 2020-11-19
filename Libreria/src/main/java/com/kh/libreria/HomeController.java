@@ -27,9 +27,9 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("sessionCheck")
-	public String sessionCheck(Model model) {
-		model.addAttribute("message", "세션이 초기화되었습니다. 다시 로그인해주세요.");
-		return "common/errorPage";
-	}
+	/*
+	 * @RequestMapping("sessionCheck") public String sessionCheck(Model model) {
+	 * model.addAttribute("msg", "세션이 초기화되었습니다. 다시 로그인해주세요."); return
+	 * "common/errorPage"; }
+	 */
 }

@@ -46,6 +46,10 @@
 .join-com-submitdiv{
 	text-align:center;
 }
+
+.join-com-submitdiv input{
+	cursor: pointer;
+}
 .join-com{
 	font-family: "Arial Black";
 	text-align:center;
@@ -78,11 +82,11 @@
 			<div class= "input-group">
 				<p class="join-com-top">LIBRERIA</p>
 				<div class = "join-com-complete">
-		     		<p class="join-com">"${loginUser.mem_email }"님<br>회원가입을 축하합니다.</p>
+		     		<p class="join-com">${insert_email}님<br>회원가입을 축하합니다.</p>
 				</div>
 		    	 <div class="join-com-submitdiv">
-		     		<input type="button" id="join_com_main" onclick="location.href='/libreria'" class="join-com-main" value="Main">
-		     		<input type="button" id="join_com_submit" onclick="location.href='loginForm.me'" class="join-com-submit" value="Login">
+		     		<input type="button" id="join_com_main" class="join-com-main" value="Main" onclick="location.href='/libreria'">
+		     		<input type="button" id="join_com_submit" class="join-com-submit" value="Login" onclick="location.href='loginForm.me'">
 		     	</div>
    			</div>
 		</form>

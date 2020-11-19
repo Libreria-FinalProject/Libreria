@@ -55,4 +55,9 @@ public interface MemberService {
 	int idCheck(String mem_email);
 	
 	int check_email(String mem_email);
+	
+	int checkEmail(String email);
+
+	Member loginMemberWtihKakao(String kakaoEmail);
+	
 }
