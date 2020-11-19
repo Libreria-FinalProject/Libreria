@@ -35,13 +35,20 @@ public class MemberSeriviceImpl implements MemberService{
 		return mDAO.insertMember(sqlSession, m);
 	}
 
-
+	@Override
+	public int checkIdDup(String mem_email) {
+		return mDAO.checkIdDup(sqlSession, mem_email);
+	}
+	
 	@Override
 	public int checkPwd(Member m) {
 		return mDAO.checkPwd(sqlSession, m);
 	}
 
-
+	@Override
+	public int idCheck(String mem_email) {
+		return mDAO.idCheck(sqlSession, mem_email);
+	}
 	@Override
 	public int leaveMember(int no_leave) {
 		return mDAO.leaveMember(sqlSession, no_leave);
@@ -127,6 +134,14 @@ public class MemberSeriviceImpl implements MemberService{
 	public int getBuyListCount(int mem_no) {
 		return mDAO.getBuyListCount(sqlSession, mem_no);
 	}
+
+	@Override
+	public int check_email(String mem_email) {
+		return mDAO.check_email(sqlSession, mem_email);
+	}
+
+
+
 
 
 	

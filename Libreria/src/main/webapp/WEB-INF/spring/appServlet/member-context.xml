@@ -27,6 +27,7 @@
 			<mvc:exclude-mapping path="/InsertMemberForm.me"/>
 			<mvc:exclude-mapping path="/InsertAgreeOne.me"/>
 			<mvc:exclude-mapping path="/InsertAgreeTwo.me"/>
+			<mvc:exclude-mapping path="/InsertMemberComplete.me"/>
 			<bean id="sessionCheckInterceptor" class="com.kh.libreria.common.interceptor.SessionCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

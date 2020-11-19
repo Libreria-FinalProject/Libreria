@@ -66,6 +66,33 @@ public class MemberController {
 		return "InsertAgreeTwo";
 	}
 	
+	//아이디 중복 체크
+	@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+		public @ResponseBody String AjaxView(  
+			        @RequestParam("mem_email") String mem_email){
+			String str = "";
+			int idcheck = mService.idCheck(mem_email);
+			if(idcheck==1){ //이미 존재하는 계정
+				str = "NO";	
+			}else{	//사용 가능한 계정
+				str = "YES";	
+			}
+			return str;
+		}
+	
+	@RequestMapping("dupid.me")
+	public void dupId(String id, HttpServletResponse response) throws IOException {
+		boolean isUsable = mService.checkIdDup(id) == 0 ? true : false;
+
+		response.getWriter().print(isUsable);
+	}
+	
+	
+	
+	@RequestMapping("InsertMemberComplete.me")
+	public String InsertMemberComplete() {
+		return "InsertMemberComplete";
+	}
 	
 	@RequestMapping("InsertMemberForm.me")
 	public String insertMember(@ModelAttribute Member m) {
@@ -81,23 +108,32 @@ public class MemberController {
 //		m.setMem_address(post + "/" + address1 + "/" + address2);
 //		System.out.println(m);
 //		
+//	String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
+//	m.setMem_pw(encPwd);
+//	
+//	int result = mService.insertMember(m);
+//	
+//	if(result > 0) {
 //		return "redirect:/";
+//	} else {
+//		throw new MemberException("회원가입에 실패하였습니다.");
 //	}
-		
-//		String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
-//		
-//		m.setMem_pw(encPwd);
-//		
-//		int result = mService.insertMember(m);
-//		
-//		if(result > 0) {
-//			return "redirect:/";
-//		} else {
-//			throw new MemberException("회원가입에 실패하였습니다.");
+//}
+	
+	
+//	아이디 중복 확인
+//	@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+//	public @ResponseBody String AjaxView(  
+//		        @RequestParam("mem_email") String mem_email){
+//		String str = "";
+//		int idcheck = mService.idCheck(mem_email);
+//		if(idcheck==1){ //이미 존재하는 계정
+//			str = "NO";	
+//		}else{	//사용 가능한 계정
+//			str = "YES";	
 //		}
+//		return str;
 //	}
-	
-	
 //	로그인
 	@RequestMapping("login.me") 
 	public void loginMember(Member m, Model model,
@@ -130,7 +166,7 @@ public class MemberController {
 //		}else {
 //			throw new MemberException("로그인에 실패했습니다.");
 //		}
-//		return "redirect:home.do";
+//		return "redirect:/";
 //	}
 	
 //	@RequestMapping("login.me")

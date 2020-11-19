@@ -116,7 +116,7 @@
      	  	</div>
      	  </div>
      	  <button class="login-submit" type="button" onclick="validate();">Login</button>
-     	  <a href="" class="signup-link">
+     	  <a class="signup-link">
      	  	<button class="signup-button">Join</button>
      	  </a>
      	  <div id="kakaoBtn" onclick="loginWithKakao();"></div>

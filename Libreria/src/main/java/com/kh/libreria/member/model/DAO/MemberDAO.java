@@ -24,10 +24,20 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.insertMember", m);
 	}
 	
+	public int checkIdDup(SqlSessionTemplate sqlSession, String mem_email) {
+		return sqlSession.selectOne("memberMapper.checkIdDup", mem_email);
+	}
+	
 	public int checkPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.checkPwd", m);
 	}
-
+	
+	public int idCheck(SqlSessionTemplate sqlSession, String mem_email) {
+		return sqlSession.selectOne("memberMapper.checkPwd", mem_email);
+	}
+	public int check_email(SqlSessionTemplate sqlSession, String mem_email){
+		return sqlSession.selectOne("memberMapper.check_email", mem_email);
+	}
 	public int leaveMember(SqlSessionTemplate sqlSession, int no_leave) {
 		return sqlSession.update("memberMapper.leaveMember", no_leave);
 	}
@@ -93,6 +103,10 @@ public class MemberDAO {
 	public int getBuyListCount(SqlSessionTemplate sqlSession, int mem_no) {
 		return sqlSession.selectOne("memberMapper.getBuyListCount", mem_no);
 	}
+
+
+
+
 
 
 

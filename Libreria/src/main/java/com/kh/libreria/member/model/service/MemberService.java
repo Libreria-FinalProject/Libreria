@@ -49,5 +49,10 @@ public interface MemberService {
 	ArrayList<Book> getBuyList(int mem_no, PageInfo pi);
 
 	int getBuyListCount(int mem_no);
+
+	int checkIdDup(String mem_email);
 	
+	int idCheck(String mem_email);
+	
+	int check_email(String mem_email);
 }

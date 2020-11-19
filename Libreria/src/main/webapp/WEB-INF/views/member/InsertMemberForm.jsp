@@ -211,6 +211,9 @@ input[type=radio]:checked + label {
 }
 #idcheck{
 	position: relative;
+}
+#idchecker{
+	position: relative;
     top: -30px;
 }
 #idcheckok{
@@ -222,6 +225,7 @@ input[type=radio]:checked + label {
 }
 
 span.guide{display:none; font-size:12px ; top: 12px; right: 10px;}
+span.guideId{display:none; font-size:12px ; top: 12px; right: 10px;}
 span.ok{color: green;}
 span.error{color: red;}
 
@@ -230,62 +234,68 @@ span.error{color: red;}
 <body>
 <c:import url="../common/header.jsp"></c:import>
 <section id="join-form-main" class="account-container">
-	<form action="InsertMemberForm.me" method="post" id="joinForm">
+	<form action="InsertMemberForm.me" method="post" id="joinForm" name="frm1">
 		<p class="join-form-top">JOIN</p>
      	 <ul class="join-form-ul">
      	 	<li>
-     	 		<input type="text" name="mem_email" id="join-form-id" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="text" name="mem_email" id="mem_email" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
-     	 	<li class="hidden_line_cl">
-     	 		<span class="guide error">올바른 이메일 형식으로 입력해주세요.</span>
+     	 	<li class="hidden_line_cl" id="idcheck">
+     	 		<span class="guideId error" id=guideemail1 readonly>이메일 형식으로 입력해주세요.</span>
      	 	</li>
-     	 	<li class="hidden_line_cl" id="idcheck" style=height:1px;>
-     	 		<span class="guide error">이미 사용중인 아이디(이메일) 입니다.</span>
+     	 	<li class="hidden_line_cl" id="idchecker" style=height:1px;>
+     	 		<span class="guideId error" id=guideemail2 readonly>이미 사용중인 아이디(이메일) 입니다.</span>
      	 	</li>
      	 	<li class="hidden_line_cl2" id="idcheckok" style=height:1px;>
-     	 		<span class="guide ok">사용 가능한 아이디(이메일) 입니다.</span>
+     	 		<span class="guideId ok" id=guideemail3 readonly>사용 가능한 아이디(이메일) 입니다.</span>
      	 	</li>
      	 	<li>
-     	 		<input type="password" name="mem_pw" id="join-form-pw" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="password" name="mem_pw" id="userPwd1" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
 
      	 	<li>
-     	 		<input type="password" name="mem_pw2" id="join-form-pw-check" title="회원PW 확인" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="password" name="mem_pw2" id="userPwd2" title="회원PW 확인" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
      	  	<li class="hidden_line_cl">
-     	 		<span class="guide error">8자 이상, 영문/숫자/특수문자 를 입력해주세요.</span>
+     	 		<span class="guide error" id=guidepw1>8자 이상 입력해주세요.</span>
      	 	</li>
      	 	<li class="hidden_line_cl" id="pwcheck" style=height:1px;>
-     	 		<span class="guide error">동일한 비밀번호를 입력하세요.</span>
+     	 		<span class="guide error" id=guidepw2>동일한 비밀번호를 입력하세요.</span>
+     	 	</li>
+     	 	<li class="hidden_line_cl" id="pwcheck" style=height:1px;>
+     	 		<span class="guide ok" id=guidepw3>암호가 확인 되었습니다.</span>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="mem_name" id="join-form-name" placeholder="이름" autocapitalize="off" autocomplete="off"class="join-form-textarea" >
+     	 		<input type="text" name="mem_name" id="userName" placeholder="이름" autocapitalize="off" autocomplete="off"class="join-form-textarea" >
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<span class="guide error">2글자 이상의 이름을 정확히 입력해주세요.</span>
-     	 	</li>
-     	 	<li>
-     	 		<input type="date" name="mem_birth" id="join-form-birth" placeholder="생년월일" autocapitalize="off" autocomplete="off" class="join-form-textarea2">
-     	 		<input type="radio" name="join-gender" value="남" id="gender-radio1"/>
-     	 		<label class="gender-radio-label" for="gender-radio1"><p class="join-gender-p">남</p></label>
-     	 		<input type="radio" name="join-gender" value="여" id="gender-radio2"/>
-     	 		<label class="gender-radio-label" for="gender-radio2"><p class="join-gender-p">여</p></label>
+     	 		<span class="guide error" id=guidename1>2글자 이상의 이름을 입력해주세요.</span>
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<span class="guide error">생년월일을 입력하세요.</span>
+     	 		<span class="guide ok" id=guidename2>2글자 이상의 이름을 입력해주세요.</span>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="post" id="join-form-post" title="회원우편번호" placeholder="우편번호" autocapitalize="off" autocomplete="off" class="postcodify_postcode5" disabled >
+     	 		<input type="date" name="mem_birth" id="userBirth" placeholder="생년월일" autocapitalize="off" autocomplete="off" class="join-form-textarea2">
+     	 		<input type="radio" value="남" id="gender-radio1" name="mem_gender"/>
+     	 		<label class="gender-radio-label" for="gender-radio1"><p class="join-gender-p" name="mem_gender">남</p></label>
+     	 		<input type="radio" value="여" id="gender-radio2" name="mem_gender"/>
+     	 		<label class="gender-radio-label" for="gender-radio2"><p class="join-gender-p" name="mem_gender">여</p></label>
+     	 	</li>
+     	 	<li class="hidden_line_cl">
+     	 		<span class="guide error" id=guidebirth>생년월일을 입력하세요.</span>
+     	 	</li>
+     	 	<li>
+     	 		<input type="text" name="post" id="post" title="회원우편번호" placeholder="우편번호" autocapitalize="off" autocomplete="off" class="postcodify_postcode5" disabled >
      	 		<button type="button" id="postcodify_search_button">검색</button> 
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="address1" id="join-form-post1" title="회원주소1" placeholder="배송지주소" autocapitalize="off" autocomplete="off" class="postcodify_address" disabled >
+     	 		<input type="text" name="address1" id="address1" title="회원주소1" placeholder="배송지주소" autocapitalize="off" autocomplete="off" class="postcodify_address" disabled >
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="address2" id="join-form-post2" title="회원주소2" placeholder="상세주소" autocapitalize="off" autocomplete="off" class="postcodify_extra_info">
+     	 		<input type="text" name="address2" id="address2" title="회원주소2" placeholder="상세주소" autocapitalize="off" autocomplete="off" class="postcodify_extra_info">
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<span class="guide error">주소를 확인해주세요.</span>
+     	 		<span class="guide error" id=guideaddress>주소를 입력해주세요.</span>
      	 	</li>
      	 </ul>
      	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -352,7 +362,7 @@ span.error{color: red;}
      	 			</p>
      	 		</li>
      	 		<li class="hidden_line_cl" style=border:none;>
-     	 			<span class="guide error" >이용약관에 동의해주세요.</span>
+     	 			<span class="guide error" id=guideagree>이용약관에 동의해주세요.</span>
      	 		</li>
      	 	</ul>
      	 </div>
@@ -364,15 +374,204 @@ span.error{color: red;}
      </form>
      <script>
      
+     $(function(){
+    	//아이디 중복체크
+    	    $('#mem_email').on('keyup',function(){
+    	        $.ajax({
+    		     type:"POST",
+    		     url:"checkSignup",
+    		     data:{
+    		            "mem_email":$('#mem_email').val()
+    		     },
+    		     success:function(data){	//data : checkSignup에서 넘겨준 결과값
+    		            if($.trim(data)=="YES"){
+    		               if($('#mem_email').val()!=''){ 
+    		            	   $('#guideemail1').hide();
+    		            	   $('#guideemail2').hide();
+    		            	   $('#guideemail3').show();
+    		               }
+    		           	}else{
+    		               if($('#mem_email').val()!=''){
+    		            	   $('#guideemail1').hide();
+    		            	   $('#guideemail2').show();
+    		            	   $('#guideemail3').hide();
+    		               }
+    		            }
+    		         }
+    		    }) 
+    	     })
+
+    	});
+//로그인 Submit//    
+
+/* 	$('#userPwd').on'keyup', function(){
+		var userPwd = $(this).val().trim();
+			
+			if($('#userPwd') != $('#userPwd2')){
+				$('#guidepw2').show();
+				return;
+			} 
+	} */
+	
+/* 	
+	$('#mem_email').on('keyup', function(){
+			var mem_email = $(this).val().trim();
+			
+			if(mem_email.length <4){
+				$('#guideemail1').show();
+			}else{
+				$('#guideemail1').hide();
+			}	
+				
+				return;
+
+			
+			$.ajax({
+				url:'dupid.me',
+				data:{id:mem_email},
+				success:function(data){
+					console.log(data);
+					if(data == 'true'){
+						$('#guideemail3').show();
+					}else{
+						$('#guideemail2').hide();
+						
+					}
+				}
+			});
+		});  */
+/* 	function chkPW(){
+		var pw = $("#userPwd1").val();
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+		if(pw.length < 8){
+			$('#guidepw1').show();
+			return false;
+		}else{
+			$('#guidepw1').hide();
+			return ture;
+		}
+		return true;
+	} */
+ 	$(function(){
+		$('#userPwd1').on('keyup',function(){
+			 if($('#userPwd1').length.trim() < 8){
+				    $('#guidepw1').show();
+				    $('#guidepw2').hide();
+				    $('#guidepw3').hide();
+			 }else{
+			    	$('#guidepw1').hide();
+			    	$('#guidepw2').hide();
+			    	$('#guidepw3').hide();
+			 }
+			})  	   
+		});
+		$('#userPwd1').on('keyup',function(){
+			 if($('#userPwd1').length > 8){
+				    $('#guidepw1').show();
+				    $('#guidepw2').hide();
+				    $('#guidepw3').hide();
+			 }	   
+		});
+	//비밀번호 확인--------------
+ 	$(function(){
+		$('#userPwd2').on('keyup', function(){
+			 if($('#userPwd1').val().trim() != $('#userPwd2').val().trim()){
+				    $('#guidepw2').show();
+				    $('#guidepw1').hide();
+				    $('#guidepw3').hide();
+			      }else{
+			    	$('#guidepw2').hide();
+			    	$('#guidepw1').hide();
+			    	$('#guidepw3').show();
+			      }
+			})  	   
+		}); 
+	//비밀번호 확인-------------
+	
+	//이름 확인-------
+	$(function(){
+		$('#userName').on('keyup', function(){
+			 if($('#userName').length < 2){
+				    $('#guidename1').show();
+				    $('#guidename2').hide();
+			      }else{
+			    	$('#guidename2').show();
+			    	$('#guidename1').hide();
+			      }
+			})  	   	 
+		$('#userName').on('keyup', function(){
+			 if($('#userName').length > 2){
+				    $('#guidename2').show();
+			      }else{
+		 		   	  $('#guidename1').hide();
+		 	     }
+			}) 
+		});
+		
+	//이름 확인-------
+		
   	function validate(){
-		if($('#join-form-id').val()==0){
-			alert('사용 가능한 아이디를 입력해주세요');
-			$('#join-form-id').focus();
+		
+		//성별체크
+  		var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+		var genderArr = document.frm1.mem_gender;
+		var gChk = false;
+		for(var i = 0 ; i < genderArr.length; i++){
+			if(genderArr[i].checked == true){
+				gChk = true;
+				break;
+			}
+		}
+
+		if($('#userId').val().trim()==0){
+			swal('사용 가능한 아이디를 입력해주세요');
+			$('#userId').focus();
+			return false;
+		}else if($('#userPwd').val().trim()==0){
+			swal('사용 가능한 비밀번호를 입력해주세요');
+			$('#userPwd').focus();
+			return false;
+		}else if($('#userName').val().trim()==0){
+			swal('이름을 입력해주세요');
+			$('#userName').focus();
+			return false;
+		}else if($('#userBirth').val()==0){
+			swal('생년월일을 입력해주세요');
+			$('#userBirth').focus();
+			return false;
+		}else if(gChk == false){
+			swal('성별을 체크해주세요');
+		}else if($('#post').val()==0){
+			swal('주소를 입력해주세요');
+			$('#post').focus();
+			return false;
+		}else if($('.join-li-cl-in').is(":checked") != true){
+			swal('약관에 동의해주세요');
+			$('#join-li-cl-in').focus();
 			return false;
 		}else{
 			$('#joinForm').submit();
+			location.href="InsertMemberComplete.me";
 		}
-	}  
+	}
+	
+	$(function(){
+		$('#post').on('keyup', function(){
+			 if($('#post').val() != 0){
+				    $('#guideaddress').hide();
+			      }else{
+			    	$('#guideaddress').show();
+			      }
+			})  	   
+	}); 
+	
+	
+//로그인 Submit//
+  	
+  	
 //약관동의 체크박스//
      var checkAll = document.getElementById("checkAll");
 	 var checkRow = document.getElementsByName("checkRow");
