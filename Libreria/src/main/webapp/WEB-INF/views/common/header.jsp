@@ -50,7 +50,7 @@
 	</nav>
 	<script>
 	 	$('#menu_li').click(function(){
-			location.href = "bookCateList.bo?bcf_no=1&bc_no=1";
+			location.href = "bookCateList.bo?bcf_no=1";
 		}); 
 	
 	

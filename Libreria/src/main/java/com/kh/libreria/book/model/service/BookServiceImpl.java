@@ -44,5 +44,15 @@ public class BookServiceImpl  implements BookService  {
 		// TODO Auto-generated method stub
 		return bDAO.getBookSubCateList(sqlSession,bcf_no);
 	}
+	@Override
+	public ArrayList<Book> getBookListsc(int bc_no) {
+		// TODO Auto-generated method stub
+		return bDAO.getBookListsc(sqlSession,bc_no);
+	}
+	@Override
+	public ArrayList<Book> getBookPopListsc(int bc_no) {
+		// TODO Auto-generated method stub
+		return bDAO.getBookPopListsc(sqlSession,bc_no);
+	} 
 	 
 }

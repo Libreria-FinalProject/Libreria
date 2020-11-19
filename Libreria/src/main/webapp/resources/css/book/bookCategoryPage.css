@@ -57,6 +57,7 @@
    
    #book_cate_ul li:hover {
     background: #1f8ce6;
+    border-radius:2px;
     color: #fff;
     cursor: pointer;
     }
@@ -210,4 +211,9 @@
    		left:2px;
    		margin-bottom:10px;
    		height: 80px;
+   	}
+   	.bfc_class{
+    	position: relative;
+    	top: 2px;
+    	
    	}

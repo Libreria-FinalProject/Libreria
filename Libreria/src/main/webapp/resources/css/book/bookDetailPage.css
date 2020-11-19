@@ -1,0 +1,453 @@
+@charset "UTF-8";
+/* book_detail */
+   #book_detail_info{
+   letter-spacing:-1px;
+   		width:1000px;
+   		height: 350px;
+   		/* border: 1px solid; */
+   		padding: 40px 29px;
+   
+   }
+   
+   #book_tumbnail{
+   		width: 200px;
+   		height: 300px;
+   		display: inline-block;
+   }
+   #book_tumbnail_img{
+
+	   	display: block;
+	    left: 0;
+	  	top: 0;
+	  	width: 100%;
+	  	height: 100%;
+   
+   }
+   #book_detail_head_wapper{
+   	display: inline-block;
+   	width: 750px;
+    float: right;
+   }
+   #book_detail_cate_info{
+   	 font-size: 14px;
+   	 color: #333;
+   	
+   }
+   
+   .book_detail_title{
+   
+   	font-size: 30px;
+    line-height: 1.3em;
+    color: #333;
+    font-weight: 700;
+    word-break: keep-all;
+    margin-top: 12px;
+    margin-bottom:12px;
+    display: inline-block;
+   
+  
+   }
+   
+   #book_detail_head_middle{
+   		margin: 20px 0;
+   		color: #666;
+   		font-size: 15px;
+   		line-height: 1em;
+   }
+   .book_writer_pub{
+   		font-size: 13px;
+    	color: #666;
+	    line-height: 1em;
+	    font-weight: 700;
+	    cursor: pointer;
+	    margin-bottom:15px;
+   
+   }
+   .book_writer_pub>span{
+   		font-weight: normal;
+   
+   }
+   
+   #book_detail_buy_buttom{
+   		padding-top:60px;
+   }
+   
+    #book_detail_buy_buttom>ul{
+    	float:right;
+    	list-style: none;
+    	
+    }
+ 
+   .book_buy_ic_cl{
+   	width: 40px;
+   	height: 40px;
+   	background-repeat: no-repeat;
+    background-size: contain;
+    float:left;
+	margin-right:15px;  
+
+    padding:10px;
+    text-align: center;
+    border : 1px solid #808991;
+	cursor: pointer;
+	border-radius: 10px;
+   }
+   #book_add_heart{
+   		width:30px;
+   		height:30px;
+   		opacity: 0.6;
+   		position: relative;
+   		top: 4px;
+   		border: -2px solid ;
+   		
+   }
+   
+   #book_add_shopCart{
+  		 width:30px;
+   		height:30px;
+   		opacity: 0.6;
+   		position: relative;
+   		top: 4px;
+   		left:2px;
+   		border: -2px solid ;
+   }
+   #book_add_gift{
+   		width:30px;
+   		height:30px;
+   		opacity: 0.6;	
+   		position: relative;
+   		top: 2px;
+   		border: -2px solid ;
+   }
+   
+   #book_add_buy{
+   	width: 100px;
+   	text-align:center;
+   	margin-right:30px;
+   	margin-left:30px;
+   	
+   
+   }
+   
+   #book_buy_btn{
+   	border :none;
+   	width: 130px;
+   	height: 60px;
+   	font-size: 15px;
+   	background-color: rgb(94, 107, 159);
+   	color:white;
+   	cursor: pointer;
+   	    font-weight: bold;
+    letter-spacing: -1px;
+    border-radius:5px;
+   }
+	.book_buy_cl{
+		float:left;
+		cursor: pointer;
+		margin-right: 60px;
+		
+	}
+	.intro_plus{
+		width: 30px;
+		height: 30px;
+		float: right;
+		text-align: center;
+		 border: 2px solid #5e6b9f; 
+		 border-radius:5px;
+		/* border:none; */
+		cursor: pointer;
+		background: white;
+		
+		
+	}
+	
+	.book_info_index{
+		    padding: 0px 29px;
+		    margin-bottom:20px;
+		    
+	
+	}
+	.book_info_index_title{
+	font-size: 20px;
+    color: #59667a;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    padding-bottom:10px;
+    border-bottom: 2px solid #808991;
+    
+	
+	}
+	
+	.book_info_intro{
+		line-height: 1.8em;
+    	font-size: 13px;
+    	color: #333;
+    	word-break: keep-all;
+    	margin-top:15px;
+    	overflow: hidden;
+    	height: 185px;
+    	letter-spacing:-1px;
+	
+	}
+	
+	#book_writer_wapper{
+		margin-top:15px;
+		letter-spacing:-1px;
+	
+	}
+	.book_review_wapper{
+	
+	
+	}
+	#review_input_left{
+	
+		display: table-cell;
+    	width: 150px;
+    	padding: 32px 0 20px 0;
+   		 text-align: center;
+   		 cursor: default;
+	}
+	#review_input_right{
+		display: table-cell;
+   		 vertical-align: top;
+   		 width: 1000px;
+   		 text-align: center;
+   		 padding-top:20px;
+		padding-left:10%;
+	}
+	
+	
+	.Product_review_avr_img{
+		width:20px;
+		height: 20px;
+		
+	}
+	.Product_review_input_img{
+		width: 50px;
+		height: 50px;
+		
+		
+	}
+	.review_bar{
+		width: 100px;
+		height: 10px;
+		border: none;
+		background:#e8edf3;
+		display: inline-block;
+	
+	}
+	.review_input_ul{
+		list-style: none;
+	}
+	.reivew_star_img{
+		width: 15px;
+		height:15px;
+		opacity: 0.6;
+	
+	}
+	.review_star_span{
+		font-size:15px;
+		margin-top: 8px;
+    	color: #808991;
+		
+	
+	}
+	.review_avg_span{
+		font-size: 12px;
+	    color: #808991;
+	    font-weight: 600;
+	}
+	.review_input_textarea_cl{
+		    border: 2px solid #d1d5d9;
+		    border-radius: 5px;
+		    box-sizing: border-box;
+		    width: 100%;
+		    height: 120px;
+		    font-weight: 700;
+		    letter-spacing: -1px;
+		    color: #a7b1bb;
+		    padding: 12px 15px;
+		    resize: vertical;
+		    font-size: 15px;
+		    
+	
+	}
+	.review_input_btn{
+		float:right;
+		width: 100px;
+		height: 35	px;
+		border-radius:5px;
+		background: #8fc6f3;
+    	border: 1px solid #0077d9;
+    	box-shadow: 0 1px 1px 0 rgba(31,140,230,.3);
+    	color:#fff;
+    	font-size: 12px;
+   		 padding: 8px 18px;
+   		 font-weight: 700;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: -1px;
+	}
+	.review_list_section{
+		margin-top:15px;
+		
+	}
+	.review_list_head_select_ul_cl{
+		list-style: none;
+		
+	}
+	
+	
+	.review_list_head_left{
+		float:left;
+		margin-right:15px;
+	}
+	
+	#review_list_header{
+		width:100%;
+		height:30px;
+		border-bottom:2px solid #808991;
+	
+	}
+	.review_list_head_right>ul{
+		float:right;
+		list-style:none;
+	}
+	.review_list_head_right>ul>li{
+		float:right;
+		margin-right:10px;
+	
+	}
+	.review_list_select_sub_sort{
+		font-size: 12px;
+    font-weight: 700;
+    color: #808991;
+    cursor: pointer;
+	}
+	
+	#review_list_content_ul{
+		list-style: none;
+		margin-top:12px;
+		
+	
+	}
+	#review_list_content_ul>li{
+		border-bottom: 1px solid #d1d5d9;
+		
+	}
+	#review_list_content_left{
+		display: table-cell;
+		width: 150px;
+	}
+	#review_list_content_right{
+		display: table-cell;
+		width:850px;
+		vertical-align: top;
+	
+	}
+
+	
+	#review_list_content_left>ul{
+		padding: 1px 10px;
+		list-style: none;
+		text-align: left;
+		margin-top: 12px;
+  		margin-bottom: 12px;
+	}
+	.review_list_buyer_star{
+		    width: 15px;
+    		height: 15px;
+    		margin-right: -7px;
+	}
+	.review_reply_writer{
+		    font-size: 12px;
+		    font-weight: 700;
+		    color: #212529
+	}
+	.review_reply_date{
+			 font-size: 12px;
+		    font-weight: 700;
+		    color: #808991;
+		    line-height: 16px;
+	}
+	
+	.review_reply_report{
+		color: #808991;
+	    font-size: 12px;
+	    line-height: 16px;
+	    border: none;
+	    background:white;
+	    cursor: pointer;
+	
+	}
+	
+	#review_list_content_right>ul{
+		list-style: none;
+		text-align: left;
+  		margin-top: 12px;
+  		margin-bottom: 12px;
+	}
+	#review_list_reply_content_li{
+		width: 95%;
+		display:inline-block;
+		min-height:30px;
+		padding-bottom: 10px;
+		padding:3px 3px;
+		padding-right: 20px;
+   		
+		
+	}
+	#review_list_reply_content_view{
+		font-size: 13px;
+   		color: #212529;
+   		line-height: 1.7em;
+   		word-break: break-all;
+	
+	}
+	#review_list_reply_info_li{
+		float:right;
+		padding-right: 20px;
+		margin-bottom:10px;
+	
+	}	
+	#review_good_img{
+	
+		width: 15px;
+		height: 15px; 
+		margin-right: 5px;
+	}
+	.review_list_reply_btn{
+		width: 80px;
+		height: 30px;
+		color: #808991;
+	    background: #fff;
+	    border: 1px solid #d1d5d9;
+	    border-radius: 4px;
+	    font-weight: 700;
+	    display: inline-block;
+	    text-align: center;
+	    cursor: pointer;
+		
+	}
+	#review_list_reply_more_wapper{
+		
+		margin-top:15px;
+	}
+	
+	#review_list_reply_more_btn{
+
+		height: 40px;
+		
+		display: block;
+   		width: 100%;
+    	border: 2px solid #d1d5d9;
+    	background: #fff;
+    	border-radius: 3px;
+    	text-align: center;
+    	color: #1f8ce6;
+    	font-size: 13px;
+    	font-weight: bold;
+    	cursor: pointer;
+    	outline:0;
+		
+	}

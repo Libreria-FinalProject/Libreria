@@ -33,26 +33,62 @@
 						
 							<c:forEach var="bsc" items="${bscList }">
 								<c:if test="${ bcf.bcf_no eq bsc.bcf_no }">
-								<li><a>${ bsc.bc_ct }</a></li>
+								<li class="sub_book_cate">
+										<a>${ bsc.bc_ct }
+											<input type="hidden" id="bc_no" name="bc_no" value="${ bsc.bc_no }">
+										</a>
+									</li>
 								</c:if>
 							</c:forEach>
-						
 						</ul>
-						
 					</li>
 				</c:forEach>
       		</ul>
       	</div>
+      	
+      	
+      	
+      	
+      	
+      	
+      	
       	<script>
       		$(function(){
+      			var bc_no = null;
+      			
+ 				$('.sub_book_cate').click(function(){
+      				bc_no = $(this).find('#bc_no').val();	
+      			}); 
+      			
       			$('.main_book_cate').click(function(){
       				var bcf_no = $(this).find('#bcf_no').val();
       				
+      		
+      				
       				console.log(bcf_no);
-      				location.href="bookCateList.bo?bcf_no="+bcf_no;
+      				console.log(bc_no);
+      				
+     
+      				
+      				if(bc_no == null){
+      					location.href="bookCateList.bo?bcf_no="+bcf_no;
+      					console.log("bc_no안넘김");
+      				}else{
+      					location.href="bookCateList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no;
+      					console.log("bc_no넘김");
+      				}
+      				
       			})
       			
+      			
+      			
+      			
+      			
+      			
       		})
+      		
+      		
+      		
       	
       	</script>
       
