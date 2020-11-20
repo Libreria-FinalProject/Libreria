@@ -38,7 +38,7 @@
 						<p>☆☆☆☆☆ 0점 <span>(5명)</span></p>
 						<br>
 						<p class="book_writer_pub">${bDetail.bwp_name } <span> 저</span></p>
-						<p class="book_writer_pub">지식을만드는지식 <span> 출판</span></p>
+						<p class="book_writer_pub">${ bDetail.b_pub_name } <span> 출판</span></p>
 					</div>
 					<div id="book_detail_buy_buttom">
 						<h3 class="book_detail_title" style="color: #1f8ce6;">${bDtail.b_price }</h3>

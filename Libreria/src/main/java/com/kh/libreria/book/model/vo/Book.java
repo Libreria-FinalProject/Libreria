@@ -20,6 +20,7 @@ public class Book {
 	private String file_path;
 	private String change_name;
 	private String bwp_name;
+	private String b_pub_name;
 	
 //////판매정보 조회 시 필요한 변수 추가 - 기현 20.11.11
 	private int sell_num;  // 판매번호
@@ -54,18 +55,35 @@ public class Book {
 		this.bwp_name = bwp_name;
 	}
 	
-	//book_detail page전 
-	public Book(int b_no, String b_title, String file_path, String change_name, String bwp_name) {
+	public Book(int b_no, String b_title, String b_content, String b_pub, int b_price, int b_stock, Date b_pub_date,
+			int b_sales_rate, int b_cnt, String b_gk, int bc_no, int img_no, int bwp_no, String b_delete,
+			String file_path, String change_name, String bwp_name, String b_pub_name, int sell_num, Date sell_date,
+			Date sell_decide_date, int sell_money) {
 		super();
 		this.b_no = b_no;
 		this.b_title = b_title;
+		this.b_content = b_content;
+		this.b_pub = b_pub;
+		this.b_price = b_price;
+		this.b_stock = b_stock;
+		this.b_pub_date = b_pub_date;
+		this.b_sales_rate = b_sales_rate;
+		this.b_cnt = b_cnt;
+		this.b_gk = b_gk;
+		this.bc_no = bc_no;
+		this.img_no = img_no;
+		this.bwp_no = bwp_no;
+		this.b_delete = b_delete;
 		this.file_path = file_path;
 		this.change_name = change_name;
 		this.bwp_name = bwp_name;
+		this.b_pub_name = b_pub_name;
+		this.sell_num = sell_num;
+		this.sell_date = sell_date;
+		this.sell_decide_date = sell_decide_date;
+		this.sell_money = sell_money;
 	}
-	
-	
-	
+
 	public int getB_no() {
 		return b_no;
 	}
@@ -237,8 +255,16 @@ public class Book {
 		this.sell_money = sell_money;
 	}
 
-
+	
 	////////////////////////////////////////
+
+	public String getB_pub_name() {
+		return b_pub_name;
+	}
+
+	public void setB_pub_name(String b_pub_name) {
+		this.b_pub_name = b_pub_name;
+	}
 
 	@Override
 	public String toString() {
@@ -246,9 +272,11 @@ public class Book {
 				+ ", b_price=" + b_price + ", b_stock=" + b_stock + ", b_pub_date=" + b_pub_date + ", b_sales_rate="
 				+ b_sales_rate + ", b_cnt=" + b_cnt + ", b_gk=" + b_gk + ", bc_no=" + bc_no + ", img_no=" + img_no
 				+ ", bwp_no=" + bwp_no + ", b_delete=" + b_delete + ", file_path=" + file_path + ", change_name="
-				+ change_name + ", bwp_name=" + bwp_name + ", sell_num=" + sell_num + ", sell_date=" + sell_date
-				+ ", sell_decide_date=" + sell_decide_date + ", sell_money=" + sell_money + "]";
+				+ change_name + ", bwp_name=" + bwp_name + ", b_pub_name=" + b_pub_name + ", sell_num=" + sell_num
+				+ ", sell_date=" + sell_date + ", sell_decide_date=" + sell_decide_date + ", sell_money=" + sell_money
+				+ "]";
 	}
+
 	
 
 	
