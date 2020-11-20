@@ -40,10 +40,7 @@ public class BookDAO {
 	}
 
 	public Book getBookDetailInfo(SqlSessionTemplate sqlSession, int b_no) {
-		Book book = sqlSession.selectOne("bookMapper.getBookDetail",b_no);
-		System.out.println(book);
-//		return sqlSession.selectOne("bookMapper.getBookDetail",b_no);
-		return null;
+		return sqlSession.selectOne("bookMapper.getBookDetail",b_no);
 	}
 
 	

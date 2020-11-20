@@ -79,8 +79,8 @@ public class BookController {
 		int b_no = book.getB_no();
 		
 		//책 정보 가져오기
-		Book b_detail = bService.getBookDetailInfo(b_no);
-	
+		Book bDetail = bService.getBookDetailInfo(b_no);
+		model.addAttribute("bDetail",bDetail);
 		
 		return "bookDetailPage";
 	}

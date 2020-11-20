@@ -48,7 +48,7 @@
 	</select>
 	<select id="getBookDetail" resultType="Book">
 		select * 
-		from book
+		from bdp
 		where b_no = #{b_no} and b_delete = 'N'	
 	</select>
 	

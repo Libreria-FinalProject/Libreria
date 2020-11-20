@@ -3,7 +3,6 @@ package com.kh.libreria.book.model.vo;
 import java.sql.Date;
 
 public class Book {
-	//Book 객체 - 호영 
 	private int b_no;
 	private String b_title;
 	private String b_content;
