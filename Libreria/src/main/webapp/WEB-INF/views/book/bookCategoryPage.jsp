@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
  
 <!DOCTYPE html>
 <html>
@@ -112,13 +113,66 @@
       		
       		<div class="book_salary">
       			<c:forEach var="bList" items="${bList}">					
-					<div class="book_wrapper">
+					<div class="book_wrapper">	 
 					<input type="hidden" value="${bList.b_no }" name="b_no" id="b_no">
 					<div class="book_cover_cl"><img src="${bList.file_path}${bList.change_name}" class="book_thumnail"></div>
 					<div class="book_info_cl">
 						<h3 class="booK_name_cl">${bList.b_title}</h3>
 						<p class="book_writer_cl">${bList.bwp_name }</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
+						<p class="book_score_cl">평점 : 
+						
+				<%-- 		<c:set var="avg" value="${ bList.avg_star }"/>
+						<fmt:parseNumber var="test" value="${avg}" integerOnly="true"/> --%>
+						
+<!-- 						<script>
+								$(function(){
+									console.log( ${avg});
+								 	console.log( ${test}); 
+								});
+						</script>  -->
+						
+						<c:forEach var="i" begin="1" end="5">
+							<c:if test="${bList.avg_star >= i }">
+								<img src="/libreria/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
+							</c:if>
+							<c:if test="${ bList.avg_star < i  }">						
+								<c:choose>
+									<c:when test="${ bList.avg_star-i < 0 && bList.avg_star-i > -1 }">
+										<img src="/libreria/resources/images/Product_review_star_avg_half.png" class="review_list_buyer_star">
+									</c:when> 
+									<c:otherwise>
+										<img src="/libreria/resources/images/Product_review_star_avg_null.png" class="review_list_buyer_star">
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+							
+					<%-- <c:if test="${ bList.avg_star >= i }">
+							★
+							<c:set var="i" value="${ i+1 }"/>
+								<c:if test="${ test == i }">
+									<c:if test="${bList.avg_star == i}">
+										★
+									</c:if>
+									<c:if test="${ bList.avg_star != i }">
+										반
+									</c:if>
+								</c:if>
+							
+							</c:if>
+							
+							<c:if test="${ bList.avg_star < i }">
+							
+							☆
+							
+							</c:if> --%>
+						
+			
+							
+						
+						
+						</c:forEach>
+						<!-- ★☆☆☆☆☆ -->
+						</p>
 						<p class="book_price_cl">구매 : ${ bList.b_price } 원</p>
 					</div>
 				</div>
@@ -149,7 +203,24 @@
 					<div class="book_info_cl">
 						<h3 class="booK_name_cl">${bPopList.b_title}</h3>
 						<p class="book_writer_cl">${bPopList.bwp_name }</p>
-						<p class="book_score_cl">평점 : ☆☆☆☆☆</p>
+						<p class="book_score_cl">평점 :
+						
+						<c:forEach var="i" begin="1" end="5">
+							<c:if test="${bPopList.avg_star >= i }">
+								<img src="/libreria/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
+							</c:if>
+							<c:if test="${ bPopList.avg_star < i  }">						
+								<c:choose>
+									<c:when test="${ bPopList.avg_star-i < 0 && bPopList.avg_star-i > -1 }">
+										<img src="/libreria/resources/images/Product_review_star_avg_half.png" class="review_list_buyer_star">
+									</c:when> 
+									<c:otherwise>
+										<img src="/libreria/resources/images/Product_review_star_avg_null.png" class="review_list_buyer_star">
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+						</c:forEach>
+						</p>
 						<p class="book_price_cl">구매 : ${ bPopList.b_price } 원</p>
 					</div>
 				</div>

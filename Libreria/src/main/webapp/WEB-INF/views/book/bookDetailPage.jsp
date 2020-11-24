@@ -41,7 +41,7 @@
 						<p class="book_writer_pub">${ bDetail.b_pub_name } <span> 출판</span></p>
 					</div>
 					<div id="book_detail_buy_buttom">
-						<h3 class="book_detail_title" style="color: #1f8ce6;">${bDtail.b_price }</h3>
+						<h3 class="book_detail_title" style="color: #1f8ce6;">${bDetail.b_price }원</h3>
 						<ul>
 							<li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li>
 							<li  class="book_buy_ic_cl"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>

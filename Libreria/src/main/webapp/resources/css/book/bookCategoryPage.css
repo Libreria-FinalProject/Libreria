@@ -235,3 +235,10 @@
    		font-weight: bold;
    	
    	}
+   	.review_list_buyer_star{
+		    width: 15px;
+    		height: 15px;
+    		margin-right: -7px;
+    		position: relative;
+    		top: 2px;
+	}

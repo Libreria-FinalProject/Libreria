@@ -53,9 +53,6 @@ public class BookController {
 			bList = bService.getBookListsc(bc_no);
 			bPopList = bService.getBookPopListsc(bc_no);
 		}
-			
-		
-		
 		 if(bcfList!=null) {
 			
 			model.addAttribute("bList",bList );
