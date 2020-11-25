@@ -15,8 +15,10 @@
 		<typeAlias type="com.kh.libreria.book.model.vo.BookFrameCategory" alias="BFC"/>
 		<typeAlias type="com.kh.libreria.book.model.vo.BookSubCategory" alias="BSC"/>
 		<typeAlias type="com.kh.libreria.book.model.vo.BookWriter" alias="BookWriter"/>
+		<typeAlias type="com.kh.libreria.book.model.vo.Review" alias="Review"/>
 		<!-- Image -->
 		<typeAlias type="com.kh.libreria.image.model.vo.Image" alias="Image"/>
+		<typeAlias type="com.kh.libreria.image.model.vo.ImageCategory" alias="ImageCategory"/>
 		<typeAlias type="com.kh.libreria.image.model.vo.ImageCategory" alias="ImageCategory"/>
 		<!-- HY 끝  -->
 		

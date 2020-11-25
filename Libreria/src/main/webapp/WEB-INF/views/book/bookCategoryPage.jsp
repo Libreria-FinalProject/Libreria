@@ -173,7 +173,7 @@
 						</c:forEach>
 						<!-- ★☆☆☆☆☆ -->
 						</p>
-						<p class="book_price_cl">구매 : ${ bList.b_price } 원</p>
+						<p class="book_price_cl">구매 : <span class="book_price_cl_value"><fmt:formatNumber value="${ bList.b_price }"/>원</span> </p>
 					</div>
 				</div>
 				</c:forEach>  		
@@ -220,8 +220,9 @@
 								</c:choose>
 							</c:if>
 						</c:forEach>
+						
 						</p>
-						<p class="book_price_cl">구매 : ${ bPopList.b_price } 원</p>
+						<p class="book_price_cl">구매 : <span class="book_price_cl_value"><fmt:formatNumber value="${ bPopList.b_price }"/>원</span> </p>
 					</div>
 				</div>
 				</c:forEach>  		

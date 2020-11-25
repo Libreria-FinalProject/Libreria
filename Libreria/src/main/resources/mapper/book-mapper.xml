@@ -51,6 +51,11 @@
 		from bdp
 		where b_no = #{b_no} and b_delete = 'N'	
 	</select>
+	<select id="getReivewList" resultType="Review">
+		select *
+		from rlist 
+		where b_no = #{b_no} 
 	
+	</select>
 	
 </mapper>

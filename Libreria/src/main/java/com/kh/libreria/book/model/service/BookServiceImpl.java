@@ -10,6 +10,7 @@ import com.kh.libreria.book.model.dao.BookDAO;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
 import com.kh.libreria.book.model.vo.BookSubCategory;
+import com.kh.libreria.book.model.vo.Review;
 
 @Service("bService")
 public class BookServiceImpl  implements BookService  {
@@ -60,5 +61,12 @@ public class BookServiceImpl  implements BookService  {
 		
 		return bDAO.getBookDetailInfo(sqlSession,b_no);
 	}
+	
+	@Override
+	public ArrayList<Review> getReivewList(int b_no) {
+		// TODO Auto-generated method stub
+		return bDAO.getReivewList(sqlSession,b_no);
+	}
+	
 	
 }

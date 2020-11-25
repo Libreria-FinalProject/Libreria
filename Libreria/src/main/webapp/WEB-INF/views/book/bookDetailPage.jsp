@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,17 +32,34 @@
 				<!-- 책 설명 부분 div -->
 				<div id="book_detail_head_wapper">	
 					<div>
-						<p id="book_detail_cate_info">소설  > 기타 국가 소설 </p>
+						<p id="book_detail_cate_info">${ bDetail.bcf_ct }  > ${ bDetail.bc_ct } </p>
 						<h3 class="book_detail_title">${ bDetail.b_title }</h3>
 					</div>
 					<div id="book_detail_head_middle">
-						<p>☆☆☆☆☆ 0점 <span>(5명)</span></p>
+						<p>
+						<c:forEach var="i" begin="1" end="5">
+							<c:if test="${bDetail.avg_star >= i }">
+								<img src="/libreria/resources/images/Product_review_star_avg.png" class="review_list_avg_star">
+							</c:if>
+							<c:if test="${ bDetail.avg_star < i  }">						
+								<c:choose>
+									<c:when test="${ bDetail.avg_star-i < 0 && bDetail.avg_star-i > -1 }">
+										<img src="/libreria/resources/images/Product_review_star_avg_half.png" class="review_list_avg_star">
+									</c:when> 
+									<c:otherwise>
+										<img src="/libreria/resources/images/Product_review_star_avg_null.png" class="review_list_avg_star">
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+						</c:forEach>
+						 
+						 <span class="avg_star_people_cl">( ${bDetail.avg_star_people }명 )</span></p>
 						<br>
 						<p class="book_writer_pub">${bDetail.bwp_name } <span> 저</span></p>
 						<p class="book_writer_pub">${ bDetail.b_pub_name } <span> 출판</span></p>
 					</div>
 					<div id="book_detail_buy_buttom">
-						<h3 class="book_detail_title" style="color: #1f8ce6;">${bDetail.b_price }원</h3>
+						<h3 class="book_detail_title" style="color: #1f8ce6;"><fmt:formatNumber value="${ bDetail.b_price }"/>원</h3>
 						<ul>
 							<li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li>
 							<li  class="book_buy_ic_cl"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
@@ -93,7 +111,7 @@
 						<ul class="review_input_ul">
 						
 							<li><span class="review_avg_span">구매자 별점</span></li>
-							<li><h3>5.0</h3></li>
+							<li><h3><fmt:formatNumber value="${ bDetail.avg_star }" pattern="#.#"/></h3></li>
 							<li>
 								<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="Product_review_avr_img">
 								<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="Product_review_avr_img">
@@ -169,7 +187,55 @@
 						</div><!-- review_list_header -->
 						<div id="review_list_content">
 							<ul id="review_list_content_ul">
+							<c:forEach var="review" items="${ rList }">
 								<li> 
+									<div id="review_list_content_left">
+										<ul>
+											<li>
+												<c:forEach var="i" begin="1" end="5">
+													<c:choose>
+														<c:when test="${ i <= review.rev_star }">
+															<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
+														</c:when>
+														<c:otherwise>
+															<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg_null.png" class="review_list_buyer_star">											
+														</c:otherwise>
+														
+													</c:choose>
+													
+												</c:forEach>
+											</li>
+											<li>
+												<span class="review_reply_writer">${review.mem_name }</span>
+											</li>
+											<li>
+												<span class="review_reply_date">${ review.rev_date }</span>
+												<button class="review_reply_report">신고</button>
+											</li>
+										</ul>
+									</div><!-- review_list_content_left -->
+									<div id="review_list_content_right">
+										<ul>
+											<li id="review_list_reply_content_li">
+												<p id="review_list_reply_content_view">
+													${ review.rev_content }
+												</p>
+											</li>
+											<li id="review_list_reply_info_li">
+												<div>
+													<button class="review_list_reply_btn">삭제하기</button>
+													<button class="review_list_reply_btn">수정하기</button>
+													<button class="review_list_reply_btn"><img id="review_good_img" src="${pageContext.request.contextPath}/resources/images/Product_review_good.png"><span>0</span></button>
+												</div>
+											</li>
+										</ul>
+									</div><!-- review_list_content_right -->
+								</li>
+								
+								</c:forEach>
+								
+								
+								<%-- <li> 
 									<div id="review_list_content_left">
 										<ul>
 											<li>
@@ -206,50 +272,11 @@
 											</li>
 										</ul>
 									</div><!-- review_list_content_right -->
-								</li>
-								
-								<li> 
-									<div id="review_list_content_left">
-										<ul>
-											<li>
-												<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
-												<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
-												<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
-												<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
-												<img src="${pageContext.request.contextPath}/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
-											</li>
-											<li>
-												<span class="review_reply_writer">작성자</span>
-											</li>
-											<li>
-												<span class="review_reply_date">2020-10-29</span>
-												<button class="review_reply_report">신고</button>
-											</li>
-										</ul>
-									</div><!-- review_list_content_left -->
-									<div id="review_list_content_right">
-										<ul>
-											<li id="review_list_reply_content_li">
-												<p id="review_list_reply_content_view">
-													세계최고의 작품이라고 생각합니다. 여러방면으로 생각할 수  있는 기회를 주어주고 오늘 점심 뭐먹지 뭐먹으라끼? 저녁은 뭐dasd먹지 술은 뭘먹지sadsa?
-													dasdasd
-													<br>
-												</p>
-											</li>
-											<li id="review_list_reply_info_li">
-												<div>
-													<button class="review_list_reply_btn">삭제하기</button>
-													<button class="review_list_reply_btn">수정하기</button>
-													<button class="review_list_reply_btn"><img id="review_good_img" src="${pageContext.request.contextPath}/resources/images/Product_review_good.png"><span>0</span></button>
-												</div>
-											</li>
-										</ul>
-									</div><!-- review_list_content_right -->
-								</li>
+								</li> --%>
 								
 							
 							
-							</ul>
+							</ul> 
 							
 							<div id="review_list_reply_more_wapper">
 								<button id="review_list_reply_more_btn">더보기</button>

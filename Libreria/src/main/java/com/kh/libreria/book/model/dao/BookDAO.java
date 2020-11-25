@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
 import com.kh.libreria.book.model.vo.BookSubCategory;
+import com.kh.libreria.book.model.vo.Review;
 
 @Repository("bDAO")
 public class BookDAO {
@@ -41,6 +42,11 @@ public class BookDAO {
 
 	public Book getBookDetailInfo(SqlSessionTemplate sqlSession, int b_no) {
 		return sqlSession.selectOne("bookMapper.getBookDetail",b_no);
+	}
+
+	public ArrayList<Review> getReivewList(SqlSessionTemplate sqlSession, int b_no) {
+	
+		return (ArrayList)sqlSession.selectList("bookMapper.getReivewList",b_no);
 	}
 
 	

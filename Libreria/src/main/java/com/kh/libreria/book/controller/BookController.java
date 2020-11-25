@@ -12,6 +12,7 @@ import com.kh.libreria.book.model.service.BookService;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
 import com.kh.libreria.book.model.vo.BookSubCategory;
+import com.kh.libreria.book.model.vo.Review;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -77,8 +78,13 @@ public class BookController {
 		
 		//책 정보 가져오기
 		Book bDetail = bService.getBookDetailInfo(b_no);
-		model.addAttribute("bDetail",bDetail);
+		ArrayList<Review> rList = bService.getReivewList(b_no);
 		
+//		for(Review r:rList) {
+//			System.out.println(rList);
+//		}
+			model.addAttribute("bDetail",bDetail);
+			model.addAttribute("rList",rList);
 		return "bookDetailPage";
 	}
 	

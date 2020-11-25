@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
 import com.kh.libreria.book.model.vo.BookSubCategory;
+import com.kh.libreria.book.model.vo.Review;
 
 public interface BookService {
 
@@ -21,6 +22,8 @@ public interface BookService {
 	ArrayList<Book> getBookPopListsc(int bc_no);
 
 	Book getBookDetailInfo(int b_no);
+
+	ArrayList<Review> getReivewList(int b_no);
 
 	
 	

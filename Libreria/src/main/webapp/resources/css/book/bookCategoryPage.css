@@ -197,7 +197,7 @@
     display: inline-block;
     margin-top: 10px;
     vertical-align: top;
-   	
+   	cursor:pointer;
    	}
    	.book_salary{
    		width: 700px;
@@ -241,4 +241,8 @@
     		margin-right: -7px;
     		position: relative;
     		top: 2px;
+	}
+	.book_price_cl_value{
+		color:#1f8ce6;
+		font-weight: bold;
 	}
