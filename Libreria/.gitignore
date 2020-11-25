@@ -1,5 +1,5 @@
 /target/
-/buploadFiles/
+buploadFiles/
 /.settings/
 .classpath
 .project
