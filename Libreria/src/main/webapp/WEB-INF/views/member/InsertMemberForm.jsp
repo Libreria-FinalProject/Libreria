@@ -254,7 +254,7 @@ span.error{color: red;}
      	 	</li>
 
      	 	<li>
-     	 		<input type="password" name="mem_pw2" id="userPwd2" title="회원PW 확인" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="password" name="mem_pw2" id="userPwd2" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
      	  	<li class="hidden_line_cl">
      	 		<span class="guide error" id=guidepw1>8자 이상 입력해주세요.</span>
@@ -271,8 +271,9 @@ span.error{color: red;}
      	 	<li class="hidden_line_cl">
      	 		<span class="guide error" id=guidename1>2글자 이상의 이름을 입력해주세요.</span>
      	 	</li>
-     	 	<li class="hidden_line_cl">
-     	 		<span class="guide ok" id=guidename2>2글자 이상의 이름을 입력해주세요.</span>
+     	 	<li>
+     	 		<input type="text" name="mem_tel" id="join-form-tel" class="join-form-textarea" placeholder="연락처" maxlength="13">
+				<div class="hidden_line_cl"></div>
      	 	</li>
      	 	<li>
      	 		<input type="date" name="mem_birth" id="userBirth" placeholder="생년월일" autocapitalize="off" autocomplete="off" class="join-form-textarea2">
@@ -373,8 +374,177 @@ span.error{color: red;}
   
      </form>
      <script>
+     $("#join-form-tel").on("keyup",function(){
+     	var inputTel = $("#join-form-tel").val();
+ 		console.log(inputTel);
+ 		var tmp="";
+ 		inputTel = inputTel.replace(/[^0-9]/g,'');
+
+ 		if(inputTel.length<4){  //01012341234
+ 			tmp+=inputTel;
+ 		}else if(inputTel.length<7){ //
+ 			tmp+=inputTel.substr(0,3); // 010
+ 			tmp+='-';    
+ 			tmp+=inputTel.substr(3);  // 010-123
+ 		}else if(inputTel.length<11){ //010-1234-1 ...
+ 			tmp += inputTel.substr(0, 3);   // 010
+ 			tmp += '-';
+ 			tmp += inputTel.substr(3, 3); //010-123
+ 			tmp += '-';
+ 			tmp += inputTel.substr(6); //010-123-412
+ 		}else{  
+ 			tmp += inputTel.substr(0, 3);  
+ 			tmp += '-';
+ 			tmp += inputTel.substr(3, 4);
+ 			tmp += '-';
+ 			tmp += inputTel.substr(7); 
+ 		}
+ 		  $("#join-form-tel").val(tmp);
+     });
      
-     $(function(){
+     function emailCheck(){
+     	var email = $('#mem_email').val();
+     	$.ajax({
+     		type: "POST",
+     		url: "emailCheck.me",
+     		data: {mem_email:email},
+     		success: function(data){
+     			if(data==1){ 
+     				$('#idcheck').find("span").css("display","block"); 
+     				return true;
+     			}else{
+     				$('#idcheckok').find("span").css("display","block");  
+     				return false;
+     			}
+     		},
+     		error: function(){
+     			alert("ajax 에러");
+     		}
+     	});
+     	
+     }
+     
+     function pwCheck(){
+      	var pw = $('#userPwd1').val();
+      	var pw_check = $('#userPwd2').val();
+      	if(pw.length ==0){
+      		swal("","비밀번호를 입력해주세요.",'info')
+      		.then((ok)=>{
+      			if(ok){
+      				$('#userPwd1').focus();
+      				return false;
+      			}
+      		});
+      	}else if(pw_check.length==0){
+      		swal("","비밀번호 확인을 입력해주세요.",'info')
+      		.then((ok)=>{
+      			if(ok){
+      				$('#userPwd2').focus();
+      				return false;
+      			}
+      		});
+      	}else{    		
+  	    	if(pw ==pw_check){  // 비밀번호가 서로 일치
+  	    		return true;
+  	    	}else{
+  	    		return false;
+  	    	}
+      	}
+      }
+     
+   	function validate(){
+   		if(emailCheck()){  // 이메일 중복이 있다면
+   			return false;
+   		}
+   		if(!pwCheck()){  // 비밀번호와 비밀번호 확인을 입력했고 일치하지 않으면
+   			return false;
+   		}
+   		if($("#join-form-tel").val()==""){  // 연락처를 입력하지 않았다면
+   			swal("","연락처를 입력해주세요.","info")
+   			.then((ok)=>{
+   				if(ok){
+   					$("#join-form-tel").focus();
+   				}
+   			});
+   			return false;
+   		}
+   
+   		if($('#userBirth').val() == ''){  // 생년월일을 입력하지 않았을 때
+   			swal("","생년월일을 입력해주세요.","info")
+   			.then((ok)=>{
+   				if(ok){
+   					$('#userBirth').focus();	
+   				}
+   			});
+   			return false;
+   			
+   		}
+   		if($("post").val()==''){
+   			swal("","주소를 입력해주세요.","info");
+   			return false;
+   		}
+   		
+   		if(!$('#checkAll').prop("checked")){
+   			swal("","약관에 동의해주세요.","info");
+   			return false;
+   		}
+   	
+   		return true;
+ 	}  
+ //약관동의 체크박스//
+      var checkAll = document.getElementById("checkAll");
+ 	 var checkRow = document.getElementsByName("checkRow");
+
+ 	function selectAll(){
+ 		if(checkAll.checked){
+ 			for(var i = 0; i < checkRow.length; i++){
+ 				checkRow[i].checked = true;
+ 			}
+ 		} else{
+ 			for(var i = 0; i < checkRow.length; i++){
+ 				checkRow[i].checked = false;
+ 			}
+ 		} 
+ 	}
+ 	
+ 	function selectOne(){
+ 		var count = 0;
+ 		
+ 		for(var i = 0; i < checkRow.length; i++){
+ 			if(checkRow[i].checked){
+ 				count++;
+ 			} 
+ 		}
+ 		
+ 		if(count != 2){
+ 			checkAll.checked = false;
+ 		} else{
+ 			checkAll.checked = true;
+ 		}
+ 	}
+ //약관동의 체크박스//
+      
+ //관심사 체크박스 //
+      $(".ck_interest").click(function(){ // 체크박스 클릭 시 이벤트
+ 				countCheckBoxFn();
+ 				
+ 				if(ck_count > 3){
+ 					alert("최대 3개까지 선택가능합니다.");
+ 					$(this).prop("checked",false);
+ 				}
+ 			});
+ 			//////////////////////////////////////
+ 			function countCheckBoxFn(){ // 선택되어진 체크박스의 개수를 구하는 함수
+ 				ck_count=0;
+ 				var ck_interest = $(".ck_interest");
+ 				ck_interest.each (function (index, item){
+ 					if(item.checked == true){
+ 						ck_count+=1;
+ 					}
+ 				});
+ 			}
+ //관심사 체크박스 //
+/*      $(function(){
     	//아이디 중복체크
     	    $('#mem_email').on('keyup',function(){
     	        $.ajax({
@@ -401,7 +571,7 @@ span.error{color: red;}
     		    }) 
     	     })
 
-    	});
+    	}); */
 //로그인 Submit//    
 
 /* 	$('#userPwd').on'keyup', function(){
@@ -413,8 +583,8 @@ span.error{color: red;}
 			} 
 	} */
 	
-/* 	
-	$('#mem_email').on('keyup', function(){
+ 	
+/* 	$('#mem_email').on('keyup', function(){
 			var mem_email = $(this).val().trim();
 			
 			if(mem_email.length <4){
@@ -439,7 +609,7 @@ span.error{color: red;}
 					}
 				}
 			});
-		});  */
+		});  */ 
 /* 	function chkPW(){
 		var pw = $("#userPwd1").val();
 		var num = pw.search(/[0-9]/g);
@@ -455,6 +625,8 @@ span.error{color: red;}
 		}
 		return true;
 	} */
+	/* 
+	
  	$(function(){
 		$('#userPwd1').on('keyup',function(){
 			 if($('#userPwd1').length.trim() < 8){
@@ -492,7 +664,7 @@ span.error{color: red;}
 	//비밀번호 확인-------------
 	
 	//이름 확인-------
-	$(function(){
+ 	$(function(){
 		$('#userName').on('keyup', function(){
 			 if($('#userName').length < 2){
 				    $('#guidename1').show();
@@ -509,9 +681,37 @@ span.error{color: red;}
 		 		   	  $('#guidename1').hide();
 		 	     }
 			}) 
-		});
+		}); 
 		
 	//이름 확인-------
+	
+	    $("#join-form-tel").on("keyup",function(){
+    	var inputTel = $("#join-form-tel").val();
+		console.log(inputTel);
+		var tmp="";
+		inputTel = inputTel.replace(/[^0-9]/g,'');
+
+		if(inputTel.length<4){  //01012341234
+			tmp+=inputTel;
+		}else if(inputTel.length<7){ //
+			tmp+=inputTel.substr(0,3); // 010
+			tmp+='-';    
+			tmp+=inputTel.substr(3);  // 010-123
+		}else if(inputTel.length<11){ //010-1234-1 ...
+			tmp += inputTel.substr(0, 3);   // 010
+			tmp += '-';
+			tmp += inputTel.substr(3, 3); //010-123
+			tmp += '-';
+			tmp += inputTel.substr(6); //010-123-412
+		}else{  
+			tmp += inputTel.substr(0, 3);  
+			tmp += '-';
+			tmp += inputTel.substr(3, 4);
+			tmp += '-';
+			tmp += inputTel.substr(7); 
+		}
+		  $("#join-form-tel").val(tmp);
+    });
 		
   	function validate(){
 		
@@ -625,7 +825,7 @@ span.error{color: red;}
 				});
 			}
 //관심사 체크박스 //
-			
+			 */
 
 	//로그인 유호성 검사//
 /* 	function validate(){

@@ -20,7 +20,7 @@ public class MemberSeriviceImpl implements MemberService{
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+	   
 	@Autowired
 	private MemberDAO mDAO;
 	
@@ -134,15 +134,10 @@ public class MemberSeriviceImpl implements MemberService{
 	public int getBuyListCount(int mem_no) {
 		return mDAO.getBuyListCount(sqlSession, mem_no);
 	}
-	
-	@Override
-	public int check_email(String mem_email) {
-		return mDAO.check_email(sqlSession, mem_email);
-	}
 
 	@Override
-	public int checkEmail(String email) {
-		return mDAO.checkEmail(sqlSession, email);
+	public int checkEmail(String mem_email) {
+		return mDAO.checkEmail(sqlSession, mem_email);
 	}
 
 	@Override
@@ -150,8 +145,16 @@ public class MemberSeriviceImpl implements MemberService{
 		return mDAO.loginMemberWithKakao(sqlSession, kakaoEmail);
 	}
 
+	@Override
+	public ArrayList<Member> idSearch(String mem_name) {
+		return mDAO.idSearch(sqlSession, mem_name);
+	}
 
-	
+	@Override
+	public ArrayList<Member> pwSearch(String mem_name) {
+		return mDAO.pwSearch(sqlSession, mem_name);
+	}
+
 
 
 

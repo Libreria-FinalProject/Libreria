@@ -118,8 +118,8 @@
      	  			<span class="link">로그인 상태 유지</span>
      	  		</label>
      	  		<div class="idsearch-link">
-     	  			<a href="" class="link">아이디 찾기</a>
-     	  			<a href="" class="link">비밀번호 재설정</a>
+     	  			<a href="idSearch.me" id="IdSearch" class="link">아이디 찾기</a>
+     	  			<a href="pwSearch.me" id="pwSearch" class="link">비밀번호 재설정</a>
      	  		</div>
      	  	</div>
      	  </div>

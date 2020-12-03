@@ -35,9 +35,6 @@ public class MemberDAO {
 	public int idCheck(SqlSessionTemplate sqlSession, String mem_email) {
 		return sqlSession.selectOne("memberMapper.checkPwd", mem_email);
 	}
-	public int check_email(SqlSessionTemplate sqlSession, String mem_email){
-		return sqlSession.selectOne("memberMapper.check_email", mem_email);
-	}
 	public int leaveMember(SqlSessionTemplate sqlSession, int no_leave) {
 		return sqlSession.update("memberMapper.leaveMember", no_leave);
 	}
@@ -104,12 +101,20 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.getBuyListCount", mem_no);
 	}
 
-	public int checkEmail(SqlSessionTemplate sqlSession, String email) {
-		return sqlSession.selectOne("memberMapper.checkEmail", email);
+	public int checkEmail(SqlSessionTemplate sqlSession, String mem_email) {
+		return sqlSession.selectOne("memberMapper.checkEmail", mem_email);
 	}
 
 	public Member loginMemberWithKakao(SqlSessionTemplate sqlSession, String kakaoEmail) {
 		return sqlSession.selectOne("memberMapper.loginMemberWithKakao", kakaoEmail);
+	}
+
+	public ArrayList<Member> idSearch(SqlSessionTemplate sqlSession, String mem_name) {
+		return sqlSession.selectOne("memberMapper.idSearch", mem_name);
+	}
+
+	public ArrayList<Member> pwSearch(SqlSessionTemplate sqlSession, String mem_name) {
+		return sqlSession.selectOne("memberMapper.pwSearch", mem_name);
 	}
 
 
