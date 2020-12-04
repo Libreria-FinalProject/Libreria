@@ -66,6 +66,26 @@ public class MemberController {
 		return "InsertAgreeTwo";
 	}
 	
+//	@RequestMapping(value="idSearch.me")
+//	public String idSearch(String mem_email, String mem_phone) throws Exception{
+//		return "memberIdSearch";
+//	}
+	
+	  
+	  
+	  
+	  
+//	  @RequestMapping("idSearch.me") public ModelAndView
+//	  idSearch(HttpServletRequest request,ModelAndView mv) { int mem_email =
+//	  m.getMem_email();
+//	  
+//	  Member idSearch = mService.idSearch(mem_email);
+//	  
+//	  mv.addObject("idSearch", idSearch); mv.setViewName("memberIdSearch"); return
+//	  mv; }
+//	 
+	
+	
 	//아이디 중복 체크
 	@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
 		public @ResponseBody String AjaxView(  
@@ -86,8 +106,6 @@ public class MemberController {
 
 		response.getWriter().print(isUsable);
 	}
-	
-	
 	
 	@RequestMapping("InsertMemberComplete.me")
 	public String InsertMemberComplete() {
@@ -124,14 +142,28 @@ public class MemberController {
 	
 	@RequestMapping("emailCheck.me")
 	public void emailCheck(HttpServletResponse response
-			,@RequestParam("email") String email) throws IOException {
-		int result = mService.checkEmail(email);
+			,@RequestParam("mem_email") String mem_email) throws IOException { //requested=false = 반드시 받지 않아도 되게 해본다.
+		int result = mService.checkEmail(mem_email);
 		if(result>0) {
 			response.getWriter().print("1");
 		}else {
 			response.getWriter().print("2");			
 		}
 	}
+	
+	@RequestMapping("idSearch.me")
+	public String memberIdSearch(){
+		return "memberIdSearch";
+	}
+	
+	@RequestMapping("pwSearch.me")
+	public String memberPwSearch(){
+		return "memberPwSearch";
+	}
+	
+	
+	
+	
 	
 //	@RequestMapping("InsertMemberForm.me")
 //	public String insertMember(@ModelAttribute Member m, @RequestParam("post") String post,
@@ -166,6 +198,7 @@ public class MemberController {
 //		}
 //		return str;
 //	}
+	
 //	로그인
 	@RequestMapping("login.me") 
 	public void loginMember(Member m, Model model,

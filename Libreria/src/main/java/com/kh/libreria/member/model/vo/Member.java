@@ -18,6 +18,7 @@ public class Member {
 	private Date mem_logindate;
 	private int mem_money;
 	private String mem_delete;
+	
 	public Member() {
 		super();
 	}

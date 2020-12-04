@@ -2,6 +2,7 @@ package com.kh.libreria.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -53,11 +54,13 @@ public interface MemberService {
 	int checkIdDup(String mem_email);
 	
 	int idCheck(String mem_email);
-	
-	int check_email(String mem_email);
-	
-	int checkEmail(String email);
+
+	int checkEmail(String mem_email);
 
 	Member loginMemberWtihKakao(String kakaoEmail);
+
+	ArrayList<Member> idSearch(String mem_name);
+	
+	ArrayList<Member> pwSearch(String mem_name);
 	
 }

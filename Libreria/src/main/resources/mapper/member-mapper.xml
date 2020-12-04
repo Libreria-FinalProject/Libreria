@@ -26,20 +26,33 @@
    
    <insert id="insertMember">
          insert into member
-         values(SEQ_MEM_NO.NEXTVAL, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth},#{mem_tel} , #{mem_address}, default , default, default,#{mem_interest}, sysdate, default, default)
+         values(SEQ_MEM_NO.NEXTVAL, #{mem_email}, #{mem_pw}, #{mem_name}, #{mem_gender}, #{mem_birth}, #{mem_tel} , #{mem_address}, default , default, default,#{mem_interest}, sysdate, default, default)
    </insert>
-   
+    
 	<select id="checkPwd" resultType="_int">
 		select count(*) 
 		from member 
 		where mem_no=#{mem_no} and mem_pw=#{mem_pw}
 	</select>
 	
-	<select id="check-email" resultType="_int">
-		select count(*) 
-		from member 
+	<select id="idSearch" resultType="Member">
+		select *
+		from member
 		where mem_email=#{mem_email}
 	</select>
+	
+	<update id="pwSearch">
+		select *
+		from member
+		where mem_pw=#{mem_pw}
+	</update>
+	
+	<update id="newPassword">
+		update ruser_t
+		set mem_pw = #{mem_pw}
+		where mem_email=#{mem_email} and mem_name=#{mem_name} and mem_phone=#{mem_phone} 
+	</update>
+	
 	
 	<update id="leaveMember">
 		update member
@@ -170,7 +183,7 @@
 	<select id="checkEmail" resultType="_int">
 		select count(*)
 		from member
-		where mem_email=#{email} 
+		where mem_email=#{mem_email} 
 	</select>
 	
 	<select id="loginMemberWithKakao" resultType="Member">
