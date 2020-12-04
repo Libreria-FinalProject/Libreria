@@ -5,9 +5,56 @@
 	
 	<insert id="insertBasket">
 		insert into basket
-		values(SEQ_BASCKET_NO.nextval,#{bookNo},sysdate,dafault,'N',#{userNo});
+		values(SEQ_BASCKET_NO.nextval,#{bNo},SYSDATE,1,default,#{mem_no})
+	</insert>
+	
+	<select id="BasketList" resultType="BasketList">
+		SELECT * 
+		FROM BASKET_INFO
+		WHERE MEM_NO = #{mem_no}
+    	AND B_DELETE ='N'
+	</select>
+	
+	<resultMap type="BasketList" id="BasketList">
+		<result property="b_no" column="B_NO"/>
+		<result property="b_title" column="B_TITLE"/>
+		<result property="b_price" column="B_PRICE"/>
+		<result property="img_no" column="IMG_NO"/>
+		<result property="basket_count" column="BASKET_COUNT"/>
+		<result property="basket_delete" column="B_DELETE"/>
+		<result property="mem_no" column="MEM_NO"/>
+		
+	</resultMap>
+	
+	<select id="checkBasket" resultType="_int">
+		select *
+		from Basket
+		where B_NO = #{bNo}
+		and MEM_NO = #{mem_no}
+	</select>
+	
+	<delete id="deleteBook">
+		delete 
+		from BASKET_INFO
+		where MEM_NO = #{mem_no} 
+			and B_NO = #{bNo}
+	</delete>
+	
+	<insert id="insertBuyBookMutong">
+		insert into BUY_DATA
+		values(SEQ_BUY_NUM.nextval,SYSDATE,#{allprice},'Mutong',default,#{bNo},#{mem_no})
 	</insert>
 
+	<insert id="insertBuyBookSinyong">
+		insert into BUY_DATA
+		values(SEQ_BUY_NUM.nextval,SYSDATE,#{allprice},'Sinyong',default,#{bNo},#{mem_no})
+	</insert>
+	
+	<insert id="insertBuyBookMileage">
+		insert into BUY_DATA
+		values(SEQ_BUY_NUM.nextval,SYSDATE,#{allprice},'Mileage',default,#{bNo},#{mem_no})
+	</insert>
+<!-- 
 	<update id="deleteBasket">
 		update basket
 		set B_DELETE = 'Y'
@@ -26,4 +73,5 @@
   		</foreach>
 
 	</update>
+	 -->
 </mapper>

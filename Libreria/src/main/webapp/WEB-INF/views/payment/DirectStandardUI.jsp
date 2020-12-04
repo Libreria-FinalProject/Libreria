@@ -407,62 +407,48 @@
             
             <div id="contentBox">
                     <br>
-                    <label class="allSelect"><input type="checkbox"  id="allSel" class="allSelClass" onclick="allCheck();"> 전체선택 </label>
-			 <c:forEach items="${ BasketInfo }" var="basket">
-			 <c:url value="deleteBook.pay" var="delete">
-                                <c:param name="bookNum" value="${ basket.b_no }" />
-                                <c:param name="memNum" value="${ basket.mem_no }" />
-                                </c:url>
-             <input type="hidden" id="memNum" value="${ basket.mem_no }">
+			
+             <input type="hidden" id="memNum" value="${ User.mem_no }">
 			<div>
                     <hr>
                     <div id="productBox">
-                            <label><input type="checkbox" name="SelectBook"onclick="whatAll();" value="${ basket.b_no }"> <input type="hidden" id="b_no" value="${ basket.b_no }"> </label>
-                            <img src="${basket.img_no}">
+                            <label><input type="hidden" id="b_no" value="${ bookNo }"> </label>
+                            <img src="${bookImg}">
                             <div id="titleBox">
-                                <label id="bookName">${ basket.b_title }</label>
+                                <label id="bookName">${ bookTitle }</label>
                                 
-                                 <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button><a href="${delete}"><button id="btnDelete" >삭제</button></a></div>
+                                 <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button></div>
                                 </div>
                                 
-                            	<label id="alongPrice">${ basket.b_price }원</label>
+                            	<label id="alongPrice">${ bookPrice }원</label>
                         </div>
                 <br>
             </div>
-		</c:forEach>
               
 
                 <br>
-                <div id="lastSelectBox">
-                <label class="allSelect2"><input type="checkbox" id="allSel" class="allSelClass" onclick="allCheck();"> 전체선택 </label>
-                <button id="selectPriceDelete">선택상품삭제</button>
-                </div>
             </div>
 
             
         </div>
-        <c:url value="NextPayment.pay" var="delete">
-              <c:param name="bookNum" value="${ basket.b_no }" />
-              <c:param name="memNum" value="${ basket.mem_no }" />
+        <c:url value="DirectNextPayment.pay" var="DirectNextPayment">
+        	  <c:param name="bookTitle" value="${ bookTitle }" />
+              <c:param name="bookNo" value="${ bookNo }" />
+              <c:param name="bookImg" value="${bookImg}" />
+              <c:param name="bookPrice" value="${ bookPrice }" />
+              <c:param name="memNum" value="${ User.mem_no }" />
         </c:url>
         
         <div id="basket_Right">
             <div id="Right_top">
-            <label class="selectBookBox" >총 <label id="allBookCount"></label>권을 선택하셧습니다.</label>
-            <label class="priceBox"><label>총 상품가격 </label><label class="AllPrice"></label>원</label>
-            <label class="priceBox"><label>결제가격</label><label class="AllPrice"></label>원 </label>
+            <label class="selectBookBox" >총 1 권을 선택하셧습니다.</label>
+            <label class="priceBox"><label>총 상품가격 </label>${ bookPrice }원</label>
+            <label class="priceBox"><label>결제가격</label>${ bookPrice }원 </label>
             </div>
-            <div id="Right_bot" onclick="location.href='NextPayment.pay'">결제하기</div>
+            <div id="Right_bot"><a href="${ DirectNextPayment }">결제하기</a></div>
         </div>
-
-            
       </div>
-
-      
-   
    </section>
-
-
 
    <footer id="footer_container">
       <div>
@@ -527,7 +513,6 @@
     var memNum = document.getElementById('memNum').value;
     var mem_no = [];
     mem_no.push(memNum);
-    console.log(mem_no);
     var checkItem = [];
     
     function cleanBasket(){
@@ -543,7 +528,6 @@
 	 $('#selectPriceDelete').on('click',function(){
 		 
 		 for(var i=0; i<myCheck.length; i++){
-				
 				checkItem.push(myCheck[i].defaultValue);
 			}
 		  $.ajax({
@@ -572,6 +556,7 @@
 	bookCount += 1;
 	</c:forEach>
 	
+	
 	for(var i = 0; i < allprice.length; i++){
 		allpriceText += parseInt(allprice[i])
 	}
@@ -581,7 +566,6 @@
 		$('.AllPrice').text(allpriceText);
 	})
     
-   
     function NextPayment (){
     	location.href="<%= request.getContextPath()%>/NextPayment.pay?allpriceText"+allpriceText;
     }

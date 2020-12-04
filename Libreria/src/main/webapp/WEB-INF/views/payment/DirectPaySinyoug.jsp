@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -126,6 +127,10 @@
             align-items:center;
             justify-content:flex-start;
         }
+
+        #botBox input{
+            width:40px;
+        }
         #payerName{
             padding-left:20px;
         }
@@ -159,91 +164,65 @@
     <section id="title">
         <div id="topBar" class="lineBar">
                 <h3>LIBRERIA</h3>
-                <h3 id="mainTitle">무통장입금¸</h3>
+                <h3 id="mainTitle">무통장입금</h3>
         </div>
         <div id="bottomBar" class="lineBar">
 
-                <button id="nextBtn" onclick ="clearPayment()">다음</button>
+                <button id="nextBtn">다음</button>
         </div>
 
 
         <div id="topBox">
             <label>(주)역삼동 코딩머신</label>
             <label>상품명 : 공부란 무엇인가 외 </label>
-            <label>임금 계좌 : 107-5677-1115-457 (농협 LIBRERIA)</label>
+            <label>제공기간 : 별도의 제공기간 없음</label>
+            <label>상품 금액 : 19800 원</label>
 
         </div>
         <div id="midBox">
-            <label>무통장입금</label>
+            <label>ìí ì í</label>
             <div id="bankList">
                 <div id="bankTop">
                 <labe><input type="radio" name="bank">삼성</labe>
-                <labe><input type="radio" name="bank">신한</labe>
+                <labe><input type="radio" name="bank">신한</labe>
                 <labe><input type="radio" name="bank">우리</labe>
                 <labe><input type="radio" name="bank">수협</labe>
                 <labe><input type="radio" name="bank">씨티</labe>
             </div>
             <div id="bankBot">
-                <labe><input type="radio" name="bank">농협</labe>
+                <labe><input type="radio" name="bank">농협</labe>
                 <labe><input type="radio" name="bank">국민</labe>
                 <labe><input type="radio" name="bank">롯데</labe>
-                <labe><input type="radio" name="bank">현대</labe>
+                <labe><input type="radio" name="bank">현대</labe>
                 <labe><input type="radio" name="bank">비씨</labe>
             </div>
             </div>
         </div>
-
-		<c:forEach items="${ BasketInfo }" var="basket">
+        
+        <c:forEach items="${ BasketInfo }" var="basket">
              <input type="hidden" id="memNum" value="${ basket.mem_no }">
 		</c:forEach>
-		
+        
+
         <div id="botBox">
                 <div id="payerName">
-                    <label>입금자명</label>
-                    <label><input type="text"></label>
+                    <label>카드번호</label>
+                    <label><input type="text">-<input type="text">-<input type="text">-<input type="text"></label>
                 </div>
             </div>
 
         <label id="chBox"><input type="checkBox">상기의 내용을 확인하였습니다.</label>
-    
+
     </section>
 </body>
 <script>
 	
-var allprice = [];
-var allBook = [];
-var checkItem = [];
 
-var allpriceText = 0;
-
-var memNum = document.getElementById('memNum').value;
-var mem_no = [];
-	 
-mem_no.push(memNum);
-
-<c:forEach items="${ BasketInfo }" var="basket">
-
-checkItem.push("${ basket.b_no }");
-allprice.push("${ basket.b_price }");
-allBook.push("${ basket.b_title }");
-
-</c:forEach>
-
-
-for(var i = 0; i < allprice.length; i++){
-	allpriceText += parseInt(allprice[i])
-}
-
-$(document).ready(function(){
-	$('#allBookCount').text(bookCount);
-	$('.AllPrice').text(allpriceText);
-});
-
-var buyLoot = "${pay}";
 $('#nextBtn').on('click',function(){
 	$.ajax({
-		url:'clearPayment.pay',
-		data:{'checkItem[]':checkItem , 'mem_no[]':mem_no , 'allprice[]':allprice , 'buyLoot': buyLoot},
+		url:'DirectClearPayment.pay',
+		data:{'memNum': "${memNum}" , 'bookNo': "${bookNo}" , 'bookPrice': "${bookPrice}" , 'pay':"${pay}" , 'UserNum' : "${ User.mem_no }"},
+		//type:"get",
 		traditional : true,
 		success:function(data){
 			if(data == "success"){

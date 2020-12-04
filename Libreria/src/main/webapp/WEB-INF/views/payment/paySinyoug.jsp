@@ -1,6 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -164,7 +168,7 @@
         </div>
         <div id="bottomBar" class="lineBar">
 
-                <div id="nextBtn">다음</div>
+                <button id="nextBtn">다음</button>
         </div>
 
 
@@ -176,7 +180,7 @@
 
         </div>
         <div id="midBox">
-            <label>은행 선택</label>
+            <label>은행선택</label>
             <div id="bankList">
                 <div id="bankTop">
                 <labe><input type="radio" name="bank">삼성</labe>
@@ -194,6 +198,11 @@
             </div>
             </div>
         </div>
+        
+        <c:forEach items="${ BasketInfo }" var="basket">
+             <input type="hidden" id="memNum" value="${ basket.mem_no }">
+		</c:forEach>
+        
 
         <div id="botBox">
                 <div id="payerName">
@@ -204,11 +213,53 @@
 
         <label id="chBox"><input type="checkBox">상기의 내용을 확인하였습니다.</label>
 
-        <div id="popUp">
-                <label>결제에 실패하였습니다.</label>
-                <button>확인</button>
-     
-           </div>
     </section>
 </body>
+<script>
+	
+var allprice = [];
+var allBook = [];
+var checkItem = [];
+
+var allpriceText = 0;
+
+var memNum = document.getElementById('memNum').value;
+var mem_no = [];
+	 
+mem_no.push(memNum);
+
+<c:forEach items="${ BasketInfo }" var="basket">
+
+checkItem.push("${ basket.b_no }");
+allprice.push("${ basket.b_price }");
+allBook.push("${ basket.b_title }");
+
+</c:forEach>
+
+for(var i = 0; i < allprice.length; i++){
+	allpriceText += parseInt(allprice[i])
+}
+
+$(document).ready(function(){
+	$('#allBookCount').text(bookCount);
+	$('.AllPrice').text(allpriceText);
+});
+
+var buyLoot = "${pay}";
+$('#nextBtn').on('click',function(){
+	$.ajax({
+		url:'clearPayment.pay',
+		data:{'checkItem[]':checkItem , 'mem_no[]':mem_no , 'allprice[]':allprice , 'buyLoot': buyLoot},
+		//type:"get",
+		traditional : true,
+		success:function(data){
+			if(data == "success"){
+				alert("결제완료");
+				location.href="/libreria";
+			}
+		}
+	}) ;
+	
+});
+</script>
 </html>

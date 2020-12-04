@@ -28,12 +28,18 @@
 		<typeAlias type="com.kh.libreria.board.vo.BoardIMG" alias="BIMG"/>
 		<!-- MJ 끝 -->
 		
+		<!-- MH -->
+		<typeAlias type="com.kh.libreria.pay.model.vo.BasketList" alias="BasketList"/>
+		<!-- MH -->
+		
+		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/book-mapper.xml"/>
 		<mapper resource="mapper/member-mapper.xml" />
 		<mapper resource="mapper/board-mapper.xml"/>
+		<mapper resource="mapper/pay-mapper.xml"/>
 	</mappers>
 
 </configuration>

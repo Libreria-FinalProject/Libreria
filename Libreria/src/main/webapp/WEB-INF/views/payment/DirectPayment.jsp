@@ -373,44 +373,44 @@
         <div id="basket_Left">
             <div id="left_top">
             </div>
-            
-
-		<c:forEach items="${ BasketInfo }" var="basket">
+		
 			<div>
                     <hr>
                     <div id="productBox">
                             
-                            <img src="${basket.img_no}">
+                            <img src="${bookImg}">
                             <div id="titleBox">
-                                <label id="bookName">${ basket.b_title }</label>
-                                 
+                                <label id="bookName">${ bookTitle }</label>
                                 </div>
-                                
-                            	<label id="alongPrice">${ basket.b_price }원</label>
+                            	<label id="alongPrice">${ bookPrice }원</label>
                         </div>
+                        <input type="hidden" value="${ memNum } " name="memNo">
+                        <input type="hidden" value="${ bookNo }" name="bookNo">
                 <br>
             </div>
-		</c:forEach> 
 
 
 
             
         </div>
         <div id="basket_Right">
-        		<form action="MethodOfPayment.pay">
+        		<form action="DirectMethodOfPayment.pay">
                 <div id="Right_top">
-                <label class="selectBookBox">총 <label id="allBookCount"></label>권을 선택하셧습니다.</label>
-                <label class="priceBox" id="AllPrice"><label>총 상품가격 </label><label class="AllPrice"></label>원</label>
-                <label class="priceBox"><label>결제가격</label><label class="AllPrice"></label>원</label>
+                <label class="selectBookBox">총 1권을 선택하셧습니다.</label>
+                <label class="priceBox" id="AllPrice"><label>총 상품가격 </label>${ bookPrice }원</label>
+                <label class="priceBox"><label>결제가격</label>${ bookPrice }원</label>
                 <hr>
                 <label class="selectBookBox"> 결제수단</label>
                 <label class="priceBox2"><input type="radio" name="pay" value="Mutong">무통장입금</label>
                 <label class="priceBox2"><input type="radio" name="pay" value="Sinyong">신용카드</label>
                 <label class="priceBox2"><input type="radio" name="pay" value="Mileage">마일리지</label>
+                <input type="hidden" value="${ memNum } " name="memNum">
+                <input type="hidden" value="${ bookNo }" name="bookNo">
+                <input type="hidden" value="${ bookPrice }" name="bookPrice">
                 
             </div>
             	
-                <button id="Right_bot" onclick="location.href='fianlPayment.pay'">결제하기</button>
+                <button id="Right_bot">결제하기</button>
                 </form>
             </div>
       </div>
@@ -424,21 +424,13 @@
 	    
 	    var allpriceText = 0;
 	    
-		<c:forEach items="${ BasketInfo }" var="basket">
 		
-		allprice.push("${ basket.b_price }");
-		allBook.push("${ basket.b_title }");
-		
-		bookCount += 1;
-		</c:forEach>
 		
 		
 		
 		for(var i = 0; i < allprice.length; i++){
 			allpriceText += parseInt(allprice[i])
 		}
-		
-		console.log("allpriceText" + allpriceText);
 		
 		$(document).ready(function(){
 			$('#allBookCount').text(bookCount);

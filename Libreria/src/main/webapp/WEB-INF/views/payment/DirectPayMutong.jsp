@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -163,7 +164,7 @@
         </div>
         <div id="bottomBar" class="lineBar">
 
-                <button id="nextBtn" onclick ="clearPayment()">다음</button>
+                <button id="nextBtn">다음</button>
         </div>
 
 
@@ -193,9 +194,6 @@
             </div>
         </div>
 
-		<c:forEach items="${ BasketInfo }" var="basket">
-             <input type="hidden" id="memNum" value="${ basket.mem_no }">
-		</c:forEach>
 		
         <div id="botBox">
                 <div id="payerName">
@@ -209,46 +207,20 @@
     </section>
 </body>
 <script>
-	
-var allprice = [];
-var allBook = [];
-var checkItem = [];
 
-var allpriceText = 0;
-
-var memNum = document.getElementById('memNum').value;
-var mem_no = [];
-	 
-mem_no.push(memNum);
-
-<c:forEach items="${ BasketInfo }" var="basket">
-
-checkItem.push("${ basket.b_no }");
-allprice.push("${ basket.b_price }");
-allBook.push("${ basket.b_title }");
-
-</c:forEach>
-
-
-for(var i = 0; i < allprice.length; i++){
-	allpriceText += parseInt(allprice[i])
-}
-
-$(document).ready(function(){
-	$('#allBookCount').text(bookCount);
-	$('.AllPrice').text(allpriceText);
-});
 
 var buyLoot = "${pay}";
 $('#nextBtn').on('click',function(){
 	$.ajax({
-		url:'clearPayment.pay',
-		data:{'checkItem[]':checkItem , 'mem_no[]':mem_no , 'allprice[]':allprice , 'buyLoot': buyLoot},
+		url:'DirectClearPayment.pay',
+		data:{'memNum': "${memNum}" , 'bookNo': "${bookNo}" , 'bookPrice': "${bookPrice}" , 'pay':"${pay}" , 'UserNum' : "${ User.mem_no }"},
+		//type:"get",
 		traditional : true,
 		success:function(data){
 			if(data == "success"){
 				alert("결제완료");
 				location.href="/libreria";
+				
 			}
 		}
 	}) ;
