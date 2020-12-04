@@ -11,7 +11,9 @@ public class Review {
 	//view를 위한 변수 추가;
 	private String mem_name;
 	private int mem_no;
-	
+	public Review() {
+		
+	}
 	public Review(int rev_no, int b_no, int rev_star, String rev_content, Date rev_date, String mem_name, int mem_no) {
 		super();
 		this.rev_no = rev_no;
@@ -23,8 +25,16 @@ public class Review {
 		this.mem_no = mem_no;
 	}
 	
-	
-	
+
+
+	public Review(int rev_no, String rev_content) {
+		super();
+		this.rev_no = rev_no;
+		this.rev_content = rev_content;
+	}
+
+
+
 	public int getRev_no() {
 		return rev_no;
 	}

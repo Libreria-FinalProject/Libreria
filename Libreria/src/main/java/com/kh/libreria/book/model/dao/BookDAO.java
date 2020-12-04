@@ -2,13 +2,16 @@ package com.kh.libreria.book.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
+import com.kh.libreria.book.model.vo.BookSort;
 import com.kh.libreria.book.model.vo.BookSubCategory;
 import com.kh.libreria.book.model.vo.Review;
+import com.kh.libreria.common.PageInfo;
 
 @Repository("bDAO")
 public class BookDAO {
@@ -27,16 +30,13 @@ public class BookDAO {
 
 	public ArrayList<Book> getBookPopList(SqlSessionTemplate sqlSession, int bcf_no) {
 		return (ArrayList)sqlSession.selectList("bookMapper.getBookPopList",bcf_no);
-				
 	}
 
 	public ArrayList<Book> getBookListsc(SqlSessionTemplate sqlSession, int bc_no) {
-		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("bookMapper.getBookPopListsc",bc_no);
+		return (ArrayList)sqlSession.selectList("bookMapper.getBookListsc",bc_no);
 	}
 
 	public ArrayList<Book> getBookPopListsc(SqlSessionTemplate sqlSession, int bc_no) {
-		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("bookMapper.getBookPopListsc",bc_no);
 	}
 
@@ -45,8 +45,65 @@ public class BookDAO {
 	}
 
 	public ArrayList<Review> getReivewList(SqlSessionTemplate sqlSession, int b_no) {
-	
 		return (ArrayList)sqlSession.selectList("bookMapper.getReivewList",b_no);
+	}
+
+	public int updateReview(SqlSessionTemplate sqlSession, Review r) {
+		return sqlSession.update("bookMapper.updateReview",r);
+	}
+
+	public int reviewDelete(SqlSessionTemplate sqlSession, int rev_no) {
+		return sqlSession.update("bookMapper.reviewDelete",rev_no);
+	}
+
+	public int reviewInsert(SqlSessionTemplate sqlSession, Review review) {
+		return sqlSession.insert("bookMapper.reviewInsert",review);
+	}
+
+	public ArrayList<Review> getReivewListSortLastest(SqlSessionTemplate sqlSession, int b_no) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("bookMapper.getReivewListSortLastest",b_no);
+	}
+
+	public ArrayList<Review> getReviewSortStarH(SqlSessionTemplate sqlSession, int b_no) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("bookMapper.getReviewSortStarH",b_no);
+	}
+
+	public ArrayList<Review> getReviewSortStarL(SqlSessionTemplate sqlSession, int b_no) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("bookMapper.getReviewSortStarL",b_no);
+	}
+
+	public int getListCount(SqlSessionTemplate sqlSession, int bcf_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("bookMapper.getListCount",bcf_no);
+	}
+
+	public int getListCountC(SqlSessionTemplate sqlSession, int bc_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("bookMapper.getListCountC",bc_no);
+	}
+
+	public ArrayList<Book> selectBookList(SqlSessionTemplate sqlSession, PageInfo pi,int bcf_no,int std) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		BookSort bs = new BookSort();
+		bs.setBcf_no(bcf_no);
+		bs.setStd(std);
+		
+		return (ArrayList)sqlSession.selectList("bookMapper.selectBookList",bs,rowBounds);
+	}
+
+	public ArrayList<Book> selectBookListC(SqlSessionTemplate sqlSession, PageInfo pi, int bc_no,int std) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		BookSort bs = new BookSort();
+		bs.setBc_no(bc_no);
+		bs.setStd(std);
+		
+		return (ArrayList)sqlSession.selectList("bookMapper.selectBookListC",bs,rowBounds);
 	}
 
 	

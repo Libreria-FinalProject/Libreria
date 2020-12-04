@@ -22,6 +22,8 @@
 <c:import url="../common/header.jsp"></c:import>
 
 <section>
+	<input type="hidden" id="recent_bc" value="${ recent_bc }"/>
+	<input type="hidden" id="recent_bcf" value="${ recent_bcf }"/>
       <article>
       	<div id="nav_cate">
       		<ul id="book_cate_ul">
@@ -65,37 +67,9 @@
       				<li id="book_cate_sel_best_b">베스트셀러</li>
       				<li id="book_cate_sel_all_b">전체</li>
       			</ul>
-      			
       		</div>
-      		
-      		
       		<script>
-      			$(function(){
-      				$('#book_cate_sel_home').click(function(){
-      					location.href = "";
-      				});
-					$('#book_cate_sel_new_b').click(function(){
-						location.href = "";
-      				});
-					$('#book_cate_sel_best_b').click(function(){
-						location.href = "";
-      				});
-					$('#book_cate_sel_all_b').click(function(){
-						location.href = "";
-      				});
-      			});
-      			
-      			
-      		
-      		
-      		
-      		
-      		
-      		
       		</script>
-      		
-      		
-      		
       		<div id="menu_bar" class="bot_mar">
       			<div id="content_sub_cate_sel"></div>
       		</div>
@@ -121,16 +95,6 @@
 						<p class="book_writer_cl">${bList.bwp_name }</p>
 						<p class="book_score_cl">평점 : 
 						
-				<%-- 		<c:set var="avg" value="${ bList.avg_star }"/>
-						<fmt:parseNumber var="test" value="${avg}" integerOnly="true"/> --%>
-						
-<!-- 						<script>
-								$(function(){
-									console.log( ${avg});
-								 	console.log( ${test}); 
-								});
-						</script>  -->
-						
 						<c:forEach var="i" begin="1" end="5">
 							<c:if test="${bList.avg_star >= i }">
 								<img src="/libreria/resources/images/Product_review_star_avg.png" class="review_list_buyer_star">
@@ -145,31 +109,7 @@
 									</c:otherwise>
 								</c:choose>
 							</c:if>
-							
-					<%-- <c:if test="${ bList.avg_star >= i }">
-							★
-							<c:set var="i" value="${ i+1 }"/>
-								<c:if test="${ test == i }">
-									<c:if test="${bList.avg_star == i}">
-										★
-									</c:if>
-									<c:if test="${ bList.avg_star != i }">
-										반
-									</c:if>
-								</c:if>
-							
-							</c:if>
-							
-							<c:if test="${ bList.avg_star < i }">
-							
-							☆
-							
-							</c:if> --%>
-						
-			
-							
-						
-						
+
 						</c:forEach>
 						<!-- ★☆☆☆☆☆ -->
 						</p>
@@ -242,7 +182,7 @@
       		$(function(){
       			
 				$('#bc_no').parent().parent().parent().parent().find('.bfc_class').css({'background': '#1f8ce6','border-radius':'2px','color': '#fff'});								
-      			
+      			$('#book_cate_sel_home').css({"font-weight":"800","color":"black"});
       			var bc_no = null;			
       			
  				$('.sub_book_cate').click(function(){
@@ -268,7 +208,36 @@
       			
       		})
       		
-      		
+      		$(function(){
+      				$('#book_cate_sel_home').click(function(){
+      					var bc_no = $('#recent_bc').val();
+						var bcf_no = $('#recent_bcf').val();
+      					
+						if(bc_no == 0){
+	      					location.href="bookCateList.bo?bcf_no="+bcf_no;
+	      				}else{
+	      					location.href="bookCateList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no;
+	      				}
+      					
+      				});
+					$('#book_cate_sel_new_b').click(function(){
+						location.href = "";
+      				});
+					$('#book_cate_sel_best_b').click(function(){
+						location.href = "";
+      				});
+					$('#book_cate_sel_all_b').click(function(){
+						
+						var bc_no = $('#recent_bc').val();
+						var bcf_no = $('#recent_bcf').val();
+						
+						if(bc_no == 0){
+							location.href = "bookCateSelAllList.bo?bcf_no="+bcf_no+"&sortTypeDetail="+1;
+						}else{
+							location.href = "bookCateSelAllList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no+"&sortTypeDetail="+1;
+						}
+      				});
+      			});
       		
       	
       	</script>

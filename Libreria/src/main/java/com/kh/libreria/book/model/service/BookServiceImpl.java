@@ -11,6 +11,7 @@ import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
 import com.kh.libreria.book.model.vo.BookSubCategory;
 import com.kh.libreria.book.model.vo.Review;
+import com.kh.libreria.common.PageInfo;
 
 @Service("bService")
 public class BookServiceImpl  implements BookService  {
@@ -39,7 +40,7 @@ public class BookServiceImpl  implements BookService  {
 		// TODO Auto-generated method stub
 		return bDAO.getBookPopList(sqlSession,bcf_no);
 	}
-	 
+
 	 @Override
 	public ArrayList<BookSubCategory> getBookSubCateList(int bcf_no) {
 		// TODO Auto-generated method stub
@@ -68,5 +69,57 @@ public class BookServiceImpl  implements BookService  {
 		return bDAO.getReivewList(sqlSession,b_no);
 	}
 	
+	@Override
+	public int updateReview(Review r) {
+		// TODO Auto-generated method stub
+		return bDAO.updateReview(sqlSession,r);
+	}
+	@Override
+	public int reviewDelete(int rev_no) {
+		// TODO Auto-generated method stub
+		return bDAO.reviewDelete(sqlSession,rev_no);
+	}
+	
+	@Override
+	public int reviewInsert(Review review) {
+		// TODO Auto-generated method stub
+		return bDAO.reviewInsert(sqlSession,review);
+	}
+	@Override
+	public ArrayList<Review> getReivewListSortLastest(int b_no) {
+		// TODO Auto-generated method stub
+		return bDAO.getReivewListSortLastest(sqlSession,b_no);
+	}
+	@Override
+	public ArrayList<Review> getReviewSortStarH(int b_no) {
+		// TODO Auto-generated method stub
+		return  bDAO.getReviewSortStarH(sqlSession,b_no);
+	}
+	@Override
+	public ArrayList<Review> getReviewSortStarL(int b_no) {
+		// TODO Auto-generated method stub
+		return  bDAO.getReviewSortStarL(sqlSession,b_no);
+	}
+	@Override
+	public int getListCount(int bcf_no) {
+		// TODO Auto-generated method stub
+		return bDAO.getListCount(sqlSession,bcf_no);
+	}
+	@Override
+	public int getListCountC(int bc_no) {
+		// TODO Auto-generated method stub
+		return bDAO.getListCountC(sqlSession,bc_no);
+	}
+	
+	@Override
+	public ArrayList<Book> selectBookList(PageInfo pi,int bcf_no,int std) {
+		// TODO Auto-generated method stub
+		return bDAO.selectBookList(sqlSession,pi,bcf_no,std);
+	}
+	@Override
+	public ArrayList<Book> selectBookListC(PageInfo pi, int bc_no,int std) {
+		// TODO Auto-generated method stub
+		return bDAO.selectBookListC(sqlSession,pi,bc_no,std);
+	}
 	
 }

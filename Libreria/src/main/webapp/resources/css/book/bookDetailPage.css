@@ -236,6 +236,14 @@
 		display: inline-block;
 	
 	}
+	.review_avg_bar{
+		height: 10px;
+		border: none;
+		background:#738096;
+		float:left;
+		display: inline-block;
+	
+	}
 	.review_input_ul{
 		list-style: none;
 	}
@@ -423,6 +431,32 @@
 		height: 15px; 
 		margin-right: 5px;
 	}
+	.review_list_reply_delete_btn{
+		width: 80px;
+		height: 30px;
+		color: #808991;
+	    background: #fff;
+	    border: 1px solid #d1d5d9;
+	    border-radius: 4px;
+	    font-weight: 700;
+	    display: inline-block;
+	    text-align: center;
+	    cursor: pointer;
+		
+	}
+	.review_list_reply_update_btn{
+		width: 80px;
+		height: 30px;
+		color: #808991;
+	    background: #fff;
+	    border: 1px solid #d1d5d9;
+	    border-radius: 4px;
+	    font-weight: 700;
+	    display: inline-block;
+	    text-align: center;
+	    cursor: pointer;
+		
+	}
 	.review_list_reply_btn{
 		width: 80px;
 		height: 30px;
@@ -457,5 +491,11 @@
     	cursor: pointer;
     	outline:0;
 		
+	}
+	.review_content_text{
+		font-size: 13px;
+   		color: #212529;
+   		border:0px;
+	
 	}
 	

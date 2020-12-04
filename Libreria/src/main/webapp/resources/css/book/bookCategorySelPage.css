@@ -53,21 +53,23 @@
    }
    
    /*-----*/
-   .bfc_class:hover {
+    .bfc_class:hover {
    	background: #1f8ce6;
    	color: #fff;
     font-weight: bold;
     cursor: pointer;
    }
    
-  /*  #book_cate_ul li:hover {
+     /*  #book_cate_ul li:hover {
+       background: #1f8ce6;
+    color: #fff;} */
     
-    border-radius:2px;
-    color: #fff;
-    cursor: pointer;
-    } */
-    
- 
+ /*   .main_book_cate li:hover {
+   	color: #1f8ce6;
+    font-weight: bold;
+   } */
+   
+
     #content_div{
     	display: inline-block;
     	margin-left: 35px;
@@ -104,12 +106,15 @@
     .bot_mar{
     	margin-bottom:10px;
     }
+    .sub_menu_bot_mar{
+    	margin-bottom:5px;
+    }
     #sub_menu_sel{
     	font-weight:bold;
    	 	font-size:17px;
    	 	display: inline-block;
     }
-    .sub_menu_hr{
+/*     .sub_menu_hr{
     	display: inline-block;
     	width:550px;
     	
@@ -128,13 +133,41 @@
    		letter-spacing:-1px;
    		font-weight:bold;
    	
+   	} */
+   	.bfc_class{
+    	position: relative;
+    	top: 2px;
+    	width:173px;
+    	height:25px;
+    	display:inline-block;
+    	line-height: 1.5em;
+    	
+    	
    	}
+   	
+   	#content_sub_cate_sel{
+   		display: inline-block;
+   		width: 20px;
+   		height: 5px;
+   		background: rgb(94, 107, 159);
+   		position: relative;
+   		bottom:15px;
+   		border-radius:5px;
+   		/*
+   			옆 조정 left로 jquery 줄듯 
+   			
+   		*/
+   		
+   	}
+   	
+   	
+   	
    	
    	.book_img{
    		background:gray;
    		display:inline-block;
    		width:120px;
-   		height:190px;
+   		height:180px;
    		
    		
    	}
@@ -147,9 +180,8 @@
    	     white-space: normal;
   		 max-height: 40px;
    		 overflow: hidden;
-   		 word-break: break-all;
-   		 min-height: 20px;
-   		 max-height: 40px;
+   		word-break: break-all;
+   		
    	
    	}
    	.book_writer_cl{
@@ -161,6 +193,12 @@
    	
    	
    	}
+  
+   	
+   
+   
+   	
+   	
    	.book_thumnail{
    		    display: block;
     	left: 0;
@@ -176,21 +214,8 @@
    	
    	}
    	
-   
-   	#content_sub_cate_sel{
-   		display: inline-block;
-   		width: 20px;
-   		height: 5px;
-   		background: rgb(94, 107, 159);
-   		position: relative;
-   		bottom:15px;
-   		border-radius:5px;
-   		/*
-   			옆 조정 left로 jquery 줄듯 
-   			
-   		*/
-   		
-   	}
+   	
+   	
    	.book_wrapper{
     width: 19%;
     height: 280px;
@@ -213,28 +238,6 @@
 	   	font-size: 12px;
 	    color: #666;
    	}
-   	.book_info_cl{
-   		margin-top:5px;
-   		position: relative;
-   		left:2px;
-   		margin-bottom:10px;
-   		height: 80px;
-   	}
-   	.bfc_class{
-    	position: relative;
-    	top: 2px;
-    	width:173px;
-    	height:25px;
-    	display:inline-block;
-    	line-height: 1.5em;
-    	
-    	
-   	}
-   	.selected_sub_cate_cl{
-   		color: #1f8ce6;
-   		font-weight: bold;
-   	
-   	}
    	.review_list_buyer_star{
 		    width: 15px;
     		height: 15px;
@@ -245,4 +248,66 @@
 	.book_price_cl_value{
 		color:#1f8ce6;
 		font-weight: bold;
+	}
+   	.book_info_cl{
+   		margin-top:5px;
+   		position: relative;
+   		left:2px;
+   		margin-bottom:10px;
+   	}
+   	#sub_menu_sel>ul{
+   		list-style: none;
+   	}
+   	#sub_menu_sel>ul>li{
+   		display: inline;
+    	letter-spacing: -1px;
+    	color:gray;
+    	margin-right:3px;
+   		/* font-weight:bold */;
+   	 	font-size:13px;
+   	}
+   	
+   	.paging_number{
+   		list-style: none;
+   		text-align: center;
+   	}
+   	.paging_number>li{
+   		display: inline;
+    	letter-spacing: -1px;
+    	color:black;
+    	border:0px;
+    	margin-left:-3px;
+   	}
+   	
+   	.paging_num_btn{
+   		width: 42px;
+   		height: 32px;
+   		border: 1px solid #d1d5d9;
+   		background: white;
+   		font-weight: 700;
+   		color:#808991;
+   	}
+   	.paging_num_btn{
+   		margin-left: 1px;	
+   	}
+   	#paging_next_btn{
+   		margin-left:10px;
+   	}
+   	#paging_before_btn{
+   		margin-right:10px;
+   	}
+  	.selected_sub_cate_cl{
+   		color: #1f8ce6;
+   		font-weight: bold;
+   	
+   	}
+   	.paging_num_btn_sel{
+   		width: 42px;
+   		height: 32px;
+   		border: 1px solid #d1d5d9;
+   		background: white;
+   		font-weight: 1000;
+   		color:#1f8ce6;
+   		
+   	
 	}

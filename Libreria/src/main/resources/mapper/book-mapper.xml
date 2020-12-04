@@ -8,44 +8,59 @@
 	
 	<select id="getBookList" resultType="Book">
 		<![CDATA[
-		select * 
-		from bcp
-		where bcf_no = #{bcf_no} and rownum <= 10
-		order by b_pub_date desc
+		select *       
+		 from(select *
+				from bcp
+				where bcf_no = #{bcf_no}
+				order by b_pub_date desc)
+        where rownum <= 10
+		
 		 ]]>
 	</select>
 	
 	<select id="getBookPopList" resultType="Book">
 		<![CDATA[
-		select * 
-		from bcp
-		where bcf_no = #{bcf_no} and rownum <= 10
-		order by b_cnt desc
+		 select *       
+		 from(select *
+				from bcp
+				where bcf_no = #{bcf_no}
+				order by b_cnt desc)
+        where rownum <= 10
 		 ]]>
 	</select>
+	
+	
 	<select id="getBookSubCateList" resultType="BSC">
 		select * 
 		from book_category
 		where bcf_no = #{bcf_no}
 	
 	</select>
+	
+	
 	<select id="getBookPopListsc"  resultType="Book">
 		<![CDATA[
-		select * 
-		from bcp
-		where bc_no = #{bc_no} and rownum <= 10
-		order by b_pub_date desc
+		select *       
+		 from(select *
+				from bcp
+				where bc_no = #{bc_no}
+				order by b_cnt desc)
+        where rownum <= 10
+		
 		]]>
 	</select>
 	
 	<select id="getBookListsc"  resultType="Book">
 		<![CDATA[
-		select * 
-		from bcp
-		where bc_no = #{bc_no} and rownum <= 10
-		order by b_pub_date desc
+		select *       
+		 from(select *
+				from bcp
+				where bc_no = #{bc_no}
+				order by b_pub_date desc)
+        where rownum <= 10
 		]]>
 	</select>
+	
 	<select id="getBookDetail" resultType="Book">
 		select * 
 		from bdp
@@ -57,5 +72,104 @@
 		where b_no = #{b_no} 
 	
 	</select>
+	<update id="updateReview">
+		update review
+		set rev_content = #{ rev_content }
+		where rev_no = #{ rev_no }
 	
+	</update>
+	<update id="reviewDelete">
+		update review
+		set rev_delete = 'Y'
+		where rev_no = #{rev_no}
+	</update>
+	<insert id="reviewInsert">
+		insert into review 
+		values(SEQ_REV_NO.NEXTVAL,#{b_no},#{rev_star},#{rev_content},default,#{mem_no},sysdate)
+	
+	
+	</insert>
+	<select id="getReivewListSortLastest" resultType="Review">
+		select *
+		from rlist 
+		where b_no = #{b_no} 
+		order by rev_date desc
+	
+	</select>
+	<select id="getReviewSortStarL" resultType="Review">
+		select *
+		from rlist 
+		where b_no = #{b_no} 
+		order by rev_star asc,rev_date asc
+	
+	</select>
+	<select id="getReviewSortStarH" resultType="Review">
+		select *
+		from rlist 
+		where b_no = #{b_no} 
+		order by rev_star desc,rev_date asc
+	
+	</select>
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from bcp
+		where bcf_no = #{bcf_no}
+	</select>
+	
+	<select id="getListCountC" resultType="_int">
+		select count(*)
+		from bcp
+		where bc_no =#{bc_no}
+		
+	</select>
+	<select id="selectBookList" resultType="Book">
+		select *
+		from bcp
+		where bcf_no = #{bcf_no}
+		order 
+		<choose>
+			<when test="std ==1">
+				by b_cnt desc
+			</when>
+			<when test="std ==2">
+				by b_pub_date desc
+			</when>
+			<when test="std ==3">
+				by  avg_star desc
+			</when>
+			<when test="std ==4">
+				by  avg_people desc
+			</when>
+			<otherwise>
+				by avg_star desc
+			</otherwise>
+			
+		</choose> 
+		
+	</select>
+	<select id="selectBookListC" resultType="Book">
+		select *
+		from bcp
+		where bc_no = #{bc_no}
+		order 
+		<choose>
+			<when test="std ==1">
+				by b_cnt desc
+			</when>
+			<when test="std ==2">
+				by b_pub_date desc
+			</when>
+			<when test="std ==3">
+				by  avg_star desc
+			</when>
+			<when test="std ==4">
+				by  avg_people desc
+			</when>
+			<otherwise>
+				by avg_star desc
+			</otherwise>
+			
+		</choose> 
+		
+	</select>
 </mapper>
