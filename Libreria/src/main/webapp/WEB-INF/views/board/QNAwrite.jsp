@@ -5,20 +5,20 @@
 <html>
 <head>
 <style type="text/css">
-  #notice_container{ 
+  #qna_container{ 
 		margin-top: 30px;
 	}
 	
-	#notice_container #small_title{
+	#qna_container #small_title{
 		color: #9ea7ad;
 		font-size: 13px;
 	}
 	
-	#notice_header{
+	#qna_header{
 		display: flex;
 		margin-top: 30px;
 	}
-   .notice_title{
+   .qna_title{
   	   flex: 7;
       font-size:32px;
       font-weight: bold;
@@ -27,7 +27,7 @@
     #btn_div{
     	text-align: center;
     }
-    #updateBtn{
+    #insertBtn{
    		width: 150px;
    		height: 30px;
 		cursor: pointer;
@@ -39,7 +39,7 @@
 		font-weight: bold;
    }
 
-   .notice_body{
+   .qna_body{
       padding:10px;
       font-size:16px;
       list-style: none;
@@ -47,14 +47,14 @@
       width: 700px;
    }
    
-   .notice_body label{
+   .qna_body label{
    		display: block;
    		font-size: 15px; 
    		margin-top: 30px;
    }
    
-   .notice_body input,
-   .notice_body textarea,
+   .qna_body input,
+   .qna_body textarea,
    #file_sub_dive{
    		display: block;
    		border: 1px solid #d1d1d1;
@@ -64,10 +64,10 @@
    		margin: 10px 0px;
    		padding: 5px;
    }
-    .notice_body textarea{
+    .qna_body textarea{
     	height: 240px !important;
     }
-  	.notice_body input[type=file]{
+  	.qna_body input[type=file]{
   		opacity: 0;
   		margin: 0 !important;
   		position: absolute;
@@ -94,23 +94,23 @@
   		line-height: 3em;
   	}
    
-    .notice_list li{
+    .qna_list li{
    		display: flex;
     	border-top: 1px solid #e6e8eb;
     	padding: 20px 20px 20px 0;
     	color: #333333;
     	text-align: right;
     }
-    .notice_list a{
+    .qna_list a{
     	flex: 1;
     	text-align: left;
     }
     
-    .notice_list span{
+    .qna_list span{
     	padding: 0 15px;
     }
 
-   .notice_list_font{
+   .qna_list_font{
       font-size: 20px;   
       font-weight: bold;
    }
@@ -139,16 +139,6 @@
 	    margin-right: 20px;
 	    display: inline-block;
    }
-   
-    .x_icon{
-  	display: inline-block;
-  	width:10px;
-  	height: 10px;
-  	background-image: url("resources/images/x_icon.png");
-  	background-size: contain;
-  	margin-left: 10px;
-  	cursor: pointer;
-  }
   
    section a:link { color: #333333; text-decoration: none;}
    section a:visited { color: gray; text-decoration: none;}
@@ -158,69 +148,50 @@
 <body>
 <c:import url="../common/header.jsp"></c:import>
 <section>
-<div id="notice_container">
-         <div id="small_title">LIBRERIA 고객센터 > 공지사항</div>
-         <div id="notice_header"><div class="notice_title">LIBRERIA 공지사항</div></div>
-         <form method="post" action="NoticeUpdate.bd" enctype="Multipart/form-data">
-         	<input type="hidden" name="bo_no" value="${notice.bo_no}">
-         	<input type="hidden" name="cate_no" value="3">
-	         <div class="notice_body">
-	         	<label>제목<span class="red-dot">*</span></label><input type="text" name="bo_title" id="bo_title" value="${notice.bo_title}">
-	         	<label>공지사항 내용<span class="red-dot">*</span></label><textarea style="resize: none" name="bo_content" id="bo_content">${notice.bo_content }</textarea>
+<div id="qna_container">
+         <div id="small_title">LIBRERIA 고객센터 > Q&A</div>
+         <div id="qna_header"><div class="qna_title">LIBRERIA 문의</div></div>
+         <form method="post" action="QNAWrite.bd" enctype="Multipart/form-data">
+         	<input type="hidden" name="mem_no" value="${loginUser.mem_no}">
+         	<input type="hidden" name="cate_no" value="2">
+	         <div class="qna_body">
+	         	<label>제목<span class="red-dot">*</span></label><input type="text" name="bo_title" id="bo_title">
+	         	<label>문의내용<span class="red-dot">*</span></label><textarea style="resize: none" name="bo_content" id="bo_content"></textarea>
 	         	<div id="file_div"><label>첨부파일<span class="red-dot">*</span></label>
 	         		<div id="file_sub_div"><input type="file" name="uploadFile" accept=".jpg,.png"><span>파일 업로드</span></div>
-	         		<div class="upload_file_name"></div>  	
-	         		<input type="hidden" id="delim_file" name="delim_file">
-	         		<input type="hidden" id="origin_filename">
+	         		<div class="upload_file_name"><div id="clip_icon"></div></div>  	
 	        	 </div>
-	        	 <div id="btn_div"><button type="submit" onclick="return validate();" id="updateBtn">수정</button></div>
+	        	 <div id="btn_div"><button type="submit" onclick="return validate();" id="insertBtn">제출</button></div>
 	         </div>
          </form>
 </div>
    <script type="text/javascript">
-   		$(function(){
-   			var filename = "${img.origin_name}";
-   			$('#delim_file').val(0);
-   			if(filename!=""){
-   				$('#origin_filename').val(filename);
-   				$(".upload_file_name").html("<div id='clip_icon'></div>"+filename+"<div class='x_icon'></div>");
-   				$('.upload_file_name').css("display","block");
-   			}
-   		});
-   
    		$('input[type=file]').on('change',function(){
 	   		 if(window.FileReader){
 	   	      var filename = $(this)[0].files[0].name;
 	   	    } else {
 	   	      var filename = $(this).val().split('/').pop().split('\\').pop();
 	   	    }
-	   		$(".upload_file_name").html("<div id='clip_icon'></div>"+filename+"<div class='x_icon'></div>");
+	   		$(".upload_file_name").html("<div id='clip_icon'></div>"+filename);
 	   		$(".upload_file_name").css("display","block");
-	   		if($('#origin_filename').val() == ""){
-		   		$('#delim_file').val(2);   			
-	   		}else{
-		   		$('#delim_file').val(1);   				   			
-	   		}
-   		});
-   		
-   		$(document).on("click",".x_icon",function(){
-   			$('input[type=file]').val("");
-   			$('#delim_file').val(-1);  			
-   			$(".upload_file_name").css("display","none");
    		});
    		
    		function validate(){
    			if($.trim($('#bo_title').val()).length==0){
    				swal("","제목을 입력해주세요.","info")
 				.then((ok)=>{
-					$('#bo_title').focus();
+					if(ok){
+						$('#bo_title').focus();
+					}
 				});
 				return false;
    			}
    			if($.trim($('#bo_content').val()).length==0){
    				swal("","내용을 입력해주세요.","info")
 				.then((ok)=>{
-					$('#bo_content').focus();
+					if(ok){
+						$('#bo_content').focus();
+					}
 				});
 				return false;
    			}

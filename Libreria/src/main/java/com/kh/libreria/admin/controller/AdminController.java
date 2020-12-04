@@ -9,13 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.libreria.admin.model.service.AdminService;
 import com.kh.libreria.admin.model.service.AdminServiceImpl;
+import com.kh.libreria.admin.model.vo.SellData;
+import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.common.Pagination;
 import com.kh.libreria.member.model.vo.Member;
+import com.sun.javafx.sg.prism.NGShape.Mode;
 
 @Controller
 public class AdminController {
@@ -42,10 +46,49 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping("buyBook.ad")
-	public String adminBuyBook() {
-		return "adminBuyBook";
+	@RequestMapping("buyBookList.ad")
+	public ModelAndView adminBuyBookList(@RequestParam(value="page",required=false) Integer page, ModelAndView mv) {
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage=page;
+		}
+		int listCount = adminService.getBuyBookListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Book> bookList =adminService.adminBuyBookList(pi);  
+		mv.addObject("bookList", bookList);
+		mv.addObject("pi", pi);
+		mv.setViewName("adminBuyBook");
+		return mv;
 	}
+	
+	@RequestMapping("getSellDataInfo.ad")
+	@ResponseBody
+	public SellData getSellDataInfo(@RequestParam("sell_num") int sell_num,ModelAndView mv) {
+		SellData sellData = adminService.getSellDataInfo(sell_num);
+		return sellData;
+	}
+	
+	@RequestMapping("buyBook.ad")
+	public void admninBuyBook(SellData sd, HttpServletResponse response) throws IOException {
+		int result = adminService.decideSell(sd.getSell_num()); // 구매확정날짜 update
+		if(result>0) {
+			int result2 = adminService.updateBookStock(sd.getB_no()); // 서적 재고 +1 update 
+			if(result2>0) {
+				int result3 = adminService.updateMemberMoney(sd);
+				if(result3>0) {
+					response.getWriter().print("1"); // 모든 작업성공;
+				}else {
+					response.getWriter().print("0");
+				}
+			}else {
+				response.getWriter().print("0");
+			}
+		}else {
+			response.getWriter().print("0");
+		}		
+	}
+	
 	
 	@RequestMapping("insertBook.ad")
 	public String adminInsertBook() {

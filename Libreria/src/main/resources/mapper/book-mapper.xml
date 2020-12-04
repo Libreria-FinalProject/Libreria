@@ -70,13 +70,12 @@
 		select *
 		from rlist 
 		where b_no = #{b_no} 
-	
 	</select>
+	
 	<update id="updateReview">
 		update review
 		set rev_content = #{ rev_content }
 		where rev_no = #{ rev_no }
-	
 	</update>
 	<update id="reviewDelete">
 		update review
@@ -86,8 +85,6 @@
 	<insert id="reviewInsert">
 		insert into review 
 		values(SEQ_REV_NO.NEXTVAL,#{b_no},#{rev_star},#{rev_content},default,#{mem_no},sysdate)
-	
-	
 	</insert>
 	<select id="getReivewListSortLastest" resultType="Review">
 		select *
@@ -172,4 +169,51 @@
 		</choose> 
 		
 	</select>
+	
+	<!-- KH -->
+	<select id="searchBookList" resultType="Book">
+	<![CDATA[
+		select * 
+		from bdp
+		where b_title like #{b_title}||'%'
+		and rownum<=5
+		]]>
+	</select>
+	
+	<insert id="sellBook">
+		insert into sell_data
+		values(seq_sell_num.nextval, sysdate, null, #{sell_money}, #{mem_no},#{b_no})
+	</insert>
+	
+	<select id="adminBuyBookList" resultType="SellData">
+		select *
+		from sell_data_joined
+		where sell_decide_date is null
+	</select>
+	
+	<select id="adminGetSellDataInfo" resultType="SellData">
+		select *
+		from sell_data_joined
+		where sell_num=#{sell_num}
+	</select>
+
+	<update id="adminDecideSell">
+		update sell_data
+		set sell_decide_date = sysdate
+		where sell_num = #{sell_num}
+	</update>
+	
+	<update id="adminUpdateBookStock">
+		update book
+		set b_stock = b_stock+1
+		where b_no = #{b_no}
+	</update>
+	
+	<select id="adminGetBuyBookListCount" resultType="_int">
+		select count(*)
+		from sell_data_joined
+		where sell_decide_date is null
+	</select>
+	<!-- KH -->
+	
 </mapper>

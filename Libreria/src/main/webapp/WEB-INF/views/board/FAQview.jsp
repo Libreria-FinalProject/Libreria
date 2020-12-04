@@ -1,188 +1,130 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Libreria</title>
 <style type="text/css">
-   @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
-   *{
-      margin: 0px;
-      padding: 0px;
-      font-family: 'Nanum Gothic';
-   }
-   section{
-      margin: 0 auto;
-      width:1000px;
-
-   }
-   #nav_container{
-      height: 170px;
-      background-color: rgb(94, 107, 159);
-      border: none;
-      border-radius: 0px;
-      vertical-align: middle;
-   }
-   #nav_body{
-   
-       padding-top: 40px;
-       width: 1000px;
-       margin: 0px auto;
-   }
-   #a_brand{
-      font-family: "Arial Black";
-      font-weight: bold;
-      font-size:33px;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-   }
-   #input_search{
-      margin-left: 15px;
-      padding: 6px 12px;
-       width: 300px;
-       height: 100%;
-       background: #fff;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       font-size: 14px;
-       vertical-align: super;
-   }
-   #div_head_btns{
-      display: inline;
-      margin-left: 285px;
-   }
-   .btn_head{
-      vertical-align: inherit;
-       background-color: rgb(60, 68, 101);
-       color:white;
-       border: none;
-       border-radius: 5px;
-       font-weight: bold;
-       font-size: 15px;
-       width: 90px;
-       height: 35px;   
-   }
-   .btn_head:hover{
-      cursor: pointer;
-   }
-   
-   #nav_menu{
-      height: 40px;
-      background-color: #ffffff;
-      margin-top: 43px;
-      border-bottom: 1px solid #e6e6e6;
-   }
-   #menu_ul{
-      width:1000px;
-      margin: 0 auto;
-   }
-   #menu_ul > li{
-      list-style: none;
-      float: left;
-      margin: 5px 30px 0px 30px;
-      font-size: 20px;
-      font-weight: bold;
-   }
-   #menu_li{
-      background-image: url("images/menu-symbol.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: 28px;
-       height: 26px;
-       margin: 5px 0px !important;
-   }
-   #footer_container{
-      background-color: rgb(48, 53, 56);
-      height:150px;
-      color: #ffffff;
-   }   
-   #footer_container > div{
-      margin: 0 auto;
-      padding-top: 50px;
-      width:1000px;
-      
-   }
-   
-   #footer_container > div >span {
-      padding: 10px;
-   }
-
+	#faq_container{
+		width: 950px;
+		margin-top: 30px;
+	}
+		
+	#faq_container #small_title{
+		color: #9ea7ad;
+		font-size: 13px;
+	}
+	
    .faq_title{
-       padding-top: 75px;
-       padding-bottom: 40px;
-       font-size: 35px;
-       font-weight: bold;
+       margin-top: 50px;
+      font-size:32px;
    }
 
    .faq_content{
+   	   margin-top : 30px;
+   	   margin-bottom: 30px;
        padding:10px;
        font-size: 15px;
+       color:#333333;
+       border-bottom: 1px solid #e6e8eb;
    }
 
    .faq_content > p {
        padding-bottom:10px;
        padding-top: 10px;
+       white-space: pre;
+	    line-height: 2em;
    } 
    .list_button{
-       padding:20px   
+       padding:20px;
+       display: flex;
    }
 
-   .back{
-       background-color:rgb(94, 107, 159);
-       color:white;
-       font-size:20px;
-       padding:5px;
+   .buttons{
+      	width:100px;
+		height: 40px;
+		cursor: pointer;
+		background-color: rgb(94, 107, 159);
+		color: #ffffff;
+		border: none;
+		border-radius: 4px;  
+		font-size: 16px;
+		font-weight: bold;
    }
-   a:link { color: black; text-decoration: none;}
-   a:visited { color: black; text-decoration: none;}
-   a:hover { color: black; text-decoration: none;}
+   .centerBtn{
+   		flex:3;
+
+   }
+   .rightBtn{
+   		flex:1;
+   		display: inline;
+   }
+
+  .faq_date{
+  	text-align: right;
+  	padding: 5px 0;
+  }
+   section a:link { color: black; text-decoration: none;}
+   section a:visited { color: black; text-decoration: none;}
+   section a:hover { color: black; text-decoration: none;}
 </style>
 </head>
 <body>
-   <nav class="" id="nav_container">
-         <div id="nav_body">
-            <a class="" href="#" id="a_brand">LIBRERIA</a>
-            <input type="text" id="input_search" placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä">
-            <div id="div_head_btns">
-               <button class="btn_head">È¸¿ø°¡ÀÔ</button>
-               <button class="btn_head">·Î±×ÀÎ</button>
-            </div>
-         </div>
-         <div id="nav_menu">
-            <ul id="menu_ul">
-               <li id="menu_li"></li>
-               <li>±¹³»µµ¼­</li>
-               <li>¿Ü±¹µµ¼­</li>
-               <li>Áß°íµµ¼­</li>
-               <li>°í°´¼¾ÅÍ</li>
-               <li>Àå¹Ù±¸´Ï</li>
-            </ul>
-         </div>
-   </nav>
+<c:import url="../common/header.jsp"></c:import>
    <section>
-       <div class="faq_header">
-        <h1 class="faq_title">
-            [FAQ] ¸¶ÀÏ¸®Áö »ç¿ë ¹æ¹ı¿¡ ´ëÇÏ¿©
-        </h1>  
-    </div>
-    <div class="faq_content">
-        <p>¸¶ÀÏ¸®Áö´Â ±¸¸Å ÇÏ½Ç ¶§ ¸¶´Ù ±¸¸Å ±İ¾×ÀÇ 1%°¡ Àû¸³ µË´Ï´Ù.</p>
-        <p>¸¶ÀÏ¸®Áö¸¦ ¸ğÀ¸¼Å¼­ Ã¥À» ±¸¸ÅÇÏ½Ã°Å³ª ´ë¿© ÇÏ½Ã´Â ¹æ¹ıÀ¸·Î »ç¿ëÀÌ °¡´ÉÇÏ½Ê´Ï´Ù.</p>
-        <p>¸¶ÀÏ¸®Áö¸¦ »ç¿ëÇÏ°íÀÚ ÇÏ½Ç ¶§´Â ±¸¸Å ¹× ´ë¿©½Ã °áÁ¦ È­¸é¿¡ ³ªÅ¸³ª´Â ¸¶ÀÏ¸®Áö »ç¿ë Ã¼Å©Ä­¿¡ ²À Ã¼Å©¸¦ ÇÏ½Å ÈÄ °áÁ¦¸¦ ÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.</p>
-        <p>°¨»çÇÕ´Ï´Ù.</p>
-    </div>
-    <div class="list_button" align="center">
-        <button class="back">¸ñ·ÏÀ¸·Î</button>
+   <div id="faq_container">
+  		<span id="small_title">LIBRERIA ê³ ê°ì„¼í„° > FAQ</span>
+	    <h1 class="faq_title">
+	       [FAQ] ${faq.bo_title }
+	    </h1>  
+	    <div class="faq_content">
+	    	<div class="faq_date">${faq.bo_date }</div>
+	    	<div class="faq_date">${faq.mem_name }</div>
+	        <p>${faq.bo_content }</p>
+	        <p>ê°ì‚¬í•©ë‹ˆë‹¤.</p>
+	    </div>
+	    <div class="list_button" align="center">
+	    	<div class="centerBtn">
+	        <button class="buttons" onclick="location.href='FAQList.bd'">ëª©ë¡ìœ¼ë¡œ</button>
+	        </div>
+	    </div>
     </div>
    </section>
-   <footer id="footer_container">
-      <div>
-         <span>¼­¿ï½Ã °­³²±¸ ¿ª»ïµ¿ ³²µµºôµù</span> | <span>´ëÇ¥ : ±è´ëÇ¥</span> | <span>»ç¾÷ÀÚµî·Ï¹øÈ£ : 123-45-67890</span>
-         <br><br>
-         <span>Copyright(C) LIBRERIA  all  rights reserved.</span>
-      </div>
-   </footer>
+   <script type="text/javascript">
+   		$('.deleteBtn').click(function(){
+   			swal({
+   				title: "",
+   				text: "í•´ë‹¹ ê²Œì‹œë¬¼ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?",
+   				icon: "warning",
+   				buttons: ["ì·¨ì†Œ","ì‚­ì œ"],
+   				dangerMode: true})
+   			.then((ok)=>{
+   				if(ok){
+   					var bo_no = "${faq.bo_no}";
+   	   	   			$.ajax({
+   	   	   				url: "deleteBoard.bd",
+   	   	   				data: {bo_no:bo_no},
+   	   	   				success:function(data){
+   	   	   					if(data==1){
+   	   	   						swal("","ê²Œì‹œë¬¼ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.","success")
+   	   	   						.then((ok)=>{
+   	   	   							if(ok){
+   	   	   								location.href="FAQList.bd";
+   	   	   							}
+   	   	   						});
+   	   	   					}else{
+   	   	   						swal("","ê²Œì‹œë¬¼ ì‚­ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.","fail");
+   	   	   					}
+   	   	   				},
+   	   	   				error: function(){
+   	   	   					alert("ajax ì—ëŸ¬");
+   	   	   				}
+   	   	   			}); 
+   				}
+   			});
+   			
+   		});
+   </script>
+<c:import url="../common/footer.jsp"></c:import>
 </body>
 </html>

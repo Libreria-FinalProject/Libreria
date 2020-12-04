@@ -5,41 +5,133 @@
 		select count(*)
 		from board
 		where bo_delete = 'N'
+		and cate_no=#{cate}
 	</select>
 	
-	<select id="selectList" resultMap="BoardResultSet">
-		select *
+	<select id="selectList" resultType="Board">
+		select bo_no, bo_title, bo_content, bo_date, bo_count, mem_name
 		from board
-		where bo_delete = 'N'
+		join member using(mem_no)
+		where bo_delete='N'
+		and cate_no=#{cate}
 		order by bo_no desc
 	</select>
 	
-	<resultMap type="Board" id="BoardResultSet">
-		<id column="BO_NO" property="bo_no"/>
-		<result column="BO_TITLE" property="bo_title"/>
-		<result column="BO_CONTENT" property="bo_content"/>
-		<result column="BO_DATE" property="bo_date"/>
-		<result column="BO_COUNT" property="bo_count"/>
-		<result column="BO_DELETE" property="bo_delete"/>
-		<result column="MEM_NO" property="mem_no"/>
-		<result column="CATE_NO" property="cate_no"/>
-	</resultMap>
 	
-	<insert id="insertBN">
+	<insert id="insertBoard">
 		insert into board
-		values(seq_bo_no.nextval, #{bo_title}, #{bo_content}, #{bo_date}, default, default, #{mem_no}, #{cate_no})
+		values(seq_bo_no.nextval, #{bo_title}, #{bo_content}, sysdate, default, default, #{mem_no}, #{cate_no})
 	</insert>
 	
-	<update id="addReadCount">
+	<update id="updateBoardCount">
 		update board
 		set bo_count = bo_count + 1
 		where bo_no = #{bo_no}
 	</update>
 	
-	<select id="selectBoard" resultMap="BoardResultSet">
+	<select id="selectBoard" resultType="Board">
 		select *
 		from board
+		join member using(mem_no)
 		where bo_no=#{bo_no} and bo_delete='N'
 	</select>
 	
+	<update id="deleteBoard">
+		update board
+		set bo_delete = 'Y'
+		where bo_no=#{bo_no}
+	</update>
+	
+	<insert id="insertImage">
+		insert into image
+		values(seq_img_no.nextval, #{origin_name}, #{change_name}, '/libreria/resources/buploadFiles/', 0, default, 2)
+	</insert>
+	
+	<insert id="insertBoardImg">
+		insert into board_img
+		values(seq_bo_no.currval, seq_img_no.currval)
+	</insert>
+	
+	<select id="selectImage" resultType="Image" >
+		select img_no, origin_name, change_name, file_path, file_level, img_delete, ic_no
+		from board_with_image
+		where bo_no =#{bo_no}
+	</select>
+	
+	<select id="selectReplyList" resultType="Reply">
+		select * 
+		from reply
+		join member using(mem_no)
+		where bo_no = #{bo_no}
+		and reply_delete='N'
+		order by reply_date desc
+	</select>
+	
+	<insert id="insertReply">
+		insert into reply
+		values(seq_reply_no.nextval,#{reply_content}, #{mem_no},#{bo_no},default,default)
+	</insert>
+	
+	<update id="deleteReply">
+		update reply
+		set reply_delete = 'Y'
+		where reply_no = #{reply_no}
+	</update>
+	
+	<update id="updateBoard">
+		update board
+		set bo_title=#{bo_title}, bo_content=#{bo_content}
+		where bo_no=#{bo_no}
+	</update>
+	
+	<update id="updateImage">
+		update image
+		set origin_name=#{origin_name}, change_name=#{change_name}, img_delete='N'
+		where img_no=#{img_no}
+	</update>
+	
+	<update id="deleteImage">
+		update image
+		set img_delete = 'Y'
+		where img_no=#{img_no}
+	</update>
+	
+	<select id="selectImageNo" resultType="int">
+		select img_no
+		from board_with_image
+		where bo_no = #{bo_no}
+	</select>
+	
+	<update id="insertBoardImg2">
+		insert into board_img
+		values(#{bo_no},seq_img_no.currval)
+	</update>
+	
+	<select id="getReplyCount" resultType="Reply">
+		select bo_no, count(reply_no) reply_count
+		from board 
+		left join reply using(bo_no)
+		where bo_delete='N'
+		and cate_no=#{cate}
+		group by bo_no
+		order by bo_no desc
+	</select>
+	
+	<select id="getSearchListCount" resultType="_int">
+		select count(*)
+		from board
+		where bo_delete='N'
+		and cate_no=#{cate}
+		and bo_title like '%'||#{search}||'%'
+		order by bo_no desc
+	</select>
+	
+	<select id="searchFAQ" resultType="Board">
+		select * 
+		from board
+		where bo_delete='N'
+		and cate_no=#{cate}
+		and bo_title like '%'||#{search}||'%'
+		order by bo_no desc
+	</select>
 </mapper>

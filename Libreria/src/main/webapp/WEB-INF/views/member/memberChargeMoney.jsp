@@ -152,7 +152,7 @@
 					}else if($('#radio_method_hidden').val()=='deposit'){
 						var popup= window.open("popupPayForDeposit.me","무통장 입금","width=566px,height=591px,scrollbars=no,top=100,left=400");
 					}else{
-						var popup= window.open("popupPayForReistCard.me?mem_no="+${loginUser.mem_no},"등록된 신용카드 결제","width=566px,height=591px,scrollbars=no,top=100,left=400");
+						var popup= window.open("popupPayForReistCard.me?mem_no=${loginUser.mem_no}","등록된 신용카드 결제","width=568px,height=599px,scrollbars=no,top=100,left=400");
 					}
 				}
 			});

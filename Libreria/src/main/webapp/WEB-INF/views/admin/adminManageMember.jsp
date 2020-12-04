@@ -83,7 +83,7 @@
 					location.href="adminpage.ad";
 				});
 				$('#side_nav').find('li').eq(2).click(function(){
-					location.href="buyBook.ad";
+					location.href="buyBookList.ad";
 				});
 				$('#side_nav').find('li').eq(3).click(function(){
 					location.href="insertBook.ad";

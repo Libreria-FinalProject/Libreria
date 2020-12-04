@@ -127,7 +127,7 @@
 		<![CDATA[ 
 		select * 
 		from member
-		where mem_logindate < sysdate-365 and mem_status='Y*'
+		where mem_logindate < sysdate-365 and mem_status='Y'
 		]]> 
 	</select>
 	
@@ -183,7 +183,7 @@
 	<select id="checkEmail" resultType="_int">
 		select count(*)
 		from member
-		where mem_email=#{mem_email} 
+		where mem_email=#{email} 
 	</select>
 	
 	<select id="loginMemberWithKakao" resultType="Member">
@@ -192,4 +192,11 @@
 		where mem_email = #{mem_email} and mem_delete='N'
 	</select>
 	
+	<update id="adminUpdateMoney">
+		update member
+		set mem_money=mem_money+#{sell_money}
+		where mem_no = #{mem_no}
+	</update>
 </mapper>
+
+

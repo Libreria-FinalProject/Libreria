@@ -96,6 +96,15 @@
 <!-- ------------------------------------------------------------ -->
 <script type="text/javascript">
 	$(function(){
+		var registCard = "${registCard}";
+		if(registCard ==""){
+			swal("","등록된 카드가 없습니다.\n카드 등록 후 사용해주세요.","error")
+			.then((ok)=>{
+				if(ok){
+					window.close();
+				}
+			});
+		}
 		
 		var card_expire = '${registCard.card_expire}'; 
 		var card_expire_arr = card_expire.split('-');
@@ -166,6 +175,7 @@
 	});
 	
 	$('#closeBtn').click(function(){  //  닫기버튼 클릭시
+		opener.parent.location.reload();
 		window.close();
 	});
 	
@@ -174,7 +184,6 @@
 	}
 	
 	function validate(){	
-		
 		if($('#card_pwd').val().length < 4 ) {
 			swal("","카드비밀번호 4자리를 입력해주세요.","info");
 			return false;

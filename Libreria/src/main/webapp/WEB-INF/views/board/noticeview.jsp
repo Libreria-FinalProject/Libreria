@@ -1,237 +1,163 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Libreria</title>
 <style type="text/css">
-   @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
-   *{
-      margin: 0px;
-      padding: 0px;
-      font-family: 'Nanum Gothic';
-   }
-   section{
-      margin: 0 auto;
-      width:1000px;
-
-   }
-   #nav_container{
-      height: 170px;
-      background-color: rgb(94, 107, 159);
-      border: none;
-      border-radius: 0px;
-      vertical-align: middle;
-   }
-   #nav_body{
-   
-       padding-top: 40px;
-       width: 1000px;
-       margin: 0px auto;
-   }
-   #a_brand{
-      font-family: "Arial Black";
-      font-weight: bold;
-      font-size:33px;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-   }
-   #input_search{
-      margin-left: 15px;
-      padding: 6px 12px;
-       width: 300px;
-       height: 100%;
-       background: #fff;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       font-size: 14px;
-       vertical-align: super;
-   }
-   #div_head_btns{
-      display: inline;
-      margin-left: 285px;
-   }
-   .btn_head{
-      vertical-align: inherit;
-       background-color: rgb(60, 68, 101);
-       color:white;
-       border: none;
-       border-radius: 5px;
-       font-weight: bold;
-       font-size: 15px;
-       width: 90px;
-       height: 35px;   
-   }
-   .btn_head:hover{
-      cursor: pointer;
-   }
-   
-   #nav_menu{
-      height: 40px;
-      background-color: #ffffff;
-      margin-top: 43px;
-      border-bottom: 1px solid #e6e6e6;
-   }
-   #menu_ul{
-      width:1000px;
-      margin: 0 auto;
-   }
-   #menu_ul > li{
-      list-style: none;
-      float: left;
-      margin: 5px 30px 0px 30px;
-      font-size: 20px;
-      font-weight: bold;
-   }
-   #menu_li{
-      background-image: url("images/menu-symbol.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: 28px;
-       height: 26px;
-       margin: 5px 0px !important;
-   }
-   #footer_container{
-      background-color: rgb(48, 53, 56);
-      height:150px;
-      color: #ffffff;
-   }   
-   #footer_container > div{
-      margin: 0 auto;
-      padding-top: 50px;
-      width:1000px;
-      
-   }
-   
-   #footer_container > div >span {
-      padding: 10px;
-   }
-
+	#notice_container{
+		width: 950px;
+		margin-top: 30px;
+	}
+		
+	#notice_container #small_title{
+		color: #9ea7ad;
+		font-size: 13px;
+	}
+	
    .notice_title{
-       padding-top: 75px;
-       padding-bottom: 40px;
-       font-size: 35px;
-       font-weight: bold;
+       margin-top: 50px;
+      font-size:32px;
    }
 
    .notice_content{
+   	   margin-top : 30px;
+   	   margin-bottom: 30px;
        padding:10px;
        font-size: 15px;
+       color:#333333;
+       border-bottom: 1px solid #e6e8eb;
    }
 
    .notice_content > p {
-       padding-bottom:10px;
-       padding-top: 10px;
+	    padding-bottom: 10px;
+	    padding-top: 10px;
+	    white-space: pre;
+	    line-height: 2em;
+      
    } 
+
    .list_button{
-       padding:20px   
+       padding:20px;
+       display: flex;
    }
 
-   .back{
-       background-color:rgb(94, 107, 159);
-       color:white;
-       font-size:20px;
-       padding:5px;
+   .buttons{
+      	width:100px;
+		height: 40px;
+		cursor: pointer;
+		background-color: rgb(94, 107, 159);
+		color: #ffffff;
+		border: none;
+		border-radius: 4px;  
+		font-size: 16px;
+		font-weight: bold;
+   }
+   .centerBtn{
+   		flex:3;
+
+   }
+   .rightBtn{
+   		flex:1;
+   		display: inline;
    }
 
-   .rectify{
-       background-color:rgb(94, 107, 159);
-       color:white;
-       font-size:20px;
-       padding:5px;
-   }
+  .notice_date{
+  	text-align: right;
+  	padding: 5px 0;
+  }
+  
+  .notice_insert{
+  	 background-color:#e6e8eb; 
+  	 padding: 20px 10px;
+  	 display: block !important;
+  }
 
-   .delete{
-       background-color:rgb(94, 107, 159);
-       color:white;
-       font-size:20px;
-       padding:5px;
-   }
-
-   #notice_comment{
-       padding:10px;
-   }
-
-   #comment{
-       font-size: 20px;
-       padding-bottom: 20px;
-   }
-
-   #comment-input{
-       font-size: 15px;
-       width: 400px;
-       padding-left: 10px;
-       height: 30px;
-   }
-
-
-   a:link { color: black; text-decoration: none;}
-   a:visited { color: black; text-decoration: none;}
-   a:hover { color: black; text-decoration: none;}
+  
+  .x_icon{
+  	display: inline-block;
+  	width:10px;
+  	height: 10px;
+  	background-image: url("resources/images/x_icon.png");
+  	background-size: contain;
+  	margin-left: 10px;
+  	cursor: pointer;
+  }
+   section a:link { color: black; text-decoration: none;}
+   section a:visited { color: black; text-decoration: none;}
+   section a:hover { color: black; text-decoration: none;}
 </style>
 </head>
 <body>
-   <nav class="" id="nav_container">
-         <div id="nav_body">
-            <a class="" href="#" id="a_brand">LIBRERIA</a>
-            <input type="text" id="input_search" placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä">
-            <div id="div_head_btns">
-               <button class="btn_head">È¸¿ø°¡ÀÔ</button>
-               <button class="btn_head">·Î±×ÀÎ</button>
-            </div>
-         </div>
-         <div id="nav_menu">
-            <ul id="menu_ul">
-               <li id="menu_li"></li>
-               <li>±¹³»µµ¼­</li>
-               <li>¿Ü±¹µµ¼­</li>
-               <li>Áß°íµµ¼­</li>
-               <li>°í°´¼¾ÅÍ</li>
-               <li>Àå¹Ù±¸´Ï</li>
-            </ul>
-         </div>
-   </nav>
+<c:import url="../common/header.jsp"></c:import>
    <section>
-       <div class="notice_header">
-        <h1 class="notice_title">
-            	Ä«µå µî·ÏÀÌ Á¦´ë·Î µÇÁö ¾Ê½À´Ï´Ù.
-        </h1>  
+   <div id="notice_container">
+  		<span id="small_title">LIBRERIA ê³ ê°ì„¼í„° > ê³µì§€ì‚¬í•­</span>
+	    <h1 class="notice_title">
+	       [ê³µì§€ì‚¬í•­] ${notice.bo_title }
+	    </h1>  
+	    <div class="notice_content">
+	    	<div class="notice_date">${notice.bo_date }</div>
+	    	<div class="notice_date">${notice.mem_name }</div>
+	        <p>${notice.bo_content }</p>
+	        <img src="${img.file_path }${img.change_name}">
+	    </div>
+	    <div class="list_button" align="center">
+	    	<div class="centerBtn">
+	        <button class="buttons" onclick="location.href='NoticeList.bd'">ëª©ë¡ìœ¼ë¡œ</button>
+	        </div>
+        <c:if test="${ loginUser.mem_no == notice.mem_no}">
+        	<div class="rightBtn">
+	        <button class="buttons updateBtn">ìˆ˜ì •</button>
+	        <button class="buttons deleteBtn">ì‚­ì œ</button>
+	        </div>
+        </c:if>
+	    </div>
     </div>
-    <div class="nickname" style="padding-left: 10px; padding-bottom: 20px;">
-        ÀÛ¼ºÀÚ :  <!--${} ÀÛ¼ºÀÚ µ¥ÀÌÅÍ °¡Á®¿Í¼­ ÀÔ·Â -->
-    </div>
-    <div class="categoty" style="padding-left: 10px; padding-bottom: 20px;">
-        Ä«Å×°í¸® : <!--${} ¼±ÅÃÇÑ Ä«Å×°í¸® µ¥ÀÌÅÍ °¡Á®¿Í¼­ ÀÔ·Â -->
-    </div>
-    <div class="notice_content">
-        <p>¾È³çÇÏ¼¼¿ä.</p>
-        <p>Á¦°¡ ÀÌ¹ø¿¡ Ã³À½ °¡ÀÔÀ» ÇÏ°í Ä«µå µî·ÏÀ» ÇÏ·Á°í ÇÏ´Âµ¥</p>
-        <p>Ä«µå ¹øÈ£¿Í CVC¹øÈ£¿Í ºñ¹Ğ¹øÈ£¸¦ ÀüºÎ Á¦´ë·Î ÀÔ·ÂÀ» Çß´Âµ¥µµ °è¼ÓÇØ¼­ ÀÏÄ¡ ÇÏÁö ¾Ê´Â´Ù°í °æ°íÃ¢ÀÌ ³ª¿À³×¿ä</p>
-        <p>±×·¡¼­ Ã¥À» ´ë¿©¸¦ ÇÏÁö ¸øÇÏ°í ÀÖ½À´Ï´Ù. ÃÖ´ëÇÑ ºü¸¥ ÇØ°áÀ» ºÎÅ¹µå¸³´Ï´Ù.</p>
-    </div>
+       <script type="text/javascript">
+        $('.updateBtn').click(function(){
+        	var bo_no = "${notice.bo_no}";
+        	location.href="NoticeUpdateForm.bd?bo_no="+bo_no;
+        });
+       
+   		$('.deleteBtn').click(function(){
+   			swal({
+   				title: "",
+   				text: "í•´ë‹¹ ê²Œì‹œë¬¼ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?",
+   				icon: "warning",
+   				buttons: ["ì·¨ì†Œ","ì‚­ì œ"],
+   				dangerMode: true})
+   			.then((ok)=>{
+   				if(ok){
+   					var bo_no = "${notice.bo_no}";
+   	   	   			$.ajax({
+   	   	   				url: "deleteBoard.bd",
+   	   	   				data: {bo_no:bo_no},
+   	   	   				success:function(data){
+   	   	   					if(data==1){
+   	   	   						swal("","ê²Œì‹œë¬¼ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.","success")
+   	   	   						.then((ok)=>{
+   	   	   							if(ok){
+   	   	   								location.href="noticeList.bd";
+   	   	   							}
+   	   	   						});
+   	   	   					}else{
+   	   	   						swal("","ê²Œì‹œë¬¼ ì‚­ì œì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.","fail");
+   	   	   					}
+   	   	   				},
+   	   	   				error: function(){
+   	   	   					alert("ajax ì—ëŸ¬");
+   	   	   				}
+   	   	   			}); 
+   				}
+   			});
+   			
+   		});
+   		
+   	
+   </script>
 
-    <div id="notice_comment"> <!-- ´ñ±ÛÀº °ü¸®ÀÚ¸¸ ÀÛ¼ºÀÌ °¡´É -->
-        <div id="comment">´ñ±Û : <!--${} ´ñ±Û µ¥ÀÌÅÍ °¡Á®¿Í¼­ ÀÔ·Â -->
-        <input id="comment-input" placeholder="´ñ±ÛÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä."> 
-        <button id="submit" style="font-size: 15px; padding:4px;">µî·Ï</button></div>
-    </div>
-
-    <div class="list_button" align="center">
-        <button class="back">¸ñ·ÏÀ¸·Î</button>
-        <button class="rectify" onclick='alert("ÇöÀç µî·Ï µÇ¾î ÀÖ´Â ¹®ÀÇ »çÇ×À» ¼öÁ¤ ÇÏ½Ã°Ú½À´Ï±î?")'>¼öÁ¤ÇÏ±â</button> <!-- ÀÛ¼ºÀÚ¸¸ÀÌ ¹öÆ°ÀÌ º¸ÀÌ°í ´Ù¸¥ »ç¿ëÀÚ¿¡°Õ º¸ÀÌÁö ¾Ê´Â´Ù.-->
-        <button class="delete" onclick='alert("ÇöÀç µî·Ï µÇ¾î ÀÖ´Â ¹®ÀÇ »çÇ×À» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?")'>»èÁ¦ÇÏ±â</button> <!-- ÀÛ¼ºÀÚ/°ü¸®ÀÚ °æ¿ì ¹öÆ°ÀÌ º¸ÀÌ°í, ºñ·Î±×ÀÎ »ç¿ëÀÚ È¤Àº ºñÀÛ¼ºÀÚÀÎ °æ¿ì ¹öÆ°ÀÌ º¸ÀÌÁö ¾Ê´Â´Ù. -->
-    </div>
-    
-    <!-- ¸ñ·ÏÀ¸·Î´Â »ç¿ëÀÚ ÀüÃ¼ È®ÀÎ °¡´É, ¼öÁ¤ÇÏ±â´Â ÀÛ¼ºÀÚ¸¸ÀÌ °¡´É »èÁ¦ÇÏ±â´Â ÀÛ¼ºÀÚ¿Í °ü¸®ÀÚ¸¸ÀÌ °¡´É-->
    </section>
-   <footer id="footer_container">
-      <div>
-         <span>¼­¿ï½Ã °­³²±¸ ¿ª»ïµ¿ ³²µµºôµù</span> | <span>´ëÇ¥ : ±è´ëÇ¥</span> | <span>»ç¾÷ÀÚµî·Ï¹øÈ£ : 123-45-67890</span>
-         <br><br>
-         <span>Copyright(C) LIBRERIA  all  rights reserved.</span>
-      </div>
-   </footer>
+<c:import url="../common/footer.jsp"></c:import>
 </body>
 </html>

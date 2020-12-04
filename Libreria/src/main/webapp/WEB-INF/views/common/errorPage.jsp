@@ -10,6 +10,7 @@
 <c:import url="header.jsp"></c:import>
 <section>
 <div id="errorDiv">
+	에러발생<br>
 	${msg }<br>
 	<button onclick="location.href='/libreria'">메인화면으로</button>
 </div>

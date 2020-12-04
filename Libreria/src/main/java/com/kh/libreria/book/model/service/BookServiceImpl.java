@@ -1,6 +1,7 @@
 package com.kh.libreria.book.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,5 +122,17 @@ public class BookServiceImpl  implements BookService  {
 		// TODO Auto-generated method stub
 		return bDAO.selectBookListC(sqlSession,pi,bc_no,std);
 	}
+
+	////////////////KH//////////////////
+	@Override
+	public ArrayList<Book> searchBookList(String b_title) {
+		return bDAO.searchBookList(sqlSession, b_title);
+	}
+
+	@Override
+	public int sellBook(HashMap<String, Integer> sellBook) {
+		return bDAO.sellBook(sqlSession, sellBook);
+	}
 	
+	////////////////KH//////////////////
 }

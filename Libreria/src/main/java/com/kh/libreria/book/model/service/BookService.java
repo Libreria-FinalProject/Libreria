@@ -1,6 +1,7 @@
 package com.kh.libreria.book.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
@@ -25,7 +26,7 @@ public interface BookService {
 	Book getBookDetailInfo(int b_no);
 
 	ArrayList<Review> getReivewList(int b_no);
-
+	
 	int updateReview(Review r);
 
 	int reviewDelete(int rev_no);
@@ -45,10 +46,12 @@ public interface BookService {
 	ArrayList<Book> selectBookList(PageInfo pi, int bcf_no,int std);
 
 	ArrayList<Book> selectBookListC(PageInfo pi, int bc_no,int std);
+	
+	//////////////////////// KH
 
+	ArrayList<Book> searchBookList(String b_title);
 
-	
-	
-	
+	int sellBook(HashMap<String, Integer> sellBook);
+
 
 }

@@ -7,7 +7,7 @@ public class Image {
 	private String file_path;
 	private String file_level;
 	private String img_delete;
-	private int in_no;
+	private int ic_no;
 	
 	public Image() {
 		
@@ -61,16 +61,16 @@ public class Image {
 		this.img_delete = img_delete;
 	}
 
-	public int getIn_no() {
-		return in_no;
+	public int getIc_no() {
+		return ic_no;
 	}
 
-	public void setIn_no(int in_no) {
-		this.in_no = in_no;
+	public void setIc_no(int ic_no) {
+		this.ic_no = ic_no;
 	}
 
 	public Image(int img_no, String origin_name, String change_name, String file_path, String file_level,
-			String img_delete, int in_no) {
+			String img_delete, int ic_no) {
 		super();
 		this.img_no = img_no;
 		this.origin_name = origin_name;
@@ -78,14 +78,14 @@ public class Image {
 		this.file_path = file_path;
 		this.file_level = file_level;
 		this.img_delete = img_delete;
-		this.in_no = in_no;
+		this.ic_no = ic_no;
 	}
 
 	@Override
 	public String toString() {
 		return "Image [img_no=" + img_no + ", origin_name=" + origin_name + ", change_name=" + change_name
-				+ ", file_path=" + file_path + ", file_level=" + file_level + ", img_delete=" + img_delete + ", in_no="
-				+ in_no + "]";
+				+ ", file_path=" + file_path + ", file_level=" + file_level + ", img_delete=" + img_delete + ", ic_no="
+				+ ic_no + "]";
 	}
 	
 	

@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <style type="text/css">
-  #notice_container{ 
+   #notice_container{ 
 		margin-top: 30px;
 	}
 	
 	#notice_container #small_title{
 		color: #9ea7ad;
 		font-size: 13px;
-	}
-	
+	} 
 	#notice_header{
 		display: flex;
 		margin-top: 30px;
@@ -27,7 +26,7 @@
     #btn_div{
     	text-align: center;
     }
-    #updateBtn{
+    #insertBtn{
    		width: 150px;
    		height: 30px;
 		cursor: pointer;
@@ -139,88 +138,58 @@
 	    margin-right: 20px;
 	    display: inline-block;
    }
-   
-    .x_icon{
-  	display: inline-block;
-  	width:10px;
-  	height: 10px;
-  	background-image: url("resources/images/x_icon.png");
-  	background-size: contain;
-  	margin-left: 10px;
-  	cursor: pointer;
-  }
-  
    section a:link { color: #333333; text-decoration: none;}
    section a:visited { color: gray; text-decoration: none;}
    section a:hover { color:  #333333; text-decoration: none;}
 </style>
 </head>
 <body>
-<c:import url="../common/header.jsp"></c:import>
-<section>
-<div id="notice_container">
-         <div id="small_title">LIBRERIA 고객센터 > 공지사항</div>
-         <div id="notice_header"><div class="notice_title">LIBRERIA 공지사항</div></div>
-         <form method="post" action="NoticeUpdate.bd" enctype="Multipart/form-data">
-         	<input type="hidden" name="bo_no" value="${notice.bo_no}">
-         	<input type="hidden" name="cate_no" value="3">
-	         <div class="notice_body">
-	         	<label>제목<span class="red-dot">*</span></label><input type="text" name="bo_title" id="bo_title" value="${notice.bo_title}">
-	         	<label>공지사항 내용<span class="red-dot">*</span></label><textarea style="resize: none" name="bo_content" id="bo_content">${notice.bo_content }</textarea>
-	         	<div id="file_div"><label>첨부파일<span class="red-dot">*</span></label>
-	         		<div id="file_sub_div"><input type="file" name="uploadFile" accept=".jpg,.png"><span>파일 업로드</span></div>
-	         		<div class="upload_file_name"></div>  	
-	         		<input type="hidden" id="delim_file" name="delim_file">
-	         		<input type="hidden" id="origin_filename">
-	        	 </div>
-	        	 <div id="btn_div"><button type="submit" onclick="return validate();" id="updateBtn">수정</button></div>
-	         </div>
-         </form>
-</div>
+  <c:import url="../common/header.jsp"></c:import>
+	<section>
+	<div id="notice_container">
+	         <div id="small_title">LIBRERIA 고객센터 > FAQ</div>
+	         <div id="notice_header"><div class="notice_title">LIBRERIA FAQ</div></div>
+	         <form method="post" action="FAQWrite.bd" enctype="Multipart/form-data">
+	            <input type="hidden" name="mem_no" value="${loginUser.mem_no}">
+	         	<input type="hidden" name="cate_no" value="1">
+		         <div class="notice_body">
+		         	<label>제목<span class="red-dot">*</span></label><input type="text" name="bo_title" id="bo_title">
+		         	<label>FAQ 내용<span class="red-dot">*</span></label><textarea style="resize: none" name="bo_content" id="bo_content"></textarea>
+		         	<div id="file_div"><label>첨부파일<span class="red-dot">*</span></label>
+		         		<div id="file_sub_div"><input type="file" name="uploadFile" accept=".jpg,.png"><span>파일 업로드</span></div>
+		         		<div class="upload_file_name"><div id="clip_icon"></div></div>  	
+		        	 </div>
+		        	 <div id="btn_div"><button type="submit" onclick="return validate();" id="insertBtn">제출</button></div>
+		         </div>
+	         </form>
+	</div>
    <script type="text/javascript">
-   		$(function(){
-   			var filename = "${img.origin_name}";
-   			$('#delim_file').val(0);
-   			if(filename!=""){
-   				$('#origin_filename').val(filename);
-   				$(".upload_file_name").html("<div id='clip_icon'></div>"+filename+"<div class='x_icon'></div>");
-   				$('.upload_file_name').css("display","block");
-   			}
-   		});
-   
    		$('input[type=file]').on('change',function(){
 	   		 if(window.FileReader){
 	   	      var filename = $(this)[0].files[0].name;
 	   	    } else {
 	   	      var filename = $(this).val().split('/').pop().split('\\').pop();
 	   	    }
-	   		$(".upload_file_name").html("<div id='clip_icon'></div>"+filename+"<div class='x_icon'></div>");
+	   		$(".upload_file_name").html("<div id='clip_icon'></div>"+filename);
 	   		$(".upload_file_name").css("display","block");
-	   		if($('#origin_filename').val() == ""){
-		   		$('#delim_file').val(2);   			
-	   		}else{
-		   		$('#delim_file').val(1);   				   			
-	   		}
-   		});
-   		
-   		$(document).on("click",".x_icon",function(){
-   			$('input[type=file]').val("");
-   			$('#delim_file').val(-1);  			
-   			$(".upload_file_name").css("display","none");
    		});
    		
    		function validate(){
    			if($.trim($('#bo_title').val()).length==0){
    				swal("","제목을 입력해주세요.","info")
 				.then((ok)=>{
-					$('#bo_title').focus();
+					if(ok){
+						$('#bo_title').focus();
+					}
 				});
 				return false;
    			}
    			if($.trim($('#bo_content').val()).length==0){
    				swal("","내용을 입력해주세요.","info")
 				.then((ok)=>{
-					$('#bo_content').focus();
+					if(ok){
+						$('#bo_content').focus();
+					}
 				});
 				return false;
    			}
@@ -228,6 +197,6 @@
    		}
    </script>
    </section>
-<c:import url="../common/footer.jsp"></c:import>
+	<c:import url="../common/footer.jsp"></c:import>
 </body>
 </html>

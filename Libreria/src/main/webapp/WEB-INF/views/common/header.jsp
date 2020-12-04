@@ -7,6 +7,7 @@
 <title>Libreria</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://kit.fontawesome.com/ba69187994.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/common.css"/>
 </head>
 <body>
@@ -43,7 +44,13 @@
 					<li>국내도서</li>
 					<li>외국도서</li>
 					<li>중고도서</li>
-					<li>고객센터</li>
+					<li id="service_li"><span>고객센터</span>
+						<ul>
+							<li>FAQ</li>
+							<li>Q&A</li>
+							<li>공지사항</li>
+						</ul>
+					</li>
 					<li>장바구니</li>
 				</ul>
 			</div>
@@ -52,6 +59,34 @@
 	 	$('#menu_li').click(function(){
 			location.href = "bookCateList.bo?bcf_no=1";
 		}); 
+	 	
+	 	$('#menu_ul').find('li').eq(3).click(function(){
+			location.href = "sellBookForm.bo";
+		}); 
+	 	
+	 	$('#service_li').find('span').click(function(){
+			location.href="FAQList.bd";		
+	 	}); 
+	 	
+	 	$("#service_li").find('li').eq(0).click(function(){
+	 		console.log("FAQ");
+	 		location.href="FAQList.bd";
+	 	});
+	 	
+		$("#service_li").find('li').eq(1).click(function(){
+			console.log("QNA");
+			location.href="QNAList.bd";
+	 	});
+		
+		$("#service_li").find('li').eq(2).click(function(){
+			location.href="NoticeList.bd";
+		});
+	 	
+	 	$("#service_li").hover(function(){
+	 		$(this).find('ul').css("display","block");
+	 	}, function(){
+	 		$(this).find('ul').css("display","none");
+	 	});
 	
 	
 	

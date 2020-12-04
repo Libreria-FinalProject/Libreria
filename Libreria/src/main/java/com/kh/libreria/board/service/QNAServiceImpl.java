@@ -12,8 +12,8 @@ import com.kh.libreria.board.vo.Reply;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.image.model.vo.Image;
 
-@Service("noService")
-public class NoticeServiceImpl implements NoticeService{
+@Service("qnaService")
+public class QNAServiceImpl implements QNAService{
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -23,11 +23,14 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	@Override
 	public int getListCount(int cate) {
-		return bdDAO.getListCount(sqlSession, cate);
+		
+		return bdDAO.getListCount(sqlSession,cate);
+		
 	}
 
 	@Override
 	public ArrayList<Board> selectList(PageInfo pi, int cate) {
+		
 		return bdDAO.selectList(sqlSession, pi, cate);
 	}
 
@@ -38,12 +41,12 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public Board selectBoard(int bo_no) {
-		Board b = null;
-		int result = bdDAO.updateBoardCount(sqlSession, bo_no);
-		if(result > 0) {
-			b  = bdDAO.selectBoard(sqlSession, bo_no);
-		}
-		return b;
+		return bdDAO.selectBoard(sqlSession, bo_no);
+	}
+
+	@Override
+	public int updateBoardCount(int bo_no) {
+		return bdDAO.updateBoardCount(sqlSession, bo_no);
 	}
 
 	@Override
@@ -57,13 +60,23 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int updateBoardCount(int bo_no) {
-		return bdDAO.updateBoardCount(sqlSession, bo_no);
+	public Image selectImage(int bo_no) {
+		return bdDAO.selectImage(sqlSession, bo_no);
 	}
 
 	@Override
-	public Image selectImage(int bo_no) {
-		return bdDAO.selectImage(sqlSession, bo_no);
+	public ArrayList<Reply> selectReplyList(int bo_no) {
+		return bdDAO.selectReplyList(sqlSession, bo_no);
+	}
+
+	@Override
+	public int insertReply(Reply reply) {
+		return bdDAO.insertReply(sqlSession, reply);
+	}
+
+	@Override
+	public int deleteReply(int reply_no) {
+		return bdDAO.deleteReply(sqlSession, reply_no);
 	}
 
 	@Override
@@ -72,13 +85,18 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int selectImageNo(int bo_no) {
-		return bdDAO.selectImageNo(sqlSession, bo_no);
+	public int updateImage(Image i) {
+		return bdDAO.updateImage(sqlSession, i);
 	}
 
 	@Override
-	public int updateImage(Image i) {
-		return bdDAO.updateImage(sqlSession, i);
+	public int deleteImage(int img_no) {
+		return bdDAO.deleteImage(sqlSession, img_no);
+	}
+
+	@Override
+	public Integer selectImageNo(int bo_no) {
+		return bdDAO.selectImageNo(sqlSession, bo_no);
 	}
 
 	@Override
@@ -87,9 +105,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int deleteImage(int img_no) {
-		return bdDAO.deleteImage(sqlSession, img_no);
+	public ArrayList<Reply> getReplyCount(PageInfo pi, int cate) {
+		return bdDAO.getReplyCount(sqlSession,pi, cate );
 	}
 
-	
 }

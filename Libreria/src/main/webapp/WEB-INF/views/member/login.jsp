@@ -141,20 +141,24 @@
 <script type="text/javascript">
 	$(function(){
 		Kakao.init('9825f8ee7c5749fcba65382d3b6f9521');
-	    console.log(Kakao);
+
+	});
+	
+	$("#login_pw").keyup(function(evt){
+		if(evt.keyCode==13){
+			validate();
+		}
 	});
 	
 	function validate(){
 		var login_id =$('#login_id').val();
 		var login_pw =$('#login_pw').val();
-		
+		flag=false;
 		if($.trim(login_id).length==0){
 			
 			swal("","아이디를 입력해주세요.","info")
 			.then((ok)=>{
-				if(ok){
-					$('#login_id').focus();
-				}
+			
 				return false;
 			});
 			
@@ -162,9 +166,7 @@
 			
 			swal("","비밀번호를 입력해주세요.","info")
 			.then((ok)=>{
-				if(ok){					
-					$('#login_pw').focus();
-				}
+				
 				return false;
 			});
 			
@@ -183,13 +185,9 @@
 							if(ok){
 								$('#login_id').val("");
 								$('#login_pw').val("");
-								$('#login_id').foucs();
 							}
 						});
 					}
-				},
-				error: function(){
-					alert("ajax 에러");
 				}
 			});
 		}
@@ -251,7 +249,8 @@
 		       	console.log(err);
 		      }
 		    })
-		}	 
+		}	
+	 
 </script>
 </body>
 </html>

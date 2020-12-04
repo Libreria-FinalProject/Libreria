@@ -5,20 +5,21 @@
 <html>
 <head>
 <style type="text/css">
-  #notice_container{ 
+
+  #qna_container{ 
 		margin-top: 30px;
 	}
 	
-	#notice_container #small_title{
+	#qna_container #small_title{
 		color: #9ea7ad;
 		font-size: 13px;
 	}
 	
-	#notice_header{
+	#qna_header{
 		display: flex;
 		margin-top: 30px;
 	}
-   .notice_title{
+   .qna_title{
   	   flex: 7;
       font-size:32px;
       font-weight: bold;
@@ -39,7 +40,7 @@
 		font-weight: bold;
    }
 
-   .notice_body{
+   .qna_body{
       padding:10px;
       font-size:16px;
       list-style: none;
@@ -47,14 +48,14 @@
       width: 700px;
    }
    
-   .notice_body label{
+   .qna_body label{
    		display: block;
    		font-size: 15px; 
    		margin-top: 30px;
    }
    
-   .notice_body input,
-   .notice_body textarea,
+   .qna_body input,
+   .qna_body textarea,
    #file_sub_dive{
    		display: block;
    		border: 1px solid #d1d1d1;
@@ -64,10 +65,10 @@
    		margin: 10px 0px;
    		padding: 5px;
    }
-    .notice_body textarea{
+    .qna_body textarea{
     	height: 240px !important;
     }
-  	.notice_body input[type=file]{
+  	.qna_body input[type=file]{
   		opacity: 0;
   		margin: 0 !important;
   		position: absolute;
@@ -94,23 +95,23 @@
   		line-height: 3em;
   	}
    
-    .notice_list li{
+    .qna_list li{
    		display: flex;
     	border-top: 1px solid #e6e8eb;
     	padding: 20px 20px 20px 0;
     	color: #333333;
     	text-align: right;
     }
-    .notice_list a{
+    .qna_list a{
     	flex: 1;
     	text-align: left;
     }
     
-    .notice_list span{
+    .qna_list span{
     	padding: 0 15px;
     }
 
-   .notice_list_font{
+   .qna_list_font{
       font-size: 20px;   
       font-weight: bold;
    }
@@ -158,15 +159,16 @@
 <body>
 <c:import url="../common/header.jsp"></c:import>
 <section>
-<div id="notice_container">
-         <div id="small_title">LIBRERIA 고객센터 > 공지사항</div>
-         <div id="notice_header"><div class="notice_title">LIBRERIA 공지사항</div></div>
-         <form method="post" action="NoticeUpdate.bd" enctype="Multipart/form-data">
-         	<input type="hidden" name="bo_no" value="${notice.bo_no}">
-         	<input type="hidden" name="cate_no" value="3">
-	         <div class="notice_body">
-	         	<label>제목<span class="red-dot">*</span></label><input type="text" name="bo_title" id="bo_title" value="${notice.bo_title}">
-	         	<label>공지사항 내용<span class="red-dot">*</span></label><textarea style="resize: none" name="bo_content" id="bo_content">${notice.bo_content }</textarea>
+<div id="qna_container">
+         <div id="small_title">LIBRERIA 고객센터 > Q&A</div>
+         <div id="qna_header"><div class="qna_title">LIBRERIA 문의</div></div>
+         <form method="post" action="QNAUpdate.bd" enctype="Multipart/form-data">
+         	<input type="hidden" name="mem_no" value="${loginUser.mem_no}">
+         	<input type="hidden" name="bo_no" value="${qna.bo_no}">
+         	<input type="hidden" name="cate_no" value="2">
+	         <div class="qna_body">
+	         	<label>제목<span class="red-dot">*</span></label><input type="text" name="bo_title" id="bo_title" value="${qna.bo_title}">
+	         	<label>문의내용<span class="red-dot">*</span></label><textarea style="resize: none" name="bo_content" id="bo_content">${qna.bo_content }</textarea>
 	         	<div id="file_div"><label>첨부파일<span class="red-dot">*</span></label>
 	         		<div id="file_sub_div"><input type="file" name="uploadFile" accept=".jpg,.png"><span>파일 업로드</span></div>
 	         		<div class="upload_file_name"></div>  	

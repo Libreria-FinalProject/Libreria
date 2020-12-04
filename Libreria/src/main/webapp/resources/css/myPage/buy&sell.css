@@ -17,7 +17,7 @@ section{
 	margin-top:30px;
 	border-top: 1px solid #cccccc;
 	border-collapse: collapse;
-	font-size: 16px;
+	font-size: 14px;
 	width:750px;
 }
 #buy_sell_table th{
@@ -133,14 +133,16 @@ section{
 }
 
 #admin_popup{
-	line-height: 2.3em;
+	line-height: 2.8em;
     padding: 15px;
     width: 320px;
-    height: 315px;
+    height: 270px;
     background-color: rgb(250, 250, 250);
     position: absolute;
     top: 30%;
     left: 50%;
+    font-size: 14px;
+    display: none;
   }
 
 #admin_popup span{

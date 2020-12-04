@@ -1,10 +1,13 @@
 package com.kh.libreria.book.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.libreria.book.model.exception.BookException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -30,8 +34,8 @@ import com.kh.libreria.common.Pagination;
 @Controller
 public class BookController {
 	
-	@Autowired private BookService bService;
-	
+	 @Autowired private BookService bService;
+	 
 	@RequestMapping("bookCateList.bo")
 	public String bookCate(Model model,BookSubCategory bsc,BookFrameCategory bfc) {
 		
@@ -61,9 +65,6 @@ public class BookController {
 			bList = bService.getBookListsc(bc_no);
 			bPopList = bService.getBookPopListsc(bc_no);
 		}
-		
-		
-		
 		 if(bcfList!=null) {
 			
 			model.addAttribute("bList",bList );
@@ -172,6 +173,7 @@ public class BookController {
 			model.addAttribute("rList",rList);
 		return "bookDetailPage";
 	}
+	
 	@RequestMapping("reviewUpdate.bo")
 	@ResponseBody
 	public String reviewUpdate(HttpServletResponse response,@RequestParam("rev_no") int rev_no,
@@ -263,5 +265,37 @@ public class BookController {
 	}
 	
 	
+	
+	////////////////KH//////////////////
+	@RequestMapping("sellBookForm.bo")
+	public String sellBookForm() {
+		return "sellBook";
+	}
+	
+	@RequestMapping("searchBook.bo")
+	@ResponseBody
+	public ArrayList<Book> searchBook(@RequestParam("b_title") String b_title,HttpServletResponse response) throws IOException{
+		 ArrayList<Book> bookList = bService.searchBookList(b_title);
+
+		 return bookList;	 
+	}
+	
+	@RequestMapping("sellBook.bo")
+	public String sellBook(@RequestParam("book_no") int b_no,@RequestParam("wishPrice") int wishPirce,
+			@RequestParam("mem_no") int mem_no) {
+		HashMap<String, Integer> sellBook = new HashMap<String, Integer>();
+		sellBook.put("b_no", b_no);
+		sellBook.put("sell_money", wishPirce);
+		sellBook.put("mem_no", mem_no);
+		int result = bService.sellBook(sellBook);
+		
+		if(result>0) {
+			return "redirect: memberSell.me";
+		}else {
+			throw new BookException();			
+		}
+	}
+	
+	////////////////KH//////////////////
 	
 }

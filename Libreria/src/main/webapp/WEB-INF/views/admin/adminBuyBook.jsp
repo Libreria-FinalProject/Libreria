@@ -27,56 +27,65 @@
 					<th>희망머니</th>
 					<th>상세정보</th>
 				</tr>
+				<c:if test="${ empty bookList }">
 				<tr>
-					<td>눈물을 마시는 새</td>
-					<td>2020/09/25</td>
-					<td >5,000</td>
-					<td><button onclick="">상세정보</button></td>
+					<td colspan="4">조회 결과가 없습니다.</td>
 				</tr>
-				<tr>
-					<td>눈물을 마시는 새</td>
-					<td>2020/09/25</td>
-					<td >5,000</td>
-					<td><button onclick="">상세정보</button></td>
-				</tr>
-				<tr>
-					<td>눈물을 마시는 새</td>
-					<td>2020/09/25</td>
-					<td >5,000</td>
-					<td><button onclick="">상세정보</button></td>
-				</tr>
-				<tr>
-					<td>눈물을 마시는 새</td>
-					<td>2020/09/25</td>
-					<td >5,000</td>
-					<td><button onclick="">상세정보</button></td>
-				</tr>
-				<tr>
-					<td>눈물을 마시는 새</td>
-					<td>2020/09/25</td>
-					<td >5,000</td>
-					<td><button onclick="">상세정보</button></td>
-				</tr>
-				
+				</c:if>
+				<c:if test="${!empty bookList }">
+					<c:forEach var="book" items="${bookList }">
+						<tr>
+							<td>${book.b_title }</td>
+							<td>${book.sell_date }</td>
+							<td >${book.sell_money }</td>
+							<td><button onclick="popUp(${book.sell_num})">상세정보</button></td>
+						</tr>
+					</c:forEach>
+				</c:if>
+			
 			</table>
 			<div id="paging_div">
-				<button type="button">&lt;</button>
-				<button type="button" class="paging_selected_btn">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">&gt;</button>
-			</div>
+			<c:if test="${pi.currentPage>1}">
+				<c:url var="before" value="buyBookList.ad">
+					<c:param name="page" value="${pi.currentPage-1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${before}'">&lt;</button>
+			</c:if>
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
+				<c:if test="${p eq pi.currentPage}">
+					<button type="button"  class="paging_selected_btn">${p }</button>
+				</c:if>
+				
+				<c:if test="${p ne pi.currentPage }">
+					<c:url var="pagination" value="buyBookList.ad">
+							<c:param name="page" value="${ p }"/>
+					</c:url>
+					<button type="button" onclick="location.href='${pagination}'">${p}</button>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pi.currentPage < pi.endPage }">
+			<c:url var="after" value="buyBookList.ad">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+				</c:url>
+				<button type="button" onclick="location.href='${after}'">&gt;</button>
+			</c:if>
+		</div>
 		</div>
 		
 		<div id="admin_popup">
-			<span>도서명 : 눈물을 마시는 새</span><br>
-			<span>장르 : 소설</span><br>
-			<span>저자 : 이영도</span><br>
-			<span>출판사 : 황금가지</span><br>
-			<span>상태 : 중고(80%)</span><br>
-			<span>희망머니 : 5,000</span><br>
+			<div id="admin_popup_content">
+			<input type="hidden" id="popup_b_no">
+			<input type="hidden" id="popup_sell_num">
+			<input type="hidden" id="popup_mem_no">
+			<input type="hidden" id="popup_sell_money">
+			<span id="popup_title"></span><br>
+			<span id="popup_ganre"></span><br>
+			<span id="popup_writer"></span><br>
+			<span id="popup_publisher"></span><br>
+			<span id="popup_money"></span><br>
+			</div>
 			<div id="admin_popup_buttondiv">
-			<button id="popup_close_btn">닫기</button><button onclick="" >구매</button>			
+			<button id="popup_close_btn">닫기</button><button id="buyBtn">구매</button>			
 			</div>
 		</div>
 	</section>
@@ -86,7 +95,7 @@
 					location.href="adminpage.ad";
 				});
 				$('#side_nav').find('li').eq(2).click(function(){
-					location.href="buyBook.ad";
+					location.href="buyBookList.ad";
 				});
 				$('#side_nav').find('li').eq(3).click(function(){
 					location.href="insertBook.ad";
@@ -95,7 +104,53 @@
 				$('#popup_close_btn').click(function(){
 					$('#admin_popup').css("display","none");
 				});
+				
+				$('#buyBtn').click(function(){
+					var b_no = $("#popup_b_no").val();
+					var sell_num = $("#popup_sell_num").val();
+					var mem_no = $("#popup_mem_no").val();
+					var sell_money = $("#popup_sell_money").val();
+					$.ajax({
+						url: "buyBook.ad",
+						data: {b_no:b_no, sell_num:sell_num, mem_no:mem_no, sell_money:sell_money},
+						success: function(data){
+							if(data==1){
+								swal("","구매가 완료되었습니다.","info")
+								.then((ok)=>{
+									if(ok){
+										location.reload();
+									}
+								});
+							}else{
+								swal("","작업 도중 오류가 발생하였습니다.\n다시 시도해주세요.","error");
+							}
+						}
+					});
+				});
 			});
+			
+			function numberWithCommas(x) {
+			    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			
+			function popUp(sell_num){
+				$.ajax({
+					url: "getSellDataInfo.ad",
+					data: {sell_num:sell_num},
+					success: function(data){
+							$("#popup_b_no").val(data.b_no);
+							$("#popup_sell_num").val(data.sell_num);
+							$("#popup_mem_no").val(data.mem_no);
+							$("#popup_sell_money").val(data.sell_money);
+							$("#popup_title").text("도서명 : "+data.b_title);
+							$("#popup_ganre").text("장르 : "+data.bc_ct);
+							$("#popup_writer").text("저자 : "+data.bwp_name);
+							$("#popup_publisher").text("출판사 : "+data.b_pub_name);
+							$("#popup_money").text("희망머니 : "+numberWithCommas(data.sell_money));
+					}
+				});
+				$('#admin_popup').css("display","block");
+			}
 		</script>
 <c:import url="../common/footer.jsp"></c:import>
 </body>

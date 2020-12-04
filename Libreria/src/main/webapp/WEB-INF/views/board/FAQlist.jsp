@@ -1,251 +1,235 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Libreria</title>
 <style type="text/css">
-   @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
-   *{
-      margin: 0px;
-      padding: 0px;
-      font-family: 'Nanum Gothic';
-   }
-   section{
-      margin: 0 auto;
-      width:1000px;
-
-   }
-   #nav_container{
-      height: 170px;
-      background-color: rgb(94, 107, 159);
-      border: none;
-      border-radius: 0px;
-      vertical-align: middle;
-   }
-   #nav_body{
-   
-       padding-top: 40px;
-       width: 1000px;
-       margin: 0px auto;
-   }
-   #a_brand{
-      font-family: "Arial Black";
-      font-weight: bold;
-      font-size:33px;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-   }
-   #input_search{
-      margin-left: 15px;
-      padding: 6px 12px;
-       width: 300px;
-       height: 100%;
-       background: #fff;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       font-size: 14px;
-       vertical-align: super;
-   }
-   #div_head_btns{
-      display: inline;
-      margin-left: 285px;
-   }
-   .btn_head{
-      vertical-align: inherit;
-       background-color: rgb(60, 68, 101);
-       color:white;
-       border: none;
-       border-radius: 5px;
-       font-weight: bold;
-       font-size: 15px;
-       width: 90px;
-       height: 35px;   
-   }
-   .btn_head:hover{
-      cursor: pointer;
-   }
-   
-   #nav_menu{
-      height: 40px;
-      background-color: #ffffff;
-      margin-top: 43px;
-      border-bottom: 1px solid #e6e6e6;
-   }
-   #menu_ul{
-      width:1000px;
-      margin: 0 auto;
-   }
-   #menu_ul > li{
-      list-style: none;
-      float: left;
-      margin: 5px 30px 0px 30px;
-      font-size: 20px;
-      font-weight: bold;
-   }
-   #menu_li{
-      background-image: url("images/menu-symbol.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      width: 28px;
-       height: 26px;
-       margin: 5px 0px !important;
-   }
-   #footer_container{
-      background-color: rgb(48, 53, 56);
-      height:150px;
-      color: #ffffff;
-   }   
-   #footer_container > div{
-      margin: 0 auto;
-      padding-top: 50px;
-      width:1000px;
-      
-   }
-   
-   #footer_container > div >span {
-      padding: 10px;
-   }
-
+	#faq_container{
+		margin-top: 30px;
+	}
+	
+	#faq_container #small_title{
+		color: #9ea7ad;
+		font-size: 13px;
+	}
+	
+	#faq_header{
+		display: flex;
+		margin-top: 30px;
+	}
+	
    .faq_title{
-      text-align:center;
-      font-size:50px;
-
+      flex: 7;
+      font-size:32px;
+      font-weight: bold;
    }
+   
+     #insertBtn{
+   		flex:1;
+		cursor: pointer;
+		background-color: rgb(94, 107, 159);
+		color: #ffffff;
+		border: none;
+		border-radius: 4px;  
+		font-size: 16px;
+		font-weight: bold;
+   }
+   
+   
 
    .faq_list{
       text-align: left;
       padding:10px;
-      font-size:20px;
+      font-size:16px;
+      list-style: none;
+      margin-top: 50px;
    }
+   
+    .faq_list li{
+   		display: flex;
+    	border-top: 1px solid #e6e8eb;
+    	padding: 20px 20px 20px 0;
+    	color: #333333;
+    	text-align: right;
+    }
+    .faq_list a{
+    	flex: 1;
+    	text-align: left;
+    }
+
 
    .faq_list_font{
       font-size: 20px;   
       font-weight: bold;
 
    }
+   
 
    
+   #paging_div{
+	margin-top: 30px;
+	text-align: center;
+	}
    
    
-   a:link { color: black; text-decoration: none;}
-   a:visited { color: gray; text-decoration: none;}
-   a:hover { color: black; text-decoration: none;}
+   #paging_div button{
+	background: #eaeaea;
+	border: none;
+	border-radius: 4px;
+	width:40px; height: 40px;
+	font-size: 16px;
+	color: #333;
+	cursor: pointer;
+	}
+	
+	.paging_selected_btn{
+	    background-color: rgb(94, 107, 159) !important;
+	    color: #ffffff !important;
+	}
+	.sell_table{
+		font-size: 14px !important;
+	}
+	.sell_table td:first-child{
+		padding-left:20px;
+	}
+   
+   #faq_search{
+   		text-align: right;
+   }
+   #faq_search_div{
+	   display: inline-block;
+	   	border: 1px solid #cccccc;
+	   	width:180px;
+	   	height:20px;
+	   	padding: 5px 0;
+	   	margin-top: 10px;
+   }
+   #faq_search_div input{ 
+   		width:140px;
+   		height: 20px;
+   		margin: auto 0;
+   		border: none;
+   		vertical-align: super;
+   
+  	} 
+  	
+  	#faq_search_div img{
+		height: 20px;
+		margin-right: 10px;
+		cursor: pointer;
+}
+   section a:link { color: #333333; text-decoration: none;}
+   section a:visited { color: gray; text-decoration: none;}
+   section a:hover { color:  #333333; text-decoration: none;}
 
    
 </style>
 </head>
 <body>
-   <nav class="" id="nav_container">
-         <div id="nav_body">
-            <a class="" href="#" id="a_brand">LIBRERIA</a>
-            <input type="text" id="input_search" placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä">
-            <div id="div_head_btns">
-               <button class="btn_head">È¸¿ø°¡ÀÔ</button>
-               <button class="btn_head">·Î±×ÀÎ</button>
-            </div>
-         </div>
-         <div id="nav_menu">
-            <ul id="menu_ul">
-               <li id="menu_li"></li>
-               <li>±¹³»µµ¼­</li>
-               <li>¿Ü±¹µµ¼­</li>
-               <li>Áß°íµµ¼­</li>
-               <li>°í°´¼¾ÅÍ</li>
-               <li>Àå¹Ù±¸´Ï</li>
-            </ul>
-         </div>
-   </nav>
+<c:import url="../common/header.jsp"></c:import>
    <section>
-         <h1 class="faq_title">°øÁö »çÇ×</h1>
-         <br><br>
-         <div>
+         <div id="faq_container">
+         <div id="small_title">LIBRERIA ê³ ê°ì„¼í„° > FAQ</div>
+         <div id="faq_header"><div class="faq_title">FAQ</div>
+         <c:if test="${ loginUser.mem_grade eq 'admin'}"><button id="insertBtn">ê²Œì‹œê¸€ ì‘ì„±</button></c:if></div>
+         <div id="faq_search"><div id="faq_search_div"><input type="text" id="faq_search_input"><img alt="ê²€ìƒ‰" id="search_icon" src="${pageContext.request.contextPath}/resources/images/icon_search.png"></div></div>
             <ul class="faq_list">
-               <a href="#1" class="faq_list_font">[FAQ] ¸¶ÀÏ¸®Áö »ç¿ë ¹æ¹ı¿¡ ´ëÇÏ¿©</a>
+            	<c:if test="${ empty faqList }">
+            		<li>ì¡°íšŒ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</li>
+            	</c:if>
+            	<c:if test="${!empty faqList }">
+            		<c:forEach var="faq" items="${faqList }">
+            			<li><a href="FAQSelect.bd?bo_no=${faq.bo_no}">[FAQ] ${faq.bo_title }</a><span>${faq.bo_date }</span></li>
+            		</c:forEach>
+            	</c:if>
+             <!--   <li><a href="#1" >[FAQ] ë§ˆì¼ë¦¬ì§€ ì‚¬ìš© ë°©ë²•ì— ëŒ€í•˜ì—¬</a></li>
+               <li><a href="#2">[FAQ] ì•„ì´ë”” / ë¹„ë°€ë²ˆí˜¸ ì°¾ëŠ” ë°©ë²•</a></li>
+               <li><a href="#3">[FAQ] ë“±ë¡í•œ ì¹´ë“œ í•´ì§€ ë°©ë²•</a></li>
+               <li><a href="#4">[FAQ] ì£¼ë¬¸ ì·¨ì†Œ ë°©ë²•</a></li> -->
             </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#2" class="faq_list_font">[FAQ] ¾ÆÀÌµğ / ºñ¹Ğ¹øÈ£ Ã£´Â ¹æ¹ı</a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#3" class="faq_list_font">[FAQ] µî·ÏÇÑ Ä«µå ÇØÁö ¹æ¹ı</a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#4" class="faq_list_font">[FAQ] ÁÖ¹® Ãë¼Ò ¹æ¹ı</a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#5" class="faq_list_font">[FAQ] </a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#6" class="faq_list_font">[FAQ] </a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#7" class="faq_list_font">[FAQ] </a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#8" class="faq_list_font">[FAQ] </a>
-            </ul>
-            <hr>
-            <ul class="faq_list">
-               <a href="#9" class="faq_list_font">[FAQ] </a>
-            </ul>
-            <hr>
          </div>
-         <table>
-          <tr align="center" height="20" id="buttonTab">
-			 <td colspan="6">
-				<c:if test="${ pi.currentPage <= 1 }">
-					[ÀÌÀü] &nbsp;
+        <div id="paging_div">
+			<c:if test="${pi.currentPage>1}">
+				<c:if test="${search==null }">
+				<c:url var="before" value="FAQList.bd">
+					<c:param name="page" value="${pi.currentPage-1 }"/>
+				</c:url>
 				</c:if>
-				<c:if test="${ pi.currentPage > 1 }">
-					<c:url var="before" value="boardlist.do">
-						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+				<c:if test="${ search != null}">
+					<c:url var="before" value="searchFAQ.bd">
+						<c:param name="page" value="${pi.currentPage-1 }"/>
+						<c:param name="search" value="${search}"/>
 					</c:url>
-					<a href="${ before }">[ÀÌÀü]</a> &nbsp;
 				</c:if>
-			
-				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4"><b>[${ p }]</b></font>
-					</c:if>
-					
-					<c:if test="${ p ne pi.currentPage }">
-						<c:url var="pagination" value="boardlist.do">
+				<button type="button" onclick="location.href='${before}'">&lt;</button>
+			</c:if>
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage}">
+				<c:if test="${p eq pi.currentPage}">
+					<button type="button"  class="paging_selected_btn">${p }</button>
+				</c:if>
+				
+				<c:if test="${p ne pi.currentPage }">
+					<c:if test="${search==null }">
+					<c:url var="pagination" value="FAQList.bd">
 							<c:param name="page" value="${ p }"/>
-						</c:url>
-						<a href="${ pagination }">${ p }</a> &nbsp;
+					</c:url>
 					</c:if>
-				</c:forEach>
-				<c:if test="${ pi.currentPage >= pi.maxPage }">
-					[´ÙÀ½]
+					<c:if test="${search!=null }">
+					<c:url var="pagination" value="searchFAQ.bd">
+							<c:param name="page" value="${ p }"/>
+							<c:param name="search" value="${search}"/>
+					</c:url>
+					</c:if>
+					<button type="button" onclick="location.href='${pagination}'">${p}</button>
 				</c:if>
-				<c:if test="${ pi.currentPage < pi.maxPage }">
-					<c:url var="after" value="boardlist.do">
-						<c:param name="page" value="${ pi.currentPage + 1 }"/>
-					</c:url> 
-					<a href="${ after }">[´ÙÀ½]</a>
+			</c:forEach>
+			<c:if test="${pi.currentPage < pi.endPage }">
+				<c:if test="${search==null }">
+				<c:url var="after" value="FAQList.bd">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+				</c:url>
 				</c:if>
-			</td>
-		</tr>
-	</table>
-         
-
-   <br><br>
+				<c:if test="${search!=null }">
+				<c:url var="after" value="FAQList.bd">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+					<c:param name="search" value="${search}"/>
+				</c:url>
+				</c:if>
+				<button type="button" onclick="location.href='${after}'">&gt;</button>
+			</c:if>
+		</div>
+		<script type="text/javascript">
+			$('#faq_search_input').keyup(function(evt){
+				if(evt.keyCode==13){   // ì—”í„°í‚¤ ëˆŒë €ì„ ë•Œ
+					search();
+				};
+				
+			});
+			
+			$('#search_icon').click(function(){
+				search();			
+			});
+			
+		
+			$("#insertBtn").click(function(){
+					location.href="FAQWriteForm.bd";
+			});	
+			
+			function search(){
+				search_text = $("#faq_search_input").val();
+				if(search_text==""){
+					swal("","ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.","info");
+					return;
+				}else if(search_text.length<2){
+					swal("","ê²€ìƒ‰ì–´ëŠ” ë‘ê¸€ì ì´ìƒ ì…ë ¥í•´ì£¼ì„¸ìš”.","info");
+					return;
+				}else{
+					location.href="searchFAQ.bd?search="+search_text;					
+				}
+			}
+		</script>
    </section>
-   <footer id="footer_container">
-      <div>
-         <span>¼­¿ï½Ã °­³²±¸ ¿ª»ïµ¿ ³²µµºôµù</span> | <span>´ëÇ¥ : ±è´ëÇ¥</span> | <span>»ç¾÷ÀÚµî·Ï¹øÈ£ : 123-45-67890</span>
-         <br><br>
-         <span>Copyright(C) LIBRERIA  all  rights reserved.</span>
-      </div>
-   </footer>
+<c:import url="../common/footer.jsp"></c:import>
 </body>
 </html>

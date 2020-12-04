@@ -1,38 +1,26 @@
 package com.kh.libreria.board.vo;
 
+import java.sql.Date;
+
 public class Board {
 	private int bo_no;
 	private String bo_title;
 	private String bo_content;
-	private String bo_date;
-	private String bo_count;
+	private Date bo_date;
+	private int bo_count;
 	private String bo_delete;
-	private String mem_no;
-	private String cate_no;
+	private int mem_no;
+	private int cate_no;
 	
-	private String originalFileName;
-	private String renameFileName;
+	private String mem_name; 
 	
-	public String getOriginalFileName() {
-		return originalFileName;
+	public Board() {
+		super();
 	}
 
-	public void setOriginalFileName(String originalFileName) {
-		this.originalFileName = originalFileName;
-	}
 
-	public String getRenameFileName() {
-		return renameFileName;
-	}
-
-	public void setRenameFileName(String renameFileName) {
-		this.renameFileName = renameFileName;
-	}
-
-	public Board() {}
-
-	public Board(int bo_no, String bo_title, String bo_content, String bo_date, String bo_count, String bo_delete,
-			String mem_no, String cate_no) {
+	public Board(int bo_no, String bo_title, String bo_content, Date bo_date, int bo_count, String bo_delete,
+			int mem_no, int cate_no, String mem_name) {
 		super();
 		this.bo_no = bo_no;
 		this.bo_title = bo_title;
@@ -42,7 +30,10 @@ public class Board {
 		this.bo_delete = bo_delete;
 		this.mem_no = mem_no;
 		this.cate_no = cate_no;
+		this.mem_name = mem_name;
 	}
+
+
 
 	public int getBo_no() {
 		return bo_no;
@@ -68,19 +59,19 @@ public class Board {
 		this.bo_content = bo_content;
 	}
 
-	public String getBo_date() {
+	public Date getBo_date() {
 		return bo_date;
 	}
 
-	public void setBo_date(String bo_date) {
+	public void setBo_date(Date bo_date) {
 		this.bo_date = bo_date;
 	}
 
-	public String getBo_count() {
+	public int getBo_count() {
 		return bo_count;
 	}
 
-	public void setBo_count(String bo_count) {
+	public void setBo_count(int bo_count) {
 		this.bo_count = bo_count;
 	}
 
@@ -92,20 +83,29 @@ public class Board {
 		this.bo_delete = bo_delete;
 	}
 
-	public String getMem_no() {
+	public int getMem_no() {
 		return mem_no;
 	}
 
-	public void setMem_no(String mem_no) {
+	public void setMem_no(int mem_no) {
 		this.mem_no = mem_no;
 	}
 
-	public String getCate_no() {
+	public int getCate_no() {
 		return cate_no;
 	}
 
-	public void setCate_no(String cate_no) {
+	public void setCate_no(int cate_no) {
 		this.cate_no = cate_no;
+	}
+	
+
+	public String getMem_name() {
+		return mem_name;
+	}
+
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 
 	@Override
@@ -114,6 +114,9 @@ public class Board {
 				+ bo_date + ", bo_count=" + bo_count + ", bo_delete=" + bo_delete + ", mem_no=" + mem_no + ", cate_no="
 				+ cate_no + "]";
 	}
+	
+	
+
 	
 	
 }
