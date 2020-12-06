@@ -51,7 +51,7 @@
 							<li>공지사항</li>
 						</ul>
 					</li>
-					<li>장바구니</li>
+					<li id="UserBasket">장바구니</li>
 				</ul>
 			</div>
 	</nav>
@@ -87,6 +87,14 @@
 	 	}, function(){
 	 		$(this).find('ul').css("display","none");
 	 	});
+	
+	 	$('#menu_li').click(function(){
+			location.href = "bookCateList.bo";
+		}); 
+	 	
+		$('#UserBasket').click(function(){
+			location.href = "basketList.pay";
+		})
 	
 	
 	

@@ -64,7 +64,7 @@
 						<h3 class="book_detail_title" style="color: #1f8ce6;"><fmt:formatNumber value="${ bDetail.b_price }"/>원</h3>
 						<ul>
 							<li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li>
-							<li  class="book_buy_ic_cl"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
+							<li  class="book_buy_ic_cl "  onclick="location.href='payment.pay'"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
 							<li  class="book_buy_ic_cl"><img id="book_add_gift"src="${pageContext.request.contextPath}/resources/images/Product_gift.png"></li>
 							<c:url value="DirectBuy.pay" var="DirectBuy">
                                 <c:param name="bookTitle" value="bookName" />

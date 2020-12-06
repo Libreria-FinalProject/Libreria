@@ -192,15 +192,16 @@ public class PayController {
 	}
 	
 	@RequestMapping("basketList.pay")
-	public ModelAndView BasketList(HttpSession session, ModelAndView mv) {
-		Member User = (Member) session.getAttribute("loginUser");
-		ArrayList<BasketList> BasketInfo = pService.BasketList(User);
-
-		mv.addObject("BasketInfo", BasketInfo).setViewName("standardUINormal");
-
-		return mv;
-
-	}
+	
+	  public ModelAndView BasketList(HttpSession session, ModelAndView mv) { Member
+	  User = (Member) session.getAttribute("loginUser"); ArrayList<BasketList>
+	  BasketInfo = pService.BasketList(User);
+	  
+	  mv.addObject("BasketInfo", BasketInfo).setViewName("standardUINormal");
+	  
+	  return mv;
+	  }
+	 
 
 	@RequestMapping("deleteBook.pay")
 	public ModelAndView deleteBasket(@RequestParam("bookNum") int bNo, @RequestParam("memNum") int mem_no,

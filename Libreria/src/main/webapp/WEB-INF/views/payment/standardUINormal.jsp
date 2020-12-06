@@ -375,7 +375,7 @@
 </style>
 </head>
 <body>
-<c:import url="common/header.jsp"></c:import>
+<c:import url="../common/header.jsp"></c:import>
    <!-- <nav class="" id="nav_container">
          <div id="nav_body">
             <a class="" href="#" id="a_brand">LIBRERIA</a>
