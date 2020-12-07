@@ -64,7 +64,7 @@
 						<h3 class="book_detail_title" style="color: #1f8ce6;"><fmt:formatNumber value="${ bDetail.b_price }"/>원</h3>
 						<ul>
 							<li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li>
-							<li  class="book_buy_ic_cl "  onclick="location.href='payment.pay'"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
+							<li  class="book_buy_ic_cl " id="basket"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
 							<li  class="book_buy_ic_cl"><img id="book_add_gift"src="${pageContext.request.contextPath}/resources/images/Product_gift.png"></li>
 							<c:url value="DirectBuy.pay" var="DirectBuy">
                                 <c:param name="bookTitle" value="bookName" />
@@ -771,19 +771,22 @@
 	</script>
 	<script>
 	//민혁님 부분 스크립트 
-	$('#Basket').on('click',function(){
-	   
-	   var bookNum = $('#b_no').val();
-	   
+	$('#basket').on('click',function(){
+	   console.log("클릭");
+	   //var bookNum = $('#b_no').val();
+	   var bookNum = ${bDetail.b_no};
 	   //addReply.bo ==>'success'
 	   $.ajax({
 	      url:'payment.pay',
 	      data:{bookNum : bookNum},
 	      type:"get",
 	      success:function(data){
-	         if(data == "success"){
-	            alert("complate");
+	         if(data == "seccessInsert"){
+	            alert("장바구니에 추가되었습니다.");
 	         }
+	         if(data == "seccessDelete"){
+		            alert("장바구니에서 삭제되었습니다.");
+		         }
 	      }
 	   })
 	});
