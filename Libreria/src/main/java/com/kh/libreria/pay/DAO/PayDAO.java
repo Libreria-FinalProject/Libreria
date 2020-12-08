@@ -53,17 +53,17 @@ public class PayDAO {
 	}
 
 	public int insertBuyBookMutong(HashMap<String, Integer> map, SqlSessionTemplate sqlSession) {
-		
+		sqlSession.update("payMapper.BookRateUpdate",map);
 		return sqlSession.insert("payMapper.insertBuyBookMutong", map);
 	}
 
 	public int insertBuyBookSinyong(HashMap<String, Integer> map, SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
+		sqlSession.update("payMapper.BookRateUpdate",map);
 		return sqlSession.insert("payMapper.insertBuyBookSinyong", map);
 	}
 
 	public int insertBuyBookMileage(HashMap<String, Integer> map, SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
+		sqlSession.update("payMapper.BookRateUpdate",map);
 		return sqlSession.insert("payMapper.insertBuyBookMileage", map);
 	}
 

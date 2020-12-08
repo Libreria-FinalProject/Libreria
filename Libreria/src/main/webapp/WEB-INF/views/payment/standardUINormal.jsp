@@ -408,6 +408,8 @@
             <div id="contentBox">
                     <br>
                     <label class="allSelect"><input type="checkbox"  id="allSel" class="allSelClass" onclick="allCheck();"> 전체선택 </label>
+			 
+			
 			 <c:forEach items="${ BasketInfo }" var="basket">
 			 <c:url value="deleteBook.pay" var="delete">
                                 <c:param name="bookNum" value="${ basket.b_no }" />
@@ -415,14 +417,15 @@
                                 </c:url>
              <input type="hidden" id="memNum" value="${ basket.mem_no }">
 			<div>
-                    <hr>
+                    
                     <div id="productBox">
                             <label><input type="checkbox" name="SelectBook"onclick="whatAll();" value="${ basket.b_no }"> <input type="hidden" id="b_no" value="${ basket.b_no }"> </label>
-                            <img src="${basket.img_no}">
+                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${ basket.img_no }.jpg">
                             <div id="titleBox">
                                 <label id="bookName">${ basket.b_title }</label>
                                 
-                                 <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button><a href="${delete}"><button id="btnDelete" >삭제</button></a></div>
+                                <div id="btnBox"><button id="btnInfo" onclick="location.href = 'bookDetail.bo?b_no='+${ bookNo }">상세보기</button>
+                                <a href="${delete}"><button id="btnDelete" >삭제</button></a></div>
                                 </div>
                                 
                             	<label id="alongPrice">${ basket.b_price }원</label>
@@ -430,7 +433,8 @@
                 <br>
             </div>
 		</c:forEach>
-              
+         
+        
 
                 <br>
                 <div id="lastSelectBox">

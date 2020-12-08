@@ -87,9 +87,7 @@
 	 	}, function(){
 	 		$(this).find('ul').css("display","none");
 	 	});
-		
-	 	// 위에 해당 click에 대한 스크립트 존재함. 
-	 	// 중복과 에러로 인한 주석처리 - 최호영 2020.12.07
+	
 	 	/* $('#menu_li').click(function(){
 			location.href = "bookCateList.bo";
 		});  */
