@@ -88,9 +88,9 @@
 	 		$(this).find('ul').css("display","none");
 	 	});
 	
-	 	$('#menu_li').click(function(){
+	 	/* $('#menu_li').click(function(){
 			location.href = "bookCateList.bo";
-		}); 
+		});  */
 	 	
 		$('#UserBasket').click(function(){
 			location.href = "basketList.pay";

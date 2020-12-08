@@ -378,7 +378,7 @@
                     <hr>
                     <div id="productBox">
                             
-                            <img src="${bookImg}">
+                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${bookImg}.jpg">
                             <div id="titleBox">
                                 <label id="bookName">${ bookTitle }</label>
                                 </div>

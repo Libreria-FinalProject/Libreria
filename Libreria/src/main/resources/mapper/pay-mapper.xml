@@ -54,6 +54,13 @@
 		insert into BUY_DATA
 		values(SEQ_BUY_NUM.nextval,SYSDATE,#{allprice},'Mileage',default,#{bNo},#{mem_no})
 	</insert>
+	
+	<update id="BookRateUpdate">
+		update book
+		set B_SALES_RATE = B_SALES_RATE + 1
+		where B_NO = #{bNo}
+	</update>
+	
 <!-- 
 	<update id="deleteBasket">
 		update basket

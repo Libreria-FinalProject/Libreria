@@ -413,11 +413,11 @@
                     <hr>
                     <div id="productBox">
                             <label><input type="hidden" id="b_no" value="${ bookNo }"> </label>
-                            <img src="${bookImg}">
+                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${bookImg}.jpg">
                             <div id="titleBox">
                                 <label id="bookName">${ bookTitle }</label>
                                 
-                                 <div id="btnBox"><button id="btnInfo" onclick="location.href='inpo.pay'">상세보기</button></div>
+                                 <div id="btnBox"><button id="btnInfo" onclick="location.href = 'bookDetail.bo?b_no='+${ bookNo }">상세보기</button></div>
                                 </div>
                                 
                             	<label id="alongPrice">${ bookPrice }원</label>
