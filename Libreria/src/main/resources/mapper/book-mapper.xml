@@ -169,6 +169,107 @@
 		</choose> 
 		
 	</select>
+	<select id="getBestListCount" resultType="_int">
+		<!-- sortType - 1 이면 주간 // 2면 월간 //3이면 인기순   -->
+		<!--  bc_no == 0일시 bcf_no기준으로 값 가져오기  -->
+		
+		<if test="std == 1">
+			<choose>
+				<when test="bc_no != 0">
+					select count(b_no)
+					from bcp_week
+					where bc_no = #{bc_no}
+				</when>
+				<otherwise>
+					select count(b_no)
+					from bcp_week
+					where bcf_no = #{bcf_no}
+				</otherwise>
+			</choose>
+		</if>
+		<if test="std == 2">
+			<choose>
+				<when test="bc_no != 0">
+					select count(b_no)
+					from bcp_month
+					where bc_no = #{bc_no}
+				</when>
+				<otherwise>
+					select count(b_no)
+					from bcp_month
+					where bcf_no = #{bcf_no}
+				
+				</otherwise>
+			</choose>
+		</if>
+		
+		
+		<if test="std == 3">
+			<choose>
+				<when test="bc_no != 0">
+					select count(b_no)
+					from bcp
+					where bc_no = #{bc_no}
+				</when>
+				<otherwise>
+					select count(b_no)
+					from bcp
+					where bcf_no = #{bcf_no}
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+	
+	<select id="getBookBestList" resultType="Book">
+		<if test="std == 1">
+			<choose>
+				<when test="bc_no != 0">
+					select * 
+					from bcp_week
+					where bc_no = #{bc_no}
+				</when>
+				<otherwise>
+					select * 
+					from bcp_week
+					where bcf_no = #{bcf_no}
+				</otherwise>
+			</choose>
+		</if>
+		
+		<if test="std == 2">
+			<choose>
+				<when test="bc_no != 0">
+					select * 
+					from bcp_month
+					where bc_no = #{bc_no}
+				</when>
+				<otherwise>
+					select * 
+					from bcp_month
+					where bcf_no = #{bcf_no}
+				</otherwise>
+			</choose>
+		</if>
+	
+		<if test="std == 3">
+			<choose>
+				<when test="bc_no != 0">
+					select * 
+					from bcp
+					where bc_no = #{bc_no}
+					order by b_sales_rate desc
+				</when>
+				<otherwise>
+					select * 
+					from bcp
+					where bcf_no = #{bcf_no}
+					order by b_sales_rate desc
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+	
+	
 	
 	<!-- KH -->
 	<select id="searchBookList" resultType="Book">

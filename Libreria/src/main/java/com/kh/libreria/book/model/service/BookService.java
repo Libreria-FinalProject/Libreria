@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
+import com.kh.libreria.book.model.vo.BookSort;
 import com.kh.libreria.book.model.vo.BookSubCategory;
 import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.common.PageInfo;
@@ -52,6 +53,10 @@ public interface BookService {
 	ArrayList<Book> searchBookList(String b_title);
 
 	int sellBook(HashMap<String, Integer> sellBook);
+
+	int getBestListCount(BookSort bs);
+
+	ArrayList<Book> getBookBestList(PageInfo pi, BookSort bs);
 
 
 }

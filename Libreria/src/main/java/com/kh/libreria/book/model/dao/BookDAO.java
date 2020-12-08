@@ -115,6 +115,18 @@ public class BookDAO {
 	}
 	////////////////KH//////////////////
 
+	public int getBestListCount(SqlSessionTemplate sqlSession, BookSort bs) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("bookMapper.getBestListCount",bs);
+	}
+
+	public ArrayList<Book> getBookBestList(SqlSessionTemplate sqlSession, PageInfo pi, BookSort bs) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("bookMapper.getBookBestList",bs,rowBounds);
+	}
+
 	
 
 }

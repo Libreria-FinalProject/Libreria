@@ -25,6 +25,7 @@ import com.kh.libreria.book.model.exception.BookException;
 import com.kh.libreria.book.model.service.BookService;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
+import com.kh.libreria.book.model.vo.BookSort;
 import com.kh.libreria.book.model.vo.BookSubCategory;
 import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.common.PageInfo;
@@ -82,6 +83,59 @@ public class BookController {
 		
 		return "bookCategoryPage";
 	}
+	@RequestMapping("bookCateBestList.bo")
+	public ModelAndView bookCateBestLis(@RequestParam(value="page", required=false, defaultValue ="1") Integer page, ModelAndView mv,
+			BookSubCategory bsc,BookFrameCategory bfc,@RequestParam(value="sortTypeDetail", defaultValue="1") Integer sortTypeDetail) {
+		
+		//북 메인카테고리 전체
+		ArrayList<BookFrameCategory> bcfList = bService.getBookCate();
+			
+		//북 카테고리 큰틀 -- 서브카테고리를 가져오기 위한 int 값 (페이지에서 전송)
+		int bcf_no = bfc.getBcf_no();
+		int bc_no = bsc.getBc_no();
+				
+		int recent_bcf = bcf_no;
+		int recent_bc = bc_no;
+		ArrayList<BookSubCategory> bscList = bService.getBookSubCateList(bcf_no);
+		
+		////////////////////////////////////////////////////////////////////////
+		
+		//페이징 처리
+		int currentPage = 1;	
+		if(page != null) {
+				currentPage = page;
+		}
+		
+		// 주간 /월간에 따른 갯수가 다르기에 메소드 분리 필요함 으띃게 나누지 
+		BookSort bs = new BookSort(bcf_no,bc_no,sortTypeDetail);
+		int listCount = bService.getBestListCount(bs);
+		//		sortType - 1 이면 주간 // 2면 월간 //3이면 인기순 
+		//      bc_no == 0일시 bcf_no기준으로 값 가져오기 
+		//게시물 당 20개씩
+		PageInfo pi = Pagination.getBookPageInfo(currentPage, listCount);
+		
+		ArrayList<Book> bList = bService.getBookBestList(pi,bs);
+		
+		
+	
+		mv.addObject("bList",bList);
+		mv.addObject("bscList",bscList);
+		mv.addObject("bcfList",bcfList );
+		mv.addObject("recent_bc",recent_bc);
+		mv.addObject("recent_bcf",recent_bcf);
+		mv.addObject("pi",pi);
+		mv.addObject("sortTypeDetail",sortTypeDetail);
+		
+		//서브메뉴 구분자
+		mv.addObject("all",2);
+		mv.setViewName("bookCateSelectPage");
+		
+		
+		
+		
+		return mv;
+	}
+	
 	@RequestMapping("bookCateSelAllList.bo")
 	public ModelAndView bookCateSelAll(@RequestParam(value="page", required=false, defaultValue ="1") Integer page, ModelAndView mv,
 			BookSubCategory bsc,BookFrameCategory bfc,@RequestParam(value="sortTypeDetail", defaultValue="1") Integer sortTypeDetail) {
@@ -96,12 +150,6 @@ public class BookController {
 		int recent_bc = bc_no;
 		//해당하는 영역의 서브카테고리 가져오기(공통처리)
 		ArrayList<BookSubCategory> bscList = bService.getBookSubCateList(bcf_no);
-		
-		//이부분 부터 따로 처리하는 메소드 작성필요 
-		int sortType = 1;
-		//인기순 1 , 최신순 2 , 평점순 3, 리뷰많은순 4
-		System.out.println("sortTypeDetail:"+sortTypeDetail);
-		//sortTypeDetail = 1;
 		
 		//페이징 처리
 		int currentPage = 1;	

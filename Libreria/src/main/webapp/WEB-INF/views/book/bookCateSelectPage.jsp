@@ -57,7 +57,7 @@
       		<div id="content_sub_cate" >
       			<ul id="sub_cate_ul">
       				<li id="book_cate_sel_home">홈</li>
-      				<li id="book_cate_sel_new_b">신간</li>
+      				<!-- <li id="book_cate_sel_new_b">신간</li> -->
       				<li id="book_cate_sel_best_b">베스트셀러</li>
       				<li id="book_cate_sel_all_b">전체</li>
       			</ul>
@@ -78,6 +78,11 @@
 	      					<li id="revStarSort">평점순</li>
 	      					<li id="revManySort">리뷰많은순</li>
       					</c:if>
+      					<c:if test="${ all eq 2 }">
+      						<li id="weekSort">주간 베스트셀러</li>
+	      					<li id="monthSort">월간 베스트셀러</li>
+	      					<li id="rateSort">판매량순</li>
+      					</c:if>
       			</ul>
       			</div>
       
@@ -88,10 +93,16 @@
       			$(function(){
       				if(sub == 1){
       					$('#popSort').css({"font-weight":"800","color":"black"});
+      					$('#weekSort').css({"font-weight":"800","color":"black"});
+      					
       				}else if(sub == 2){
       					$('#newSort').css({"font-weight":"800","color":"black"});
+      					$('#monthSort').css({"font-weight":"800","color":"black"});
+      					
       				}else if(sub == 3){
       					$('#revStarSort').css({"font-weight":"800","color":"black"});
+      					$('#rateSort').css({"font-weight":"800","color":"black"});
+      					
       				}else if(sub ==4){
       					$('#revManySort').css({"font-weight":"800","color":"black"});
       				}
@@ -139,7 +150,37 @@
       			});
       			
       			
-      			
+      			// 베스트셀러
+      			$('#weekSort').click(function(){
+      				var bc_no = $('#recent_bc').val();
+					var bcf_no = $('#recent_bcf').val();
+					console.log("음");
+					if(bc_no == 0){
+						location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&sortTypeDetail="+1;
+					}else{
+						location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no+"&sortTypeDetail="+1;
+					}
+      			});
+      			$('#monthSort').click(function(){
+      				var bc_no = $('#recent_bc').val();
+					var bcf_no = $('#recent_bcf').val();
+					console.log("음");
+					if(bc_no == 0){
+						location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&sortTypeDetail="+2;
+					}else{
+						location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no+"&sortTypeDetail="+2;
+					}
+      			});
+      			$('#rateSort').click(function(){
+      				var bc_no = $('#recent_bc').val();
+					var bcf_no = $('#recent_bcf').val();
+					console.log("음");
+					if(bc_no == 0){
+						location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&sortTypeDetail="+3;
+					}else{
+						location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no+"&sortTypeDetail="+3;
+					}
+      			});
       			
       		
       		
@@ -181,6 +222,7 @@
 				<br>
 				<br>
 				<div>
+					<c:if test="${ all eq 1 }">
 					<ul class="paging_number">
 						<c:if test="${ pi.maxPage > 10 }">
 						<!-- page -10버튼 처리 -->
@@ -262,6 +304,100 @@
 						</c:if>
 						
 					</ul>
+					</c:if>
+					
+					
+					<c:if test="${ all eq 2 }">
+					<ul class="paging_number">
+						<c:if test="${ pi.maxPage > 10 }">
+						<!-- page -10버튼 처리 -->
+						<c:if test="${ pi.currentPage <= 1 }">
+							<li><button class="paging_num_btn" id="paging_before_btn">&lt;&lt; &nbsp;</button><input id="pagin_btn" type="hidden" value="${ before10 }"/></li>	
+						</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="before10" value="bookCateBestList.bo">
+								<c:param name="page" value="${ pi.startPage - 10 }"/>
+								<c:param name="bc_no" value="${ recent_bc }"/>
+								<c:param name="bcf_no" value="${ recent_bcf }"/>
+								<c:param name="sortTypeDetail" value="${sortTypeDetail }"/>
+							</c:url>
+							<li><button class="paging_num_btn" id="paging_before_btn">&lt;&lt; &nbsp;</button><input id="pagin_btn" type="hidden" value="${ before10 }"/></li>	
+						</c:if>
+						</c:if>
+					
+						<!-- 이전 버튼 처리  -->
+						<c:if test="${ pi.currentPage <= 1 }">
+							<li><button class="paging_num_btn" id="paging_before_btn">&lt; &nbsp;</button><input id="pagin_btn" type="hidden" value="${ before }"/></li>	
+						</c:if>
+						<c:if test="${ pi.currentPage > 1 }">
+							<c:url var="before" value="bookCateBestList.bo">
+								<c:param name="page" value="${ pi.currentPage - 1 }"/>
+								<c:param name="bc_no" value="${ recent_bc }"/>
+								<c:param name="bcf_no" value="${ recent_bcf }"/>
+								<c:param name="sortTypeDetail" value="${sortTypeDetail }"/>
+							</c:url>
+							<li><button class="paging_num_btn" id="paging_before_btn">&lt; &nbsp;</button><input id="pagin_btn" type="hidden" value="${ before }"/></li>	
+						</c:if>
+						
+						
+						<!-- 페이징 넘버 처리 -->
+						<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+							<!-- 페이지가 같을때 -->
+							<c:if test="${ p eq pi.currentPage }">
+								<li><button class="paging_num_btn_sel" >${ p }</button><input id="pagin_btn" type="hidden" value="${ pagination }"/></li>
+							</c:if>
+							
+							<!-- 같지않을떄 -->
+							<c:if test="${ p ne pi.currentPage }">
+							<c:url var="pagination" value="bookCateBestList.bo">
+								<c:param name="page" value="${ p }"/>
+								<c:param name="bc_no" value="${ recent_bc }"/>
+								<c:param name="bcf_no" value="${ recent_bcf }"/>
+								<c:param name="sortTypeDetail" value="${sortTypeDetail }"/>
+							</c:url>
+								<li><button class="paging_num_btn" >${ p }</button><input id="pagin_btn" type="hidden" value="${ pagination }"/></li>
+							</c:if>
+						</c:forEach>
+						
+						<!-- 다음 버튼 -->
+						<c:if test="${ pi.currentPage >= pi.maxPage }">
+							<li><button class="paging_num_btn" id="paging_next_btn">&gt;</button><input id="pagin_btn" type="hidden" value="${ after }"/></li>
+						</c:if>
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="after" value="bookCateBestList.bo">
+								<c:param name="page" value="${ pi.currentPage+1 }"/>
+								<c:param name="bc_no" value="${ recent_bc }"/>
+								<c:param name="bcf_no" value="${ recent_bcf }"/>
+								<c:param name="sortTypeDetail" value="${sortTypeDetail }"/>
+							</c:url>
+							<li><button class="paging_num_btn" id="paging_next_btn">&gt;</button><input id="pagin_btn" type="hidden" value="${ after }"/></li>
+						</c:if>
+						<c:if test="${ pi.maxPage > 10 }">
+						<!-- 페이지  + 10  -->
+						<c:if test="${ pi.currentPage >= pi.maxPage }">
+							<li><button class="paging_num_btn" id="paging_next_btn">&gt;&gt;</button><input id="pagin_btn" type="hidden" value="${ after10 }"/></li>
+						</c:if>
+						<c:if test="${ pi.currentPage < pi.maxPage }">
+							<c:url var="after10" value="bookCateBestList.bo">
+								<c:param name="page" value="${ pi.startPage+10 }"/>
+								<c:param name="bc_no" value="${ recent_bc }"/>
+								<c:param name="bcf_no" value="${ recent_bcf }"/>
+								<c:param name="sortTypeDetail" value="${sortTypeDetail }"/>
+							</c:url>
+							<li><button class="paging_num_btn" id="paging_next_btn">&gt;&gt;</button><input id="pagin_btn" type="hidden" value="${ after10 }"/></li>
+						</c:if>
+						</c:if>
+						
+					</ul>
+					</c:if>
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
       		</div>
       		<!--  구분 -->
@@ -275,10 +411,18 @@
    <c:import url="../common/footer.jsp"></c:import>
    <c:if test="${ all eq  1 }">
   		<script>
-   		$('#content_sub_cate_sel').css({"left":"165px","width":"30px"});
+   		$('#content_sub_cate_sel').css({"left":"120px","width":"30px"});
    		$('#book_cate_sel_all_b').css({"font-weight":"800","color":"black"});
 	   </script>
    </c:if>
+    <c:if test="${ all eq  2 }">
+  		<script>
+   		$('#content_sub_cate_sel').css({"left":"40px","width":"60px"});
+   		$('#book_cate_sel_best_b').css({"font-weight":"800","color":"black"});
+	   </script>
+   </c:if>
+   
+   
   <script>
       		$(function(){
       			$('.paging_num_btn').click(function(){
@@ -325,11 +469,18 @@
       					
       				});
       				
-					$('#book_cate_sel_new_b').click(function(){
-						location.href = "";
-      				});
 					$('#book_cate_sel_best_b').click(function(){
-						location.href = "";
+						
+						var bc_no = $('#recent_bc').val();
+						var bcf_no = $('#recent_bcf').val();
+						if(bc_no == 0){
+							location.href = "bookCateBestList.bo?bcf_no="+bcf_no;
+						}else{
+							location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no;
+						}
+						
+						
+						
       				});
 					$('#book_cate_sel_all_b').click(function(){
 						

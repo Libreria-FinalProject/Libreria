@@ -63,7 +63,7 @@
       		<div id="content_sub_cate" >
       			<ul>
       				<li id="book_cate_sel_home">홈</li>
-      				<li id="book_cate_sel_new_b">신간</li>
+      				<!-- <li id="book_cate_sel_new_b">신간</li> -->
       				<li id="book_cate_sel_best_b">베스트셀러</li>
       				<li id="book_cate_sel_all_b">전체</li>
       			</ul>
@@ -81,7 +81,7 @@
       			</div>
       				<div class="sub_menu_hr">
       			</div>
-      				<button class='sub_menu_btn'>전체보기</button>
+      				<button id="new_list_all_btn"class='sub_menu_btn'>전체보기</button>
       		</div>
       		
       		
@@ -130,7 +130,7 @@
       			</div>
       				<div class="sub_menu_hr">
       			</div>
-      				<button class='sub_menu_btn'>전체보기</button>
+      				<button id="pop_list_all_btn" class='sub_menu_btn'>전체보기</button>
       		</div>
       		<div class="book_salary">
       		
@@ -201,8 +201,29 @@
       				
       			})
       			
+      			$('#pop_list_all_btn').click(function(){
+      				var bc_no = $('#recent_bc').val();
+					var bcf_no = $('#recent_bcf').val();
+					
+					if(bc_no == 0){
+						location.href = "bookCateSelAllList.bo?bcf_no="+bcf_no+"&sortTypeDetail="+1;
+					}else{
+						location.href = "bookCateSelAllList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no+"&sortTypeDetail="+1;
+					}
+      			});
       			
       			
+      			
+      			$('#new_list_all_btn').click(function(){
+      				var bc_no = $('#recent_bc').val();
+					var bcf_no = $('#recent_bcf').val();
+					
+					if(bc_no == 0){
+						location.href = "bookCateSelAllList.bo?bcf_no="+bcf_no+"&sortTypeDetail="+2;
+					}else{
+						location.href = "bookCateSelAllList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no+"&sortTypeDetail="+2;
+					}
+      			});
       			
       			
       			
@@ -220,11 +241,18 @@
 	      				}
       					
       				});
-					$('#book_cate_sel_new_b').click(function(){
-						location.href = "";
-      				});
+					
 					$('#book_cate_sel_best_b').click(function(){
-						location.href = "";
+						var bc_no = $('#recent_bc').val();
+						var bcf_no = $('#recent_bcf').val();
+						if(bc_no == 0){
+							location.href = "bookCateBestList.bo?bcf_no="+bcf_no;
+						}else{
+							location.href = "bookCateBestList.bo?bcf_no="+bcf_no+"&bc_no="+bc_no;
+						}
+						
+						
+						
       				});
 					$('#book_cate_sel_all_b').click(function(){
 						

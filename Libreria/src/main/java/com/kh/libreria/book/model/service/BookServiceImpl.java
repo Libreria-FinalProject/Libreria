@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.libreria.book.model.dao.BookDAO;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.book.model.vo.BookFrameCategory;
+import com.kh.libreria.book.model.vo.BookSort;
 import com.kh.libreria.book.model.vo.BookSubCategory;
 import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.common.PageInfo;
@@ -121,6 +122,16 @@ public class BookServiceImpl  implements BookService  {
 	public ArrayList<Book> selectBookListC(PageInfo pi, int bc_no,int std) {
 		// TODO Auto-generated method stub
 		return bDAO.selectBookListC(sqlSession,pi,bc_no,std);
+	}
+	@Override
+	public int getBestListCount(BookSort bs) {
+		// TODO Auto-generated method stub
+		return bDAO.getBestListCount(sqlSession,bs);
+	}
+	@Override
+	public ArrayList<Book> getBookBestList(PageInfo pi, BookSort bs) {
+		// TODO Auto-generated method stub
+		return bDAO.getBookBestList(sqlSession,pi,bs);
 	}
 
 	////////////////KH//////////////////
