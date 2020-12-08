@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.libreria.book.model.vo.Book;
+import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.pay.DAO.PayDAO;
 import com.kh.libreria.pay.model.vo.BasketList;
@@ -63,4 +65,15 @@ public class PayServiceImpl implements PayService{
 		// TODO Auto-generated method stub
 		return pDAO.insertBuyBookMileage(map,sqlSession); 
 	}
+	
+	@Override
+	public Book getBookDetailInfo(int b_no) {
+		return pDAO.getBookDetailInfo(sqlSession,b_no);
+	}
+	
+	@Override
+	public ArrayList<Review> getReivewList(int b_no) {
+		return pDAO.getReivewList(sqlSession,b_no);
+	}
+	
 }

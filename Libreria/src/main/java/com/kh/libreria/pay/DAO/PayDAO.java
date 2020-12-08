@@ -8,6 +8,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.libreria.book.model.vo.Book;
+import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.pay.model.vo.BasketList;
 
@@ -65,6 +67,16 @@ public class PayDAO {
 	public int insertBuyBookMileage(HashMap<String, Integer> map, SqlSessionTemplate sqlSession) {
 		sqlSession.update("payMapper.BookRateUpdate",map);
 		return sqlSession.insert("payMapper.insertBuyBookMileage", map);
+	}
+
+	public Book getBookDetailInfo(SqlSessionTemplate sqlSession, int b_no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("bookMapper.getBookDetail",b_no);
+	}
+
+	public ArrayList<Review> getReivewList(SqlSessionTemplate sqlSession, int b_no) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("bookMapper.getReivewList",b_no);
 	}
 
 }

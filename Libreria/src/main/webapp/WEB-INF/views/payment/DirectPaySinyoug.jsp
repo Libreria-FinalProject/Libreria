@@ -229,7 +229,7 @@ $('#nextBtn').on('click',function(){
 		success:function(data){
 			if(data == "success"){
 				alert("결제완료");
-				location.href="/libreria";
+				location.href="../libreria";
 			}
 		}
 	}) ;

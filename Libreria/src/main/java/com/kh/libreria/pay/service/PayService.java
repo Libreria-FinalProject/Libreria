@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.kh.libreria.book.model.vo.Book;
+import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.pay.model.vo.BasketList;
 
@@ -24,4 +26,8 @@ public interface PayService {
 	int insertBuyBookSinyong(HashMap<String, Integer> map);
 
 	int insertBuyBookMileage(HashMap<String, Integer> map);
+
+	Book getBookDetailInfo(int b_no);
+
+	ArrayList<Review> getReivewList(int b_no);
 }

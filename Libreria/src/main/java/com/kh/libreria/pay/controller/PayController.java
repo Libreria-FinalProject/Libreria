@@ -8,11 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.libreria.book.model.vo.Book;
+import com.kh.libreria.book.model.vo.Review;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.pay.model.vo.BasketList;
 import com.kh.libreria.pay.service.PayService;
@@ -196,10 +199,10 @@ public class PayController {
 	  public ModelAndView BasketList(HttpSession session, ModelAndView mv) { Member
 	  User = (Member) session.getAttribute("loginUser"); ArrayList<BasketList>
 	  BasketInfo = pService.BasketList(User);
+	 
+		  mv.addObject("BasketInfo", BasketInfo).setViewName("standardUINormal");
+		  return mv;
 	  
-	  mv.addObject("BasketInfo", BasketInfo).setViewName("standardUINormal");
-	  
-	  return mv;
 	  }
 	 
 
@@ -351,5 +354,15 @@ public class PayController {
 		}
 		return "success";
 	}
-
+	@RequestMapping("bookDetail.pay")
+		public String bookDetail(@RequestParam(value="b_no", required=false, defaultValue="0") int b_no,Book book,Model model) {
+		System.out.println(b_no);
+		
+		Book bDetail = pService.getBookDetailInfo(b_no);
+		ArrayList<Review> rList = pService.getReivewList(b_no);
+		
+			model.addAttribute("bDetail",bDetail);
+			model.addAttribute("rList",rList);
+		return "../book/bookDetailPage";
+	}
 }

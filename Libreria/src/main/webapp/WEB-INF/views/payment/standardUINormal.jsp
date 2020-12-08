@@ -424,7 +424,12 @@
                             <div id="titleBox">
                                 <label id="bookName">${ basket.b_title }</label>
                                 
-                                <div id="btnBox"><button id="btnInfo" onclick="location.href = 'bookDetail.bo?b_no='+${ bookNo }">상세보기</button>
+                                <c:url value="bookDetail.pay" var="Detail">
+                                <c:param name="b_no" value="${ basket.b_no }" />
+                                </c:url>
+                                
+                                <div id="btnBox"><a href="${Detail}"><button id="btnInfo" class="bookInfo">상세보기</button></a>
+                                <input type="hidden" id="BookName" value="${  basket.b_no  }">
                                 <a href="${delete}"><button id="btnDelete" >삭제</button></a></div>
                                 </div>
                                 
@@ -590,6 +595,11 @@
     	location.href="<%= request.getContextPath()%>/NextPayment.pay?allpriceText"+allpriceText;
     }
     
+	<%-- $('.bookInfo').click(function(){
+		b_no = $(this).next().val(); 
+		//console.log($(this).next().val());
+		location.href="<%= request.getContextPath()%>/bookDetail.pay?b_no"+b_no; 
+	}) --%>
     
 </script>
 </html>
