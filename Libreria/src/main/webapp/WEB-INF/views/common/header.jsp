@@ -51,7 +51,12 @@
 							<li>공지사항</li>
 						</ul>
 					</li>
+					<c:if test="${!empty sessionScope.loginUser }">
 					<li id="UserBasket">장바구니</li>
+					</c:if>
+					<c:if test="${ empty sessionScope.loginUser }">
+					<li id="UserBasketNotLogin">장바구니</li>
+					</c:if>
 				</ul>
 			</div>
 	</nav>
@@ -94,6 +99,10 @@
 	 	
 		$('#UserBasket').click(function(){
 			location.href = "basketList.pay";
+		});
+		
+		$('#UserBasketNotLogin').click(function(){
+			swal ( "접근불가" ,  "로그인 후 사용 가능합니다." ,  "error" )
 		})
 	
 	

@@ -54,7 +54,7 @@ public class PayController {
 	}
 	@RequestMapping("DirectBuy.pay")
 	public ModelAndView DirectBuy (@RequestParam("bookTitle") String bookTitle,
-							 @RequestParam("bookImg") int bookImg,
+							 @RequestParam("bookImg") String bookImg,
 							 @RequestParam("bookPrice") int bookPrice,
 							 @RequestParam("bookNo") int bookNo,
 							 HttpSession session,
@@ -72,7 +72,7 @@ public class PayController {
 	
 	@RequestMapping("DirectNextPayment.pay")
 	public ModelAndView DirectNextPayment(@RequestParam("bookTitle") String bookTitle,
-			 @RequestParam("bookImg") int bookImg,
+			 @RequestParam("bookImg") String bookImg,
 			 @RequestParam("bookPrice") int bookPrice,
 			 @RequestParam("bookNo") int bookNo,
 			 @RequestParam("memNum") int memNum,
@@ -258,7 +258,7 @@ public class PayController {
 	}
 
 	@RequestMapping("MethodOfPayment.pay")
-	public ModelAndView MethodOfPayment(String pay , HttpSession session,ModelAndView mv) {
+	public ModelAndView MethodOfPayment(String pay , @RequestParam("AllPrice2") int AllPrice2, HttpSession session,ModelAndView mv) {
 			Member User = (Member) session.getAttribute("loginUser");
 
 			ArrayList<BasketList> BasketInfo = pService.BasketList(User);
@@ -269,6 +269,7 @@ public class PayController {
 			  	System.out.println("무통 작동"); 
 			  	mv.addObject("BasketInfo", BasketInfo)
 			  	.addObject("pay",pay)
+			  	.addObject("AllPrice2",AllPrice2)
 			  	.addObject("User",User)
 				.setViewName("payMutong");
 			  	return mv;
@@ -276,6 +277,7 @@ public class PayController {
 				System.out.println("신용 작동"); 
 				mv.addObject("BasketInfo", BasketInfo)
 				.addObject("pay",pay)
+				.addObject("AllPrice2",AllPrice2)
 				.addObject("User",User)
 				.setViewName("paySinyoug");
 				return mv;
@@ -283,6 +285,7 @@ public class PayController {
 				System.out.println("마일리지 작동"); 
 				mv.addObject("BasketInfo", BasketInfo)
 				.addObject("pay",pay)
+				.addObject("AllPrice2",AllPrice2)
 				.addObject("User",User)
 				.setViewName("payMileage");
 				return mv;

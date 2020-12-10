@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -97,6 +98,8 @@
             font-size:15px;
             color:white;
             font-weight:bold;
+            background:none;
+            border:none;
         }
         #chBox{
             padding:10px;
@@ -113,7 +116,7 @@
     <section id="title">
         <div id="topBar" class="lineBar">
                 <h3>LIBRERIA</h3>
-                <h3 id="mainTitle">마일리지결제 </h3>
+                <h3 id="mainTitle">마일리지결제</h3>
         </div>
         <div id="bottomBar" class="lineBar">
                 <button id="nextBtn" onclick ="clearPayment()">다음</button>
@@ -124,7 +127,7 @@
             <label>(주)역삼동 코딩머신</label>
             <label>상품명 : 공부란 무엇인가 외 </label>
             <label>보유 마일리지 : ${ User.mem_money }원</label>
-            <label>상품 금액 : <label class="AllPrice"></label>원</label>
+            <label>상품 금액 : ${ AllPrice2 } 원</label>
         </div>
         
         <c:forEach items="${ BasketInfo }" var="basket">

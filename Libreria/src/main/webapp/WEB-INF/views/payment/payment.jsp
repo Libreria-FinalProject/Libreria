@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="UTF-8">
 <title>Libreria</title>
 <style type="text/css">
@@ -39,17 +40,7 @@
       color: rgb(255, 255, 255);
       text-decoration: none;
    }
-   #input_search{
-      margin-left: 15px;
-      padding: 6px 12px;
-       width: 300px;
-       height: 100%;
-       background: #fff;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       font-size: 14px;
-       vertical-align: super;
-   }
+   
    #div_head_btns{
       display: inline;
       margin-left: 285px;
@@ -297,7 +288,7 @@
         margin-right:10px;
         display:flex;
         justify-content:top;
-        align-items:left;
+        align-items:center;
         flex-direction:column;
         margin-top:10px;
         text-align:center;
@@ -344,26 +335,7 @@
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
-   <!-- <nav class="" id="nav_container">
-         <div id="nav_body">
-            <a class="" href="#" id="a_brand">LIBRERIA</a>
-            <input type="text" id="input_search" placeholder="검색어를 입력하세요">
-            <div id="div_head_btns">
-               <button class="btn_head">회원가입</button>
-               <button class="btn_head">로그인</button>
-            </div>
-         </div>
-         <div id="nav_menu">
-            <ul id="menu_ul">
-               <li id="menu_li"></li>
-               <li>국내도서</li>
-               <li>외국도서</li>
-               <li>중고도서</li>
-               <li>고객센터</li>
-               <li>장바구니</li>
-            </ul>
-         </div>
-   </nav> -->
+   
    <section>
       <div id="contentTitle">
       <label>주문목록</label> 
@@ -402,15 +374,16 @@
                 <label class="selectBookBox">총 <label id="allBookCount"></label>권을 선택하셧습니다.</label>
                 <label class="priceBox" id="AllPrice"><label>총 상품가격 </label><label class="AllPrice"></label>원</label>
                 <label class="priceBox"><label>결제가격</label><label class="AllPrice"></label>원</label>
+                <input type="hidden" class="AllPrice2" name="AllPrice2">
                 <hr>
                 <label class="selectBookBox"> 결제수단</label>
-                <label class="priceBox2"><input type="radio" name="pay" value="Mutong">무통장입금</label>
+                <label class="priceBox2"><input type="radio" name="pay" value="Mutong"  checked="checked">무통장입금</label>
                 <label class="priceBox2"><input type="radio" name="pay" value="Sinyong">신용카드</label>
                 <label class="priceBox2"><input type="radio" name="pay" value="Mileage">마일리지</label>
                 
             </div>
             	
-                <button id="Right_bot" onclick="location.href='fianlPayment.pay'">결제하기</button>
+                <button id="Right_bot">결제하기</button>
                 </form>
             </div>
       </div>
@@ -443,6 +416,7 @@
 		$(document).ready(function(){
 			$('#allBookCount').text(bookCount);
 			$('.AllPrice').text(allpriceText);
+			$('.AllPrice2').val(allpriceText);
 		})
 	
 	</script>

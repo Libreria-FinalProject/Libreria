@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -82,6 +83,8 @@
             font-size:15px;
             color:white;
             font-weight:bold;
+            background:none;
+            border:none;
         }
         #chBox{
             padding:10px;
@@ -159,7 +162,7 @@
     <section id="title">
         <div id="topBar" class="lineBar">
                 <h3>LIBRERIA</h3>
-                <h3 id="mainTitle">무통장입금¸</h3>
+                <h3 id="mainTitle">무통장입금</lable>
         </div>
         <div id="bottomBar" class="lineBar">
 
@@ -170,24 +173,25 @@
         <div id="topBox">
             <label>(주)역삼동 코딩머신</label>
             <label>상품명 : 공부란 무엇인가 외 </label>
+            <label>상품 금액 : ${ AllPrice2 } 원</label>
             <label>임금 계좌 : 107-5677-1115-457 (농협 LIBRERIA)</label>
 
         </div>
         <div id="midBox">
-            <label>무통장입금</label>
+            <label>무통장입금</label>
             <div id="bankList">
                 <div id="bankTop">
                 <label><input type="radio" name="bank">삼성</label>
-                <label><input type="radio" name="bank">신한</label>
+                <label><input type="radio" name="bank">신한</label>
                 <label><input type="radio" name="bank">우리</label>
                 <label><input type="radio" name="bank">수협</label>
                 <label><input type="radio" name="bank">씨티</label>
             </div>
             <div id="bankBot">
-                <label><input type="radio" name="bank">농협</label>
+                <label><input type="radio" name="bank">농협</label>
                 <label><input type="radio" name="bank">국민</label>
                 <label><input type="radio" name="bank">롯데</label>
-                <label><input type="radio" name="bank">현대</label>
+                <label><input type="radio" name="bank">현대</label>
                 <label><input type="radio" name="bank">비씨</label>
             </div>
             </div>
@@ -199,7 +203,7 @@
 		
         <div id="botBox">
                 <div id="payerName">
-                    <label>입금자명</label>
+                    <label>임금자명</label>
                     <label><input type="text"></label>
                 </div>
             </div>

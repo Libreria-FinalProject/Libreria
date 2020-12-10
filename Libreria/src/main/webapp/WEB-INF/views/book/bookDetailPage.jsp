@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="UTF-8">
 <title>Libreria</title>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/book/bookDetailPage.css"/>
@@ -27,9 +28,7 @@
 				<!-- 책 이미지 -->
 				<div id="book_tumbnail">
 					<img src="${bDetail.file_path}${bDetail.change_name}" id="book_tumbnail_img">
-				</div>				
-				
-				
+				</div>
 				
 				<!-- 책 설명 부분 div -->
 				<div id="book_detail_head_wapper">	
@@ -67,10 +66,10 @@
 							<li  class="book_buy_ic_cl " id="basket"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
 							<li  class="book_buy_ic_cl"><img id="book_add_gift"src="${pageContext.request.contextPath}/resources/images/Product_gift.png"></li>
 							<c:url value="DirectBuy.pay" var="DirectBuy">
-                                <c:param name="bookTitle" value="bookName" />
-                                <c:param name="bookImg" value="1" />
-                                <c:param name="bookPrice" value="10000" /> 
-                                <c:param name="bookNo" value="5" />
+                                <c:param name="bookTitle" value="${ bDetail.b_title }" />
+                                <c:param name="bookImg" value="${bDetail.change_name}" />
+                                <c:param name="bookPrice" value="${ bDetail.b_price }" /> 
+                                <c:param name="bookNo" value="${bDetail.b_no}" />
                             </c:url> 
                     		 <li class="book_buy_cl"><a href="${DirectBuy}"><button id="book_buy_btn">구매하기</button></a></li>
 						</ul>
@@ -782,10 +781,10 @@
 	      type:"get",
 	      success:function(data){
 	         if(data == "seccessInsert"){
-	            alert("장바구니에 추가되었습니다.");
+	            swal ( "장바구니 추가" ,  "장바구니에 추가되었습니다." ,  "success" );
 	         }
 	         if(data == "seccessDelete"){
-		            alert("장바구니에서 삭제되었습니다.");
+		            swal ( "장바구니 삭제" ,  "장바구니에 삭제되었습니다." ,  "error" );
 		         }
 	      }
 	   })

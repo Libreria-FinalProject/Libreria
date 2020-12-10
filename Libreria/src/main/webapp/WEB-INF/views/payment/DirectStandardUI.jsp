@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="UTF-8">
 <title>Libreria</title>
 <style type="text/css">
@@ -39,17 +40,7 @@
       color: rgb(255, 255, 255);
       text-decoration: none;
    }
-   #input_search{
-      margin-left: 15px;
-      padding: 6px 12px;
-       width: 300px;
-       height: 100%;
-       background: #fff;
-       border: 1px solid #ccc;
-       border-radius: 4px;
-       font-size: 14px;
-       vertical-align: super;
-   }
+   
    #div_head_btns{
       display: inline;
       margin-left: 285px;
@@ -168,7 +159,7 @@
        margin-right:10px;
        display:flex;
        justify-content:top;
-       align-items:left;
+       align-items:center;
        flex-direction:column;
        margin-top:10px;
        text-align:center;
@@ -413,7 +404,8 @@
                     <hr>
                     <div id="productBox">
                             <label><input type="hidden" id="b_no" value="${ bookNo }"> </label>
-                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${bookImg}.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/${ bookImg }">
+                            <%-- <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${ bookImg }.jpg"> --%>
                             <div id="titleBox">
                                 <label id="bookName">${ bookTitle }</label>
                                 
@@ -445,7 +437,7 @@
             <label class="priceBox"><label>총 상품가격 </label>${ bookPrice }원</label>
             <label class="priceBox"><label>결제가격</label>${ bookPrice }원 </label>
             </div>
-            <div id="Right_bot"><a href="${ DirectNextPayment }">결제하기</a></div>
+            <a href="${ DirectNextPayment }"><button id="Right_bot">결제하기</button></a>
         </div>
       </div>
    </section>
