@@ -185,8 +185,9 @@
     	word-break: keep-all;
     	margin-top:15px;
     	overflow: hidden;
-    	height: 185px;
+    	min-height: 185px;
     	letter-spacing:-1px;
+    	max-height: 185px;
 	
 	}
 	

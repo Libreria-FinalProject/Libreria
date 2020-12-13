@@ -16,7 +16,7 @@
 				<a class="" href="/libreria" id="a_brand">LIBRERIA</a>
 				<div id="div_search">
 					<img alt="검색" src="${pageContext.request.contextPath}/resources/images/icon_search.png">
-					<input type="text" id="input_search" placeholder="검색어를 입력하세요">
+					<input type="text"  id="input_search" placeholder="검색어를 입력하세요">
 				</div> 
 	
 				<c:if test="${ empty sessionScope.loginUser }">
@@ -42,7 +42,7 @@
 				<ul id="menu_ul">
 					<li id="menu_li"></li>
 					<li>국내도서</li>
-					<li>외국도서</li>
+					<!-- <li>외국도서</li> -->
 					<li>중고도서</li>
 					<li id="service_li"><span>고객센터</span>
 						<ul>
@@ -104,7 +104,26 @@
 		$('#UserBasketNotLogin').click(function(){
 			swal ( "접근불가" ,  "로그인 후 사용 가능합니다." ,  "error" )
 		})
+		
 	
+		$("#input_search").keyup(function(e){
+			var word = $(this).val();
+			
+			if(e.keyCode == 13){
+				
+				if(word == ""){
+					$('#input_search').focus();
+					swal("검색 오류","검색어가 없습니다. 검색어를 확인해주세요.","error");
+				}else{
+					location.href =  "searchWordList.bo?word="+word;
+				}				
+			
+			
+			
+			}
+		});
+
+
 	
 	
 	</script>

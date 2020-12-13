@@ -1,0 +1,173 @@
+@charset "UTF-8";
+.sp_header{
+		font-weight: bold;
+	    font-size: 18px;
+	    line-height: 21px;
+	    color: rgb(48, 53, 56);
+	    align-items: center;
+  		margin: 10px 0px;
+	
+	}
+	.book_info_cl{ 
+	
+		list-style: none;
+	}
+	.book_info_cl >li{
+		clear:both;
+		border-bottom: 1px solid #D1D5D9;
+		margin-top:20px;
+	}
+	
+	.bookInfo_left, .bookInfo_right{
+		display: inline-block;
+	
+	}
+	.bookInfo_left{
+		width: 100px;
+		height: 150px;
+		padding-left: 20px;
+		vertical-align: top;
+	}
+	.bookInfo_right{
+		width: 800px;
+		height: 150px;
+		vertical-align: top;
+		padding-left: 15px;
+	}
+	.book_thumnail{
+		width: 100px;
+		height: 150px;
+	}
+	.bookInfo_right > ul{
+		list-style: none;
+	}
+	.bookInfo_right > ul>li{
+		float: left;
+		border-right: 1px solid #D1D5D9;
+		margin-right:20px;
+		padding-right: 10px;
+		line-height: 1.36em;
+    	color: rgb(99, 108, 115);
+    	font-size: 14px;
+	}
+	.bookInfo_right > ul>li:last-child{
+		border:0;
+	}
+	.book_score_cl{
+		clear:both;
+	}
+	.booK_name_cl{
+		margin-bottom: 4px;
+	    font-size: 14px;
+	    font-weight: normal;
+	    line-height: 1.36em;
+	    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+		overflow-wrap: break-word;
+    	white-space: normal;
+   		word-break: keep-all;
+	}
+	
+	.book_price_cl{
+		font-size: 12px;
+	    color: #666;
+	}
+	.book_infomation_cl{
+			clear:both;
+		    font-size: 13px;
+		    margin-bottom: 6px;
+		    color: rgb(99, 108, 115);
+		    line-height: 1.4em;
+		    overflow: hidden;
+		    min-height: 20px;
+		    max-height: 36px;
+	}
+	.book_info_ulli_cl{
+		padding-top: 10px;
+    	padding-bottom: 10px;
+		
+	}
+	.book_write_star_pub{
+		display:inline-block;
+		margin-bottom: 4px;
+	
+	}
+	.paging_number{
+   		list-style: none;
+   		text-align: center;
+   	}
+   	.paging_number>li{
+   		display: inline;
+    	letter-spacing: -1px;
+    	color:black;
+    	border:0px;
+    	margin-left:-3px;
+   	}
+   	
+   	.paging_num_btn{
+   		width: 42px;
+   		height: 32px;
+   		border: 1px solid #d1d5d9;
+   		background: white;
+   		font-weight: 700;
+   		color:#808991;
+   	}
+   	.paging_num_btn{
+   		margin-left: 1px;	
+   	}
+   	#paging_next_btn{
+   		margin-left:10px;
+   	}
+   	#paging_before_btn{
+   		margin-right:10px;
+   	}
+   	.selected_sub_cate_cl{
+   		color: #1f8ce6;
+   		font-weight: bold;
+   	
+   	}
+   	.paging_num_btn_sel{
+   		width: 42px;
+   		height: 32px;
+   		border: 1px solid #d1d5d9;
+   		background: white;
+   		font-weight: 1000;
+   		color:#1f8ce6;
+   		
+   	
+	}
+	.book_price_cl_value{
+		color:#1f8ce6;
+		font-weight: bold;
+	}
+	.review_list_buyer_star{
+		    width: 15px;
+    		height: 15px;
+    		position: relative;
+    		top: 2px;
+    		right:3px;
+	}
+	.ep_list{
+		text-align: center;
+	}
+	.book_wrapper{
+		cursor: pointer;
+	
+	}
+	.order_type{
+		float:right;
+		flex: 0 0 auto;
+	    appearance: none;
+	    height: 2.8em;
+	    width: 93px;
+	    padding: 7px;
+	    font-size: 12px;
+	    font-weight: bold;
+	    color: rgb(99, 108, 115);
+	    border: 1px solid rgb(209, 213, 217);
+	    border-radius: 3px;
+	    cursor: pointer;
+	
+	}
+	

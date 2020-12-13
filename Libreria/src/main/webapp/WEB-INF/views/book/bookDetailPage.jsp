@@ -62,9 +62,9 @@
 					<div id="book_detail_buy_buttom">
 						<h3 class="book_detail_title" style="color: #1f8ce6;"><fmt:formatNumber value="${ bDetail.b_price }"/>원</h3>
 						<ul>
-							<li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li>
+							<%-- <li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li> --%>
 							<li  class="book_buy_ic_cl " id="basket"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
-							<li  class="book_buy_ic_cl"><img id="book_add_gift"src="${pageContext.request.contextPath}/resources/images/Product_gift.png"></li>
+							<%-- <li  class="book_buy_ic_cl"><img id="book_add_gift"src="${pageContext.request.contextPath}/resources/images/Product_gift.png"></li> --%>
 							<c:url value="DirectBuy.pay" var="DirectBuy">
                                 <c:param name="bookTitle" value="${ bDetail.b_title }" />
                                 <c:param name="bookImg" value="${bDetail.change_name}" />
@@ -81,7 +81,7 @@
 			</div><!-- BookDeailInfo_div -->
 			<div id="book_intro" class="book_info_index">
 				<h3 class="book_info_index_title">책소개<button class="intro_plus"><img src="${pageContext.request.contextPath}/resources/images/Product_plus.png" style="width: 20px; height:20px;"></button></h3>
-				<p class="book_info_intro" id="book_info"> 
+				<p class="book_info_intro" id="book_intro_p"> 
 					${bDetail.b_content}
 				</p>
 			
@@ -90,7 +90,7 @@
 			</div><!-- Book_intro -->
 			<div id="book_pub_intro" class="book_info_index">
 				<h3 class="book_info_index_title">출산사 서평<button class="intro_plus"><img src="${pageContext.request.contextPath}/resources/images/Product_plus.png" style="width: 20px; height:20px;"></button></h3>
-				<p class="book_info_intro"> 
+				<p class="book_info_intro" id="book_pub_intro_p"> 
 					${ bDetail.b_pub }
 			
 			</div><!-- Book_pub_intro -->
@@ -100,12 +100,8 @@
 				<h3 class="book_info_index_title">저자 소개<button class="intro_plus"><img src="${pageContext.request.contextPath}/resources/images/Product_plus.png" style="width: 20px; height:20px;"></button></h3>
 				<div id="book_writer_wapper">
 				<h3 >${bDetail.bwp_name }</h3>
-				<p class="book_info_intro" 	>	
-					세계적인 미래연구기구 ‘밀레니엄 프로젝트’의 한국 지부 (사)유엔미래포럼 대표. 20년 동안 주한 영국대사관, 10년간 호주대사관 수석보좌관으로 활동했으며, 세계인공일반지능협회, 코딩없는세상 인공지능플랫폼 WEM, 테크캐스트 글로벌 등 20여 개 글로벌 미래연구기구의 한국 대표로 있다. 현재 청와대일자리위원회 위원, 육군미래혁신자문위원, 2030 부산월드엑스포 범시민유치위원, 건설교통부 도로정책심의위원, 블록체인AI 뉴스 편집인으로 활동하고 있다. 미국 AI 분야의 대가로 불리는 전(前) 미국과학재단 NSF AI 연구 프로그램 디렉터인 폴 워보스(Paul Werbos) 박사, 비트코인 재단의 브록피어스(Brogk Pierce) 회장, 라이트하우스원 CEO이자 실리콘밸리의 거인인 피터 허시버그(Peter Hirshberg) 회장, 싱귤래리티넷, 인공일반지능협회 및 오픈코그재단의 벤 고르첼(Ben Goertzel) 회장과 존스홉킨스대학교의 스타트업 인실리코 메디슨의 CEO 알렉스 자보론코프(Alex Zhavoronkov)와 함께 블록체인과 미래예측에 관한 연구를 진행하고 있다. 또한 미국 기회특구를 디자인하는 MIT 미디어랩의 존 클리핑거(John Clippinger) 박사와 세계적 블록체인AI 기업 비트퓨리의 발레리 바빌로프(Valery Vavilov) 회장, 스탠퍼드대학교 교수이자 태양광 에너지 전문가인 토니 세바(Tony Seba) 리싱크X 대표 등과 교류하며 해외의 미래예측을 가장 발 빠르게 국내에 소개하고 있다.<br>
-					경북대학교에서 프랑스어를 전공했고 미국 서던캘리포니아대학교에서 교육학 석사를, 성균관대학교에서 사회복지학 박사과정을 수료했다. 2006년부터 연세대학교 실내건축학과에서 미래예측에 대해 강의하고 있다. 그 밖에도 전국 대학을 비롯해 교육과학부, 기획재정부, 산업통상자원부 등의 정부 부처와 KBS, EBS, 국내외 기업 등에서 미래예측에 대해 강연을 하고 있다. 미래의 필연적인 메가트렌드와 일자리의 변화, 그에 따른 교육의 방향, 사회, 과학기술 등 거의 모든 분야에서 명쾌한 미래 뉴스를 전달하기 위해 해마다 미래예측서를 발표하고 있다. 저서로는 《세계미래보고서》 시리즈를 비롯해 《블록체인 혁명 2030》, 《주거혁명 2030》, 《일자리 혁명 2030》, 《메이커의 시대》, 《인공지능 혁명 2030》(공저) 등 다수가 있다.<br>
-					  <br>
-					제롬 글렌(Jerome Glenn)<br>
-					밀레니엄 프로젝트 회장, 세계미래연구기구협의회 회장으로 있다. 지난 40년간 정치, 교육, 과학, 산업, 정부 등의 미래를 연구했고 &lt;뉴욕 타임스&gt;를 비롯한 여러 매체에 미래예측 글을 기고하고 있다. CIA 2020 리포트와 미국 주요 기관의 미래 프로젝트에 참가했으며 한국을 여러 차례 방문하여 급변하는 미래의 다양한 가능성을 정부와 기업인들에게 제시한 바 있다.
+				<p class="book_info_intro" id="book_write_intro_p">	
+					${ bDetail.bwp_intro }
 				</p>
 			</div><!--  book_writer_wapper -->
 			
@@ -273,9 +269,9 @@
 									</li>							
 									</c:forEach>
 							</ul> 
-							<div id="review_list_reply_more_wapper">
+							<!-- <div id="review_list_reply_more_wapper">
 								<button id="review_list_reply_more_btn">더보기</button>
-							</div>
+							</div> -->
 						</div><!-- review_list_content -->
 					</div><!-- review_list_section -->
 				</div> <!-- book_review_wapper -->
@@ -318,7 +314,8 @@
 		
 		var re_btn = 0;
 		var star_btn = 0;
-		$('.review_list_reply_update_btn').click(function(){
+		
+ 		/*$('.review_list_reply_update_btn').click(function(){
 			if(re_btn==1){
 				//수정 한 후
 				var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
@@ -344,14 +341,53 @@
 				$(this).text("수정완료");
 				re_btn = 1;
 			};
+		}); */
+		
+		$(document).on('click','.review_list_reply_update_btn',function(){
+	 		if(re_btn==1){
+			//수정 한 후
+				var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
+				var rev_content = $(this).parent().parent().parent().find('#rev_content_'+rev_no).val();
+				re_btn =0;
+				
+				$.ajax({
+					url: "reviewUpdate.bo",
+					data  : {"rev_no":rev_no,"rev_content":rev_content},
+					success : function(data){
+						
+						if(data=="success"){
+							location.reload(); 
+						}
+					}
+				})
+			}else if(re_btn==0){
+				var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
+				var rev_content = $(this).parent().parent().parent().find('#rev_content_'+rev_no).val();
+				$(this).parent().parent().parent().find('#review_list_reply_content_view').css({"border":"1px solid #d1d5d9"});
+				$(this).parent().parent().parent().find('#rev_content_'+rev_no).attr("readonly",false);
+				$(this).text("수정완료");
+				re_btn = 1;
+			};
 		});
-		
-		
 		
 		
 
 	
-	
+		$(document).on('click','.review_list_reply_delete_btn',function(){
+			var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
+			
+			$.ajax({
+				url: "reviewDelete.bo",
+				data  : {"rev_no":rev_no},
+				success : function(data){
+					if(data=="success"){
+						location.reload(); 
+					}
+				}
+			})
+			
+			
+		});
 		$('.review_list_reply_delete_btn').click(function(){
 			var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
 			
@@ -373,7 +409,7 @@
 			var rev_star = $('#rev_star_input').val();
 			var rev_content = $('#rev_content').val();
 			
-			if(rev_star!=0){
+			if(mem_no != ""){
 				$.ajax({
 					url: "reviewInsert.bo",
 					data : {"b_no":b_no,"mem_no":mem_no,"rev_star":rev_star,"rev_content":rev_content},
@@ -384,7 +420,7 @@
 					}
 				})
 			}else{
-				console.log("별점 및 내용을 작성하세요");
+				swal("평점 등록 에러","로그인 후 사용해주시길 바랍니다.","error");
 			};
 			
 		});
@@ -604,7 +640,10 @@
 			})
 			 
 		});
-		
+		$('.intro_plus').click(function(){
+			var p = $(this).parent().parent().find('.book_info_intro');
+			p.css("max-height","100%");
+		})
 		$('#review_srot_old').click(function(){
 			var b_no = ${bDetail.b_no};
 			$('#review_star_high').css({'color':'#808991','font-weigth':'700'});

@@ -165,7 +165,7 @@ public class BookController {
 		
 		
 		
-		if(bcfList!=null) {
+		if(bcfList!=null&&bcfList!=null) {
 			mv.addObject("bList", bList);
 			mv.addObject("bscList",bscList);
 			mv.addObject("bcfList",bcfList );
@@ -182,6 +182,46 @@ public class BookController {
 		return mv;
 		
 	}
+	@RequestMapping("searchWordList.bo")
+	public ModelAndView searchWord(@RequestParam(value="page", required=false, defaultValue ="1") Integer page,ModelAndView mv,@RequestParam(value="word", defaultValue="") String word,
+			@RequestParam(value="sortTypeDetail", defaultValue="1") Integer sortTypeDetail) {
+			
+		
+//		int listCount = bService.getSearchListCount(word);
+		//result = 1이면 검색하였을때 책이름이 있는것 / 2면 책이름이 없어서 저자로 검색 됨
+		int result = 1;
+		
+		
+		int currentPage = 1;	
+		if(page != null) {
+			currentPage = page;
+		}
+		BookSort bs = new BookSort(sortTypeDetail,word);
+		int listCount = bService.searchlistCount(bs);
+		PageInfo pi = Pagination.getBookPageInfoS(currentPage, listCount);
+		ArrayList<Book> bList = bService.getSearchBookList(pi,bs);
+		
+		if(bList.size() == 0) {
+			
+			bs.setStd(2);
+			listCount = bService.searchlistCount(bs);
+			pi = Pagination.getBookPageInfoS(currentPage, listCount);
+			bList = bService.getSearchBookList(pi,bs);
+			result = 2;
+		}
+		
+		
+				
+			mv.addObject("result",result);
+			mv.addObject("bList",bList);
+			mv.addObject("word",word);
+			mv.addObject("pi",pi);
+			mv.addObject("sortTypeDetail",bs.getStd());
+			mv.setViewName("bookSearchPage");
+		return mv;
+	}
+	
+	
 	public int listCount(int bc_no,int bcf_no) {
 		int listCount = 0;
 		//책 리스트
@@ -262,7 +302,6 @@ public class BookController {
 		response.setContentType("application/json; charset=UTF-8");
 		
 		int result = bService.reviewInsert(review);
-		System.out.println(review);
 		return "success";
 	}
 	
@@ -270,19 +309,16 @@ public class BookController {
 	public void reviewSortLastest(HttpServletResponse response,@RequestParam("b_no") int b_no) throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		ArrayList<Review> rList = bService.getReivewListSortLastest(b_no);
-		System.out.println(rList);
 		GsonBuilder gb = new GsonBuilder();
 		GsonBuilder df = gb.setDateFormat("yyyy-MM-dd");
 		Gson gson = df.create();
 		gson.toJson(rList,response.getWriter());
-		System.out.println("보내기완료");
 		
 	}
 	@RequestMapping("reviewSortOld.bo")
 	public void reviewSortOld(HttpServletResponse response,@RequestParam("b_no") int b_no) throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		ArrayList<Review> rList = bService.getReivewList(b_no);
-		System.out.println(rList);
 		GsonBuilder gb = new GsonBuilder();
 		GsonBuilder df = gb.setDateFormat("yyyy-MM-dd");
 		Gson gson = df.create();
@@ -293,7 +329,6 @@ public class BookController {
 	public void reviewSortStarH(HttpServletResponse response,@RequestParam("b_no") int b_no) throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		ArrayList<Review> rList = bService.getReviewSortStarH(b_no);
-		System.out.println(rList);
 		GsonBuilder gb = new GsonBuilder();
 		GsonBuilder df = gb.setDateFormat("yyyy-MM-dd");
 		Gson gson = df.create();
@@ -304,7 +339,6 @@ public class BookController {
 	public void reviewSortStarL(HttpServletResponse response,@RequestParam("b_no") int b_no) throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		ArrayList<Review> rList = bService.getReviewSortStarL(b_no);
-		System.out.println(rList);
 		GsonBuilder gb = new GsonBuilder();
 		GsonBuilder df = gb.setDateFormat("yyyy-MM-dd");
 		Gson gson = df.create();

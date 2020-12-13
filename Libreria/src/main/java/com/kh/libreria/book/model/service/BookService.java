@@ -58,5 +58,9 @@ public interface BookService {
 
 	ArrayList<Book> getBookBestList(PageInfo pi, BookSort bs);
 
+	int searchlistCount(BookSort bs);
+
+	ArrayList<Book> getSearchBookList(PageInfo pi, BookSort bs);
+
 
 }

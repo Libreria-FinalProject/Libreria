@@ -4,6 +4,7 @@ public class BookSort {
 	private int bcf_no;
 	private int bc_no;
 	private int std;
+	private String word;
 	
 	public BookSort() {
 		
@@ -14,6 +15,21 @@ public class BookSort {
 		this.bcf_no = bcf_no;
 		this.bc_no = bc_no;
 		this.std = std;
+	}
+	
+
+	public BookSort(int std, String word) {
+		super();
+		this.std = std;
+		this.word = word;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
 	}
 
 	public int getBcf_no() {

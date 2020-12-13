@@ -21,6 +21,7 @@ public class Book {
 	private String change_name;
 	private String bwp_name;
 	private String b_pub_name;
+	private String bwp_intro;
 	
 	//view에서 추가
 	private String bcf_ct;
@@ -156,6 +157,53 @@ public class Book {
 		this.sell_date = sell_date;
 		this.sell_decide_date = sell_decide_date;
 		this.sell_money = sell_money;
+	}
+	
+	
+	
+	public Book(int b_no, String b_title, String b_content, String b_pub, int b_price, int b_stock, Date b_pub_date,
+			int b_sales_rate, int b_cnt, String b_gk, int bc_no, int img_no, int bwp_no, String b_delete,
+			String file_path, String change_name, String bwp_name, String b_pub_name, String bwp_intro, String bcf_ct,
+			String bc_ct, float avg_star, int avg_star_people, int sell_num, Date sell_date, Date sell_decide_date,
+			int sell_money) {
+		super();
+		this.b_no = b_no;
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.b_pub = b_pub;
+		this.b_price = b_price;
+		this.b_stock = b_stock;
+		this.b_pub_date = b_pub_date;
+		this.b_sales_rate = b_sales_rate;
+		this.b_cnt = b_cnt;
+		this.b_gk = b_gk;
+		this.bc_no = bc_no;
+		this.img_no = img_no;
+		this.bwp_no = bwp_no;
+		this.b_delete = b_delete;
+		this.file_path = file_path;
+		this.change_name = change_name;
+		this.bwp_name = bwp_name;
+		this.b_pub_name = b_pub_name;
+		this.bwp_intro = bwp_intro;
+		this.bcf_ct = bcf_ct;
+		this.bc_ct = bc_ct;
+		this.avg_star = avg_star;
+		this.avg_star_people = avg_star_people;
+		this.sell_num = sell_num;
+		this.sell_date = sell_date;
+		this.sell_decide_date = sell_decide_date;
+		this.sell_money = sell_money;
+	}
+	
+	
+	
+	public String getBwp_intro() {
+		return bwp_intro;
+	}
+
+	public void setBwp_intro(String bwp_intro) {
+		this.bwp_intro = bwp_intro;
 	}
 
 	public int getB_no() {
@@ -378,11 +426,13 @@ public class Book {
 				+ ", b_price=" + b_price + ", b_stock=" + b_stock + ", b_pub_date=" + b_pub_date + ", b_sales_rate="
 				+ b_sales_rate + ", b_cnt=" + b_cnt + ", b_gk=" + b_gk + ", bc_no=" + bc_no + ", img_no=" + img_no
 				+ ", bwp_no=" + bwp_no + ", b_delete=" + b_delete + ", file_path=" + file_path + ", change_name="
-				+ change_name + ", bwp_name=" + bwp_name + ", b_pub_name=" + b_pub_name + ", bcf_ct=" + bcf_ct
-				+ ", bc_ct=" + bc_ct + ", avg_star=" + avg_star + ", avg_star_people=" + avg_star_people + ", sell_num="
-				+ sell_num + ", sell_date=" + sell_date + ", sell_decide_date=" + sell_decide_date + ", sell_money="
-				+ sell_money + "]";
+				+ change_name + ", bwp_name=" + bwp_name + ", b_pub_name=" + b_pub_name + ", bwp_intro=" + bwp_intro
+				+ ", bcf_ct=" + bcf_ct + ", bc_ct=" + bc_ct + ", avg_star=" + avg_star + ", avg_star_people="
+				+ avg_star_people + ", sell_num=" + sell_num + ", sell_date=" + sell_date + ", sell_decide_date="
+				+ sell_decide_date + ", sell_money=" + sell_money + "]";
 	}
+
+	
 	
 
 	

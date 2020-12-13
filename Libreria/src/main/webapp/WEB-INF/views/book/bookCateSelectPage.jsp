@@ -504,7 +504,7 @@
 				
 			
 				location.href = "bookDetail.bo?b_no="+b_no;
-			})
+			});
 			
 		});
 	

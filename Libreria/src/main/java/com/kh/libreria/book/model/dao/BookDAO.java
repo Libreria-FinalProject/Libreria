@@ -127,6 +127,19 @@ public class BookDAO {
 		return (ArrayList)sqlSession.selectList("bookMapper.getBookBestList",bs,rowBounds);
 	}
 
+	public int getSearchlistCount(SqlSessionTemplate sqlSession, BookSort bs) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("bookMapper.getSearchlistCount",bs);
+	}
+
+	public ArrayList<Book> getSearchBookList(SqlSessionTemplate sqlSession, BookSort bs,PageInfo pi) {
+		// TODO Auto-generated method stub
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("bookMapper.getSearchBookList",bs,rowBounds);
+	}
+
 	
 
 }
