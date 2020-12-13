@@ -70,10 +70,10 @@
      <form>
     	<div class="input-group">
      	  <label class="account-label">
-     	  		<input type="text" name="name_idsearch" id="name_idsearch" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
+     	  		<input type="text" name="mem_name" id="mem_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
      	  </label>
      	  <label class="account-label">
-     	  		<input type="phone" name="phone_idsearch" id="phone_idsearch" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
+     	  		<input type="phone" name="mem_tel" id="mem_tel" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
      	  </label>
      	  <li class="hidden_line_cl" style=border:none;>
      	 		<label class="idsr-error" >올바른 정보를 입력해주세요.</label>
@@ -82,34 +82,8 @@
      	<button class="idsr-submit" type="submit" id="idSearchButton" onclick="validate();">Submit</button>
    	</form>
    	<script>
-	$('#idSearchButton').Click(function(){
-		var name = $('#name_idsearch');
-		var phone = $('#phone_idsearch');
-		
-		console.log(name);
-		console.log(phone);
-		
-		$.ajax({
-			url: "<%= request.getContextPath() %>/idSearch.me",
-			type: 'post',
-			data: { mem_name:mem_name.val(), mem_phone:mem_phone.val()},
-			success: function(data){
-				console.log(data);
-					
-				$('#idResult2').text('');
-				
-					if(data.length > 2 ){
-						$('#idResult2').append('아이디는');
-					$('#idResult2').append(data);
-					$('#idResult2').append(' 입니다.');
-					$('#idResult2').css({'color':'black'});
-				} else{
-					$('#idResult2').text('찾을 수 없습니다.');
-					$('#idResult2').css({'color':'red'});
-				}
-			}
-		});
-	});
+   	
+   	
 </script>
    
    </section> 

@@ -109,12 +109,13 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.loginMemberWithKakao", kakaoEmail);
 	}
 
-	public ArrayList<Member> idSearch(SqlSessionTemplate sqlSession, String mem_name) {
-		return sqlSession.selectOne("memberMapper.idSearch", mem_name);
+	public int idSearch(SqlSessionTemplate sqlSession,String mem_email){
+		return sqlSession.selectOne("memberMapper.idSearch", mem_email);
 	}
-
-	public ArrayList<Member> pwSearch(SqlSessionTemplate sqlSession, String mem_name) {
-		return sqlSession.selectOne("memberMapper.pwSearch", mem_name);
+	
+	
+	public int pwSearch(SqlSessionTemplate sqlSession,String mem_pw){
+		return sqlSession.selectOne("memberMapper.pwSearch", mem_pw);
 	}
 
 

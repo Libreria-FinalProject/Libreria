@@ -78,7 +78,6 @@
 <c:import url="../common/header.jsp"></c:import>
 <section class="account-container">
 		<form>
-			
 			<div class= "input-group">
 				<p class="join-com-top">LIBRERIA</p>
 				<div class = "join-com-complete">

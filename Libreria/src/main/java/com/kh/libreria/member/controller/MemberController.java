@@ -53,43 +53,27 @@ public class MemberController {
 	
 	@RequestMapping("loginForm.me")
 	public String loginForm() {
+		logger.debug("로그인페이지");
 		return "login";
 	}
 
 	@RequestMapping("InsertAgreeOne.me")
 	public String InsertMemberAgree1() {
+		logger.debug("약관동의");
 		return "InsertAgreeOne";
 	}
 
 	@RequestMapping("InsertAgreeTwo.me")
 	public String InsertMemberAgree2() {
+		logger.debug("개인정보동의");
 		return "InsertAgreeTwo";
 	}
-	
-//	@RequestMapping(value="idSearch.me")
-//	public String idSearch(String mem_email, String mem_phone) throws Exception{
-//		return "memberIdSearch";
-//	}
-	
-	  
-	  
-	  
-	  
-//	  @RequestMapping("idSearch.me") public ModelAndView
-//	  idSearch(HttpServletRequest request,ModelAndView mv) { int mem_email =
-//	  m.getMem_email();
-//	  
-//	  Member idSearch = mService.idSearch(mem_email);
-//	  
-//	  mv.addObject("idSearch", idSearch); mv.setViewName("memberIdSearch"); return
-//	  mv; }
-//	 
-	
+
 	
 	//아이디 중복 체크
-	@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+	@RequestMapping("checkSignup")
 		public @ResponseBody String AjaxView(  
-			        @RequestParam("mem_email") String mem_email){
+			@RequestParam("mem_email") String mem_email){
 			String str = "";
 			int idcheck = mService.idCheck(mem_email);
 			if(idcheck==1){ //이미 존재하는 계정
@@ -100,16 +84,12 @@ public class MemberController {
 			return str;
 		}
 	
-	@RequestMapping("dupid.me")
-	public void dupId(String id, HttpServletResponse response) throws IOException {
-		boolean isUsable = mService.checkIdDup(id) == 0 ? true : false;
-
-		response.getWriter().print(isUsable);
-	}
-	
 	@RequestMapping("InsertMemberComplete.me")
 	public String InsertMemberComplete() {
+		logger.debug("회원가입성공");
+		
 		return "InsertMemberComplete";
+				
 	}
 	
 	@RequestMapping("enrollViewKakao.me")
@@ -126,35 +106,65 @@ public class MemberController {
 	
 	@RequestMapping("enroll.me")
 	public ModelAndView insertMember(Member m, ModelAndView mv, @RequestParam("post") String post,
-			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
+																@RequestParam("address1") String address1, 
+																@RequestParam("address2") String address2) {
+		logger.debug("회원가입성공");
+		
 		String mem_address = post+"/"+address1+"/"+address2;
 		m.setMem_address(mem_address);
 		System.out.println(m);
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
+		m.setMem_pw(encPwd);
+		
 		int result = mService.insertMember(m);
 		if(result>0) {
 			mv.addObject("insert_email", m.getMem_email());
-			mv.setViewName("memberInsertComplete");
+			mv.setViewName("InsertMemberComplete");
 		}else {
 			throw new MemberException("회원가입에 실패하였습니다. \n다시 시도해주세요.");
 		}
 		return mv;
 	}
+
 	
-	@RequestMapping("emailCheck.me")
-	public void emailCheck(HttpServletResponse response
-			,@RequestParam("mem_email") String mem_email) throws IOException { //requested=false = 반드시 받지 않아도 되게 해본다.
-		int result = mService.checkEmail(mem_email);
-		if(result>0) {
-			response.getWriter().print("1");
-		}else {
-			response.getWriter().print("2");			
-		}
+//	@RequestMapping("checkEmail.me")
+//	public void emailCheck(HttpServletResponse response
+//			,@RequestParam("mem_email") String mem_email) throws IOException { //requested=false = 반드시 받지 않아도 되게 해본다.
+//		int result = mService.checkEmail(mem_email);
+//		if(result>0) {
+//			response.getWriter().print("1");
+//		}else {
+//			response.getWriter().print("2");			
+//		}
+//	}
+	
+//	@RequestMapping("dupid.me")
+//	public void dupId(String id, HttpServletResponse response) throws IOException {
+//		boolean isUsable = mService.checkIdDup(id) == 0 ? true : false;
+//
+//		response.getWriter().print(isUsable);
+//	}
+	@RequestMapping("checkEmail.me")
+	public void emailCheck(String mem_email, HttpServletResponse response) throws IOException {
+		boolean isUsable = mService.checkEmail(mem_email) == 0 ? true : false;
+
+		response.getWriter().print(isUsable);
 	}
+	
 	
 	@RequestMapping("idSearch.me")
-	public String memberIdSearch(){
+	public String idSearch() {
 		return "memberIdSearch";
 	}
+		
+	
+	@RequestMapping("idSearchComplete.me")
+	public String memberIdSearchComplete() {
+		return "memberIdSearchComplete";
+	}
+	
+	
 	
 	@RequestMapping("pwSearch.me")
 	public String memberPwSearch(){
@@ -163,41 +173,19 @@ public class MemberController {
 	
 	
 	
+	@RequestMapping("pwSearchChange.me")
+	public String memberPwSearchChange(){
+		return "memberPwSearchChange";
+	}
 	
 	
-//	@RequestMapping("InsertMemberForm.me")
-//	public String insertMember(@ModelAttribute Member m, @RequestParam("post") String post,
-//														 @RequestParam("address1") String address1,
-//														 @RequestParam("address2") String address2) {
-//		m.setMem_address(post + "/" + address1 + "/" + address2);
-//		System.out.println(m);
-//		
-//	String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
-//	m.setMem_pw(encPwd);
-//	
-//	int result = mService.insertMember(m);
-//	
-//	if(result > 0) {
-//		return "redirect:/";
-//	} else {
-//		throw new MemberException("회원가입에 실패하였습니다.");
-//	}
-//}
 	
+	@RequestMapping("pwSearchComplete.me")
+	public String memberPwSearchComplete(){
+		return "memberPwSearchComplete";
+	}
 	
-//	아이디 중복 확인
-//	@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
-//	public @ResponseBody String AjaxView(  
-//		        @RequestParam("mem_email") String mem_email){
-//		String str = "";
-//		int idcheck = mService.idCheck(mem_email);
-//		if(idcheck==1){ //이미 존재하는 계정
-//			str = "NO";	
-//		}else{	//사용 가능한 계정
-//			str = "YES";	
-//		}
-//		return str;
-//	}
+
 	
 //	로그인
 	@RequestMapping("login.me") 
@@ -239,35 +227,7 @@ public class MemberController {
 		
 	}
 	
-//	로그인 암호화
-//	@RequestMapping(value="login.me", method = RequestMethod.POST)
-//	public String login(Member m,  Model model) {
-//		
-//		Member loginUser = mService.loginMember(m);
-//		
-//		if(bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) {
-//			model.addAttribute("loginUser", loginUser);
-//			logger.info(loginUser.getMem_email());
-//		}else {
-//			throw new MemberException("로그인에 실패했습니다.");
-//		}
-//		return "redirect:/";
-//	}
-	
-//	@RequestMapping("login.me")
-//	public String  loginMember(Member m, Model model) {
-//		Member loginUser =  mService.loginMember(m);
-//		
-//		 if(loginUser!=null) {
-//			int result = mService.updateLoginDate(loginUser);
-//
-//			if(result>0) {
-//				model.addAttribute("loginUser", loginUser);
-//			}
-//		
-//		 }
-//		 return "redirect:/";
-//	}
+
 	
 	@RequestMapping("logout.me")
 	public String logoutMember(SessionStatus status) {
@@ -542,6 +502,134 @@ public class MemberController {
 		mv.addObject("registCard", card);
 		mv.setViewName("pay/payForRegistCard");
 		return mv;
+		
+//		@RequestMapping("InsertMemberForm.me")
+//		public String insertMember(@ModelAttribute Member m, @RequestParam("post") String post,
+//															 @RequestParam("address1") String address1,
+//															 @RequestParam("address2") String address2) {
+//			m.setMem_address(post + "/" + address1 + "/" + address2);
+//			System.out.println(m);
+//			// 비밀번호 평문으로 저장이 될 수 있기 때문에 암호화 처리 필요 ==> 스프링 시큐리티 모듈에서 제공하는 bcrypt 암호화 방식 사용
+//			// bcrypt ?
+//			// 		1차로 암호화 된 메세지를 수학적 연산을 통해 암호화 된 메세지인 다이제스트 생성
+//			//		salt값 ==> 값을 랜덤하게 생성하여 암호화가 계속 다르게 나오도록
+//			
+//			String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
+////			System.out.println("encPwd : " + encPwd);
+//			m.setMem_pw(encPwd);
+//			
+//			int result = mService.insertMember(m);
+//			
+//			if(result > 0) {
+//				return "redirect:home.do";
+//			} else {
+//				throw new MemberException("회원가입에 실패하였습니다.");
+//			}
+//		}
+	//	
+//		@RequestMapping("InsertMemberForm.me")
+//		public String insertMember(@ModelAttribute Member m, @RequestParam("post") String post,
+//															 @RequestParam("address1") String address1,
+//															 @RequestParam("address2") String address2) {
+//			m.setMem_address(post + "/" + address1 + "/" + address2);
+//			System.out.println(m);
+//			
+//		String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
+//		m.setMem_pw(encPwd);
+	//	
+//		int result = mService.insertMember(m);
+	//	
+//		if(result > 0) {
+//			return "redirect:/";
+//		} else {
+//			throw new MemberException("회원가입에 실패하였습니다.");
+//		}
+	//}
+		
+//		로그인 암호화
+//		@RequestMapping(value="login.me", method = RequestMethod.POST)
+//		public String login(Member m,  Model model) {
+//			
+//			Member loginUser = mService.loginMember(m);
+//			
+//			if(bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) {
+//				model.addAttribute("loginUser", loginUser);
+//				logger.info(loginUser.getMem_email());
+//			}else {
+//				throw new MemberException("로그인에 실패했습니다.");
+//			}
+//			return "redirect:/";
+//		}
+		
+//		@RequestMapping("login.me")
+//		public String  loginMember(Member m, Model model) {
+//			Member loginUser =  mService.loginMember(m);
+//			
+//			 if(loginUser!=null) {
+//				int result = mService.updateLoginDate(loginUser);
+	//
+//				if(result>0) {
+//					model.addAttribute("loginUser", loginUser);
+//				}
+//			
+//			 }
+//			 return "redirect:/";
+//		}
+		
+//		@RequestMapping("/member/pwSearch")
+//		public String pwSearch(String mem_email, String mem_name, Model model, HttpServletRequest request){
+//		Member m = mService.pwSearch(mem_email);
+	//
+//		if(m == null){
+//			model.addAttribute("historyBack", true);
+//			model.addAttribute("msg", "해당 회원이 존재하지 않습니다.");
+//			return "common/redirect";
+//		}
+//		if(m.getMem_email().equals(mem_email) == false){
+//			model.addAttribute("historyBack", true);
+//			model.addAttribute("msg", "이메일이 올바르지 않습니다.");
+//			return "common/redirect";
+//		}
+	//
+//		model.addAttribute("historyBack", true);
+//		model.addAttribute("msg", String.format("해당 회원의 아이디는 %s 입니다.", m.getMem_email()));
+//		}
+//		 mService.sendTempLoginPwToEmail(); 
+	//	
+//		return "common/redirect";
+	//}
+		
+		/*
+		 * @RequestMapping("/member/pwSearch") public String pwSearch(String mem_email,
+		 * String mem_name, Model model){ Member m = mService.idSearch(mem_name,
+		 * mem_email);
+		 * 
+		 * if(m == null){ model.addAttribute("historyBack", true);
+		 * model.addAttribute("msg", "해당 회원이 존재하지 않습니다."); return "common/redirect"; }
+		 * if(m.getEmail().equals(mem_email) == false){
+		 * model.addAttribute("historyBack", true); model.addAttribute("msg",
+		 * "올바르지 않습니다."); return "common/redirect"; }
+		 * 
+		 * model.addAttribute("historyBack", true); model.addAttribute("msg",
+		 * String.format("해당 회원의 아이디는 %s 입니다.", m.getMem_email())); }
+		 */
+		
+		
+		
+		
+//		아이디 중복 확인
+//		@RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+//		public @ResponseBody String AjaxView(  
+//			        @RequestParam("mem_email") String mem_email){
+//			String str = "";
+//			int idcheck = mService.idCheck(mem_email);
+//			if(idcheck==1){ //이미 존재하는 계정
+//				str = "NO";	
+//			}else{	//사용 가능한 계정
+//				str = "YES";	
+//			}
+//			return str;
+//		}
 	}
 
 }

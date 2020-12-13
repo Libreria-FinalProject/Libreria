@@ -30,13 +30,13 @@
 			<mvc:exclude-mapping path="/InsertMemberComplete.me"/>
 			<mvc:exclude-mapping path="/enrollViewKakao.me"/>
 			<mvc:exclude-mapping path="/enroll.me"/>
-			<mvc:exclude-mapping path="/emailCheck.me"/>
+			<mvc:exclude-mapping path="/checkEmail.me"/>
 			<mvc:exclude-mapping path="/loginWithKakao.me"/>
 			<mvc:exclude-mapping path="/idSearch.me"/>
-			<mvc:exclude-mapping path="/idSearchCom.me"/>
+			<mvc:exclude-mapping path="/idSearchComplete.me"/>
 			<mvc:exclude-mapping path="/pwSearch.me"/>
 			<mvc:exclude-mapping path="/pwSearchChange.me"/>
-			<mvc:exclude-mapping path="/pwSearchCom.me"/>
+			<mvc:exclude-mapping path="/pwSearchComplete.me"/>
 			<bean id="sessionCheckInterceptor" class="com.kh.libreria.common.interceptor.SessionCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -163,7 +163,7 @@ input[type=radio]:checked + label {
     left: 11px;
     bottom: -9px;
 }
-.dirrhks{
+.agree{
 	float: right;
     margin-right: 20px;
 }
@@ -223,7 +223,9 @@ input[type=radio]:checked + label {
 .hidden_line_cl2{
 	 height: 30px;
 }
-
+.genderCheck{
+	cursor:none;
+}
 span.guide{display:none; font-size:12px ; top: 12px; right: 10px;}
 span.guideId{display:none; font-size:12px ; top: 12px; right: 10px;}
 span.ok{color: green;}
@@ -234,69 +236,58 @@ span.error{color: red;}
 <body>
 <c:import url="../common/header.jsp"></c:import>
 <section id="join-form-main" class="account-container">
-	<form action="InsertMemberForm.me" method="post" id="joinForm" name="frm1">
+	<form action="enroll.me" method="post" id="joinForm" name="frm1" role="form">
 		<p class="join-form-top">JOIN</p>
      	 <ul class="join-form-ul">
      	 	<li>
      	 		<input type="text" name="mem_email" id="mem_email" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
      	 	<li class="hidden_line_cl" id="idcheck">
-     	 		<span class="guideId error" id=guideemail1 readonly>이메일 형식으로 입력해주세요.</span>
-     	 	</li>
-     	 	<li class="hidden_line_cl" id="idchecker" style=height:1px;>
-     	 		<span class="guideId error" id=guideemail2 readonly>이미 사용중인 아이디(이메일) 입니다.</span>
-     	 	</li>
-     	 	<li class="hidden_line_cl2" id="idcheckok" style=height:1px;>
-     	 		<span class="guideId ok" id=guideemail3 readonly>사용 가능한 아이디(이메일) 입니다.</span>
-     	 	</li>
-     	 	<li>
-     	 		<input type="password" name="mem_pw" id="userPwd1" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<div class="guideId error" id=id_check readonly></div>
      	 	</li>
 
+     	 	<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value='0'>
      	 	<li>
-     	 		<input type="password" name="mem_pw2" id="userPwd2" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 		<input type="password" name="mem_pw" id="mem_pw1" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="join-form-textarea">
+     	 	</li>
+     	 	<li>
+     	 		<input type="password" name="mem_pw2" id="mem_pw2" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="join-form-textarea">
      	 	</li>
      	  	<li class="hidden_line_cl">
-     	 		<span class="guide error" id=guidepw1>8자 이상 입력해주세요.</span>
-     	 	</li>
-     	 	<li class="hidden_line_cl" id="pwcheck" style=height:1px;>
-     	 		<span class="guide error" id=guidepw2>동일한 비밀번호를 입력하세요.</span>
-     	 	</li>
-     	 	<li class="hidden_line_cl" id="pwcheck" style=height:1px;>
-     	 		<span class="guide ok" id=guidepw3>암호가 확인 되었습니다.</span>
+     	 		<div class="guide error" id=pw_check></div>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="mem_name" id="userName" placeholder="이름" autocapitalize="off" autocomplete="off"class="join-form-textarea" >
+     	 		<input type="text" name="mem_name" id="mem_name" placeholder="이름" autocapitalize="off" autocomplete="off"class="join-form-textarea" >
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<span class="guide error" id=guidename1>2글자 이상의 이름을 입력해주세요.</span>
+     	 		<div class="guide error" id=name_check></div>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="mem_tel" id="join-form-tel" class="join-form-textarea" placeholder="연락처" maxlength="13">
+     	 		<input type="text" name="mem_tel" id="mem_tel" class="join-form-textarea" placeholder="연락처" maxlength="13">
 				<div class="hidden_line_cl"></div>
      	 	</li>
      	 	<li>
-     	 		<input type="date" name="mem_birth" id="userBirth" placeholder="생년월일" autocapitalize="off" autocomplete="off" class="join-form-textarea2">
-     	 		<input type="radio" value="남" id="gender-radio1" name="mem_gender"/>
+     	 		<input type="date" name="mem_birth" id="mem_birth" placeholder="생년월일" autocapitalize="off" autocomplete="off" class="join-form-textarea2">
+     	 		<input type="radio" value="남" id="gender-radio1" name="mem_gender" class="genderCheck"/>
      	 		<label class="gender-radio-label" for="gender-radio1"><p class="join-gender-p" name="mem_gender">남</p></label>
-     	 		<input type="radio" value="여" id="gender-radio2" name="mem_gender"/>
+     	 		<input type="radio" value="여" id="gender-radio2" name="mem_gender" class="genderCheck"/>
      	 		<label class="gender-radio-label" for="gender-radio2"><p class="join-gender-p" name="mem_gender">여</p></label>
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<span class="guide error" id=guidebirth>생년월일을 입력하세요.</span>
+     	 		<div class="guide error" id=birth_check></div>
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="post" id="post" title="회원우편번호" placeholder="우편번호" autocapitalize="off" autocomplete="off" class="postcodify_postcode5" disabled >
+     	 		<input type="text" name="post" id="post" title="회원우편번호" placeholder="우편번호" autocapitalize="off" autocomplete="off" class="postcodify_postcode5" >
      	 		<button type="button" id="postcodify_search_button">검색</button> 
      	 	</li>
      	 	<li>
-     	 		<input type="text" name="address1" id="address1" title="회원주소1" placeholder="배송지주소" autocapitalize="off" autocomplete="off" class="postcodify_address" disabled >
+     	 		<input type="text" name="address1" id="address1" title="회원주소1" placeholder="배송지주소" autocapitalize="off" autocomplete="off" class="postcodify_address" >
      	 	</li>
      	 	<li>
      	 		<input type="text" name="address2" id="address2" title="회원주소2" placeholder="상세주소" autocapitalize="off" autocomplete="off" class="postcodify_extra_info">
      	 	</li>
      	 	<li class="hidden_line_cl">
-     	 		<span class="guide error" id=guideaddress>주소를 입력해주세요.</span>
+     	 		<div class="guide error" id=address_check></div>
      	 	</li>
      	 </ul>
      	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -353,29 +344,94 @@ span.error{color: red;}
      	 		<li id="jo_tr_ag2">
      	 			<p class="join-li-cl">
      	 			<input type="checkbox" id="join-terms-agree2" name="checkRow" class="join-li-cl-in" onclick="selectOne();">  이용약관 동의(필수)
-     	 			<a onclick="window.open('InsertAgreeOne.me','LIBRARIA','width=1000,height=500,location=no,status=no,scrollbars=yes')" class="dirrhks">약관 보기></a>
+     	 			<a onclick="window.open('InsertAgreeOne.me','LIBRARIA','width=1000,height=500,location=no,status=no,scrollbars=yes')" class="agree">약관 보기></a>
      	 			</p>
      	 		</li>
      	 		<li id="jo_tr_ag3">
      	 			<p class="join-li-cl">
      	 			<input type="checkbox" id="join-terms-agree3" name="checkRow" class="join-li-cl-in" onclick="selectOne();">  개인 정보 수집 및 이용(필수)
-     	 			<a onclick="window.open('InsertAgreeTwo.me','LIBRARIA','width=1000,height=500,location=no,status=no,scrollbars=yes');" class="dirrhks">내용 확인></a>
+     	 			<a onclick="window.open('InsertAgreeTwo.me','LIBRARIA','width=1000,height=500,location=no,status=no,scrollbars=yes');" class="agree">내용 확인></a>
      	 			</p>
      	 		</li>
      	 		<li class="hidden_line_cl" style=border:none;>
-     	 			<span class="guide error" id=guideagree>이용약관에 동의해주세요.</span>
+     	 			<div class="guide error" id=agree_check></div>
      	 		</li>
      	 	</ul>
      	 </div>
      	 <div class="join-com">
-     	 	<button type="submit" onclick="history.go(-1)" id="join-can-bt">Cancle</button>
-     	 	<button type="button" onclick="validate();" id="join-com-bt">Submit</button>
+     	 	<button type="reset" onclick="history.go(-1)" id="join-can-bt">Cancle</button>
+     	 	<button type="submit" onclick="validate();" id="join-com-bt">Submit</button>
+     	 	
      	 </div>
   
      </form>
      <script>
-     $("#join-form-tel").on("keyup",function(){
-     	var inputTel = $("#join-form-tel").val();
+   
+   var empJ = /\s/g; //모든 공백 체크 정규식
+   var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;// 이메일 검사 정규식     
+   var pwJ = /^[A-Za-z0-9]{4,12}$/;   // 비밀번호 정규식 
+   var nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 정규식          
+   var phoneJ = /^\d{3}-\d{3,4}-\d{4}$/;;// 휴대폰 번호 정규식
+ 
+   var address = $('#address2');
+ $(function(){
+	$('#mem_email').on('keyup',function(){
+		if($('#mem_email').val()==''){
+			$('#id_check').text('아이디를 입력하세요.'); 
+			$('#id_check').css('color', 'red');
+			$('#id_check').css('font-size','12px');
+			
+		} else if(mailJ.test($('#mem_email').val())!=true){ 
+			$('#id_check').text('이메일 양식을 확인해주세요'); 
+			$('#id_check').css('color', 'red'); 
+			$('#id_check').css('font-size','12px');
+		} else if($('#mem_email').val()!=''){
+
+			var mem_email=$('#mem_email').val(); 
+				$.ajax({ 
+					async : true, 
+					type : 'POST', 
+					data : mem_email, //mem_email 의 이름으로 mem_email 데이터를
+					url : 'checkEmail.me', // @WebServlet("/checkEmail.me")에 보내겠다 
+					dateType: 'json', 
+					contentType: "application/json; charset=UTF-8",
+					success : function(data) {
+						
+				if(data == 0){ 
+					$('#id_check').text('중복된 아이디 입니다.'); 
+					$('#id_check').css('color', 'red'); 
+					$('#id_check').css('font-size','12px');
+					$("#joinForm").attr("disabled", true); 
+				}else{ if(mailJ.test(mem_email)){ 
+					$('#id_check').text('사용가능한 아이디 입니다.'); 
+					$('#id_check').css('color', 'green'); 
+					$('#id_check').css('font-size','12px');
+					$("#joinForm").attr("disabled", false); 
+				} else if(mem_email==''){ 
+					$('#id_check').text('아이디를 입력해주세요.'); 
+					$('#id_check').css('color', 'red'); 
+					$('#id_check').css('font-size','12px');
+					$("#joinForm").attr("disabled", true); 
+				} else{ 
+					$('#id_check').text("이메일 양식을 확인해주세요."); 
+					$('#id_check').css('color', 'red'); 
+					$('#id_check').css('font-size','12px');
+					$("#joinForm").attr("disabled", true); 
+				} 
+				}
+					}
+			});
+	
+	}
+});
+		
+
+
+   
+   
+    
+     $("#mem_tel").on("keyup",function(){
+     	var inputTel = $("#mem_tel").val();
  		console.log(inputTel);
  		var tmp="";
  		inputTel = inputTel.replace(/[^0-9]/g,'');
@@ -399,376 +455,194 @@ span.error{color: red;}
  			tmp += '-';
  			tmp += inputTel.substr(7); 
  		}
- 		  $("#join-form-tel").val(tmp);
+ 		  $("#mem_tel").val(tmp);
      });
+           
      
-     function emailCheck(){
-     	var email = $('#mem_email').val();
-     	$.ajax({
-     		type: "POST",
-     		url: "emailCheck.me",
-     		data: {mem_email:email},
-     		success: function(data){
-     			if(data==1){ 
-     				$('#idcheck').find("span").css("display","block"); 
-     				return true;
-     			}else{
-     				$('#idcheckok').find("span").css("display","block");  
-     				return false;
-     			}
-     		},
-     		error: function(){
-     			alert("ajax 에러");
-     		}
-     	});
-     	
-     }
      
-     function pwCheck(){
-      	var pw = $('#userPwd1').val();
-      	var pw_check = $('#userPwd2').val();
-      	if(pw.length ==0){
-      		swal("","비밀번호를 입력해주세요.",'info')
-      		.then((ok)=>{
-      			if(ok){
-      				$('#userPwd1').focus();
-      				return false;
-      			}
-      		});
-      	}else if(pw_check.length==0){
-      		swal("","비밀번호 확인을 입력해주세요.",'info')
-      		.then((ok)=>{
-      			if(ok){
-      				$('#userPwd2').focus();
-      				return false;
-      			}
-      		});
-      	}else{    		
-  	    	if(pw ==pw_check){  // 비밀번호가 서로 일치
-  	    		return true;
-  	    	}else{
-  	    		return false;
-  	    	}
-      	}
-      }
-     
-   	function validate(){
-   		if(emailCheck()){  // 이메일 중복이 있다면
-   			return false;
-   		}
-   		if(!pwCheck()){  // 비밀번호와 비밀번호 확인을 입력했고 일치하지 않으면
-   			return false;
-   		}
-   		if($("#join-form-tel").val()==""){  // 연락처를 입력하지 않았다면
-   			swal("","연락처를 입력해주세요.","info")
-   			.then((ok)=>{
-   				if(ok){
-   					$("#join-form-tel").focus();
-   				}
-   			});
-   			return false;
-   		}
-   
-   		if($('#userBirth').val() == ''){  // 생년월일을 입력하지 않았을 때
-   			swal("","생년월일을 입력해주세요.","info")
-   			.then((ok)=>{
-   				if(ok){
-   					$('#userBirth').focus();	
-   				}
-   			});
-   			return false;
-   			
-   		}
-   		if($("post").val()==''){
-   			swal("","주소를 입력해주세요.","info");
-   			return false;
-   		}
-   		
-   		if(!$('#checkAll').prop("checked")){
-   			swal("","약관에 동의해주세요.","info");
-   			return false;
-   		}
-   	
-   		return true;
- 	}  
- //약관동의 체크박스//
-      var checkAll = document.getElementById("checkAll");
- 	 var checkRow = document.getElementsByName("checkRow");
-
- 	function selectAll(){
- 		if(checkAll.checked){
- 			for(var i = 0; i < checkRow.length; i++){
- 				checkRow[i].checked = true;
- 			}
- 		} else{
- 			for(var i = 0; i < checkRow.length; i++){
- 				checkRow[i].checked = false;
- 			}
- 		} 
- 	}
- 	
- 	function selectOne(){
- 		var count = 0;
- 		
- 		for(var i = 0; i < checkRow.length; i++){
- 			if(checkRow[i].checked){
- 				count++;
- 			} 
- 		}
- 		
- 		if(count != 2){
- 			checkAll.checked = false;
- 		} else{
- 			checkAll.checked = true;
- 		}
- 	}
- //약관동의 체크박스//
-      
- //관심사 체크박스 //
-      $(".ck_interest").click(function(){ // 체크박스 클릭 시 이벤트
- 				countCheckBoxFn();
- 				
- 				if(ck_count > 3){
- 					alert("최대 3개까지 선택가능합니다.");
- 					$(this).prop("checked",false);
- 				}
- 			});
- 			//////////////////////////////////////
- 			function countCheckBoxFn(){ // 선택되어진 체크박스의 개수를 구하는 함수
- 				ck_count=0;
- 				var ck_interest = $(".ck_interest");
- 				ck_interest.each (function (index, item){
- 					if(item.checked == true){
- 						ck_count+=1;
- 					}
- 				});
- 			}
- //관심사 체크박스 //
-/*      $(function(){
-    	//아이디 중복체크
-    	    $('#mem_email').on('keyup',function(){
-    	        $.ajax({
-    		     type:"POST",
-    		     url:"checkSignup",
-    		     data:{
-    		            "mem_email":$('#mem_email').val()
-    		     },
-    		     success:function(data){	//data : checkSignup에서 넘겨준 결과값
-    		            if($.trim(data)=="YES"){
-    		               if($('#mem_email').val()!=''){ 
-    		            	   $('#guideemail1').hide();
-    		            	   $('#guideemail2').hide();
-    		            	   $('#guideemail3').show();
-    		               }
-    		           	}else{
-    		               if($('#mem_email').val()!=''){
-    		            	   $('#guideemail1').hide();
-    		            	   $('#guideemail2').show();
-    		            	   $('#guideemail3').hide();
-    		               }
-    		            }
-    		         }
-    		    }) 
-    	     })
-
-    	}); */
-//로그인 Submit//    
-
-/* 	$('#userPwd').on'keyup', function(){
-		var userPwd = $(this).val().trim();
-			
-			if($('#userPwd') != $('#userPwd2')){
-				$('#guidepw2').show();
-				return;
-			} 
-	} */
-	
- 	
-/* 	$('#mem_email').on('keyup', function(){
-			var mem_email = $(this).val().trim();
-			
-			if(mem_email.length <4){
-				$('#guideemail1').show();
-			}else{
-				$('#guideemail1').hide();
-			}	
-				
-				return;
-
-			
-			$.ajax({
-				url:'dupid.me',
-				data:{id:mem_email},
-				success:function(data){
-					console.log(data);
-					if(data == 'true'){
-						$('#guideemail3').show();
-					}else{
-						$('#guideemail2').hide();
-						
-					}
-				}
+    //비밀번호
+	   	$(function(){
+			$('#mem_pw1').on('keyup',function(){
+				 if(pwJ.test($('#mem_pw1').val())){
+					    console.log('true');
+					    $('#pw_check').text('사용가능한 암호 입니다.');
+					    $('#pw_check').css('color','green');
+				 }else{
+					 	console.log('false');
+				    	$('#pw_check').text('4~12자의 숫자 , 문자로만 사용 가능합니다.');
+				    	$('#pw_check').css('color', 'red');
+				    	$('#pw_check').css('font-size','12px');
+				 }
+				})  	   
 			});
-		});  */ 
-/* 	function chkPW(){
-		var pw = $("#userPwd1").val();
-		var num = pw.search(/[0-9]/g);
-		var eng = pw.search(/[a-z]/ig);
-		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		
-		if(pw.length < 8){
-			$('#guidepw1').show();
-			return false;
-		}else{
-			$('#guidepw1').hide();
-			return ture;
-		}
-		return true;
-	} */
-	/* 
-	
- 	$(function(){
-		$('#userPwd1').on('keyup',function(){
-			 if($('#userPwd1').length.trim() < 8){
-				    $('#guidepw1').show();
-				    $('#guidepw2').hide();
-				    $('#guidepw3').hide();
-			 }else{
-			    	$('#guidepw1').hide();
-			    	$('#guidepw2').hide();
-			    	$('#guidepw3').hide();
-			 }
-			})  	   
-		});
-		$('#userPwd1').on('keyup',function(){
-			 if($('#userPwd1').length > 8){
-				    $('#guidepw1').show();
-				    $('#guidepw2').hide();
-				    $('#guidepw3').hide();
-			 }	   
-		});
-	//비밀번호 확인--------------
- 	$(function(){
-		$('#userPwd2').on('keyup', function(){
-			 if($('#userPwd1').val().trim() != $('#userPwd2').val().trim()){
-				    $('#guidepw2').show();
-				    $('#guidepw1').hide();
-				    $('#guidepw3').hide();
-			      }else{
-			    	$('#guidepw2').hide();
-			    	$('#guidepw1').hide();
-			    	$('#guidepw3').show();
-			      }
-			})  	   
-		}); 
+	 	$(function(){
+			$('#mem_pw2').on('keyup', function(){
+				 if($('#mem_pw1').val().trim() != $('#mem_pw2').val().trim()){
+					    $('#pw_check').text('비밀번호가 일치하지 않습니다.')
+					    $('#pw_check').css('color','red');
+					    $('#pw_check').css('font-size','12px');
+				      }else{
+					    $('#pw_check').text('비밀번호 확인');
+					    $('#pw_check').css('color','green');
+					    $('#pw_check').css('font-size','12px');
+				      }
+				})  	   
+			});  
 	//비밀번호 확인-------------
+     
+     //이름에 특수문자 들어가지 않도록 설정
+	    	$(function(){
+			$('#mem_name').on('keyup', function(){
+				 if(nameJ.test($('#mem_name').val())){
+						$("#name_check").text('');
+					    $('#name_check').css('font-size','12px');
+				      }else{
+				    	$('#name_check').text('한글 2~4자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
+					    $('#name_check').css('color','red');
+					    $('#name_check').css('font-size','12px');
+				      }
+				})  	   
+			});
+     
 	
-	//이름 확인-------
- 	$(function(){
-		$('#userName').on('keyup', function(){
-			 if($('#userName').length < 2){
-				    $('#guidename1').show();
-				    $('#guidename2').hide();
-			      }else{
-			    	$('#guidename2').show();
-			    	$('#guidename1').hide();
-			      }
-			})  	   	 
-		$('#userName').on('keyup', function(){
-			 if($('#userName').length > 2){
-				    $('#guidename2').show();
-			      }else{
-		 		   	  $('#guidename1').hide();
-		 	     }
-			}) 
-		}); 
-		
-	//이름 확인-------
-	
-	    $("#join-form-tel").on("keyup",function(){
-    	var inputTel = $("#join-form-tel").val();
-		console.log(inputTel);
-		var tmp="";
-		inputTel = inputTel.replace(/[^0-9]/g,'');
+	    	//약관동의 체크박스//
+	        var checkAll = document.getElementById("checkAll");
+	   	 	var checkRow = document.getElementsByName("checkRow");
 
-		if(inputTel.length<4){  //01012341234
-			tmp+=inputTel;
-		}else if(inputTel.length<7){ //
-			tmp+=inputTel.substr(0,3); // 010
-			tmp+='-';    
-			tmp+=inputTel.substr(3);  // 010-123
-		}else if(inputTel.length<11){ //010-1234-1 ...
-			tmp += inputTel.substr(0, 3);   // 010
-			tmp += '-';
-			tmp += inputTel.substr(3, 3); //010-123
-			tmp += '-';
-			tmp += inputTel.substr(6); //010-123-412
-		}else{  
-			tmp += inputTel.substr(0, 3);  
-			tmp += '-';
-			tmp += inputTel.substr(3, 4);
-			tmp += '-';
-			tmp += inputTel.substr(7); 
-		}
-		  $("#join-form-tel").val(tmp);
-    });
-		
-  	function validate(){
-		
-		//성별체크
-  		var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
-		var genderArr = document.frm1.mem_gender;
-		var gChk = false;
-		for(var i = 0 ; i < genderArr.length; i++){
-			if(genderArr[i].checked == true){
-				gChk = true;
-				break;
-			}
-		}
+	   	function selectAll(){
+	   		if(checkAll.checked){
+	   			for(var i = 0; i < checkRow.length; i++){
+	   				checkRow[i].checked = true;
+	   			}
+	   		} else{
+	   			for(var i = 0; i < checkRow.length; i++){
+	   				checkRow[i].checked = false;
+	   			}
+	   		} 
+	   	}
+	   	
+	   	function selectOne(){
+	   		var count = 0;
+	   		
+	   		for(var i = 0; i < checkRow.length; i++){
+	   			if(checkRow[i].checked){
+	   				count++;
+	   			} 
+	   		}
+	   		
+	   		if(count != 2){
+	   			checkAll.checked = false;
+	   		} else{
+	   			checkAll.checked = true;
+	   		}
+	   	}
+	   //약관동의 체크박스//
+	        
+	   //관심사 체크박스 //
+	        $(".ck_interest").click(function(){ // 체크박스 클릭 시 이벤트
+	   				countCheckBoxFn();
+	   				
+	   				if(ck_count > 3){
+	   					alert("최대 3개까지 선택가능합니다.");
+	   					$(this).prop("checked",false);
+	   				}
+	   			});
+	   			//////////////////////////////////////
+	   			function countCheckBoxFn(){ // 선택되어진 체크박스의 개수를 구하는 함수
+	   				ck_count=0;
+	   				var ck_interest = $(".ck_interest");
+	   				ck_interest.each (function (index, item){
+	   					if(item.checked == true){
+	   						ck_count+=1;
+	   					}
+	   				});
+	   			}
+ 			
+	   		function validate(){
+ 				var inval_Arr = new Array(9).fill(false);
+ 				if(mailJ.test($('#mem_email').val())){
+ 					inval_Arr[0] = true;
+ 				} else{
+ 					inval_Arr[0] = false;
+ 					swal("",'이메일을 확인하세요',"info");
+ 					$('#mem_email').focus();
+ 					return false;
+ 				}
+ 				// 비밀번호가 같은경우 , 비밀번호 정규식
+ 				if (($('#mem_pw1').val() == ($('#mem_pw2').val())) 
+ 						&& pwJ.test($('#mem_pw1').val())) { 
+ 					inval_Arr[1] = true; 
+ 				} else { 
+ 					inval_Arr[1] = false; 
+ 					swal("",'비밀번호 양식을 확인하세요',"info");
+ 					$('#mem_pw').focus();
+ 					return false; 
+ 				}
+ 				// 이름 정규식
+ 				if (nameJ.test($('#mem_name').val())) { 
+ 					inval_Arr[2] = true; 
+ 				} else { 
+ 					inval_Arr[2] = false;
+ 					swal("",'이름을 확인하세요',"info"); 
+ 					$('#mem_name').focus();
+ 					return false; 
+ 				}
+ 				// 휴대폰번호 정규식
+ 				if (phoneJ.test($('#mem_tel').val())) {
+ 					console.log(phoneJ.test($('#mem_tel').val())); 
+ 					inval_Arr[5] = true; 
+ 				} else { 
+ 					inval_Arr[5] = false; 
+ 					swal("",'휴대폰번호를 확인하세요',"info"); 
+ 					$('#mem_tel').focus();
+ 					return false; 
+ 				}
 
-		if($('#userId').val().trim()==0){
-			swal('사용 가능한 아이디를 입력해주세요');
-			$('#userId').focus();
-			return false;
-		}else if($('#userPwd').val().trim()==0){
-			swal('사용 가능한 비밀번호를 입력해주세요');
-			$('#userPwd').focus();
-			return false;
-		}else if($('#userName').val().trim()==0){
-			swal('이름을 입력해주세요');
-			$('#userName').focus();
-			return false;
-		}else if($('#userBirth').val()==0){
-			swal('생년월일을 입력해주세요');
-			$('#userBirth').focus();
-			return false;
-		}else if(gChk == false){
-			swal('성별을 체크해주세요');
-		}else if($('#post').val()==0){
-			swal('주소를 입력해주세요');
-			$('#post').focus();
-			return false;
-		}else if($('.join-li-cl-in').is(":checked") != true){
-			swal('약관에 동의해주세요');
-			$('#join-li-cl-in').focus();
-			return false;
-		}else{
-			$('#joinForm').submit();
-			location.href="InsertMemberComplete.me";
-		}
-	}
-	
-	$(function(){
-		$('#post').on('keyup', function(){
-			 if($('#post').val() != 0){
-				    $('#guideaddress').hide();
-			      }else{
-			    	$('#guideaddress').show();
-			      }
-			})  	   
-	}); 
-	
-	
+ 				//성별 확인
+ 				if($('#gender-radio1').checked==false && $('#gender-radio2').checked==false){
+ 					inval_Arr[6] = false; 
+ 					swal("",'성별을 확인하세요',"info");  
+ 					return false; 
+ 					} else{ 
+ 						inval_Arr[6] = true; 
+ 					}
+				//주소 확인
+ 				if($('#post').val()== '' || $('#address1').val()== '' || $('#address2').val()== ''){ 
+ 					inval_Arr[7] = false; 
+ 					swal("",'주소를 입력하세요',"info");
+ 					$('#address2').focus();
+ 					return false; 
+ 				}else{
+ 					inval_Arr[7] = true;
+ 				}
+				
+				//약관동의
+ 		   		if(!$('#checkAll').prop("checked")){
+ 		   			inval_Arr[8] = false;
+ 		   			swal("","약관에 동의해주세요.","info");
+ 		   		}else{
+ 		   			inval_Arr[8] = true;
+		   			return false;
+ 		   			
+ 		   		}
+				//전체 유효성 검사 
+				var validAll = true; 
+				for(var i = 0; i < inval_Arr.length; i++){
+					if(inval_Arr[i] == false){ 
+						validAll = false; 
+					} 
+				}
+				// 유효성 모두 통과 
+				if(validAll == true){ 
+					swal("","LIBRERIA 가족이 되어주셔 감사합니다.","info"); 
+				} else{ 
+					swal("","다시해라.","info"); 
+				}
+ 		}
+ });
+
+ 	
+ 				
 //로그인 Submit//
   	
   	
@@ -823,55 +697,9 @@ span.error{color: red;}
 						ck_count+=1;
 					}
 				});
-			}
-//관심사 체크박스 //
-			 */
+			} 
 
-	//로그인 유호성 검사//
-/* 	function validate(){
-		var re = /^[a-zA-Z0-9]{4,12}$/
-		var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		
-		var mem_email = document.getElementById("mem_email");
-		var mem_pw = document.getElementById("mem_pw");
-		var mem_pw2 = document.getElementById("mem_pw2");
-		var mem_name = document.getElementById("mem_name");
-		
-		//이메일
-	    if(mem_email.value=="") {
-	        alert("이메일을 입력해 주세요");
-	        mem_email.focus();
-	        return false;
-	    }
-	    if(!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
-	        return false;
-	    }
-	    
-	    //pw
-	    if(!check(re,mem_pw,"패스워드는 4~12자의 영문 대소문자와 숫자로만 입력")) {
-	         return false;
-	     }
-	    if(join.mem_pw.value != join.mem_pw2.value) {
-	         alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
-	         join.mem_pw2.value = "";
-	         join.mem_pw2.focus();
-	         return false;
-	    }
-	    if(join.mem_interest[0].checked==false &&
-	         join.mem_interest[1].checked==false &&
-	         join.mem_interest[2].checked==false &&
-	         join.mem_interest[3].checked==false &&
-	         join.mem_interest[4].checked==false &&
-	         join.mem_interest[5].checked==false &&
-	         join.mem_interest[6].checked==false &&
-	         join.mem_interest[7].checked==false &&
-	         join.mem_interest[8].checked==false &&
-	         join.mem_interest[9].checked==false) {
-	         alert("관심분야를 골라주세요");
-	         return false;
-	    }
-	    alert("회원가입이 완료되었습니다.");
-	} */
+	
 	</script>
    </section>
 <c:import url="../common/footer.jsp"></c:import>

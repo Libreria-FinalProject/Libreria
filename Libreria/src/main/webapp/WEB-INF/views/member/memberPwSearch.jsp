@@ -42,11 +42,11 @@
 	border-radius: 3px 3px 0px 0px;
 	border-bottom:none;
 }
-#pw_search_phone{
+#pw_search_tel{
 	border-bottom:none;
 }
 #pw_search_name{
-	border-radius: 0px 0px 3px 3px;
+	border-radius: 0px 0px 3px 3px;t
 }
 .pw_search_text{
 	font-size:small;
@@ -56,6 +56,7 @@
    text-align: center;
 }
 .hidden_line_cl{
+	 display:none;
 	 height: 30px;
 	 list-style: none;
 	 border:none;
@@ -66,13 +67,13 @@
 <c:import url="../common/header.jsp"></c:import>
 <section id="pwsearch" class="account-container">
    	 <p class="pwsearch-header" align="center";>비밀번호 재설정</p>
-     <form>
+     <form action="pwSearch">
     	<div class="input-group">
      	  <label class="account-label">
      	  		<input type="text" name="pwsearch_user_id" id="pw_search_id" title="아이디 입력" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
      	  </label>
      	  <label class="account-label">
-     	  		<input type="phone" name="pwsearch_user_phone" id="pw_search_phone" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
+     	  		<input type="phone" name="pwsearch_user_phone" id="pw_search_tel" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
      	  </label>
      	  <label class="account-label">
      	  		<input type="text" name="pwsearch_user_name" id="pw_search_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
@@ -83,8 +84,38 @@
      	</div>
      	<button class="pwsearch-submit" type="submit">Submit</button>
    	</form>
+   <script>
+   $("#pw_search_tel").on("keyup",function(){
+    	var inputTel = $("#pw_search_tel").val();
+		console.log(inputTel);
+		var tmp="";
+		inputTel = inputTel.replace(/[^0-9]/g,'');
+
+		if(inputTel.length<4){  //01012341234
+			tmp+=inputTel;
+		}else if(inputTel.length<7){ //
+			tmp+=inputTel.substr(0,3); // 010
+			tmp+='-';    
+			tmp+=inputTel.substr(3);  // 010-123
+		}else if(inputTel.length<11){ //010-1234-1 ...
+			tmp += inputTel.substr(0, 3);   // 010
+			tmp += '-';
+			tmp += inputTel.substr(3, 3); //010-123
+			tmp += '-';
+			tmp += inputTel.substr(6); //010-123-412
+		}else{  
+			tmp += inputTel.substr(0, 3);  
+			tmp += '-';
+			tmp += inputTel.substr(3, 4);
+			tmp += '-';
+			tmp += inputTel.substr(7); 
+		}
+		  $("#pw_search_tel").val(tmp);
+    });
    
+   </script>
    </section>
+   
 <c:import url="../common/footer.jsp"></c:import>
 </body>
 </html>

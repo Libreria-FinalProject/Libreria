@@ -54,7 +54,7 @@
 			
 			<div class= "input-group">
 				<div class = "idsr-com-complete">
-		     		<h4 class="idre-com">검색된 ID는 "tkdwns1733@naver.com" <br>입니다.</h4>
+		     		<h4 class="idre-com">검색된 ID는 "${SearchId}" <br>입니다.</h4>
 				</div>
 		     <div class="idsr-com-submitdiv">
 		     		<input type="button" class="idsr-com-submit" value="Login">

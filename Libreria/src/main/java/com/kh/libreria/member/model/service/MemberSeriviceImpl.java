@@ -146,16 +146,12 @@ public class MemberSeriviceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<Member> idSearch(String mem_name) {
-		return mDAO.idSearch(sqlSession, mem_name);
+	public int idSearch(String mem_email) {
+		return mDAO.idSearch(sqlSession, mem_email);
 	}
-
+	
 	@Override
-	public ArrayList<Member> pwSearch(String mem_name) {
-		return mDAO.pwSearch(sqlSession, mem_name);
+	public int pwSearch(String mem_pw) {
+		return mDAO.pwSearch(sqlSession, mem_pw);
 	}
-
-
-
-
 }
