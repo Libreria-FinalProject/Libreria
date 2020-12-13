@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/book/bookSearchPage.css"/>
-
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
