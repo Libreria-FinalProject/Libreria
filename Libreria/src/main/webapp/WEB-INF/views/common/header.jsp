@@ -65,7 +65,7 @@
 			location.href = "bookCateList.bo?bcf_no=1";
 		}); 
 	 	
-	 	$('#menu_ul').find('li').eq(3).click(function(){
+	 	$('#menu_ul').find('li').eq(2).click(function(){
 			location.href = "sellBookForm.bo";
 		}); 
 	 	
