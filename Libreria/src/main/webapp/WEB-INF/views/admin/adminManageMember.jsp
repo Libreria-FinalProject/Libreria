@@ -63,7 +63,7 @@
 					</c:if>
 				</c:forEach>
 
-				<c:if test="${pi.currentPage < pi.endPage }">
+				<c:if test="${pi.currentPage < pi.maxPage }">
 					<c:url var="after" value="confirmMoney.me">
 						<c:param name="page" value="${pi.currentPage+1 }"/>
 					</c:url>

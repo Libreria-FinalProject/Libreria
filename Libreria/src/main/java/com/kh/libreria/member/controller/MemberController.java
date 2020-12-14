@@ -182,8 +182,7 @@ public class MemberController {
 			HttpServletResponse response) throws IOException{
 	
 		Member loginUser = mService.loginMember(m);
-		 
-		if(loginUser!=null) { 
+		if(bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) { 
 			int result = mService.updateLoginDate(loginUser);
 			logger.info(loginUser.getMem_email());
 			logger.info(loginUser.getMem_pw());
@@ -265,7 +264,7 @@ public class MemberController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Book> buyList = mService.getBuyList(mem_no, pi);
-		
+			
 		mv.addObject("pi", pi);
 		mv.addObject("buyList", buyList);
 		mv.setViewName("memberBuy");

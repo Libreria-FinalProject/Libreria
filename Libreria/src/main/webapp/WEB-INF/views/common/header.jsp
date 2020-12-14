@@ -95,7 +95,7 @@
 	
 	 	/* $('#menu_li').click(function(){
 			location.href = "bookCateList.bo";
-		});  */
+		}); */
 	 	
 		$('#UserBasket').click(function(){
 			location.href = "basketList.pay";
@@ -116,10 +116,7 @@
 					swal("검색 오류","검색어가 없습니다. 검색어를 확인해주세요.","error");
 				}else{
 					location.href =  "searchWordList.bo?word="+word;
-				}				
-			
-			
-			
+				}		
 			}
 		});
 

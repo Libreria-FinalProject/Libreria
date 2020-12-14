@@ -393,12 +393,12 @@
 	<insert id="insertBook">
 		insert into book
 		values(seq_b_no.nextval, #{b_title}, #{b_content}, #{b_pub}, #{b_price}, 1, 
-		sysdate, default, default, default, 'KOR', #{bc_no}, seq_img_no.currval, #{bwp_no}, default, #{b_pub_name})
+		sysdate, default, default, 'KOR', #{bc_no}, seq_img_no.currval, #{bwp_no}, default, #{b_pub_name})
 	</insert>
 	
 	<insert id="insertBookImage">
 		insert into image
-		values(seq_img_no.nextval, #{origin_name}, #{change_name}, '/libreria/resources/images/book_cover', 0, default, 1)
+		values(seq_img_no.nextval, #{origin_name}, #{change_name}, '/libreria/resources/images/book_cover/', 0, default, 1)
 	</insert>
 	
 	<!-- KH -->

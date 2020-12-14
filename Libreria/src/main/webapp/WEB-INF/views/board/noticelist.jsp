@@ -124,7 +124,7 @@
 					<button type="button" onclick="location.href='${pagination}'">${p}</button>
 				</c:if>
 			</c:forEach>
-			<c:if test="${pi.currentPage < pi.endPage }">
+			<c:if test="${pi.currentPage < pi.maxPage }">
 			<c:url var="after" value="NoticeList.bd">
 					<c:param name="page" value="${pi.currentPage+1 }"/>
 				</c:url>

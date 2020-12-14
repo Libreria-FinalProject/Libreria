@@ -49,10 +49,10 @@ function numberWithCommas(x) {
 				<c:forEach var="m" items="${moneyList}" varStatus="status">
 					<tr class="moneyTr">
 						<td width="415x" height="40px"></td>
-						<c:if test="${m.charge_way=='Card'}">
+						<c:if test="${m.charge_way=='CD'}">
 							<td width="150px">신용카드</td>						
 						</c:if>
-						<c:if test="${m.charge_way == 'Mutong' }">
+						<c:if test="${m.charge_way == 'DP'}">
 							<td width="150px">무통장입금</td>
 						</c:if>
 						<td width="150px">${m.charge_date }</td>
@@ -83,7 +83,7 @@ function numberWithCommas(x) {
 					<button type="button" onclick="location.href='${pagination}'">${p}</button>
 				</c:if>
 			</c:forEach>
-			<c:if test="${pi.currentPage < pi.endPage }">
+			<c:if test="${pi.currentPage < pi.maxPage }">
 			<c:url var="after" value="confirmMoney.me">
 					<c:param name="page" value="${pi.currentPage+1 }"/>
 				</c:url>

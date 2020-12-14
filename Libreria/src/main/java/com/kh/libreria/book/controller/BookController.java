@@ -377,7 +377,6 @@ public class BookController {
 			throw new BookException();			
 		}
 	}
-	
 	////////////////KH//////////////////
 	
 }

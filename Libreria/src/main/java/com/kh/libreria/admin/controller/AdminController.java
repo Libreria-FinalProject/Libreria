@@ -157,7 +157,7 @@ public class AdminController {
 		if(result>0) {
 			int result2 = adminService.insertBook(book);		
 		}
-		return "insertBook.ad";
+		return "redirect:insertBook.ad";
 	}
 	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {

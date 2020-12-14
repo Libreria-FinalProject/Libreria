@@ -19,7 +19,7 @@
  		<form method="post" id="depositForm">
 	 		<input type="hidden" name="mem_no" value="${loginUser.mem_no }">
 		 	<input type="hidden" name="charge_money" id="charge_money">
-		 	<input type="hidden" name="charge_way" value="Mutong">
+		 	<input type="hidden" name="charge_way" value="DP">
 		 	<div class="pay_deposit_div">
 		 		<p>
 			 		<span>계좌번호 : 111-222222-33-44</span><br>

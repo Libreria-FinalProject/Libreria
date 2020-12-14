@@ -4,7 +4,7 @@
 	<select id="loginMember" resultType="Member">
 		select *
 		from member
-		where mem_email = #{mem_email}  and mem_pw = #{mem_pw} and mem_delete='N'
+		where mem_email = #{mem_email}  and mem_delete='N'
 	</select>
 	<resultMap type="Member" id="memberResultSet">
       <id column="MEM_NO" property="mem_no"/>
@@ -181,6 +181,7 @@
 		join image using (img_no)
         join member m on(b.mem_no=m.mem_no)
 		where b.mem_no=#{mem_no}
+		order by buy_date desc
 	</select>
 	
 	<select id="getBuyListCount" resultType="_int">
