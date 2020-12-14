@@ -10,6 +10,9 @@
 <title>Libreria</title>
 <style type="text/css">
    @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+   a{
+   	text-decoration:none;
+   }
    *{
       margin: 0px;
       padding: 0px;
@@ -370,8 +373,9 @@
         		<!-- <form onsubmit="NextPayment()"> -->
                 <div id="Right_top">
                 <label class="selectBookBox">총 1권을 선택하셧습니다.</label>
-                <label class="priceBox" id="AllPrice"><label>총 상품가격 </label>${ bookPrice }원</label>
-                <label class="priceBox"><label>결제가격</label>${ bookPrice }원</label>
+                
+                <label class="priceBox"><label>총 상품가격 </label>${ bookPrice }<label>원</label></label>
+            	<label class="priceBox"><label>결제가격</label>${ bookPrice }<label>원</label></label>
                 <hr>
                 <label class="selectBookBox"> 결제수단</label>
                 <label class="priceBox2"><input type="radio" name="pay" value="Mutong" checked="checked">무통장입금</label>

@@ -11,6 +11,9 @@
     <title>Document</title>
     <style>
         *{margin:0; padding:0;}
+        a{
+   	text-decoration:none;
+   }
         #title{
             width:550px;
             height:560px;

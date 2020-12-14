@@ -10,6 +10,9 @@
 <title>Libreria</title>
 <style type="text/css">
    @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+   a{
+   	text-decoration:none;
+   }
    *{
       margin: 0px;
       padding: 0px;

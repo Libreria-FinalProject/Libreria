@@ -15,6 +15,9 @@
       padding: 0px;
       font-family: 'Nanum Gothic';
    }
+	a{
+   	text-decoration:none;
+   }
    section{
       margin: 0 auto;
       width:1000px;
@@ -434,8 +437,8 @@
         <div id="basket_Right">
             <div id="Right_top">
             <label class="selectBookBox" >총 1 권을 선택하셧습니다.</label>
-            <label class="priceBox"><label>총 상품가격 </label>${ bookPrice }원</label>
-            <label class="priceBox"><label>결제가격</label>${ bookPrice }원 </label>
+            <label class="priceBox"><label>총 상품가격 </label>${ bookPrice }<label>원</label></label>
+            <label class="priceBox"><label>결제가격</label>${ bookPrice }<label>원</label></label>
             </div>
             <a href="${ DirectNextPayment }"><button id="Right_bot">결제하기</button></a>
         </div>

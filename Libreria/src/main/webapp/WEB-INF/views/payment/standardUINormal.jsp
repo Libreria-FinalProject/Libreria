@@ -15,6 +15,9 @@
       padding: 0px;
       font-family: 'Nanum Gothic';
    }
+   a{
+   	text-decoration:none;
+   }
    section{
       margin: 0 auto;
       width:1000px;

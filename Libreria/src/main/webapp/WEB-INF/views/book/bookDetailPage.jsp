@@ -63,7 +63,14 @@
 						<h3 class="book_detail_title" style="color: #1f8ce6;"><fmt:formatNumber value="${ bDetail.b_price }"/>원</h3>
 						<ul>
 							<%-- <li class="book_buy_ic_cl"><img id="book_add_heart"src="${pageContext.request.contextPath}/resources/images/Product_heart.png"></li> --%>
+							<c:if test="${!empty sessionScope.loginUser }">
 							<li  class="book_buy_ic_cl " id="basket"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
+							</c:if>
+							<c:if test="${ empty sessionScope.loginUser }">
+							<li  class="book_buy_ic_cl " id="buyNotLogin"><img id="book_add_shopCart"src="${pageContext.request.contextPath}/resources/images/Product_shoppingcart.png"></li>
+							</c:if>
+							
+							
 							<%-- <li  class="book_buy_ic_cl"><img id="book_add_gift"src="${pageContext.request.contextPath}/resources/images/Product_gift.png"></li> --%>
 							<c:url value="DirectBuy.pay" var="DirectBuy">
                                 <c:param name="bookTitle" value="${ bDetail.b_title }" />
@@ -71,7 +78,12 @@
                                 <c:param name="bookPrice" value="${ bDetail.b_price }" /> 
                                 <c:param name="bookNo" value="${bDetail.b_no}" />
                             </c:url> 
-                    		 <li class="book_buy_cl"><a href="${DirectBuy}"><button id="book_buy_btn">구매하기</button></a></li>
+                            <c:if test="${!empty sessionScope.loginUser }">
+							<li class="book_buy_cl"><a href="${DirectBuy}"><button id="book_buy_btn">구매하기</button></a></li>
+							</c:if>
+							<c:if test="${ empty sessionScope.loginUser }">
+							<li class="book_buy_cl" id="buyNotLogin"><button id="book_buy_btn">구매하기</button></li>
+							</c:if>
 						</ul>
 					
 					</div>
@@ -829,6 +841,10 @@
 	   })
 	});
 
+	$('#buyNotLogin').click(function(){
+		swal ( "접근불가" ,  "로그인 후 사용 가능합니다." ,  "error" )
+	})
+	
 
 </script>
 
