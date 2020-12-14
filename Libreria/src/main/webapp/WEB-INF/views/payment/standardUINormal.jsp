@@ -464,7 +464,7 @@
     var flag = "false";
 
     
-
+	
     
     function whatAll(){
         if(flag = "true"){
@@ -530,10 +530,16 @@
 	 $('#selectPriceDelete').on('click',function(){
 		 
 		 for(var i=0; i<myCheck.length; i++){
-				
-				checkItem.push(myCheck[i].defaultValue);
+			 //alert(i);
+			 //console.dir(myCheck[i]);
+			 if(myCheck[i].checked == true){
+				 checkItem.push(myCheck[i].defaultValue); 
+			 }
 			}
-		  $.ajax({
+		 
+		 
+		 console.log(checkItem);
+		   $.ajax({
 			url:'selectDelete.pay',
 			data:{'checkItem[]':checkItem , 'mem_no[]':mem_no},
 			traditional : true,
@@ -544,7 +550,7 @@
 					
 				}
 			}
-		}) 
+		})  
 		
 		});
 	
