@@ -135,6 +135,7 @@ button{
 	background-color: rgb(48, 53, 56);
 	height:150px;
 	color: #ffffff;
+	font-size:13px;
 }	
 #footer_container > div{
 	margin: 0 auto;

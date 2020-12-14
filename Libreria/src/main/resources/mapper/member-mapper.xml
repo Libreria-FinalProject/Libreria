@@ -177,18 +177,18 @@
 	<select id="getBuyList" resultType="Book">
 		select b_no, b_title, b_price, buy_date "sell_date", change_name, file_path
 		from buy_data b
-		join basket using(basket_no)
 		join book using(b_no)
 		join image using (img_no)
+        join member m on(b.mem_no=m.mem_no)
 		where b.mem_no=#{mem_no}
 	</select>
 	
 	<select id="getBuyListCount" resultType="_int">
 		select count(*)
 		from buy_data b
-		join basket using(basket_no)
 		join book using(b_no)
 		join image using (img_no)
+        join member m on(b.mem_no=m.mem_no)
 		where b.mem_no=#{mem_no}
 	</select>
 	
@@ -204,5 +204,3 @@
 		where mem_no = #{mem_no}
 	</update>
 </mapper>
-
-

@@ -54,6 +54,14 @@ public interface BookService {
 
 	int sellBook(HashMap<String, Integer> sellBook);
 
+	ArrayList<Book> getRecentBooks();
+	
+	ArrayList<Book> getBestSellerBooks();
+
+	ArrayList<Book> getRandomNovelBooks();
+	
+	////////////////////////KH
+
 	int getBestListCount(BookSort bs);
 
 	ArrayList<Book> getBookBestList(PageInfo pi, BookSort bs);

@@ -40,7 +40,7 @@
 	 	<form method="post" id="cardForm">
 	 		<input type="hidden" name="mem_no" value="${loginUser.mem_no }">
 	 		<input type="hidden" name="charge_money" id="charge_money">
-	 		<input type="hidden" name="charge_way" value="CD">
+	 		<input type="hidden" name="charge_way" value="Card">
 		 	<div class="pay_cardinfo_div">
 		 		<table>
 		 			<tr>

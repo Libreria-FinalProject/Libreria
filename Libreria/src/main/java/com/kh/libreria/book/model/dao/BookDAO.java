@@ -113,7 +113,19 @@ public class BookDAO {
 	public int sellBook(SqlSessionTemplate sqlSession, HashMap<String, Integer> sellBook) {
 		return sqlSession.insert("bookMapper.sellBook", sellBook);
 	}
+	
+	public ArrayList<Book> getRecentBooks(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("bookMapper.getRecentBooks");
+	}
+	
+	public ArrayList<Book> getBestSellerBooks(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("bookMapper.getBestSellerBooks");
+	}
+	public ArrayList<Book> getRandomNovelBooks(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("bookMapper.getRadnomNovelList");
+	}
 	////////////////KH//////////////////
+
 
 	public int getBestListCount(SqlSessionTemplate sqlSession, BookSort bs) {
 		// TODO Auto-generated method stub
@@ -139,7 +151,5 @@ public class BookDAO {
 		
 		return (ArrayList)sqlSession.selectList("bookMapper.getSearchBookList",bs,rowBounds);
 	}
-
-	
 
 }

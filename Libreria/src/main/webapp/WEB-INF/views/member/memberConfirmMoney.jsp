@@ -49,10 +49,10 @@ function numberWithCommas(x) {
 				<c:forEach var="m" items="${moneyList}" varStatus="status">
 					<tr class="moneyTr">
 						<td width="415x" height="40px"></td>
-						<c:if test="${m.charge_way=='CD'}">
+						<c:if test="${m.charge_way=='Card'}">
 							<td width="150px">신용카드</td>						
 						</c:if>
-						<c:if test="${m.charge_way == 'DP' }">
+						<c:if test="${m.charge_way == 'Mutong' }">
 							<td width="150px">무통장입금</td>
 						</c:if>
 						<td width="150px">${m.charge_date }</td>

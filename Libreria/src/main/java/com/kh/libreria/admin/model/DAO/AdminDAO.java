@@ -8,7 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.libreria.admin.model.vo.SellData;
 import com.kh.libreria.book.model.vo.Book;
+import com.kh.libreria.book.model.vo.BookFrameCategory;
+import com.kh.libreria.book.model.vo.BookSubCategory;
+import com.kh.libreria.book.model.vo.BookWriter;
 import com.kh.libreria.common.PageInfo;
+import com.kh.libreria.image.model.vo.Image;
 import com.kh.libreria.member.model.vo.Member;
 
 @Repository("adminDAO")
@@ -52,6 +56,26 @@ public class AdminDAO {
 
 	public int getBuyBookListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("bookMapper.adminGetBuyBookListCount");
+	}
+
+	public ArrayList<BookFrameCategory> getBCFList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("bookMapper.selectFrameCate");
+	}
+
+	public ArrayList<BookSubCategory> getSubGanre(SqlSessionTemplate sqlSession, int bcf_no) {
+		return (ArrayList)sqlSession.selectList("bookMapper.getBookSubCateList", bcf_no);
+	}
+
+	public ArrayList<BookWriter> searchWriter(SqlSessionTemplate sqlSession, String writer) {
+		return (ArrayList)sqlSession.selectList("bookMapper.searchWriter",writer);
+	}
+
+	public int insertBook(SqlSessionTemplate sqlSession, Book book) {
+		return sqlSession.insert("bookMapper.insertBook", book);
+	}
+
+	public int insertBookImage(SqlSessionTemplate sqlSession, Image i) {
+		return sqlSession.insert("bookMapper.insertBookImage",i);
 	}
 
 }

@@ -357,6 +357,50 @@
 		from sell_data_joined
 		where sell_decide_date is null
 	</select>
+	
+	<select id="getRecentBooks" resultType="Book">
+		select * from 
+		(select * from bdp 
+		order by b_pub_date desc)
+		where rownum between 1 and 15
+	</select>
+	
+	<select id="getBestSellerBooks" resultType="Book">
+		select * from (select b_no,count(b_no), bdp.b_title, bdp.bwp_name, bdp.avg_star, bdp.file_path, bdp.change_name
+		from  buy_data
+		join bdp using(b_no)
+		group by b_no,b_title, bdp.bwp_name,  bdp.avg_star, bdp.file_path, bdp.change_name
+		order by 2 desc) where rownum between 1 and 9
+	</select>
+	
+	<select id="getRadnomNovelList" resultType="Book">
+		select * from
+		(select b_no, b_title,bwp_name, file_path, change_name, avg_star, bcf_ct 
+		from bdp
+		where bcf_ct = '소설' and avg_star > 3
+		order by SYS.dbms_random.value) where rownum between 1 and 5
+	</select>
+	
+	<select id="searchWriter" resultType="BookWriter">
+		select * from 
+		(select * 
+		from book_writer_profile
+		where bwp_name like #{bwp_name}||'%'
+		order by bwp_name)
+		where rownum between 1 and 5
+	</select>
+
+	<insert id="insertBook">
+		insert into book
+		values(seq_b_no.nextval, #{b_title}, #{b_content}, #{b_pub}, #{b_price}, 1, 
+		sysdate, default, default, default, 'KOR', #{bc_no}, seq_img_no.currval, #{bwp_no}, default, #{b_pub_name})
+	</insert>
+	
+	<insert id="insertBookImage">
+		insert into image
+		values(seq_img_no.nextval, #{origin_name}, #{change_name}, '/libreria/resources/images/book_cover', 0, default, 1)
+	</insert>
+	
 	<!-- KH -->
 	
 </mapper>

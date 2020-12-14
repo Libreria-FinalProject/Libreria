@@ -155,6 +155,21 @@ public class BookServiceImpl  implements BookService  {
 	public int sellBook(HashMap<String, Integer> sellBook) {
 		return bDAO.sellBook(sqlSession, sellBook);
 	}
+
+	@Override
+	public ArrayList<Book> getRecentBooks() {
+		return bDAO.getRecentBooks(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Book> getBestSellerBooks() {
+		return bDAO.getBestSellerBooks(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Book> getRandomNovelBooks() {
+		return bDAO.getRandomNovelBooks(sqlSession);
+	}
 	
 	////////////////KH//////////////////
 }

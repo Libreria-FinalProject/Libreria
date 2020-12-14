@@ -92,10 +92,7 @@ section{
 	text-align: center;
 }
 
-#admin_bookinsert_table tr:first-child td:nth-child(2) {
-	padding-left: 30px;
-	text-align: left;
-}
+
 
 #admin_bookinsert_table input[type=text],
 #admin_bookinsert_table select{
@@ -104,6 +101,11 @@ section{
 	border: 1px solid #ccc;
     border-radius: 4px;	
     padding: 3px 6px;
+}
+
+#admin_bookinsert_table select{
+	width: 150px ;
+	
 }
 
 #admin_bookinsert_table textarea{
@@ -115,7 +117,35 @@ section{
     resize: none;
 }
 
-#admin_bookinsert_table tr:nth-child(7) td:nth-child(2) {
+/* #admin_bookinsert_table tr:nth-child(7) td:nth-child(2) {
 	text-align:left;
 	padding-left: 30px;
+} */
+
+#admin_bookinsert_table #searchWriterDiv{
+	position: absolute;
+    width:290px;
+    text-align: left;
+    margin-left: 26px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;	
+    display: none;
+}
+#admin_bookinsert_table #searchWriterDiv div{
+	padding: 8px;
+    font-size: 13px;
+    width: 270px;
+    height: 8px;
+    overflow: hidden;
+}
+
+#admin_bookinsert_table #searchWriterDiv div:hover{
+	background-color: #cccccc;
+	cursor: pointer;
+}
+
+#admin_bookinsert_table .selected{
+		background:#eaeaea;
+		cursor: default;
 }
