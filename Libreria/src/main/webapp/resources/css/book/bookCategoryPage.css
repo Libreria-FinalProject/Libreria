@@ -93,6 +93,7 @@
     	margin-right:10px;
    		font-weight:bold;
    	 	font-size:17px;
+   	 	cursor: pointer;
     }
     #menu_bar{
     	width: 600px;
@@ -245,4 +246,7 @@
 	.book_price_cl_value{
 		color:#1f8ce6;
 		font-weight: bold;
+	}
+	#sub_menu_sel>ul>li{
+		cursor: pointer;
 	}
