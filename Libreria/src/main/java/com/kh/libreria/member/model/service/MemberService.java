@@ -59,9 +59,8 @@ public interface MemberService {
 
 	Member loginMemberWtihKakao(String kakaoEmail);
 
-	int idSearch(String mem_email);
+	Member idSearch(String mem_email);
 
-	int pwSearch(String mem_pw);
 
 	
 }

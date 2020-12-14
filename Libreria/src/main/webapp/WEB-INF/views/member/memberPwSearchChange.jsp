@@ -91,17 +91,12 @@
 	    			<label class="pwre-text">새 비밀번호</label>
 	    			<input type="password" name="pw-enrollcheck-1" id="pw-enroll-1" title="재등록비밀번호" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="pwsearch_textarea">
 	    		</li>
-	    		<li class="hidden_line_cl">
-	    			<label class="pwre-text"></label>
-	    			<label class="pwre_errortext">조건에 맞지 않습니다.</label>
-	    		</li>
 	    		<li>
 	    			<label class="pwre-text">새 비밀번호 확인</label>
 	    			<input type="password" name="pw-enrollcheck-2" id="pw-enroll-2" title="재등록비밀번호확인" placeholder="비밀번호 확인" autocapitalize="off" autocomplete="off" class="pwsearch_textarea">
 	    		</li>
 	    		<li class="hidden_line_cl">
-	    			<label class="pwre-text"></label>
-	    			<label class="pwre_errortext">비밀번호가 일치하지 않습니다.</label>
+	    			<div class="pwre_errortext" id=pw_check></div>
 	    		</li>
 	    	
 	    	</ul>

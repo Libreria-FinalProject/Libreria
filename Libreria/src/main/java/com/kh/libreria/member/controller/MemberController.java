@@ -68,29 +68,6 @@ public class MemberController {
 		logger.debug("개인정보동의");
 		return "InsertAgreeTwo";
 	}
-
-	
-	//아이디 중복 체크
-	@RequestMapping("checkSignup")
-		public @ResponseBody String AjaxView(  
-			@RequestParam("mem_email") String mem_email){
-			String str = "";
-			int idcheck = mService.idCheck(mem_email);
-			if(idcheck==1){ //이미 존재하는 계정
-				str = "NO";	
-			}else{	//사용 가능한 계정
-				str = "YES";	
-			}
-			return str;
-		}
-	
-	@RequestMapping("InsertMemberComplete.me")
-	public String InsertMemberComplete() {
-		logger.debug("회원가입성공");
-		
-		return "InsertMemberComplete";
-				
-	}
 	
 	@RequestMapping("enrollViewKakao.me")
 	public ModelAndView enrollViewKakao(ModelAndView mv,@RequestParam("kakaoEmail") String kakaoEmail,
@@ -127,6 +104,12 @@ public class MemberController {
 		return mv;
 	}
 
+	@RequestMapping("InsertMemberComplete.me")
+	public String InsertMemberComplete() {
+		logger.debug("회원가입성공");
+		
+		return "InsertMemberComplete";	
+	}
 	
 //	@RequestMapping("checkEmail.me")
 //	public void emailCheck(HttpServletResponse response
@@ -139,53 +122,59 @@ public class MemberController {
 //		}
 //	}
 	
-//	@RequestMapping("dupid.me")
-//	public void dupId(String id, HttpServletResponse response) throws IOException {
-//		boolean isUsable = mService.checkIdDup(id) == 0 ? true : false;
-//
-//		response.getWriter().print(isUsable);
-//	}
+	
 	@RequestMapping("checkEmail.me")
 	public void emailCheck(String mem_email, HttpServletResponse response) throws IOException {
 		boolean isUsable = mService.checkEmail(mem_email) == 0 ? true : false;
-
+		System.out.println(isUsable);
 		response.getWriter().print(isUsable);
 	}
-	
+
 	
 	@RequestMapping("idSearch.me")
-	public String idSearch() {
-		return "memberIdSearch";
-	}
+	public String memberIdSearch() {
+		logger.debug("id찾기 폼");
+		return "memberIdSearchForm";
 		
+	}
+	@RequestMapping("idSearchA.me")
+	public ModelAndView idSearch(String mem_email, ModelAndView mv) {
+		Member m = mService.idSearch(mem_email);
+		logger.debug("searchId: " + m.getMem_email());
+		mv.addObject("searchId", m.getMem_email())
+		.setViewName("memberIdSearchComplete");
+		
+		return mv;
+	}
+	
 	
 	@RequestMapping("idSearchComplete.me")
 	public String memberIdSearchComplete() {
+		logger.debug("ID 찾기 성공");
 		return "memberIdSearchComplete";
 	}
 	
 	
 	
+	
 	@RequestMapping("pwSearch.me")
-	public String memberPwSearch(){
+	public String memberPwSearch() throws Exception{
+		logger.debug("비밀번호 찾기");
 		return "memberPwSearch";
 	}
 	
 	
-	
-	@RequestMapping("pwSearchChange.me")
+	@RequestMapping("findPw.me")
 	public String memberPwSearchChange(){
 		return "memberPwSearchChange";
 	}
 	
 	
-	
 	@RequestMapping("pwSearchComplete.me")
 	public String memberPwSearchComplete(){
+		logger.debug("ID 변경 성공");
 		return "memberPwSearchComplete";
 	}
-	
-
 	
 //	로그인
 	@RequestMapping("login.me") 
@@ -193,10 +182,11 @@ public class MemberController {
 			HttpServletResponse response) throws IOException{
 	
 		Member loginUser = mService.loginMember(m);
-		  
+		 
 		if(loginUser!=null) { 
 			int result = mService.updateLoginDate(loginUser);
-		  
+			logger.info(loginUser.getMem_email());
+			logger.info(loginUser.getMem_pw());
 			if(result>0){ 
 				model.addAttribute("loginUser", loginUser); 
 				response.getWriter().print("1");
@@ -206,6 +196,21 @@ public class MemberController {
 			}
 		} 
 	}
+
+//	로그인 암호화
+//	@RequestMapping("login.me")
+//	public String login(Member m,  Model model) {
+//		
+//		Member loginUser = mService.loginMember(m);
+//		
+//		if(bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) {
+//			model.addAttribute("loginUser", loginUser);
+//			logger.info(loginUser.getMem_email());
+//		}else {
+//			throw new MemberException("로그인에 실패했습니다.");
+//		}
+//		return "redirect:/";
+//	}
 	
 	@RequestMapping("loginWithKakao.me")
 	public void loginMemberWithKakao(@RequestParam("mem_email") String kakaoEmail,
@@ -546,20 +551,7 @@ public class MemberController {
 //		}
 	//}
 		
-//		로그인 암호화
-//		@RequestMapping(value="login.me", method = RequestMethod.POST)
-//		public String login(Member m,  Model model) {
-//			
-//			Member loginUser = mService.loginMember(m);
-//			
-//			if(bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) {
-//				model.addAttribute("loginUser", loginUser);
-//				logger.info(loginUser.getMem_email());
-//			}else {
-//				throw new MemberException("로그인에 실패했습니다.");
-//			}
-//			return "redirect:/";
-//		}
+
 		
 //		@RequestMapping("login.me")
 //		public String  loginMember(Member m, Model model) {

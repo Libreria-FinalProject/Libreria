@@ -8,7 +8,9 @@
    <title>Libreria</title>
    <meta charset="UTF-8">
 <style type="text/css">
+
 	@import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+	
 .idsr-header{
    		font-size:30px;
    }
@@ -41,11 +43,11 @@
 	margin-top:40px;
 	margin-bottom:20px;
 }
-#name_idsearch{
+#mem_name{
 	border-radius: 3px 3px 0px 0px;
 	border-bottom:none;
 }
-#idsr_phone{
+#mem_tel{
 	border-radius: 0px 0px 3px 3px;
 }
 .idsr-error{
@@ -60,29 +62,86 @@
 	 height: 30px;
 	 list-style: none;
 }
-
 </style>
+
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
  <section id="idsr" class="account-container">
    	 <p class="idsr-header">아이디 찾기</p>
-     <form>
+     <form action="idSearchA.me" method="post" id="idSearchForm" onSubmit="return validate();">
     	<div class="input-group">
      	  <label class="account-label">
      	  		<input type="text" name="mem_name" id="mem_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
      	  </label>
      	  <label class="account-label">
-     	  		<input type="phone" name="mem_tel" id="mem_tel" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
+     	  		<input type="text" name="mem_tel" id="mem_tel" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
      	  </label>
      	  <li class="hidden_line_cl" style=border:none;>
-     	 		<label class="idsr-error" >올바른 정보를 입력해주세요.</label>
+     	 		<div class="idsr-error" id="idSearch_check"></div>
      	  </li>
      	</div>
      	<button class="idsr-submit" type="submit" id="idSearchButton" onclick="validate();">Submit</button>
    	</form>
    	<script>
    	
+/*    	function validate(){
+   		
+   		var name = $("#mem_name").val();
+   		var phone = $("#mem_tel").val();
+
+   		var postData = {'mem_name' : name ,'mem_tel': tel};
+   		
+   		$.ajax({
+   			data: {'mem_name':name , 'mem_tel':phone},
+   			url:'idSearchA.me',
+   			dateType: 'json', 
+            contentType: "application/json; charset=UTF-8",
+            
+           	success : function(data) {
+    			if(data != "true"){ 
+    				$('#"idSearchForm"').submit();
+    			}else{
+    				$('#idSearch_check').text('정보를 다시 입력해주세요.');
+					$('#idSearch_check').css('color', 'red'); 
+					$('#idSearch_check').css('font-size','12px');
+					return false;
+    			}
+            },
+   		})
+   	}  
+   	 */
+   	
+    $("#mem_tel").on("keyup",function(){
+     	var inputTel = $("#mem_tel").val();
+ 		console.log(inputTel);
+ 		var tmp="";
+ 		inputTel = inputTel.replace(/[^0-9]/g,'');
+
+ 		if(inputTel.length<4){  //01012341234
+ 			tmp+=inputTel;
+ 		}else if(inputTel.length<7){ //
+ 			tmp+=inputTel.substr(0,3); // 010
+ 			tmp+='-';    
+ 			tmp+=inputTel.substr(3);  // 010-123
+ 		}else if(inputTel.length<11){ //010-1234-1 ...
+ 			tmp += inputTel.substr(0, 3);   // 010
+ 			tmp += '-';
+ 			tmp += inputTel.substr(3, 3); //010-123
+ 			tmp += '-';
+ 			tmp += inputTel.substr(6); //010-123-412
+ 		}else{  
+ 			tmp += inputTel.substr(0, 3);  
+ 			tmp += '-';
+ 			tmp += inputTel.substr(3, 4);
+ 			tmp += '-';
+ 			tmp += inputTel.substr(7); 
+ 		}
+ 		  $("#mem_tel").val(tmp);
+     });
+    
+    
+
    	
 </script>
    

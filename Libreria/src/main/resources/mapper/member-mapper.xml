@@ -41,16 +41,22 @@
 		where mem_no=#{mem_no} and mem_pw=#{mem_pw}
 	</select>
 	
-	<select id="idSearch" resultType="Member">
+<!-- 	<select id="idSearch" resultType="Member">
 		select mem_email
 		from member
 		where mem_name=#{mem_name} and mem_tel=#{mem_tel}
-	</select>
+	</select> -->
 	
-	<update id="pwSearch">
-		select *
-		from member
-		where mem_pw=#{mem_pw}
+	<select id = "findId" resultType = "Member">
+	select mem_email
+	from member 
+	where mem_name=#{mem_name} and mem_tel=#{mem_tel}
+	</select>
+	<!-- 비밀번호 변경 -->
+	<update id="pwSearch" parameterType="member">
+		update member 
+		set mem_pw = #{mem_pw} 
+		where mem_email = #{mem_email}
 	</update>
 	
 	<update id="newPassword">

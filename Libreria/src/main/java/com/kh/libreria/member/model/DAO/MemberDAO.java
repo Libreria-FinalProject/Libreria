@@ -2,6 +2,7 @@ package com.kh.libreria.member.model.DAO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -109,15 +110,12 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.loginMemberWithKakao", kakaoEmail);
 	}
 
-	public int idSearch(SqlSessionTemplate sqlSession,String mem_email){
+	public Member idSearch(SqlSessionTemplate sqlSession,String mem_email){
 		return sqlSession.selectOne("memberMapper.idSearch", mem_email);
 	}
-	
-	
-	public int pwSearch(SqlSessionTemplate sqlSession,String mem_pw){
-		return sqlSession.selectOne("memberMapper.pwSearch", mem_pw);
+
+	public int pwSearch(SqlSessionTemplate sqlSession,HashMap<String, String> charge_info) {
+		return sqlSession.update("memberMapper.pwSearch", charge_info);
 	}
-
-
 
 }

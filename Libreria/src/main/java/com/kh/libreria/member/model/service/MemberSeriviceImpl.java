@@ -2,6 +2,7 @@ package com.kh.libreria.member.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,12 +147,8 @@ public class MemberSeriviceImpl implements MemberService{
 	}
 
 	@Override
-	public int idSearch(String mem_email) {
+	public Member idSearch(String mem_email) {
 		return mDAO.idSearch(sqlSession, mem_email);
 	}
-	
-	@Override
-	public int pwSearch(String mem_pw) {
-		return mDAO.pwSearch(sqlSession, mem_pw);
-	}
+
 }
