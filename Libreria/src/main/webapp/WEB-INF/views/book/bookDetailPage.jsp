@@ -82,7 +82,7 @@
 							<li class="book_buy_cl"><a href="${DirectBuy}"><button id="book_buy_btn">구매하기</button></a></li>
 							</c:if>
 							<c:if test="${ empty sessionScope.loginUser }">
-							<li class="book_buy_cl" id="buyNotLogin"><button id="book_buy_btn">구매하기</button></li>
+							<li class="book_buy_cl" id="buyNotLogin2"><button id="book_buy_btn">구매하기</button></li>
 							</c:if>
 						</ul>
 					
@@ -843,8 +843,10 @@
 
 	$('#buyNotLogin').click(function(){
 		swal ( "접근불가" ,  "로그인 후 사용 가능합니다." ,  "error" )
-	})
-	
+	});
+	$('#buyNotLogin2').click(function(){
+		swal ( "접근불가" ,  "로그인 후 사용 가능합니다." ,  "error" )
+	});
 
 </script>
 
