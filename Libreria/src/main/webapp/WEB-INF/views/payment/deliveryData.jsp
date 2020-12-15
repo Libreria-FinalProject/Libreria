@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Libreria</title>
 <style type="text/css">
+
    @import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
    *{
       margin: 0px;
