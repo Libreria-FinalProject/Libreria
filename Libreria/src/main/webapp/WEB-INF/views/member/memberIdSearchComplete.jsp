@@ -54,7 +54,13 @@
 			
 			<div class= "input-group">
 				<div class = "idsr-com-complete">
-		     		<h4 class="idre-com">검색된 ID는 "${searchId}" <br>입니다.</h4>
+					<c:if test="${ empty mList }">
+		     			<h4 class="idre-com">해당 조회내역이 없습니다. <br></h4>						
+					</c:if>			
+					
+					<c:forEach var="member" items="${mList }">
+		     			<h4 class="idre-com">검색된 ID는 ${member.mem_email} <br>입니다.</h4>
+					</c:forEach>
 				</div>
 		     <div class="idsr-com-submitdiv">
 		     		<input type="button" class="idsr-com-submit" id= "loginBtn" value="Login">

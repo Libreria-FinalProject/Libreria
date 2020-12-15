@@ -123,4 +123,14 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.getMemberEmail", m);
 	}
 
+	public int getMemberEmailCnt(SqlSessionTemplate sqlSession, Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.getMemberEmailCnt",m);
+	}
+
+	public ArrayList<Member> getMemberList(SqlSessionTemplate sqlSession, Member m) {
+		// TODO Auto-generated method stub
+		return  (ArrayList)sqlSession.selectList("memberMapper.getMemberList",m);
+	}
+
 }

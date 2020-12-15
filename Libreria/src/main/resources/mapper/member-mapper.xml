@@ -209,6 +209,15 @@
 		from member
 		where mem_name = #{ mem_name } and mem_tel =#{mem_tel}
 	</select>
-	
+	<select id="getMemberEmailCnt" resultType="_int">
+		select count(*)
+		from member
+		where mem_name = #{ mem_name } and mem_tel =#{mem_tel}
+	</select>
+	<select id="getMemberList" resultType="Member">
+		select *
+		from member
+		where mem_name = #{ mem_name } and mem_tel =#{mem_tel}
+	</select>
 	
 </mapper>

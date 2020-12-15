@@ -63,6 +63,10 @@ public interface MemberService {
 
 	String getMemberEmail(Member m);
 
+	int getMemberEmailCnt(Member m);
+
+	ArrayList<Member> getMemberList(Member m);
+
 
 	
 }

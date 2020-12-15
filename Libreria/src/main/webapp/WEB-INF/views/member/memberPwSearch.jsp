@@ -78,13 +78,13 @@
      	  <label class="account-label">
      	  		<input type="text" name="pwsearch_user_name" id="pw_search_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
      	  </label>
-     	  <li class="hidden_line_cl">
      	 		<div class="pw_search_text" id = "pwSearch_check"></div>
-     	  </li>
      	</div>
      	<button class="pwsearch-submit" type="submit">Submit</button>
    	</form>
    <script>
+   
+   
    
    $("#pw_search_tel").on("keyup",function(){
     	var inputTel = $("#pw_search_tel").val();

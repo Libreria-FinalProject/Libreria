@@ -155,5 +155,14 @@ public class MemberSeriviceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return mDAO.getMemberEmail(sqlSession,m);
 	}
-
+	@Override
+	public int getMemberEmailCnt(Member m) {
+		// TODO Auto-generated method stub
+		return mDAO.getMemberEmailCnt(sqlSession,m);
+	}
+	@Override
+	public ArrayList<Member> getMemberList(Member m) {
+		// TODO Auto-generated method stub
+		return mDAO.getMemberList(sqlSession,m);
+	}
 }

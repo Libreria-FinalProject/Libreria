@@ -69,7 +69,7 @@
 <c:import url="../common/header.jsp"></c:import>
  <section id="idsr" class="account-container">
    	 <p class="idsr-header">아이디 찾기</p>
-    <form action="idSearchComplete.me" method="post" id="idSearchForm" onSubmit="return validate();">
+    <form action="idSearchComplete.me" method="post" id="idSearchForm"  onSubmit="return validate();">
     	<div class="input-group">
      	  <label class="account-label">
      	  		<input type="text" name="mem_name" id="mem_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
@@ -79,41 +79,43 @@
      	  </label>
      	 		<div class="idsr-error" id="idSearch_check"></div>
      	</div>
-     	<button class="idsr-submit"  type="submit"id="idSearchButton" onclick="validate();">Submit</button>
-     	<input id="mem_email" name="mem_email" type="hidden" value=""/>
+     	<button class="idsr-submit"  type="submit"id="idSearchButton" onclick="validate()" >Submit</button>
+     	<input id="result" name="result" type="hidden" value="0"/>
    	</form>
    </section> 
 <c:import url="../common/footer.jsp"></c:import>
 <script>
 
+
    	function validate(){
    		var mem_name = $("#mem_name").val();
 	   	var mem_tel = $("#mem_tel").val();
-	   	var result = $('#mem_email').val();	
+	   	var result = $('#result').val();	
 	   	
-	   	$.ajax({
-   			url : "checkNameTel.me",
-   			data : {mem_name:mem_name,mem_tel:mem_tel},
-   			success : function(data){
-   				console.log(data);
-   				
-   				if(data != "null"){
-   					$('#mem_email').val(data);
-   					$("#idSearchForm").attr("disabled", false);
-   				
-   				}else{
-   					swal("오류","이름 또는 전화번호를 다시 확인해주세요","error");
-   					
-   				}
-   				
-   				
-   			},
-   		});
-	   	if(result != ""){
+	   	if(mem_name != "" && mem_tel!=""){
+	   		$.ajax({
+	   			url : "checkNameTel.me",
+	   			data : {mem_name:mem_name,mem_tel:mem_tel},
+	   			success : function(data){
+	   				console.log(data);
+	   				
+	   				if(data != "0"){
+	   					$('#result').val(data);
+	   					
+	   				}else{
+	   				}
+	   				
+	   				
+	   			},
+	   		});
 	   		return true;
 	   	}else{
+	   		
+	   		swal("오류","이름 또는 전화번호를 다시 확인해주세요","error");
 	   		return false;
+	   		
 	   	}
+	   	
    	}
 
    	 

@@ -144,9 +144,9 @@ public class MemberController {
 	}
 	@RequestMapping("checkNameTel.me")
 	public void checkNameTel(Member m, HttpServletResponse response,ModelAndView mv) throws IOException {
-		String mem_email = mService.getMemberEmail(m);
+		int cnt_email = mService.getMemberEmailCnt(m);
 		
-		response.getWriter().print(mem_email); 
+		response.getWriter().print(cnt_email); 
 		
 		/* mv.setViewName("memberIdSearchComplete.me"); */
 		/* return mv; */
@@ -157,6 +157,11 @@ public class MemberController {
 	public ModelAndView memberIdSearchComplete(Member m,ModelAndView mv)  {
 		logger.debug("ID 찾기 성공");
 		System.out.println(m);
+		
+		ArrayList<Member> mList = mService.getMemberList(m);
+		System.out.println(mList);
+		
+		mv.addObject("mList",mList);
 		mv.addObject("searchId",m.getMem_email());
 		mv.setViewName("memberIdSearchComplete");
 		
