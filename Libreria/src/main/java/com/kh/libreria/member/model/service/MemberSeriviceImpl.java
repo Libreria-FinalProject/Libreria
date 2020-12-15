@@ -150,5 +150,10 @@ public class MemberSeriviceImpl implements MemberService{
 	public Member idSearch(String mem_email) {
 		return mDAO.idSearch(sqlSession, mem_email);
 	}
+	@Override
+	public String getMemberEmail(Member m) {
+		// TODO Auto-generated method stub
+		return mDAO.getMemberEmail(sqlSession,m);
+	}
 
 }

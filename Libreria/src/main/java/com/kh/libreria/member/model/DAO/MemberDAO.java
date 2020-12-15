@@ -118,4 +118,9 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.pwSearch", charge_info);
 	}
 
+	public String getMemberEmail(SqlSessionTemplate sqlSession, Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberMapper.getMemberEmail", m);
+	}
+
 }

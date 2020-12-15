@@ -61,6 +61,8 @@ public interface MemberService {
 
 	Member idSearch(String mem_email);
 
+	String getMemberEmail(Member m);
+
 
 	
 }

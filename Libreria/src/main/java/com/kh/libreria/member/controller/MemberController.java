@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.common.Pagination;
@@ -139,21 +142,25 @@ public class MemberController {
 		return "memberIdSearchForm";
 		
 	}
-	@RequestMapping("idSearchA.me")
-	public ModelAndView idSearch(String mem_email, ModelAndView mv) {
-		Member m = mService.idSearch(mem_email);
-		logger.debug("searchId: " + m.getMem_email());
-		mv.addObject("searchId", m.getMem_email())
-		.setViewName("memberIdSearchComplete");
+	@RequestMapping("checkNameTel.me")
+	public void checkNameTel(Member m, HttpServletResponse response,ModelAndView mv) throws IOException {
+		String mem_email = mService.getMemberEmail(m);
 		
-		return mv;
+		response.getWriter().print(mem_email); 
+		
+		/* mv.setViewName("memberIdSearchComplete.me"); */
+		/* return mv; */
 	}
 	
-	
-	@RequestMapping("idSearchComplete.me")
-	public String memberIdSearchComplete() {
+
+	@RequestMapping(value="idSearchComplete.me")
+	public ModelAndView memberIdSearchComplete(Member m,ModelAndView mv)  {
 		logger.debug("ID 찾기 성공");
-		return "memberIdSearchComplete";
+		System.out.println(m);
+		mv.addObject("searchId",m.getMem_email());
+		mv.setViewName("memberIdSearchComplete");
+		
+		return mv;
 	}
 	
 	

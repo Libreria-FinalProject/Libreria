@@ -9,7 +9,7 @@
    <meta charset="UTF-8">
 <style type="text/css">
 
-	@import url(http://fonts.google.com/earlyaccess/nanumgothic.css);
+	/* @import url(http://fonts.google.com/earlyaccess/nanumgothic.css); */
 	
 .idsr-header{
    		font-size:30px;
@@ -69,7 +69,7 @@
 <c:import url="../common/header.jsp"></c:import>
  <section id="idsr" class="account-container">
    	 <p class="idsr-header">아이디 찾기</p>
-     <form action="idSearchA.me" method="post" id="idSearchForm" onSubmit="return validate();">
+    <form action="idSearchComplete.me" method="post" id="idSearchForm" onSubmit="return validate();">
     	<div class="input-group">
      	  <label class="account-label">
      	  		<input type="text" name="mem_name" id="mem_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
@@ -77,40 +77,46 @@
      	  <label class="account-label">
      	  		<input type="text" name="mem_tel" id="mem_tel" title="휴대폰번호 입력" placeholder="휴대폰번호" autocapitalize="off" autocomplete="off" class="idsr_textarea"> 
      	  </label>
-     	  <li class="hidden_line_cl" style=border:none;>
      	 		<div class="idsr-error" id="idSearch_check"></div>
-     	  </li>
      	</div>
-     	<button class="idsr-submit" type="submit" id="idSearchButton" onclick="validate();">Submit</button>
+     	<button class="idsr-submit"  type="submit"id="idSearchButton" onclick="validate();">Submit</button>
+     	<input id="mem_email" name="mem_email" type="hidden" value=""/>
    	</form>
-   	<script>
-   	
-/*    	function validate(){
-   		
-   		var name = $("#mem_name").val();
-   		var phone = $("#mem_tel").val();
+   </section> 
+<c:import url="../common/footer.jsp"></c:import>
+<script>
 
-   		var postData = {'mem_name' : name ,'mem_tel': tel};
-   		
-   		$.ajax({
-   			data: {'mem_name':name , 'mem_tel':phone},
-   			url:'idSearchA.me',
-   			dateType: 'json', 
-            contentType: "application/json; charset=UTF-8",
-            
-           	success : function(data) {
-    			if(data != "true"){ 
-    				$('#"idSearchForm"').submit();
-    			}else{
-    				$('#idSearch_check').text('정보를 다시 입력해주세요.');
-					$('#idSearch_check').css('color', 'red'); 
-					$('#idSearch_check').css('font-size','12px');
-					return false;
-    			}
-            },
-   		})
-   	}  
-   	 */
+   	function validate(){
+   		var mem_name = $("#mem_name").val();
+	   	var mem_tel = $("#mem_tel").val();
+	   	var result = $('#mem_email').val();	
+	   	
+	   	$.ajax({
+   			url : "checkNameTel.me",
+   			data : {mem_name:mem_name,mem_tel:mem_tel},
+   			success : function(data){
+   				console.log(data);
+   				
+   				if(data != "null"){
+   					$('#mem_email').val(data);
+   					$("#idSearchForm").attr("disabled", false);
+   				
+   				}else{
+   					swal("오류","이름 또는 전화번호를 다시 확인해주세요","error");
+   					
+   				}
+   				
+   				
+   			},
+   		});
+	   	if(result != ""){
+	   		return true;
+	   	}else{
+	   		return false;
+	   	}
+   	}
+
+   	 
    	
     $("#mem_tel").on("keyup",function(){
      	var inputTel = $("#mem_tel").val();
@@ -144,9 +150,6 @@
 
    	
 </script>
-   
-   </section> 
-<c:import url="../common/footer.jsp"></c:import>
 </body>
 
 </html>

@@ -204,4 +204,11 @@
 		set mem_money=mem_money+#{sell_money}
 		where mem_no = #{mem_no}
 	</update>
+	<select id="getMemberEmail" resultType="string">
+		select mem_email
+		from member
+		where mem_name = #{ mem_name } and mem_tel =#{mem_tel}
+	</select>
+	
+	
 </mapper>

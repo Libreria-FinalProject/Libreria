@@ -37,6 +37,8 @@
 			<mvc:exclude-mapping path="/pwSearch.me"/>
 			<mvc:exclude-mapping path="/pwSearchChange.me"/>
 			<mvc:exclude-mapping path="/pwSearchComplete.me"/>
+			<mvc:exclude-mapping path="/checkNameTel.me"/>
+			<mvc:exclude-mapping path="/memberIdSearchComplete.me"/>
 			<bean id="sessionCheckInterceptor" class="com.kh.libreria.common.interceptor.SessionCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
