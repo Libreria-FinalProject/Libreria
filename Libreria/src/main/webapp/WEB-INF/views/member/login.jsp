@@ -217,15 +217,15 @@
 	}
 	 
 	 function loginWithKakao() {
-		    Kakao.Auth.login({
-		      success: function(authObj) {
-		    	  Kakao.API.request({
+		    Kakao.Auth.login({ // 카카오 로그인 팝업 창 띄우기
+		      success: function(authObj) { // 카카오 아이디와 비밀번호 입력하여 카카오측 로그인 성공 시
+		    	  Kakao.API.request({  // 카카오측에 가입정보를 가져옴
 		    		    url: '/v2/user/me',
-		    		    success: function(res) {
-		    		        console.log(res);
-		    		        var kakaoEmail = res.kakao_account.email;
-		    		       	$.ajax({
-		    		       		url: "loginWithKakao.me",
+		    		    success: function(res) { // 통신 성공
+		    		        console.log(res); 
+		    		        var kakaoEmail = res.kakao_account.email; // 카카오측에 가입되어있는 이메일을 저장
+		    		       	$.ajax({  
+		    		       		url: "loginWithKakao.me", 
 		    		       		type: 'POST',
 		    		       		data: {mem_email: kakaoEmail},
 		    		       		success: function(data){

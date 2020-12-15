@@ -411,10 +411,10 @@ span.error{color: red;}
     	var email = $('#join-form-id').val();
     	$.ajax({
     		type: "POST",
-    		url: "emailCheck.me",
-    		data: {email:email},
+    		url: "checkEmail.me",
+    		data: {mem_email:email},
     		success: function(data){
-    			if(data==1){ 
+    			if(data=="false"){ 
     				$('#idcheck').find("span").css("display","block"); 
     				return true;
     			}else{

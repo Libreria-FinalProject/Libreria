@@ -126,6 +126,8 @@ public class MemberController {
 	@RequestMapping("checkEmail.me")
 	public void emailCheck(String mem_email, HttpServletResponse response) throws IOException {
 		boolean isUsable = mService.checkEmail(mem_email) == 0 ? true : false;
+		System.out.println(mem_email);
+		System.out.println(mService.checkEmail(mem_email));
 		System.out.println(isUsable);
 		response.getWriter().print(isUsable);
 	}
