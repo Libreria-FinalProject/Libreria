@@ -122,7 +122,7 @@
                 <h3 id="mainTitle">마일리지결제</h3>
         </div>
         <div id="bottomBar" class="lineBar">
-                <button id="nextBtn" onclick ="clearPayment()">다음</button>
+                <button id="nextBtn" >다음</button>
         </div>
 
 		

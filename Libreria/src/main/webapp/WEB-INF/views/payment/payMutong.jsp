@@ -169,7 +169,7 @@
         </div>
         <div id="bottomBar" class="lineBar">
 
-                <button id="nextBtn" onclick ="clearPayment()">다음</button>
+                <button id="nextBtn" >다음</button>
         </div>
 
 
