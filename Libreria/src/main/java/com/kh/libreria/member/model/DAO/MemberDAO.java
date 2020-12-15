@@ -28,9 +28,12 @@ public class MemberDAO {
 	public int checkIdDup(SqlSessionTemplate sqlSession, String mem_email) {
 		return sqlSession.selectOne("memberMapper.checkIdDup", mem_email);
 	}
-	
 	public int checkPwd(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.checkPwd", m);
+	}
+	
+	public String checkPwd2(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.checkPwd2", m);
 	}
 	
 	public int idCheck(SqlSessionTemplate sqlSession, String mem_email) {
@@ -117,7 +120,6 @@ public class MemberDAO {
 	public int pwSearch(SqlSessionTemplate sqlSession,HashMap<String, String> charge_info) {
 		return sqlSession.update("memberMapper.pwSearch", charge_info);
 	}
-
 	public String getMemberEmail(SqlSessionTemplate sqlSession, Member m) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberMapper.getMemberEmail", m);

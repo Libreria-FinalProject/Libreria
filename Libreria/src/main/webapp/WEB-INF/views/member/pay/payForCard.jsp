@@ -243,7 +243,7 @@
 		console.log(card_no);
 		
 		/////////////유효기간 검증
-		var cur_date = new Date(/);
+		var cur_date = new Date();
 		var cur_date2 = cur_date.getFullYear()+"-"+(cur_date.getMonth()+1)+"-"+cur_date.getDate();
 		console.log(cur_date2);
 		var card_date= "";

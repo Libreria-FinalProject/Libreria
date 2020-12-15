@@ -40,6 +40,13 @@
 		from member 
 		where mem_no=#{mem_no} and mem_pw=#{mem_pw}
 	</select>
+    
+	<select id="checkPwd2" resultType="String">
+		select mem_pw
+		from member 
+		where mem_no=#{mem_no} 
+	</select>
+	
 	
 <!-- 	<select id="idSearch" resultType="Member">
 		select mem_email

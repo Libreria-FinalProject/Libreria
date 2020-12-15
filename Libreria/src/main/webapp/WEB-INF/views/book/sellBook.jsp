@@ -160,7 +160,7 @@ function numberWithCommas(x) {
 			var price = $('.wishPirce').val();
 			var tmp="";
 			price = price.replace(/[^0-9]/g,'');
-			$(this).val(numberWithCommas(price));
+			$(this).val(price);
 		});
 		
 		 $('#searchBook').keyup(function(){	

@@ -196,7 +196,7 @@ public class MemberController {
 			HttpServletResponse response) throws IOException{
 	
 		Member loginUser = mService.loginMember(m);
-		if(bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) { 
+		if(loginUser !=null && bcryptPasswordEncoder.matches(m.getMem_pw(), loginUser.getMem_pw())) { 
 			int result = mService.updateLoginDate(loginUser);
 			logger.info(loginUser.getMem_email());
 			logger.info(loginUser.getMem_pw());
@@ -379,8 +379,10 @@ public class MemberController {
 		m.setMem_pw(pwd_leave);
 		JSONObject json = new JSONObject();
 	
-		int result = mService.checkPwd(m);
-		if(result>0) {
+		String result = mService.checkPwd2(m);
+		System.out.println(result);
+		System.err.println(pwd_leave);
+		if(bcryptPasswordEncoder.matches(pwd_leave, result)) {
 			int result2 = mService.leaveMember(no_leave);
 			if(result2>0) {
 				json.put("message", "회원탈퇴되었습니다. \n감사합니다.");
@@ -406,13 +408,18 @@ public class MemberController {
 	@RequestMapping("update.me")
 	public void updateMember(Member m, @RequestParam("cur_pwd") String cur_pwd, 
 			HttpServletResponse response,Model model) throws IOException {
-		System.out.println(cur_pwd);
+	
+		
 		Member m2 = new Member();
 		m2.setMem_no(m.getMem_no());
 		m2.setMem_pw(cur_pwd);
-		int result = mService.checkPwd(m2);
-		System.out.println(m);
-		if(result>0) {
+		String result = mService.checkPwd2(m2);
+		System.out.println(result);
+		System.out.println(m2);
+		
+		if(bcryptPasswordEncoder.matches(cur_pwd, result)) {
+			String encPwd = bcryptPasswordEncoder.encode(m.getMem_pw());
+			m.setMem_pw(encPwd);
 			int result2 = mService.updateMember(m);
 			if(result2>0) {			
 				response.getWriter().print("1");	

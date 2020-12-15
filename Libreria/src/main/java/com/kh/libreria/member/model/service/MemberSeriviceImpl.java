@@ -45,6 +45,11 @@ public class MemberSeriviceImpl implements MemberService{
 	public int checkPwd(Member m) {
 		return mDAO.checkPwd(sqlSession, m);
 	}
+	
+	@Override
+	public String checkPwd2(Member m) {
+		return mDAO.checkPwd2(sqlSession, m);
+	}
 
 	@Override
 	public int idCheck(String mem_email) {

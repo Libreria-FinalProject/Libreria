@@ -19,6 +19,8 @@ public interface MemberService {
 
 	int checkPwd(Member m);
 	
+	String checkPwd2(Member m);
+	
 	int insertMember(Member m);
 
 	int leaveMember(int no_leave);
