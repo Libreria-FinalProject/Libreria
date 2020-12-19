@@ -227,4 +227,15 @@
 		where mem_name = #{ mem_name } and mem_tel =#{mem_tel}
 	</select>
 	
+	<select id="findPwEmail" resultType="_int">
+		select count(*)
+		from member
+		where mem_email = #{mem_email} and mem_name = #{mem_name} and mem_tel = #{mem_tel}
+	</select>
+	
+	<update id="updatePw">
+		update member 
+		set mem_pw = #{mem_pw}
+		where mem_email = #{mem_email} 
+	</update>
 </mapper>

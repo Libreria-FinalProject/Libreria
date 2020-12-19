@@ -58,10 +58,10 @@
    text-align:center;
 }
 .hidden_line_cl{
-	 display:none;
 	 height: 30px;
 	 list-style: none;
 }
+
 </style>
 
 </head>
@@ -86,8 +86,41 @@
 <c:import url="../common/footer.jsp"></c:import>
 <script>
 
+	var nameJ = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 정규식
+	var phoneJ = /^\d{3}-\d{3,4}-\d{4}$/;;// 휴대폰 번호 정규식
+	 
+	$(function(){
+		$('#mem_name').on('keyup', function(){
+			 if(nameJ.test($('#mem_name').val())){
+					$("#idSearch_check").text('');
+				    $('#idSearch_check').css('font-size','12px');
+			      }else{
+			    	$('#idSearch_check').text('한글 2~4자 이내로 입력하세요. (특수기호, 공백 사용 불가)');
+				    $('#idSearch_check').css('color','red');
+				    $('#idSearch_check').css('font-size','12px');
+			      }
+			})  	   
+		});
 
+	
    	function validate(){
+		// 이름 정규식
+		if (nameJ.test($('#mem_name').val())) { 
+			console.log(nameJ.test($('#mem_name').val())); 
+		} else { 
+			swal("",'이름을 확인하세요',"info"); 
+			$('#mem_name').focus();
+			return false; 
+		}
+		// 휴대폰번호 정규식
+		if (phoneJ.test($('#mem_tel').val())) {
+			console.log(phoneJ.test($('#mem_tel').val()));
+		} else { 
+			swal("",'휴대폰번호를 확인하세요',"info"); 
+			$('#mem_tel').focus();
+			return false; 
+		}
+		
    		var mem_name = $("#mem_name").val();
 	   	var mem_tel = $("#mem_tel").val();
 	   	var result = $('#result').val();	
@@ -147,7 +180,6 @@
  		}
  		  $("#mem_tel").val(tmp);
      });
-    
     
 
    	

@@ -3,6 +3,9 @@ package com.kh.libreria.member.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -68,6 +71,8 @@ public interface MemberService {
 	int getMemberEmailCnt(Member m);
 
 	ArrayList<Member> getMemberList(Member m);
+
+	int findPwEmail(Member m);
 
 
 	

@@ -113,10 +113,10 @@
      	  		<input type="password" name="mem_pw" id="login_pw" title="비밀번호 입력" placeholder="비밀번호" autocapitalize="off" autocomplete="off" class="login_id_pw"> 
      	  	</label>
      	  	<div class="remember-wrapper" >
-     	  		<label class="account-checkbox">
+<!--      	  		<label class="account-checkbox">
      	  			<input type="checkbox" name="auto_login">
      	  			<span class="link">로그인 상태 유지</span>
-     	  		</label>
+     	  		</label> -->
      	  		<div class="idsearch-link">
      	  			<a href="idSearch.me" id="IdSearch" class="link">아이디 찾기</a>
      	  			<a href="pwSearch.me" id="pwSearch" class="link">비밀번호 재설정</a>

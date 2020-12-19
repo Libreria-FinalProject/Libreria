@@ -56,10 +56,10 @@
 		<form>
 			<div class= "input-group">
 				 <div class = "pwre-com-complete">
-		     		<h4 class="pwre-com">"${mem_email}"로 <br>임시 비밀번호가 발송되었습니다.</h4>
+		     		<h4 class="pwre-com">해당 조회내역이 없습니다.</h4>
 				</div>
 			     <div class="pwre-com-submitdiv">
-			     		<input type="button" class="pwre-com-submit" value="Login" onclick="location.href='loginForm.me'">
+			     		<input type="button" class="pwre-com-submit" value="재시도" onclick="location.href='pwSearch.me'">
 			     </div> 
    		 	</div>
 		</form>

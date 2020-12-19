@@ -3,6 +3,7 @@ package com.kh.libreria.member.model.DAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -120,19 +121,25 @@ public class MemberDAO {
 	public int pwSearch(SqlSessionTemplate sqlSession,HashMap<String, String> charge_info) {
 		return sqlSession.update("memberMapper.pwSearch", charge_info);
 	}
+	
 	public String getMemberEmail(SqlSessionTemplate sqlSession, Member m) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberMapper.getMemberEmail", m);
 	}
 
 	public int getMemberEmailCnt(SqlSessionTemplate sqlSession, Member m) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("memberMapper.getMemberEmailCnt",m);
 	}
 
 	public ArrayList<Member> getMemberList(SqlSessionTemplate sqlSession, Member m) {
-		// TODO Auto-generated method stub
 		return  (ArrayList)sqlSession.selectList("memberMapper.getMemberList",m);
+	}
+	
+	public int findPwEmail(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.findPwEmail", m);
+	}
+	
+	public int updatePw(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updatePw", m);
 	}
 
 }

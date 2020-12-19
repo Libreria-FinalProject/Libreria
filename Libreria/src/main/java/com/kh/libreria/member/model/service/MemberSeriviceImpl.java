@@ -1,13 +1,14 @@
 package com.kh.libreria.member.model.service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
@@ -157,17 +158,26 @@ public class MemberSeriviceImpl implements MemberService{
 	}
 	@Override
 	public String getMemberEmail(Member m) {
-		// TODO Auto-generated method stub
 		return mDAO.getMemberEmail(sqlSession,m);
 	}
 	@Override
 	public int getMemberEmailCnt(Member m) {
-		// TODO Auto-generated method stub
 		return mDAO.getMemberEmailCnt(sqlSession,m);
 	}
 	@Override
 	public ArrayList<Member> getMemberList(Member m) {
-		// TODO Auto-generated method stub
 		return mDAO.getMemberList(sqlSession,m);
 	}
+	/*
+	 * @Override public void findPw(HttpServletResponse response, Member m) { return
+	 * mDAO.getMemberList(sqlSession,m);
+	 * 
+	 * }
+	 */
+
+	@Override
+	public int findPwEmail(Member m) {
+		return mDAO.findPwEmail(sqlSession, m);
+	}
+
 }

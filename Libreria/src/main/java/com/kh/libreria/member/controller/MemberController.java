@@ -18,14 +18,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonIOException;
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
 import com.kh.libreria.common.Pagination;
@@ -34,6 +30,8 @@ import com.kh.libreria.member.model.service.MemberService;
 import com.kh.libreria.member.model.vo.Card;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.member.model.vo.Money;
+
+import oracle.net.aso.d;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -47,7 +45,9 @@ public class MemberController {
 	@Autowired 
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	 
+	
 
+	    
 	@RequestMapping("enrollView.me")
 	public String enrollView() {
 		logger.debug("회원등록페이지");
@@ -112,8 +112,36 @@ public class MemberController {
 		logger.debug("회원가입성공");
 		
 		return "InsertMemberComplete";	
+	}	
+	
+	@RequestMapping("pwSearch.me")
+	public String memberPwSearch() throws Exception{
+		logger.debug("비밀번호 찾기");
+		return "memberPwSearch";
 	}
 	
+	@RequestMapping("findPwComplete.me")
+	public String findPw() {
+		logger.debug("비밀번호 찾기 page");
+		return "memberPwSearchComplete";
+	}
+
+	@RequestMapping("findPw.me")
+	public ModelAndView findPwCom(Member m, ModelAndView mv,@RequestParam(value="mem_email" , required=false) String mem_email){	
+		System.out.println(mem_email);
+		logger.debug("임시비밀번호 이메일 발송 여부");
+		
+		int result = mService.findPwEmail(m);
+			if(result>0) {
+				logger.debug("임시비밀번호 이메일 발송 성공");
+				mv.addObject("mem_email", m.getMem_email());
+				mv.setViewName("memberPwSearchComplete");
+			}else {
+				logger.debug("임시비밀번호 이메일 발송 실패");
+				mv.setViewName("memberPwSearchError");
+			}
+		return mv;
+	}
 //	@RequestMapping("checkEmail.me")
 //	public void emailCheck(HttpServletResponse response
 //			,@RequestParam("mem_email") String mem_email) throws IOException { //requested=false = 반드시 받지 않아도 되게 해본다.
@@ -168,27 +196,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	
-	
-	
-	@RequestMapping("pwSearch.me")
-	public String memberPwSearch() throws Exception{
-		logger.debug("비밀번호 찾기");
-		return "memberPwSearch";
-	}
-	
-	
-	@RequestMapping("findPw.me")
-	public String memberPwSearchChange(){
-		return "memberPwSearchChange";
-	}
-	
-	
-	@RequestMapping("pwSearchComplete.me")
-	public String memberPwSearchComplete(){
-		logger.debug("ID 변경 성공");
-		return "memberPwSearchComplete";
-	}
+
 	
 //	로그인
 	@RequestMapping("login.me") 
@@ -399,7 +407,6 @@ public class MemberController {
 		try {
 			response.getWriter().print(json);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
