@@ -387,34 +387,32 @@
 
 	
 		$(document).on('click','.review_list_reply_delete_btn',function(){
-			var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
-			
-			$.ajax({
-				url: "reviewDelete.bo",
-				data  : {"rev_no":rev_no},
-				success : function(data){
-					if(data=="success"){
-						location.reload(); 
-					}
-				}
-			})
+			swal({
+   				title: "",
+   				text: "해당 댓글을 삭제하시겠습니까?",
+   				icon: "warning",
+   				buttons: ["취소","삭제"],
+   				dangerMode: true})
+   			.then((ok)=>{
+   				if(ok){
+   					var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
+   					
+   					$.ajax({
+   						url: "reviewDelete.bo",
+   						data  : {"rev_no":rev_no},
+   						success : function(data){
+   							if(data=="success"){
+   								location.reload();
+   							}
+   						}
+   					})
+   	   	   		
+   				}
+   			});
 			
 			
 		});
-		$('.review_list_reply_delete_btn').click(function(){
-			var rev_no = $(this).parent().parent().parent().find('#rev_no').val();
-			
-			$.ajax({
-				url: "reviewDelete.bo",
-				data  : {"rev_no":rev_no},
-				success : function(data){
-					if(data=="success"){
-						location.reload(); 
-					}
-				}
-			})
-		})
-
+		
 		$('.review_input_btn').click(function(){
 			//별점에 대한 평점을 먼저 주어야함 
 			var b_no = ${bDetail.b_no};
@@ -422,7 +420,14 @@
 			var rev_star = $('#rev_star_input').val();
 			var rev_content = $('#rev_content').val();
 			
+			
+			
+			
 			if(mem_no != ""){
+				if(rev_content == ""){
+					swal("평점 등록 에러","내용을 작성해주세요.","error");
+				}else{
+				
 				$.ajax({
 					url: "reviewInsert.bo",
 					data : {"b_no":b_no,"mem_no":mem_no,"rev_star":rev_star,"rev_content":rev_content},
@@ -432,6 +437,7 @@
 						}
 					}
 				})
+				}
 			}else{
 				swal("평점 등록 에러","로그인 후 사용해주시길 바랍니다.","error");
 			};
