@@ -28,7 +28,7 @@
 					<li class="main_book_cate">
 						<a class="bfc_class">${bcf.bcf_ct}<input id="bcf_no" name='bcf_no' type="hidden" value="${ bcf.bcf_no }"></a>
 						<ul id="sub_book_cate">
-							<c:forEach var="bsc" items="${bscList }">
+							<c:forEach var="bsc" items="${bscList }" varStatus="status">
 								<c:if test="${ bcf.bcf_no eq bsc.bcf_no }">
 									<c:choose>
 										<c:when test="${ recent_bc eq bsc.bc_no}">
@@ -37,9 +37,11 @@
 											</li>		
 										</c:when>		
 										<c:otherwise>
+											<c:if test="${ status.index ne 0 }">
 											<li class="sub_book_cate">
 												<a>${ bsc.bc_ct }<input type="hidden" id="bc_no" name="bc_no" value="${ bsc.bc_no }"></a>
 											</li>
+											</c:if>
 										</c:otherwise>
 									</c:choose>
 								</c:if>	
