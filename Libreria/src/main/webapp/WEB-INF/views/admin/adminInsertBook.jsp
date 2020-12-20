@@ -58,7 +58,14 @@
 				</tr>
 				<tr>
 					<td class="td_first">출판사 서평</td>
-					<td><textarea name="b_pub" id="bookPub"></textarea></td>				
+					<td><textarea name="b_pub" id="bookPub"></textarea></td>
+				</tr>
+				<tr>
+					<td class="td_first">출판일</td>
+					<td>
+						<input type="date" name="b_pub_date" id="bookDate">
+					</td>
+				</tr>				
 				<tr>
 					<td class="td_first">커버 이미지</td>
 					<td><input type="file" id="bookImage" name="uploadFile" accept=".jpg, .png"></td>
@@ -170,7 +177,7 @@
 				}else if($("#bookPubName").val()==""){
 					swal("","출판사를 입력해주세요.","info");
 					return false;
-				}else if($('#bookPirce').val()==""){
+				}else if($('#bookPrice').val()==""){
 					swal("","가격을 입력해주세요.","info");
 					return false;	
 				}else if($("#bookContent").val()==""){
@@ -178,6 +185,9 @@
 					return false;
 				}else if($("#bookPub").val()==""){
 					swal("","출판사 서평을 입력해주세요.","info");
+					return false;
+				}else if($("#bookDate").val()==""){
+					swal("","출판일을 입력해주세요.","info");
 					return false;
 				}else if(!$("#bookImage").val()){
 					swal("","커버 이미지를 첨부해주세요.","info");

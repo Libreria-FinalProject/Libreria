@@ -95,6 +95,7 @@ section{
 
 
 #admin_bookinsert_table input[type=text],
+#admin_bookinsert_table input[type=date],
 #admin_bookinsert_table select{
 	width:300px;
 	height: 30px;

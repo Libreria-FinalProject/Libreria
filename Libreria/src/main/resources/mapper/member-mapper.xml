@@ -163,6 +163,7 @@
 		from sell_data
 		join book using(b_no)
 		where mem_no=#{mem_no}
+		order by sell_num desc
 	</select>
 	
 	<select id="getSellListCount" resultType="_int">

@@ -377,18 +377,17 @@
 	</select>
 	
 	<select id="getBestSellerBooks" resultType="Book">
-		select * from (select b_no,count(b_no), bdp.b_title, bdp.bwp_name, bdp.avg_star, bdp.file_path, bdp.change_name
-		from  buy_data
-		join bdp using(b_no)
-		group by b_no,b_title, bdp.bwp_name,  bdp.avg_star, bdp.file_path, bdp.change_name
-		order by 2 desc) where rownum between 1 and 9
+		select * from (select b_no, bdp.b_title, bdp.bwp_name, bdp.avg_star, bdp.file_path, bdp.change_name, b_sales_rate
+		from  bdp 
+		group by b_no,b_title, bdp.bwp_name,  bdp.avg_star, bdp.file_path, bdp.change_name,b_sales_rate
+		order by b_sales_rate desc) where rownum between 1 and 9
 	</select>
 	
 	<select id="getRadnomNovelList" resultType="Book">
 		select * from
 		(select b_no, b_title,bwp_name, file_path, change_name, avg_star, bcf_ct 
 		from bdp
-		where bcf_ct = '소설' and avg_star > 3
+		where bcf_ct = '소설' and avg_star >= 3
 		order by SYS.dbms_random.value) where rownum between 1 and 5
 	</select>
 	
@@ -404,7 +403,7 @@
 	<insert id="insertBook">
 		insert into book
 		values(seq_b_no.nextval, #{b_title}, #{b_content}, #{b_pub}, #{b_price}, 1, 
-		sysdate, default, default, 'KOR', #{bc_no}, seq_img_no.currval, #{bwp_no}, default, #{b_pub_name})
+		#{b_pub_date}, default, default, 'KOR', #{bc_no}, seq_img_no.currval, #{bwp_no}, default, #{b_pub_name})
 	</insert>
 	
 	<insert id="insertBookImage">

@@ -58,7 +58,6 @@
 	#bookInfoTb .book_img{
 		width: 187px;
 		padding: 0 5px;
-		background-size: cover;
 		background-repeat: no-repeat;
 		background-position-y: center;
 	}

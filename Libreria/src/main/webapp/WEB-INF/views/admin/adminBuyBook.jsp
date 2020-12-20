@@ -19,7 +19,7 @@
 			</ul>
 		</nav>
 		<div id="memberInfo_container">
-			<span id="container_title">판매내역 조회</span>
+			<span id="container_title">상품구매</span>
 			<table id="buy_sell_table" class="sell_table admin_buy_table">
 				<tr>
 					<th>도서명</th>

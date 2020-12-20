@@ -56,6 +56,7 @@
 						 
 						 <span class="avg_star_people_cl">( ${bDetail.avg_star_people }명 )</span></p>
 						<br>
+					    <p class="book_writer_pub">${bDetail.b_pub_date} </p>
 						<p class="book_writer_pub">${bDetail.bwp_name } <span> 저</span></p>
 						<p class="book_writer_pub">${ bDetail.b_pub_name } <span> 출판</span></p>
 					</div>
