@@ -101,7 +101,7 @@
 			
 			</div><!-- Book_intro -->
 			<div id="book_pub_intro" class="book_info_index">
-				<h3 class="book_info_index_title">출산사 서평<button class="intro_plus"><img src="${pageContext.request.contextPath}/resources/images/Product_plus.png" style="width: 20px; height:20px;"></button></h3>
+				<h3 class="book_info_index_title">출판사 서평<button class="intro_plus"><img src="${pageContext.request.contextPath}/resources/images/Product_plus.png" style="width: 20px; height:20px;"></button></h3>
 				<p class="book_info_intro" id="book_pub_intro_p"> 
 					${ bDetail.b_pub }
 			
