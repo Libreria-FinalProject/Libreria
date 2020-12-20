@@ -152,4 +152,9 @@ public class BookDAO {
 		return (ArrayList)sqlSession.selectList("bookMapper.getSearchBookList",bs,rowBounds);
 	}
 
+	public ArrayList<Book> searchBookList(SqlSessionTemplate sqlSession, BookSort bs) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("bookMapper.searchBookLists", bs);
+	}
+
 }

@@ -9,6 +9,9 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://kit.fontawesome.com/ba69187994.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href=" ${pageContext.request.contextPath}/resources/css/common.css"/>
+<style>
+
+</style>
 </head>
 <body>
 	<nav class="" id="nav_container">
@@ -17,6 +20,7 @@
 				<div id="div_search">
 					<img alt="검색" src="${pageContext.request.contextPath}/resources/images/icon_search.png">
 					<input type="text"  id="input_search" placeholder="검색어를 입력하세요">
+					<div id="searchResultDiv_head"></div>
 				</div> 
 	
 				<c:if test="${ empty sessionScope.loginUser }">
@@ -119,9 +123,40 @@
 				}		
 			}
 		});
+		
+		 $('#input_search').keyup(function(){	
+				var word = $.trim($(this).val());
+				if(word.length>0){
+					$.ajax({
+						type:'POST',
+						url: "searchBookList.bo",
+						data: {word:word},
+						dataType: 'json',
+						success: function(data){
+							$("#searchResultDiv_head").text("");
+							$.each(data, function(idx,val){
+								var hiddenB_title= "<input type='hidden' class='b_title' value='"+val.b_title+"'>";
+								$("#searchResultDiv_head").append("<div class='searchResult_head' id=''>"+val.b_title+" / "+val.bwp_name+"</div>");
+								$('#searchResultDiv_head').find('.searchResult_head').eq(idx).append(hiddenB_title);
+								$("#searchResultDiv_head").css("display","block");
+							});
+							
+						}
+					});
+				}else{
+					$("#searchResultDiv_head").css("display","none");
+				}
+			}); 
 
-
-	
+		 
+		
+		 
+		$(document).on("click",".searchResult_head",function(){
+			var b_title = $(this).find('.b_title').val();
+			$('#input_search').val(b_title);
+			
+			
+		 });  
 	
 	</script>
 	

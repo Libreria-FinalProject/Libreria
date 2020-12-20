@@ -144,6 +144,11 @@ public class BookServiceImpl  implements BookService  {
 		// TODO Auto-generated method stub
 		return bDAO.getSearchBookList(sqlSession,bs,pi);
 	}
+	@Override
+	public ArrayList<Book> searchBookList(BookSort bs) {
+		// TODO Auto-generated method stub
+		return bDAO.searchBookList(sqlSession, bs);
+	}
 
 	////////////////KH//////////////////
 	@Override
@@ -172,4 +177,7 @@ public class BookServiceImpl  implements BookService  {
 	}
 	
 	////////////////KH//////////////////
+	
+
+	
 }

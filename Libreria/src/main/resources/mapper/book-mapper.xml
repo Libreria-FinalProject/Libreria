@@ -300,14 +300,25 @@
 				where bwp_name like '%'||#{word}||'%'
 			</when>
 		</choose>
-		
-		
-				
-	
 	
 	</select>
 	
+	<select id="searchBookLists" resultType="Book">
+		
+		<choose>
+			<when test="std == 1">
+				select *
+				from bdp
+				where b_title like '%'||#{word}||'%'
+			</when>
+			<when test="std == 2">
+				select *
+				from bdp
+				where bwp_name like '%'||#{word}||'%'
+			</when>
+		</choose>
 	
+	</select>
 	
 	
 	

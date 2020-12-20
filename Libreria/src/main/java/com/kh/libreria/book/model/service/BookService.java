@@ -70,5 +70,7 @@ public interface BookService {
 
 	ArrayList<Book> getSearchBookList(PageInfo pi, BookSort bs);
 
+	ArrayList<Book> searchBookList(BookSort bs);
+
 
 }

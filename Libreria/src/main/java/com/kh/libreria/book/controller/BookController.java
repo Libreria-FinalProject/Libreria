@@ -313,7 +313,6 @@ public class BookController {
 		GsonBuilder df = gb.setDateFormat("yyyy-MM-dd");
 		Gson gson = df.create();
 		gson.toJson(rList,response.getWriter());
-		
 	}
 	@RequestMapping("reviewSortOld.bo")
 	public void reviewSortOld(HttpServletResponse response,@RequestParam("b_no") int b_no) throws JsonIOException, IOException {
@@ -344,6 +343,24 @@ public class BookController {
 		Gson gson = df.create();
 		gson.toJson(rList,response.getWriter());
 		
+	}
+	@RequestMapping("searchBookList.bo")
+	@ResponseBody
+	public ArrayList<Book> searchBookList(@RequestParam("word") String word){
+		BookSort bs = new BookSort(1,word);
+	
+		
+		ArrayList<Book> bookList = bService.searchBookList(bs);
+		
+		//이름에 대한 검색결과가 없을 떄 
+		if(bookList.size() == 0) {
+			bs = new BookSort(2,word);
+			bookList = bService.searchBookList(bs);
+			
+		}
+		
+		
+		return bookList;
 	}
 	
 	

@@ -173,3 +173,21 @@ button{
  	height: 35px;
  	
 }
+#searchResultDiv_head{
+		background-color: #ffffff;
+	    position: absolute;
+	    margin-top: 35px;
+	    width: 330px;
+	    text-align: left;
+	    border: 1px solid #cccccc;
+	    display: none;
+	    font-size: 13px;
+	    
+	}
+	.searchResult_head{
+		padding: 7px 10px;
+	}
+	.searchResult_head:hover{
+		background-color: #87CEFA;
+		cursor: pointer;
+	}
