@@ -440,7 +440,7 @@
             <label class="priceBox"><label>총 상품가격 </label>${ bookPrice }<label>원</label></label>
             <label class="priceBox"><label>결제가격</label>${ bookPrice }<label>원</label></label>
             </div>
-            <a href="${ DirectNextPayment }"><button id="Right_bot">결제하기</button></a>
+            <a href="${ DirectNextPayment }"><button id="Right_bot" >결제하기</button></a>
         </div>
       </div>
    </section>
@@ -564,7 +564,7 @@
     function NextPayment (){
     	location.href="<%= request.getContextPath()%>/NextPayment.pay?allpriceText"+allpriceText;
     }
-    
+	
     
 </script>
 </html>

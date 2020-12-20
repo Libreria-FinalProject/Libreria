@@ -129,7 +129,6 @@
 		
         <div id="topBox">
             <label>(주)역삼동 코딩머신</label>
-            <label>상품명 : 공부란 무엇인가 외 </label>
             <label>보유 마일리지 : ${ User.mem_money }원</label>
             <label>상품 금액 : ${ AllPrice2 } 원</label>
         </div>
@@ -191,6 +190,14 @@ $(document).ready(function(){
 
 
 var buyLoot = "${pay}";
+
+function popupSubmit() {
+
+	/*  window.opener.location.reload(); */
+	 window.opener.location.href = "../libreria"; 
+    self.close();
+
+}
 $('#nextBtn').on('click',function(){
 	$.ajax({
 		url:'clearPayment.pay',
@@ -198,9 +205,11 @@ $('#nextBtn').on('click',function(){
 		traditional : true,
 		success:function(data){
 			if(data == "success"){
+				/* swal ( "결제완료" ,  "결제가 완료되었습니다.." ,  "success" ); */
 				alert("결제완료");
-				location.href="../libreria";
+				/* location.href="../libreria"; */
 			}
+			popupSubmit();
 		}
 	}) ;
 	

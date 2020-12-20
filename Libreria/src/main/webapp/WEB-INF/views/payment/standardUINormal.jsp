@@ -435,7 +435,8 @@
             <label class="priceBox"><label>총 상품가격 </label><label class="AllPrice"></label>원</label>
             <label class="priceBox"><label>결제가격</label><label class="AllPrice"></label>원 </label>
             </div>
-            <button id="Right_bot" onclick="location.href='NextPayment.pay'">결제하기</button>
+            <!-- <button id="Right_bot" onclick="location.href='NextPayment.pay'">결제하기</button> -->
+            <button id="Right_bot" onclick="next()">결제하기</button>
         </div>
 
             
@@ -583,6 +584,15 @@
     	location.href="<%= request.getContextPath()%>/NextPayment.pay?allpriceText"+allpriceText;
     }
     
+	
+	function next(){
+		if(bookCount > 0){
+		location.href='NextPayment.pay';
+		}else{
+			swal ( "책이없습니다." ,  "구매할 책이 없습니다." ,  "error" );
+		}
+	}
+	
 	<%-- $('.bookInfo').click(function(){
 		b_no = $(this).next().val(); 
 		//console.log($(this).next().val());

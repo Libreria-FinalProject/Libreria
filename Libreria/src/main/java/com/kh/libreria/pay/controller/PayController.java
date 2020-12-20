@@ -271,7 +271,7 @@ public class PayController {
 			  	.addObject("pay",pay)
 			  	.addObject("AllPrice2",AllPrice2)
 			  	.addObject("User",User)
-				.setViewName("payMutong");
+				.setViewName("payMutong"); 
 			  	return mv;
 			}else if(pay.equals("Sinyong")) {
 				System.out.println("신용 작동"); 

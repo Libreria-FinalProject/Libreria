@@ -372,7 +372,8 @@
             
         </div>
         <div id="basket_Right">
-        		<form action="MethodOfPayment.pay">
+        		<!-- <form action="MethodOfPayment.pay" target="_blank"> -->
+        		<form name="frmData" id="frmData">
                 <div id="Right_top">
                 <label class="selectBookBox">총 <label id="allBookCount"></label>권을 선택하셧습니다.</label>
                 <label class="priceBox" id="AllPrice"><label>총 상품가격 </label><label class="AllPrice"></label>원</label>
@@ -386,7 +387,7 @@
                 
             </div>
             	
-                <button id="Right_bot">결제하기</button>
+                <button id="Right_bot" onclick="goPopup()">결제하기</button>
                 </form>
             </div>
       </div>
@@ -421,6 +422,20 @@
 			$('.AllPrice').text(allpriceText);
 			$('.AllPrice2').val(allpriceText);
 		})
+		
+		function goPopup(){
+			var pop_title = "결제" ;
+	         
+	        window.open("",pop_title,"width=550px,height=565px,scrollbars=no,top=100,left=400");
+			
+			var frmData = document.frmData ;
+	        frmData.target = pop_title ;
+	        frmData.action = "MethodOfPayment.pay" ;
+	         
+	        frmData.submit() ;
+
+
+		}
 	
 	</script>
       

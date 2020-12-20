@@ -369,8 +369,8 @@
             
         </div>
         <div id="basket_Right">
-        		<form action="DirectMethodOfPayment.pay">
-        		<!-- <form onsubmit="NextPayment()"> -->
+        		<!-- <form action="DirectMethodOfPayment.pay"> -->
+        		<form name="frmData" id="frmData">
                 <div id="Right_top">
                 <label class="selectBookBox">총 1권을 선택하셧습니다.</label>
                 
@@ -386,7 +386,7 @@
                 <input type="hidden" value="${ bookPrice }" name="bookPrice">
                 </div>
             	
-                <button id="Right_bot">결제하기</button>
+                <button id="Right_bot" onclick="goPopup()">결제하기</button>
                 </form>
             </div>
       </div>
@@ -414,6 +414,20 @@
 		})
 	
 	
+		function goPopup(){
+			var pop_title = "결제" ;
+	         
+	        window.open("",pop_title,"width=550px,height=565px,scrollbars=no,top=100,left=400");
+			
+			var frmData = document.frmData ;
+	        frmData.target = pop_title ;
+	        frmData.action = "DirectMethodOfPayment.pay" ;
+	         
+	        frmData.submit() ;
+
+
+		}
+		
 		
 	</script>
       
