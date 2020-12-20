@@ -187,6 +187,8 @@ public class MemberSeriviceImpl implements MemberService{
 	public void find_pw(HttpServletResponse response, Member m) throws Exception {
 
 		// 임시 비밀번호 생성
+		// 알파벳 A~Z까지 의 랜덤실수에  
+		//소문자를 사용하기위해 a의 아스키코드인 97을 더해준다.  a~z까지 
 		String mem_pw = "";
 		for (int i = 0; i < 12; i++) {
 			mem_pw += (char) ((Math.random() * 26) + 97);
@@ -219,6 +221,7 @@ public class MemberSeriviceImpl implements MemberService{
 			
 			subject = "Libreria 임시 비밀번호 입니다.";
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h2>LIBRERIA</h2>";
 			msg += "<h3 style='color: blue;'>";
 			msg += m.getMem_email() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
 			msg += "<p>임시 비밀번호 : ";
