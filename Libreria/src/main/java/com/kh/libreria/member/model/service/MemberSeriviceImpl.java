@@ -185,8 +185,7 @@ public class MemberSeriviceImpl implements MemberService{
 	
 	@Override
 	public void find_pw(HttpServletResponse response, Member m) throws Exception {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
+
 		// 임시 비밀번호 생성
 		String mem_pw = "";
 		for (int i = 0; i < 12; i++) {
@@ -202,8 +201,6 @@ public class MemberSeriviceImpl implements MemberService{
 		
 		// 비밀번호 변경
 		mDAO.updatePw(sqlSession, m);
-		
-		out.close();
 		}
 	
 	@Override

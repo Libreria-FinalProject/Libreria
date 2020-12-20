@@ -55,7 +55,6 @@
 		
 		
 		<!-- 메일 api -->
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>

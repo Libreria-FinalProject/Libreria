@@ -132,6 +132,7 @@ public class MemberController {
 		if(result>0) {
 			logger.debug("임시비밀번호 이메일 발송 성공");
 			mService.find_pw(response,m);
+			mv.addObject("mem_email", m.getMem_email());
 			mv.setViewName("memberPwSearchComplete");
 		}else {
 			logger.debug("임시비밀번호 이메일 발송 실패");
@@ -181,9 +182,7 @@ public class MemberController {
 		
 		return mv;
 	}
-	
 
-	
 //	로그인
 	@RequestMapping("login.me") 
 	public void loginMember(Member m, Model model,
