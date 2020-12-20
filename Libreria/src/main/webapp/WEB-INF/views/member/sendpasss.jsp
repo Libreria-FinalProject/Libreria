@@ -52,7 +52,7 @@
 </head>
 <body>
 <c:import url="../common/header.jsp"></c:import>
-	<section class="account-container">
+<section class="account-container">
 		<form>
 			<div class= "input-group">
 				 <div class = "pwre-com-complete">

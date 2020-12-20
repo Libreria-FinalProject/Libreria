@@ -70,7 +70,7 @@
      <form action="findPw.me" id="pwSearchForm" onSubmit="return validate();" >
     	<div class="input-group">
      	  <label class="account-label">
-     	  		<input type="text" name="mem_email" id="mem_email" title="아이디 입력" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
+     	  		<input type="text" name="mem_email" id="mem_email" value="${member.mem_email}" title="아이디 입력" placeholder="아이디(이메일)" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
      	  </label>
      	  <label class="account-label">
      	  		<input type="text" name="mem_name" id="mem_name" title="이름 입력" placeholder="이름" autocapitalize="off" autocomplete="off" class="pwsearch_textarea"> 
@@ -162,7 +162,7 @@
 					
 					if(data !="0"){
 						$('#result').val(data);
-					}else{	
+					}else{						
 					}
 				},				
 			});

@@ -74,6 +74,11 @@ public interface MemberService {
 
 	int findPwEmail(Member m);
 
+	int updatePw(Member m);
+
+	void send_mail(Member m) throws Exception;
+
+	void find_pw(HttpServletResponse response, Member m) throws Exception;
 
 	
 }

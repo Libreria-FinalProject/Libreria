@@ -6,8 +6,10 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.libreria.book.model.vo.Book;
@@ -26,6 +28,8 @@ public class MemberSeriviceImpl implements MemberService{
 	@Autowired
 	private MemberDAO mDAO;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@Override
 	public Member loginMember(Member m) {
@@ -168,16 +172,83 @@ public class MemberSeriviceImpl implements MemberService{
 	public ArrayList<Member> getMemberList(Member m) {
 		return mDAO.getMemberList(sqlSession,m);
 	}
-	/*
-	 * @Override public void findPw(HttpServletResponse response, Member m) { return
-	 * mDAO.getMemberList(sqlSession,m);
-	 * 
-	 * }
-	 */
 
 	@Override
 	public int findPwEmail(Member m) {
 		return mDAO.findPwEmail(sqlSession, m);
 	}
 
-}
+	@Override
+	public int updatePw(Member m) {
+		return mDAO.updatePw(sqlSession, m);
+	}
+	
+	@Override
+	public void find_pw(HttpServletResponse response, Member m) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		// 임시 비밀번호 생성
+		String mem_pw = "";
+		for (int i = 0; i < 12; i++) {
+			mem_pw += (char) ((Math.random() * 26) + 97);
+		}
+		m.setMem_pw(mem_pw);
+		
+		// 비밀번호 변경 메일 발송
+		send_mail(m);
+		
+		String encPwd = bcryptPasswordEncoder.encode(mem_pw);
+		m.setMem_pw(encPwd);
+		
+		// 비밀번호 변경
+		mDAO.updatePw(sqlSession, m);
+		
+		out.close();
+		}
+	
+	@Override
+	public void send_mail(Member m) throws Exception{
+		// Mail Server 설정
+			String charSet = "utf-8";
+			String hostSMTP = "smtp.naver.com";
+			String hostSMTPid = "libreriafinal@naver.com";
+			String hostSMTPpwd = "Libreriafinal";
+
+		// 보내는 사람 EMail, 제목, 내용
+			String fromEmail = "libreriafinal@naver.com";
+			String fromName = "Libreria";
+			String subject = "이메일 발송 테스트";
+			String msg = "";
+			
+			subject = "Libreria 임시 비밀번호 입니다.";
+			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
+			msg += "<h3 style='color: blue;'>";
+			msg += m.getMem_email() + "님의 임시 비밀번호 입니다. 비밀번호를 변경하여 사용하세요.</h3>";
+			msg += "<p>임시 비밀번호 : ";
+			msg += m.getMem_pw() + "</p></div>";
+			
+			//받는사람 e_mail 주소
+			String mail = m.getMem_email(); //받는사람 email
+			try {
+				HtmlEmail email = new HtmlEmail();
+				email.setDebug(true);
+				email.setCharset(charSet);
+				email.setSSL(true);
+				email.setHostName(hostSMTP);
+				email.setSmtpPort(587);
+
+				email.setAuthentication(hostSMTPid, hostSMTPpwd);
+				email.setTLS(true);
+				email.addTo(mail, charSet);
+				email.setFrom(fromEmail, fromName, charSet);
+				email.setSubject(subject);
+				email.setHtmlMsg(msg);
+				email.send();
+			} catch (Exception e) {
+				System.out.println("메일발송 실패 : " + e);
+			}
+		}
+	
+	
+	}
+	

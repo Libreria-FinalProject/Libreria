@@ -141,5 +141,5 @@ public class MemberDAO {
 	public int updatePw(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updatePw", m);
 	}
-
+	
 }

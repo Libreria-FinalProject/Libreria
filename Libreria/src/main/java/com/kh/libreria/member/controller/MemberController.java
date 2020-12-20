@@ -14,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.libreria.book.model.vo.Book;
 import com.kh.libreria.common.PageInfo;
@@ -30,8 +31,6 @@ import com.kh.libreria.member.model.service.MemberService;
 import com.kh.libreria.member.model.vo.Card;
 import com.kh.libreria.member.model.vo.Member;
 import com.kh.libreria.member.model.vo.Money;
-
-import oracle.net.aso.d;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -127,33 +126,20 @@ public class MemberController {
 	}
 
 	@RequestMapping("findPw.me")
-	public ModelAndView findPwCom(Member m, ModelAndView mv,@RequestParam(value="mem_email" , required=false) String mem_email){	
-		System.out.println(mem_email);
-		logger.debug("임시비밀번호 이메일 발송 여부");
+	public ModelAndView find_pw(ModelAndView mv, @ModelAttribute Member m, HttpServletResponse response) throws Exception{
 		
 		int result = mService.findPwEmail(m);
-			if(result>0) {
-				logger.debug("임시비밀번호 이메일 발송 성공");
-				mv.addObject("mem_email", m.getMem_email());
-				mv.setViewName("memberPwSearchComplete");
-			}else {
-				logger.debug("임시비밀번호 이메일 발송 실패");
-				mv.setViewName("memberPwSearchError");
-			}
+		if(result>0) {
+			logger.debug("임시비밀번호 이메일 발송 성공");
+			mService.find_pw(response,m);
+			mv.setViewName("memberPwSearchComplete");
+		}else {
+			logger.debug("임시비밀번호 이메일 발송 실패");
+			mv.setViewName("memberPwSearchError");
+		}
 		return mv;
 	}
-//	@RequestMapping("checkEmail.me")
-//	public void emailCheck(HttpServletResponse response
-//			,@RequestParam("mem_email") String mem_email) throws IOException { //requested=false = 반드시 받지 않아도 되게 해본다.
-//		int result = mService.checkEmail(mem_email);
-//		if(result>0) {
-//			response.getWriter().print("1");
-//		}else {
-//			response.getWriter().print("2");			
-//		}
-//	}
-	
-	
+
 	@RequestMapping("checkEmail.me")
 	public void emailCheck(String mem_email, HttpServletResponse response) throws IOException {
 		boolean isUsable = mService.checkEmail(mem_email) == 0 ? true : false;

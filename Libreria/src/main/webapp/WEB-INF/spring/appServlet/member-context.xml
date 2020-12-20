@@ -35,8 +35,6 @@
 			<mvc:exclude-mapping path="/idSearch.me"/>
 			<mvc:exclude-mapping path="/idSearchComplete.me"/>
 			<mvc:exclude-mapping path="/pwSearch.me"/>
-			<mvc:exclude-mapping path="/pwSearchChange.me"/>
-			<mvc:exclude-mapping path="/pwSearchComplete.me"/>
 			<mvc:exclude-mapping path="/checkNameTel.me"/>
 			<mvc:exclude-mapping path="/memberIdSearchComplete.me"/>
 			<mvc:exclude-mapping path="/findPw.me"/>
@@ -46,19 +44,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
-	<!-- mail -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
-		<property name="host" value="smtp.mailtrap.io"/> 
-		<property name="port" value="587" /> 
-		<property name="username" value="e3a68e026bfcd3"/> 
-		<property name="password" value="9a91fa8b71fb14"/> 
-		<property name="javaMailProperties"> 
-			<props> 
-				<prop key="mail.smtp.auth">true</prop> 
-				<prop key="mail.smtp.starttls.enable">true</prop>
-			</props> 
-		</property> 
-	</bean>
 	
 	<context:component-scan base-package="com.kh.libreria" />
 </beans>
