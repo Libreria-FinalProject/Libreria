@@ -394,7 +394,7 @@
                     
                     <div id="productBox">
                             <label><input type="checkbox" name="SelectBook"onclick="whatAll();" value="${ basket.b_no }"> <input type="hidden" id="b_no" value="${ basket.b_no }"> </label>
-                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${ basket.img_no }.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/bookcover_${ basket.img_no }.jpg">
                             <div id="titleBox">
                                 <label id="bookName">${ basket.b_title }</label>
                                 

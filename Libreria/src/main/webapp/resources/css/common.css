@@ -121,6 +121,7 @@ button{
     background: #ffffff;
     border: 1px solid #cccccc;
     margin-top: 9px;  
+    z-index: 2;
 }
 #service_li li{
 	padding:10px 15px 10px 15px;	

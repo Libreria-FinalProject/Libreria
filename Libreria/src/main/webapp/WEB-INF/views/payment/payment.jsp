@@ -355,7 +355,7 @@
                     <hr>
                     <div id="productBox">
                             
-                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/book_cover${ basket.img_no }.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/book_cover/bookcover_${ basket.img_no }.jpg">
                             <div id="titleBox">
                                 <label id="bookName">${ basket.b_title }</label>
                                  

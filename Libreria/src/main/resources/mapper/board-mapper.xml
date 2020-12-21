@@ -111,7 +111,7 @@
 		select bo_no, count(reply_no) reply_count
 		from board 
 		left join reply using(bo_no)
-		where bo_delete='N'
+		where bo_delete='N' and reply_delete='N'
 		and cate_no=#{cate}
 		group by bo_no
 		order by bo_no desc

@@ -4,7 +4,7 @@
 	<select id="loginMember" resultType="Member">
 		select *
 		from member
-		where mem_email = #{mem_email}  and mem_delete='N'
+		where mem_email = #{mem_email}  and mem_delete='N' and mem_status='Y'
 	</select>
 	<resultMap type="Member" id="memberResultSet">
       <id column="MEM_NO" property="mem_no"/>
